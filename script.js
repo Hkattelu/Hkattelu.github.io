@@ -6,7 +6,7 @@ $(document).ready(function() {
      $('#description').empty();
      $('#description').html("I am a hardworking student");
      $('#picture').empty();
-     $('#picture').append("<img src='img/m1.png' class='img-rounded' />");
+     $('#picture').append("<img src='img\m1.png' class='img-rounded' />");
 
   });
 
@@ -15,7 +15,7 @@ $(document).ready(function() {
      $('#description').empty();
      $('#description').html("I am a hard worker");
      $('#picture').empty();
-     $('#picture').append("<img src='img/m2.jpg' class='img-rounded' />");
+     $('#picture').append("<img src='img\m2.jpg' class='img-rounded' />");
 
   });
 
@@ -24,7 +24,7 @@ $(document).ready(function() {
      $('#description').empty();
      $('#description').html("I work hard play hard");
      $('#picture').empty();
-     $('#picture').append("<img src='img/m3.jpg' class='img-rounded' />");
+     $('#picture').append("<img src='img\m3.jpg' class='img-rounded' />");
 
 
   });  
