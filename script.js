@@ -4,7 +4,7 @@ $(document).ready(function() {
   $("#class").click(function(){
 
      $('#description').empty();
-     $('#description').html("I am a hardworking student");
+     $('#description').html("Coming soon");
      $('#picture').empty();
      $('#picture').append("<img src='img/m1.PNG' class='img-rounded' />");
 
@@ -13,7 +13,7 @@ $(document).ready(function() {
   $("#work").click(function(){
 
      $('#description').empty();
-     $('#description').html("I am a hard worker");
+     $('#description').html("Coming soon");
      $('#picture').empty();
      $('#picture').append("<img src='img/m2.JPG' class='img-rounded' />");
 
@@ -22,7 +22,7 @@ $(document).ready(function() {
   $("#other").click(function(){
 
      $('#description').empty();
-     $('#description').html("I work hard play hard");
+     $('#description').html("Coming soon");
      $('#picture').empty();
      $('#picture').append("<img src='img/m3.JPG' class='img-rounded' />");
 
