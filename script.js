@@ -6,7 +6,7 @@ $(document).ready(function() {
      $('#description').empty();
      $('#description').html("I am a hardworking student");
      $('#picture').empty();
-     $('#picture').append("<img src='img/m1.png' class='img-rounded' />");
+     $('#picture').append("<img src='img/m1.PNG' class='img-rounded' />");
 
   });
 
