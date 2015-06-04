@@ -1,0 +1,81 @@
+.links {
+	color: black;
+	font-family: Sans-serif;
+}
+
+
+h1 {
+	text-align: center;
+}
+
+.blurb {
+	text-align: center;
+	
+}
+
+.welcome {
+	text-align: center;
+	position: absolute;
+	margin-left:530px
+}
+
+
+.footer {
+    position:absolute;
+    bottom:0;
+    margin-left:580px;
+}
+
+#description{
+
+	text-align: center;
+}
+
+section#skills{
+	height:800px;
+	
+	background-color:#EEEEEE;
+}
+
+section#about{
+
+	height:800px;
+	text-align:center;
+	background-color:#B2D1FF;
+}
+
+section#projects{
+
+    height:800px;
+	text-align:center;
+	background-color:#B2D1FF;
+}
+
+section#end{
+
+	height:35px;
+	text-align:center;
+	background-color: #B2D1FF;
+	
+}
+
+
+
+.site-wrapper {
+	background-color:#EEEEEE;
+}
+
+section div h1{
+
+	text-align:center;
+}
+
+section ul li{
+
+	font-size:1.2em;
+}
+
+section div p{
+	text-align:center;
+}
+
