@@ -1,30 +1,28 @@
 $(document).ready(function() {
 	
 
-  $("#class").click(function(){
-
-     $('#description').empty();
-     $('#description').html("Coming soon");
-     $('#picture').empty();
-     $('#picture').append("<img src='img/m1.PNG' class='img-rounded' />");
-
-  });
+  $("#description2").hide();
+  $("#picture2").hide();
 
   $("#work").click(function(){
-
-     $('#description').empty();
-     $('#description').html("Coming soon");
-     $('#picture').empty();
-     $('#picture').append("<img src='img/m2.JPG' class='img-rounded' />");
+     
+     $("#work").addClass('active');
+     $('#other').removeClass('active');
+     $('#description2').hide();
+     $('#description1').show();
+     $("#picture2").hide();
+     $("#picture1").show();
 
   });
 
   $("#other").click(function(){
-
-     $('#description').empty();
-     $('#description').html("Coming soon");
-     $('#picture').empty();
-     $('#picture').append("<img src='img/m3.JPG' class='img-rounded' />");
+     
+     $("#other").addClass('active');
+     $('#work').removeClass('active');
+     $('#description1').hide();
+     $('#description2').show();
+     $("#picture1").hide();
+     $("#picture2").show();
 
 
   });  

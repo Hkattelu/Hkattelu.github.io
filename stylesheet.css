@@ -13,6 +13,12 @@ h1 {
 	
 }
 
+.current {
+
+	font-size:2em;
+	margin-left: 20px;
+}
+
 .welcome {
 	text-align: center;
 	position: absolute;
@@ -20,13 +26,19 @@ h1 {
 }
 
 
-#description{
+#description1{
 
 	text-align: center;
+	margin-top:50px;
+}
+
+#description2{
+	text-align:center;
+	margin-top: 100px;
 }
 
 section#skills{
-	height:800px;
+	height:650px;
 	
 	background-color:#EEEEEE;
 }
@@ -72,4 +84,6 @@ section ul li{
 section div p{
 	text-align:center;
 }
+
+
 
