@@ -5,15 +5,18 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+         
+        <!--CSS--> 
 		    <link type="text/css" rel="stylesheet" href="stylesheet.css" />
+
+        <!--Website Icon-->
         <link rel="shortcut icon" href="img/favicon.ico">
         
+        <!--Importing Bootstrap-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 
-
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <!--Importing jQuery-->
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script src="jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src='script.js'></script>
@@ -32,10 +35,14 @@
         <li><a href="#about"><span class="links">About</span></a></li>
         <li><a href="#skills"><span class="links">Skills</span></a></li>
         <li><a href="#projects"><span class="links">Projects</span></a></li>
+
+        <!--This Resume needs to be updated and viewable without dropbox-->
         <li><a href="https://www.dropbox.com/home?preview=Resume+-+Himanshu.pdf"><span class="links">Resume</span></a></li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
+
+        <!--Icons taken from IcoMoon.io-->
         <li><a href="https://github.com/Hkattelu"><img src="img\0434-github.png"/></a></li>
         <li><a href="https://www.linkedin.com/in/himanshukattelu"><img src="img\0457-linkedin.png"/></a></li>
         <li><a href="https://www.facebook.com/himanshu.kattelu"><img src="img\0398-facebook2.png"/></a></li>
@@ -47,47 +54,44 @@
  <br>
  <br>
   <div class="container-fluid" id="home">
-       <table>
-    <tr>
-      <th >
-        <img src="img/Me.JPG" class="img-rounded"/>
-      </th>
-      <td >
-        <div class= "jumbotron " style="">
-
-              <h1><span>Hi! It's Himanshu</span></h1>
+   <div class="row"> 
+    <div class="col-md-3">  <img src="img/Me.JPG" class="img-rounded" style="margin-top:100px;"/></div>
+     <div class="col-md-9">
+      
+        <div class= "jumbotron" >
+           
+              <h1 ><span>Hi! I'm Himanshu</span></h1>
 
               <div class= "blurb">   
               <p> I'm a rising sophomore at Stony Brook University, where I study Computer Science and 
-         Applied Mathematics. I enjoy learning new things especially when it comes to programming, web design, and 3D animation. If you want to contact me, <a href= "mailto:himanshukattelu@gmail.com">Email</a> would
-         be the best. I'd enjoy hearing from you!</p>
-
+         Applied Mathematics. I enjoy learning new things especially when it comes to programming, web design, and 3D animation. If you want to contact me, <a href= "mailto:himanshukattelu@gmail.com">Email</a> would be the best. I'd enjoy hearing from you!</p>
+         
           </div>
 
          </div>
-        
-      </td>
-    </tr>
-    </table>     
+          
   </div>
  <br>
- 
+   
     <p class="current"><strong>What I'm currently working on:</strong></p>
 
  <br>
 
-    <p style="margin-left:20px;font-size:1.5em"><small>Right now I'm using MATLAB and FFMPEG at Stony brook university with one of my professors to research searching inside a video. It involves a lot of image processing functions in MATLAB as well as using FFMPEG to dynamically convert a video into its frame components. There is also use of algorithms to see how well an image matches another image. Additionally, there are minor difficulties such as differing framerates, inconsistencies in converting video to frames, and image storage.</small></p>
+    <p class="currentWork"><small>Right now I'm using MATLAB and FFMPEG at Stony brook university with one of my professors to research searching inside a video. It involves a lot of image processing functions in MATLAB as well as using FFMPEG to dynamically convert a video into its frame components. There is also use of algorithms to see how well an image matches another image. Additionally, there are minor difficulties such as differing framerates, inconsistencies in converting video to frames, and image storage.</small></p>
+   
+</div> 
  <br>
  <br>
  <br>
-
+ </div>
   <section id="about">
 
   <br>
     <p class="lead"><h1>About me</h1></p>
    <br>
-     <h4 style="font-size:2em"><em>"If it won't work, keep trying until it does"</em></h4>
-
+     <!--<h4 style="font-size:2em"><em>"If it won't work, keep trying until it does"</em></h4>-Find a good quote for this-->
+   
+   <!-- Buttons are switched from active to inactive in script.js-->
     <div class="btn-group" role="group">
       <!-- <button type="button" class="btn btn-default" id="class"></button>-Don't really need this-->
        <button type="button" class="btn btn-default active" id="work">Work</button>
@@ -96,11 +100,12 @@
   <br>
   <br>
 
+  <!--The descriptions are switched between using show(),hide() in the script.js file-->
   <div class="row">
 
-   <div class="col-md-8">
+   <div class="col-md-7">
     <p class="lead" id="description1">
-      I first got into computer science when I attended my first hackathon (unhackathon). At first I found that it can be extremely difficult and stressful but I persisted and even though I didn't make anything at my first two hackathons I did learn alot. At the start of the winter semester I officially started to learn java programming and got really into it. At my 3rd hackathon (HackBU), My team and I were able to apply our knowledge to make a game in UNITY3D that utilizes the Oculus Rift and Myo as part of the experience. After that feeling of making something that people could use, I instantly got to work in web development. After making this website I can say that I do enjoy web development, but my real interests lie in the problem solving ability of computers. I've always liked math and I love being challenged to use computing to solve problems. Right now I'm doing just that by doing some Research at SBU, but i'm definitely excited or the new hackathon season as well!
+      I first got into computer science when I attended my first hackathon (Unhackathon). I found that it can be extremely difficult and stressful but I persisted and even though I didn't make anything at the earlier hackathons I did learn alot. At the start of the winter semester I officially started to learn java programming and got really into it. At my 3rd hackathon (HackBU), My team and I were able to apply our knowledge to make a game in UNITY3D that utilizes the Oculus Rift and Myo as part of the experience. That feeling of making something that people could use, I instantly got to work in web development. After making this website I can say that I do enjoy web development, but my real interests lie in the problem solving ability of computers. I've always liked math and I love being challenged to use computing to solve problems. Right now I'm doing just that by doing some Research at SBU, but i'm definitely excited for the new hackathon season as well!
     </p>
     <p class="lead" id="description2">
       I have a few hobbies but I particularly enjoy dancing. I'm currently part of the PUSO Ballroom dance group at SBU and we perform
@@ -110,33 +115,37 @@
     </p>
    </div>
 
-   <div class="col-md-4">
-     <p class="lead" id="picture1"><img src='img/m2.JPG' class='img-rounded' /></p>
-     <p class="lead" id="picture2"><img src='img/m3.JPG' class='img-rounded' /></p>
+   <div class="col-md-2">
+     <p  id="picture1"><img src='img/m2.JPG' class='img-rounded' /></p>
+     <p  id="picture2"><img src='img/m3.JPG' class='img-rounded' /></p>
    </div>
+   <div class="col-md-2"></div>
   </div>
     
             </section>
     
 <section id="skills">
 
-  
-    <div class="page-header"><h1>What I can do</h1></div>
+ <div class="page-header"><h1>What I can do</h1></div>
 
   <div class="row">
-    <div class="col-md-6">
+
+    <!--ICS are the icons next to each skillset-->
+    <!--Icons taken from IcoMoon.io-->
+    <div class="col-md-2"><img class = "ICS1"  src="img\0386-terminal.png"/></div>
+    <div class="col-md-4">
       <p class="lead">  Software</p>
       <ul>
-        <li>Sublime Text</li>
-        <li>Microsoft Office</li>
-        <li>Autodesk 3DSMAX</li>
         <li>Adobe AfterEffects</li>
+        <li>Autodesk 3DSMAX</li>
+        <li>Microsoft Office</li>
+        <li>Sublime Text</li>
         <li>Eclipse IDE</li>
         <li>MATLAB</li>
         <li>FFMPEG</li>
       </ul>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-3">
       <p class="lead">  Web Dev</p>
       <ul>
         <li>HTML/CSS</li>
@@ -147,31 +156,34 @@
         <li>Meteor.js</li>
       </ul>
     </div>
+    <div class="col-md-3"><img class = "ICS2" src="img\0202-sphere.png"/></div>
   </div>
 <br>
 <br>
 <br>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-2"><img class = "ICS1"  src="img\0360-sigma.png"/></div>
+    <div class="col-md-4">
       <p class="lead">  Applied Math</p>
       <ul>
+        <li>Probability/Statistics</li>
+        <li>Options trading</li>
         <li>Linear Algebra</li>
-        <li>Multivariable Calculus/Diff Eqs.</li>
+        <li>Calculus 3/4</li>
         <li>Graph Theory</li>
-        <li>Combinatorics/Probability theory/Statistics</li>
-        <li>Options trading/Risk management</li>
       </ul>
     </div>  
-    <div class="col-md-6">
-      <p class="lead">  Other</p>
+    <div class="col-md-3">
+      <p class="lead">Other</p>
       <ul>
-        <li>C/C#</li>
         <li>Java/Swing </li>
         <li>Python</li>
         <li>Oculus</li>
+        <li>C/C#</li>
         <li>Myo</li>
       </ul>
     </div>
+    <div class="col-md-3"><img class = "ICS2"  src="img\0150-cogs.png"/></div>
   </div>
 
     </section>   
@@ -186,6 +198,7 @@
 
 </section>      
 
+<!--Add a return to top button here?-->
 <section id="end">
   <p> Himanshu Kattelu 2015 All Rights Reserved.</p>
 </section>    

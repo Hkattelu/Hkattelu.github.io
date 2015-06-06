@@ -3,26 +3,60 @@
 	font-family: Sans-serif;
 }
 
-
-h1 {
+h1{
 	text-align: center;
+
 }
 
-.blurb {
+.blurb{
+
 	text-align: center;
-	
+}
+.box{
+	border-style:solid;
+	border-spacing: 5px;
 }
 
 .current {
 
 	font-size:2em;
-	margin-left: 20px;
+	margin-left: 400px;
+
+}
+
+.currentWork{
+
+	margin-left:400px;
+	font-size:1.5em;
+	margin-right:50px;
+	margin-bottom:50px;
+}
+
+#picture1{
+	margin-top: 50px;
+}
+
+#picture2{
+	margin-top: 50px;
 }
 
 .welcome {
 	text-align: center;
 	position: absolute;
 	margin-left:530px
+
+}
+
+.ICS1{
+
+	margin-left: 150px;
+	
+	margin-top:50px;
+}
+
+.ICS2{
+	margin-left:20px;
+	margin-top:50px;;
 }
 
 
@@ -30,11 +64,20 @@ h1 {
 
 	text-align: center;
 	margin-top:50px;
+	margin-left:75px;
+	margin-right:25px;
 }
 
 #description2{
 	text-align:center;
 	margin-top: 100px;
+	margin-left:75px;
+	margin-right:25px;
+}
+
+#intro{
+
+
 }
 
 section#skills{
@@ -79,10 +122,12 @@ section div h1{
 section ul li{
 
 	font-size:1.2em;
+	margin-left: 100px;
+	margin-right: 100px;
 }
 
 section div p{
-	text-align:center;
+	margin-left:120px;
 }
 
 
