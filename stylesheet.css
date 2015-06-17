@@ -61,18 +61,19 @@ h1{
 
 
 #description1{
-
-	text-align: center;
-	margin-top:50px;
+    font-size:1.5em;
+	margin-top:100px;
 	margin-left:75px;
 	margin-right:25px;
+	text-align: left;
 }
 
 #description2{
-	text-align:center;
+	font-size:1.5em;
 	margin-top: 100px;
 	margin-left:75px;
 	margin-right:25px;
+	text-align: left;
 }
 
 #intro{
@@ -81,7 +82,7 @@ h1{
 }
 
 section#skills{
-	height:800px;
+	height:700px;
 	
 	background-color:#EEEEEE;
 }
@@ -89,22 +90,22 @@ section#skills{
 section#about{
 
 	height:800px;
-	text-align:center;
-	background-color:#B2D1FF;
+	
+	background-color:#EEEEEE;
 }
 
 section#projects{
 
     height:800px;
-	text-align:center;
-	background-color:#B2D1FF;
+	
+	background-color:#EEEEEE;
 }
 
 section#end{
 
 	height:35px;
 	text-align:center;
-	background-color: #B2D1FF;
+	background-color: #EEEEEE;
 	
 }
 
@@ -113,6 +114,8 @@ section#end{
 .site-wrapper {
 	background-color:#EEEEEE;
 }
+
+
 
 section div h1{
 
@@ -130,5 +133,7 @@ section div p{
 	margin-left:120px;
 }
 
-
+table, td {
+   border: 2px black solid;
+}
 

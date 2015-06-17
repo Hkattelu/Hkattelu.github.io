@@ -55,7 +55,7 @@
  <br>
   <div class="container-fluid" id="home">
    <div class="row"> 
-    <div class="col-md-3">  <img src="img/Me.JPG" class="img-rounded" style="margin-top:100px;"/></div>
+    <div class="col-md-3">  <img src="img/Me.JPG" class="img-rounded" style="margin-top:100px"/></div>
      <div class="col-md-9">
       
         <div class= "jumbotron" >
@@ -81,17 +81,16 @@
    
 </div> 
  <br>
- <br>
- <br>
+ 
  </div>
-  <section id="about">
+  <section id="about" style="text-align:center">
    <br><br>
     <p class="lead"><h1>About me</h1></p>
    <br>
      <!--<h4 style="font-size:2em"><em>"If it won't work, keep trying until it does"</em></h4>-Find a good quote for this-->
    
    <!-- Buttons are switched from active to inactive in script.js-->
-    <div class="btn-group" role="group">
+    <div class="btn-group" role="group" style="text-align:center">
       <!-- <button type="button" class="btn btn-default" id="class"></button>-Don't really need this-->
        <button type="button" class="btn btn-default active" id="work">Work</button>
        <button type="button" class="btn btn-default" id="other">Other</button>
@@ -103,14 +102,13 @@
   <div class="row">
 
    <div class="col-md-7">
-    <p class="lead" id="description1">
-      I first got into computer science when I attended my first hackathon (Unhackathon). I found that it can be extremely difficult and stressful but I persisted and even though I didn't make anything at the earlier hackathons I did learn alot. At the start of the winter semester I officially started to learn java programming and got really into it. At my 3rd hackathon (HackBU), My team and I were able to apply our knowledge to make a game in UNITY3D that utilizes the Oculus Rift and Myo as part of the experience. That feeling of making something that people could use, I instantly got to work in web development. After making this website I can say that I do enjoy web development, but my real interests lie in the problem solving ability of computers. I've always liked math and I love being challenged to use computing to solve problems. Right now I'm doing just that by doing some Research at SBU, but i'm definitely excited for the new hackathon season as well!
+    <p  id="description1">
+      <small>I first got into computer science when I attended my first hackathon. At the start of the winter semester I officially started to learn java programming and got really into it. Soon after, I learned some web development and made this website. Although I do enjoy web design, my real interests lie in the problem solving ability of computers. I've always liked math and I love being challenged to use computing to solve problems. Right now I'm doing that with some Research at SBU, but i'm definitely excited for the new hackathon season as well!</small>
     </p>
-    <p class="lead" id="description2">
-      I have a few hobbies but I particularly enjoy dancing. I'm currently part of the PUSO Ballroom dance group at SBU and we perform
-      at a few events. Aside from ballroom I do some modern dance for fun on my own and I plan to get more involved with the 
+    <p id="description2">
+      <small>I have a few hobbies but I particularly enjoy dancing. I'm currently part of the PUSO Ballroom dance group at SBU and we perform at a few events. Aside from ballroom I do some modern dance for fun on my own and I plan to get more involved with the 
       modern community in college next year. Although I like dancing, my favorite hobby is flow/circus arts. I spend alot of time 
-      spinning poi or glowstringing and I have a few videos up on my youtube channel. Besides poi I also do diabolos and devil sticks. I also watch anime occasionally and try to keep up with whatever shows are airing in the season.
+      spinning poi or glowstringing and I have a few videos up on my youtube channel. Besides poi I also do diabolos and devil sticks. I also watch anime occasionally and try to keep up with whatever shows are airing in the season.</small>
     </p>
    </div>
 
@@ -125,7 +123,7 @@
     
 <section id="skills">
 <br><br>
- <div class="page-header"><h1>What I can do</h1></div>
+ <div class="page-header"><h1>Skills</h1></div>
 
   <div class="row">
 
@@ -188,11 +186,23 @@
 
 <section id="projects">
   <br><br>
-  <p class="lead"><h1>What I've done</h1></p>
+  <p class="lead"><h1>Projects</h1></p>
    <br>
    <br>
-   <p>Coming soon</p>
+ <div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+  <table id="projects">
+    <tr><td><a href="http://challengepost.com/software/spaceshipvr">SpaceShipVR</a></td>
+        <td> A game made at HackBU utilizing the Oculus Rift and Myo. I created the 3D environment using Autodesk 3DSMAX and programmed parts of the game, gaining experience with Oculus Rift, Myo, and Unity3D.</td></tr>
 
+    <tr><td><a href="#home">Personal Site</a></td>
+        <td>A personal website made using HTML/CSS,Bootstrap,and jQuery.</td></tr>
+
+</table>
+ </div>
+   <div class="col-md-3"></div>  
+  </div>
 </section>      
 
 <!--Add a return to top button here?-->
