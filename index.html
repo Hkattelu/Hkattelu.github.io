@@ -115,8 +115,8 @@
    </div>
 
    <div class="col-md-2">
-     <p  id="picture1"><img src='img/m2.JPG' class='img-rounded' /></p>
-     <p  id="picture2"><img src='img/m3.JPG' class='img-rounded' /></p>
+     <p  id="picture1"><img src='img/m2.JPG' class='img-rounded' id="description-image"/></p>
+     <p  id="picture2"><img src='img/m3.JPG' class='img-rounded' id="description-image" /></p>
    </div>
    <div class="col-md-2"></div>
   </div>
@@ -131,8 +131,11 @@
 
     <!--ICS are the icons next to each skillset-->
     <!--Icons taken from IcoMoon.io-->
-    <div class="col-md-2"><img class = "ICS1"  src="img\0386-terminal.png"/></div>
+
+    <!--Make this more consistent, it screws everything up on mobile. Icons should always be on the left-->
+    <div class="col-md-2"><img class = "Icons-1"  src="img\0386-terminal.png"/></div>
     <div class="col-md-4">
+      <div  id="skills-1">
       <p class="lead">  Software</p>
       <ul>
         <li>Autodesk 3DSMAX</li>
@@ -142,7 +145,10 @@
         <li>FFMPEG</li>
       </ul>
     </div>
-    <div class="col-md-3">
+    </div>
+    <div class="col-md-1"><img class = "Icons-2" src="img\0202-sphere.png"/></div>
+    <div class="col-md-5">
+      <div id="skills-2">
       <p class="lead">  Web Development</p>
       <ul>
         <li>HTML/CSS</li>
@@ -150,22 +156,26 @@
         <li>Bootstrap</li>
       </ul>
     </div>
-    <div class="col-md-3"><img class = "ICS2" src="img\0202-sphere.png"/></div>
+    </div>
   </div>
 <br>
 <br>
 <br>
   <div class="row">
-    <div class="col-md-2"><img class = "ICS1"  src="img\0360-sigma.png"/></div>
+    <div class="col-md-2"><img class = "Icons-1"  src="img\0360-sigma.png"/></div>
     <div class="col-md-4">
+      <div id="skills-3">
       <p class="lead"> Applied Math</p>
       <ul>
         <li>Data Analysis</li>
         <li>Options trading</li>
         <li>Operations and Linear programming</li>
       </ul>
+    </div>
     </div>  
-    <div class="col-md-3">
+    <div class="col-md-1"><img class = "Icons-2"  src="img\0150-cogs.png"/></div>
+    <div class="col-md-5">
+      <div  id="skills-4">
       <p class="lead">Other</p>
       <ul>
         <li>Java</li>
@@ -173,7 +183,7 @@
         <li>C#</li>
       </ul>
     </div>
-    <div class="col-md-3"><img class = "ICS2"  src="img\0150-cogs.png"/></div>
+    </div>
   </div>
 
     </section>   
