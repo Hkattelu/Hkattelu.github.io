@@ -79,7 +79,7 @@ h1{
 
 #description-image{
  
-	 	min-height:100%;
+	 	max-height:100%;
 	 	width:auto;
 	 	/* min-width:100%;
 	 	height:auto; */
@@ -121,7 +121,7 @@ section#projects{
 }
 
 section#end{
-
+    margin-top: 2em;
 	text-align:center;
 	background-color: #EEEEEE;
 	
