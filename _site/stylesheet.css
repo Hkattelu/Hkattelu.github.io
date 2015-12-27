@@ -1,0 +1,153 @@
+.links {
+	color: black;
+	font-family: Sans-serif;
+}
+
+h1{
+	text-align: center;
+
+}
+
+#myPicture{
+
+    margin-top: 30%; 
+   /* margin-top: 0 auto;
+    padding: 0 auto;
+    border: 0 auto; */ 
+}
+
+.blurb{
+
+	text-align: center;
+}
+.box{
+	border-style:solid;
+	border-spacing: 5px;
+}
+
+.current {
+    
+    text-align: center;
+	font-size:2em;
+
+}
+
+.currentWork{
+    
+    text-align: center;
+	margin-left:30%;
+	font-size:1.5em;
+	margin-right:50px;
+	margin-bottom:50px;
+}
+
+#picture1{
+	margin-top: 50px;
+}
+
+#picture2{
+	margin-top: 50px;
+}
+
+.Icons-1{
+
+	margin-left: 50%;
+    margin-top: 20%; 
+}
+
+.Icons-2{
+	margin-left: 50%;
+	margin-top: 50%; 
+}
+
+
+#description1{
+    font-size:1.5em;
+	margin-top:10%;
+	margin-left:10%;
+	margin-right:5%;
+	text-align: left;
+}
+
+#description2{
+	font-size:1.5em;
+	margin-top: 10%;
+	margin-left:10%;
+	margin-right:5%;
+	text-align: left;
+}
+
+#description-image{
+ 
+}
+
+#skills-2{
+    
+    text-align: left;
+	padding-left:3px;
+	margin-right: 50%;
+
+}
+
+#skills-4{
+
+	text-align: left;
+	padding-right:3px;
+	margin-right: 50%;
+}
+
+#intro{
+
+
+}
+
+section#skills{
+	
+	background-color:#EEEECE;
+}
+
+section#about{
+	
+	background-color:#EECEEE;
+}
+
+section#projects{
+	
+	background-color:#CEEEEE;
+}
+
+section#end{
+    margin-top: 2em;
+	text-align:center;
+	background-color: #CECECE;
+	
+}
+
+
+
+.site-wrapper {
+	background-color:#EEEEEE;
+}
+
+
+
+section div h1{
+
+	text-align:center;
+}
+
+section ul li{
+
+	font-size:1.2em;
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
+section div p{
+	margin-left:30%;
+}
+
+table, td {
+   border: 2px black solid;
+}
+
