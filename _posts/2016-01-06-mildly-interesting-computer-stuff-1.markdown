@@ -35,7 +35,7 @@ private int saltHash(Object key, int salt){
     	return salt ^ key.hashCode();
     }
 // To hash the key with the salt value, simply bitwise XOR them.
-{% endhighlight &}
+{% endhighlight %}
 
 Another thing about the Minimal HashMap is that it is not meant to be used
 in the same way as a regular HashMap. In the regular Hashmap, you can put and
