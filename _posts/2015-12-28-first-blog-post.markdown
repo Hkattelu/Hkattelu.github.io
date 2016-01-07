@@ -16,8 +16,8 @@ virtual machine because it does not support windows)
 but I really like the way it came out.
 
 Anyways, as of now i'm working on implementing a Minimal
-perfect hashmap, a hungarian algorithm, and an HTML 
-parser in java. You can check them out on my github but
+perfect hashmap, and the hungarian algorithm in java. 
+You can check them out on my github but
 I've run into some roadblocks so it might take a while
 before any of them are actually done.
 
