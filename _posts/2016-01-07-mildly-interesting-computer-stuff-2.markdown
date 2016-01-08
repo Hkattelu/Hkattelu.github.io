@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Mildly interesting computer stuff 2"
+title:  "The Hungarian Algorithm"
 date:   2016-01-07 02:54:00 -0500
 categories: jekyll update
 ---
@@ -13,7 +13,7 @@ would be easy but turned out to be hard.
 
 This is an algorithm I learned about last semester in my deterministic
 models class. It is a quick way to solve an assignment problem, which is
-a problem where you assign m workers to n jobs in order to minimizie a cost
+a problem where you assign m workers to n jobs in order to minimize a cost
 or maximize a profit.
 
 You can read more about it here: 

@@ -24,19 +24,25 @@
 		<title>Himanshu Kattelu</title>
 	</head>
 	<body>
-<div class="site-wrapper" >
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
+     <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-navigation-bar" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#home"><img src="img/favicon.ico"></a>
+     </div>
 
-    <div class="collapse navbar-collapse" >
-
+    <div class="collapse navbar-collapse" id="my-navigation-bar">
       <ul class="nav navbar-nav">
-        <li><a href="#home"><span class="links">Home</span></a></li>
+        <!-- <li><a href="#home"><span class="links">Home</span></a></li> -->
         <li><a href="#about"><span class="links">About</span></a></li>
         <li><a href="#skills"><span class="links">Skills</span></a></li>
         <li><a href="#projects"><span class="links">Projects</span></a></li>
         <li><a href="Assets/Resume.pdf" target="new"><span class="links">Resume</span></a></li>
-        <li><a href="blog.html"><span class="links">Blog</span></a></li>
+        <li><a href="blog.html" target="new"><span class="links">Blog</span></a></li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -45,17 +51,18 @@
         <li><a href="https://github.com/Hkattelu" target="new"><img src="img/0434-github.png"/></a></li>
         <li><a href="https://www.linkedin.com/in/himanshukattelu" target="new"><img src="img/0457-linkedin.png"/></a></li>
       </ul>
+      
     </div>
   </div>
  </nav>
- <br>
- <br>
-  <div class="container-fluid" id="home">
-   <div class="row"> 
-    <div class="col-md-3">  <img src="img/Me.JPG" class="img-rounded" id="myPicture"/></div>
-     <div class="col-md-9">
+
+
+  <section id="home">
+
+    <div class="col-md-4">  <img src="img/Me.JPG" class="img-responsive img-rounded" id="myPicture"/></div>
+     <div class="col-md-8" >
       
-        <div class= "jumbotron" >
+        <div class= "jumbotron" style = "margin-bottom : 0">
            
               <h1 ><span>Hi! I'm Himanshu</span></h1>
 
@@ -66,33 +73,31 @@
           </div>
 
          </div>
-          
-  </div>
- <br>
    
     <p class="current"><strong>What I'm currently working on:</strong></p>
 
  <br>
 
     <p class="currentWork"><small>Right now I am working on some personal projects as the college semester is over. You can find them on my Github.</small></p>
-   
-</div> 
- <br>
- </div>
+
+      </div> 
+
+
+ </section>
+
   <section id="about" style="text-align:center">
-   <br><br>
     <p class="lead"><h1>About me</h1></p>
-   <br>
-   <div class="row">
+  
      <div class="col-md-1"></div>
      <div class="col-md-10">
      <h4 style="font-size:1.4em"><em>"Nothing in this world can take the place of persistence. Talent will not; nothing is more common than unsuccessful men with talent. Genius will not; unrewarded genius is almost a proverb. Education will not; the world is full of educated derelicts. Persistence and determination alone are omnipotent." - Calvin Coolidge</em></h4>
      </div>
      <div class="col-md-1"></div>
-   </div>
+
 
    <br>
    <!-- Buttons are switched from active to inactive in script.js-->
+
     <div class="btn-group" role="group" style="text-align:center">
       <!-- <button type="button" class="btn btn-default" id="class"></button>-Don't really need this-->
        <button type="button" class="btn btn-default active" id="work">Work</button>
@@ -102,7 +107,6 @@
   <br>
 
   <!--The descriptions are switched between using show(),hide() in the script.js file-->
-  <div class="row">
 
    <div class="col-md-7">
     <p  id="description1">
@@ -114,19 +118,19 @@
     </p>
    </div>
 
-   <div class="col-md-2">
-     <p  id="picture1"><img src='img/m2.JPG' class='img-rounded' id="description-image"/></p>
-     <p  id="picture2"><img src='img/m3.JPG' class='img-rounded' id="description-image" /></p>
+   <div class="col-md-4">
+     <p  id="picture1"><img src='img/m2.JPG' class='img-responsive img-rounded' id="description-image"/></p>
+     <p  id="picture2"><img src='img/m3.JPG' class='img-responsive img-rounded' id="description-image" /></p>
    </div>
-   <div class="col-md-2"></div>
-  </div>
+   <div class="col-md-1"></div>
+
     
-            </section>
+</section>
 
 
 <section id="skills">
 <br><br>
- <div class="page-header"><h1>Skills</h1></div>
+ <div ><h1>Skills</h1></div>
 
   <div class="row">
 
@@ -136,26 +140,26 @@
     <!--Make this more consistent, it screws everything up on mobile. Icons should always be on the left-->
     <div class="col-md-2"><img class = "Icons-1"  src="img/0386-terminal.png"/></div>
     <br>
-    <div class="col-md-4">
+    <div class="col-md-4" style = "text-align: center">
       <div  id="skills-1">
-      <p class="lead">  Software</p>
+      <p class="lead">Software</p>
       <ul>
         <li>Autodesk 3DSMAX</li>
         <li>Sublime Text 2</li>
         <li>Eclipse Luna</li>
-        <li>MATLAB</li>
         <li>FFMPEG</li>
       </ul>
     </div>
     </div>
-    <div class="col-md-1"><img class = "Icons-2" src="img/0202-sphere.png"/></div>
-    <div class="col-md-5">
+    <div class="col-md-2"><img class = "Icons-2" src="img/0202-sphere.png"/></div>
+    <div class="col-md-4" style = "text-align: center">
       <div id="skills-2">
       <p class="lead">  Web Development</p>
       <ul>
         <li>HTML/CSS</li>
         <li>jQuery</li>
         <li>Bootstrap</li>
+        <li>Jekyll</li>
       </ul>
     </div>
     </div>
@@ -165,38 +169,41 @@
 <br>
   <div class="row">
     <div class="col-md-2"><img class = "Icons-1"  src="img/0360-sigma.png"/></div>
-    <div class="col-md-4">
+    <div class="col-md-4" style = "text-align: center">
       <div id="skills-3">
       <p class="lead"> Applied Math</p>
       <ul>
         <li>Data Analysis</li>
-        <li>Options trading</li>
-        <li>Operations and Linear programming</li>
+        <li>Stepwise regression</li>
+        <li>Linear programming</li>
+        <li>Deterministic Model</li>
       </ul>
     </div>
     </div>  
     <br>
-    <div class="col-md-1"><img class = "Icons-2"  src="img/0150-cogs.png"/></div>
-    <div class="col-md-5">
+    <div class="col-md-2"><img class = "Icons-2"  src="img/0150-cogs.png"/></div>
+    <div class="col-md-4" style = "text-align: center">
       <div  id="skills-4">
       <p class="lead">Other</p>
       <ul>
         <li>Java</li>
+        <li>MATLAB</li>
         <li>Python</li>
         <li>C#</li>
+
       </ul>
     </div>
     </div>
   </div>
 
-    </section>   
-   
+    </section>  
+
 <section id="projects">
   <br><br>
   <p class="lead"><h1>Projects</h1></p>
    <br>
    <br>
- <div class="row">
+ 
   <div class="col-md-3"></div>
   <div class="col-md-6">
   <table id="projects">
@@ -207,18 +214,20 @@
     <tr><td><a href="http://devpost.com/software/stockdataanalyzer">StockData Analyzer</a></td><td>A class that makes it easy to extract data from a MySQL database into MATLAB and run analytics such as calculating quantifiers and creating scatter plots. Can also convert data into audio (github link at the bottom)</td></tr>  
     <tr><td><a href="http://devpost.com/software/gravity-4onczy">Gravity</a></td><td>A game made in Unity utilizing the Oculus Rift.
       I worked on integrating the game with Oculus and did some 3D modelling. (github link at the bottom)</td></tr>  
+    <tr><td><a href="https://github.com/Hkattelu/MinimalHashMap">Minimal HashMap</a></td><td> A Hash map that uses a perfectly minimal hash function to allow for a Map data structure with O(1) access time.</td></tr> 
+     <tr><td><a href="https://github.com/Hkattelu/Hungarian">Hungarian Algorithm</a></td><td>My implementation of the hungarian algorithm, which can solve assignment problems relatively quickly.</td></tr>     
 
-</table>
+    </table>
+    </div>
+    <div class="col-md-3"></div>
+
 
 </section>      
 
 <!--Add a return to top button here?-->
 <section id="end">
-  <p> Himanshu Kattelu © 2015. All rights reserved.</p>
-</section>    
-</div>    
-	   
-	
+  <p> Himanshu Kattelu © 2015. All rights reserved.</p>  
+</section>
 	</body>
 </html>
             

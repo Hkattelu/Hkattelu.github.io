@@ -8,17 +8,23 @@ h1{
 
 }
 
+.row-no-margin {
+   margin-left: 0px;
+   margin-right: 0px;
+} 
+
 #myPicture{
 
     margin-top: 30%; 
-   /* margin-top: 0 auto;
-    padding: 0 auto;
-    border: 0 auto; */ 
+    margin-left: 15%;
+    margin-bottom: 5%;
+
 }
 
 .blurb{
 
 	text-align: center;
+
 }
 .box{
 	border-style:solid;
@@ -32,32 +38,46 @@ h1{
 
 }
 
+.jumbotron{
+	padding-right: 0px;
+	padding-left: 0px;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+	margin: 0px;
+
+}
+
 .currentWork{
     
     text-align: center;
-	margin-left:30%;
+	margin-left:10%;
 	font-size:1.5em;
-	margin-right:50px;
-	margin-bottom:50px;
+	margin-right:10%;
+	margin-bottom:0px;
 }
 
 #picture1{
-	margin-top: 50px;
+	margin-top: 0px;
+	margin-left:10%;
+
 }
 
 #picture2{
-	margin-top: 50px;
+	margin-top: 0px;
+	margin-left: 10%;
 }
 
 .Icons-1{
 
-	margin-left: 50%;
+	margin-left: 45%;
     margin-top: 20%; 
+    margin-bottom:10%;
 }
 
 .Icons-2{
-	margin-left: 50%;
-	margin-top: 50%; 
+	margin-left: 45%;
+	margin-top: 20%; 
+	margin-bottom:10%;
 }
 
 
@@ -78,73 +98,49 @@ h1{
 }
 
 #description-image{
- 
+   margin-left: 0px;
 }
 
-#skills-2{
-    
-    text-align: left;
-	padding-left:3px;
-	margin-right: 50%;
 
+.site-wrapper{
+	background-color: #EEEEEE;
 }
 
-#skills-4{
-
-	text-align: left;
-	padding-right:3px;
-	margin-right: 50%;
-}
-
-#intro{
-
-
+section#home{
+	background-color: #EEEEEE;
+	overflow: hidden;
 }
 
 section#skills{
 	
-	background-color:#EEEEEE;
+	background-color:#F3FAB6;
+	overflow: hidden;
 }
 
 section#about{
 	
-	background-color:#EECEEE;
+	background-color:#C1E1A6;
+	overflow: hidden;
 }
 
 section#projects{
 	
-	background-color:#EECEEE;
+	background-color:#FDF3E7;
+	overflow: hidden;
 }
 
 section#end{
     margin-top: 2em;
 	text-align:center;
-	background-color: #EEEEEE;
+	background-color: #FDF3E7;
+	overflow: hidden;
 																																																																																																																																																																																																																																										
-}
-
-
-
-.site-wrapper {
-	background-color:#EEEEEE;
-}
-
-
-
-section div h1{
-
-	text-align:center;
 }
 
 section ul li{
 
 	font-size:1.2em;
-	margin-left: 20%;
-	margin-right: 20%;
-}
 
-section div p{
-	margin-left:30%;
 }
 
 table, td {
