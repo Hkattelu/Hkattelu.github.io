@@ -56,17 +56,6 @@ h1{
 	margin-bottom:0px;
 }
 
-#picture1{
-	margin-top: 0px;
-	margin-left:10%;
-
-}
-
-#picture2{
-	margin-top: 0px;
-	margin-left: 10%;
-}
-
 .Icons-1{
 
 	margin-left: 45%;
@@ -113,26 +102,20 @@ section#home{
 
 section#skills{
 	
-	background-color:#F3FAB6;
-	overflow: hidden;
-}
-
-section#about{
-	
-	background-color:#C1E1A6;
+	background-color:#EEEEEE;
 	overflow: hidden;
 }
 
 section#projects{
 	
-	background-color:#FDF3E7;
+	background-color:#EEEEEE;
 	overflow: hidden;
 }
 
 section#end{
 
 	text-align:center;
-	background-color: #FDF3E7;
+	background-color: #EEEEEE;
 	overflow: hidden;
 																																																																																																																																																																																																																																										
 }
