@@ -15,9 +15,10 @@ h1{
 
 #myPicture{
 
-    margin-top: 30%; 
-    margin-left: 15%;
+    margin-top: 40%; 
+    margin-left: 5%;
     margin-bottom: 5%;
+    border: 2px solid black;
 
 }
 
