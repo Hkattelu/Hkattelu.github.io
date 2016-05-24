@@ -31,7 +31,7 @@ that can be modified through CSS. These style elements include all sorts of
 things from height and width to padding and borders to position coordinates. Through
 javascript, you can access and modify those style elements to edit the look of an 
 HTML element. Specifically, you can write a function that gets called when an event occurs
-(such asa button click).
+(such as a button click).
 
 {% highlight javascript %}
 

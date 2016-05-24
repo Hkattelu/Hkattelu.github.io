@@ -32,15 +32,15 @@ a second time with the salt value to find the hashmap position if there was a co
 private int saltHash(Object key, int salt){
     	return salt ^ key.hashCode();
     }
-// To hash the key with the salt value, simply bitwise XOR them.
+// XORing the hashed key with the salt value creates a decent second hash function
 {% endhighlight %}
 
-Another thing about the Minimal HashMap is that it is not meant to be used
-in the same way as a regular HashMap. In the regular Hashmap, you can put and
+Another thing about the minimal hash map is that it is not meant to be used
+in the same way as a regular hash map. In the regular hash map, you can put and
 remove elements freely as well as overwrite certain elements if you put in two elements
 with the same key.
 
-The Minimal Hashmap however, is meant to be used as a data structure where you
+The minimal hash map however, is meant to be used as a data structure where you
 put everything in, calculate the hash function, and then access elements. Once you
 calculate the hash function you are not able to add in more elements and you cannot
 remove or overwrite elements either. 
@@ -58,7 +58,7 @@ Overall I think that the Minimal Hashmap is a useful data structure even though 
 use case is somewhat specific. The lesson I learned here is that when you try to make
 something, you sure assure yourself that you really know what you are trying to make. Do this
 by looking through multiple sources, and maybe even trying specific use examples and see if it
-works. Also, creating test suites are very useful for these scenarios. I originally implemented
+works. Also, creating test suites is very useful for these scenarios. I originally implemented
 the whole thing wrong, but because I created a test suite I was able to test my program
 quickly, and identify the problems properly when I was refactoring.
 

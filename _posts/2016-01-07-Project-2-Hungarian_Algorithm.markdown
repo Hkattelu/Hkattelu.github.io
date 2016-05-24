@@ -12,7 +12,8 @@ would be easy but turned out to be hard.
 This is an algorithm I learned about last semester in my deterministic
 models class. It is a quick way to solve an assignment problem, which is
 a problem where you assign m workers to n jobs in order to minimize a cost
-or maximize a profit.
+or maximize a profit. This is not be confused with the quadratic assignment problem,
+which is NP-hard.
 
 You can read more about it here: 
 <a href=" http://www.math.harvard.edu/archive/20_spring_05/handouts/assignment_overheads.pdf">Harvard slides</a>
@@ -38,7 +39,7 @@ and horizontal line at every zero, and then removing unnecessary lines. It
 turns out this ruins the next step, so I wasn't able to do this. After spending
 a lot of time on thinking how to select which lines to draw, I just decided to
 draw a line in the direction with the most zeroes. Originally this didn't work, but
-I made a few tweaks and somehow it managed to pasts the tests I put in place.
+I made a few tweaks and somehow it managed to pass the tests I put in place.
 
 <h3>The Selection Step</h3>
 
@@ -85,12 +86,12 @@ finish up the algorithm successfully.
 <h3> What I learned </h3>
 
 The Hungarian algorithm is fairly useful. Although I don't see myself using it in
-the forseeable future, I can see some ways it might be used. The lessons to learn here
+the foreseeable future, I can see some ways it might be used. The lessons to learn here
 are that, once again, you should always create a test suite for your projects. It was
 extremely helpful for this project, as I was always jumping between steps trying to fix
 new problems that kept on popping up. 
 
-Another lesson is that you should not be afraid to look through the internet for help about certian things. Here I did it to figure out a way to brute force through a matrix for the selection step. Yet another lesson would be that you should not be afraid to make helper methods and helper classes. In this particular problem it helped me break down the steps which were complicated on their own. But by breaking them into smaller steps, it became much more manageable. 
+Another lesson is that you should not be afraid to look through the internet for help about certain things. Here I did it to figure out a way to brute force through a matrix for the selection step. Yet another lesson would be that you should not be afraid to make helper methods and helper classes. In this particular problem it helped me break down the steps which were complicated on their own. But by breaking them into smaller steps, it became much more manageable. 
 
 Be persistent in finding solutions. I spent alot of time trying to implement methods for the steps, and then realizing there was a special case that I was forgetting about. It was frustrating that I had to keep on rewriting the methods, but every time I rewrote the method I learned more about the problem so
 in the end it was worth it.

@@ -12,15 +12,15 @@ detailing what I've learned.
 
 Firstly there are two types of compression:
 
-<span><h6>Lossy Compression </h6><span> : Takes file A and compresses it into a smaller file B. However,
-	decompressing B back to A will result in a loss of quality. This is because some quality is removed
-	in order to compress A to B.
+**Lossy Compression**: Takes file A and compresses it into a smaller file B. However,
+decompressing B back to A will result in a loss of quality. This is because some quality is removed
+in order to compress A to B.
 
-<span><h6>Lossless Compression</h6></span>: Takes file A and compresses it into smaller file B. Decompression
-	from B back to A does not result in any quality loss. The compression only removes redundant information.
+**Lossless Compression**: Takes file A and compresses it into smaller file B. Decompression
+from B back to A does not result in any quality loss. The compression only removes redundant information.
 
 To illustrate the quality loss of lossy compression, here is an example: Suppose you are trying
-to compress and image file of someone's face. We know that most people's faces are generally symmetric,
+to compress an image file of someone's face. We know that most faces are generally symmetric,
 so to compress we simply save one half of the persons face, and to decompress we copy that half over to
 fully recreate the face again. However, you will lose a lot of the fine detail of the face this way because
 faces are not actually symmetric.
@@ -56,6 +56,6 @@ number we just have to copy the following character that many times. Note that t
 have numbers in your text file, or if there aren't a lot of huge streches in the text, although there are ways to
 get around this.
 
-
+That's all for now, in the next post I will talk about Lempel-Ziv(1977) encoding, and Huffman encoding.
 
 
