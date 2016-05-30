@@ -67,7 +67,6 @@ times it appears. This can be done in O(n) time.
 | h | 1 | l | 2 |
 | e | 3 | y | 1 |
 | m | 1 | space | 2 |
-{:.mtablestyle}
 
 Now that we have this table , we can generate a huffman tree by doing the following (O(nlogn)):
 
@@ -87,7 +86,6 @@ a right represents '1'. Here are the encodings for this example.
 | h | 0000 | l | 100 |
 | e | 01 | y | 0001 |
 | m | 0010 | space | 101 |
-{:.mtablestyle}
 
 Finally, we can compress the sentence with this mapping to the following:
 
