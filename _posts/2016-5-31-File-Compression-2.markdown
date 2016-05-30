@@ -89,7 +89,7 @@ a right represents '1'. Here are the encodings for this example.
 
 Finally, we can compress the sentence with this mapping to the following:
 
-{% highlight %}
+{% highlight java %}
 
 110000011011101010010111011100111001000001
 
