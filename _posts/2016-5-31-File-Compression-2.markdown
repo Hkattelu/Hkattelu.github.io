@@ -61,14 +61,13 @@ She seems silly
 The first step to compression is to build a table mapping each character with the number of
 times it appears. This can be done in O(n) time.
 
-<style>
 | Char | Frequency | Char | Frequency |
 | :--: | :-------: | :--: | :-------: |
 | s | 4 | i | 1 |
 | h | 1 | l | 2 |
 | e | 3 | y | 1 |
 | m | 1 | space | 2 |
-</style>
+{:.mtablestyle}
 
 Now that we have this table , we can generate a huffman tree by doing the following (O(nlogn)):
 
@@ -82,14 +81,13 @@ We should now have a binary tree containing each pair as a leaf node. Using this
 we can obtain the encodings by the path from the root to each leaf. A left represents '0 and
 a right represents '1'. Here are the encodings for this example.
 
-<style>
 | Char | Frequency | Char | Frequency |
 | :--: | :-------: | :--: | :-------: |
 | s | 11 | i | 0011 |
 | h | 0000 | l | 100 |
 | e | 01 | y | 0001 |
 | m | 0010 | space | 101 |
-</style>
+{:.mtablestyle}
 
 Finally, we can compress the sentence with this mapping to the following:
 
