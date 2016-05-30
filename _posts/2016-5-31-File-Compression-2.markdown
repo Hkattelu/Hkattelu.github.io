@@ -61,13 +61,14 @@ She seems silly
 The first step to compression is to build a table mapping each character with the number of
 times it appears. This can be done in O(n) time.
 
-| s | 4 | i     | 1 |
-|:-:|---|-------|---|
-| h | 1 | l     | 2 |
-| e | 3 | y     | 1 |
-| m | 1 | space | 2 |
+<table>
+<tr> <td>s</td><td>4</td><td>i</td><td>1</td> </tr>
+<tr> <td>h</td><td>1</td><td>l</td><td>2</td> </tr>
+<tr> <td>e</td><td>3</td><td>y</td><td>1</td> </tr>
+<tr> <td>m</td><td>1</td><td>space</td><td>2</td> </tr>
+</table>
 
-Now that we have this table, we can generate a huffman tree by doing the following:
+Now that we have this table, we can generate a huffman tree by doing the following (O(nlogn)):
 
 1. Create leaf nodes for each character-frequency pair and insert them into a priority queue (least frequency"
 2. Pop 2 elements from the queue, create a new node and set its children to the two popped elements.
@@ -79,15 +80,16 @@ We should now have a binary tree containing each pair as a leaf node. Using this
 we can obtain the encodings by the path from the root to each leaf. A left represents '0 and
 a right represents '1'. Here are the encodings for this example.
 
-| s | 11   | i     | 0011 |
-|:-:|------|:-----:|------|
-| h | 0000 | l     | 100  |
-| e | 01   | y     | 0001 |
-| m | 0010 | space | 101  |
+<table>
+<tr> <td>s</td><td>11</td><td>i</td><td>0011</td> </tr>
+<tr> <td>h</td><td>0000</td><td>l</td><td>100</td> </tr>
+<tr> <td>e</td><td>01</td><td>y</td><td>0001</td> </tr>
+<tr> <td>m</td><td>0010</td><td>space</td><td>101</td> </tr>
+</table>
 
 Finally, we can compress the sentence with this mapping to the following:
 
-{% highlight java %}
+{% highlight %}
 
 110000011011101010010111011100111001000001
 
