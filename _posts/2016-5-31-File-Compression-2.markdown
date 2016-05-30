@@ -17,7 +17,7 @@ that certain strings of text will be repeated. Suppose we have this sentence:
 
 {% highlight java %}
 
-This is a sentence. Here's another sentence.
+This is a sentence. Here is another sentence.
 
 {% endhighlight %}
 
@@ -29,7 +29,7 @@ we replace it with a distance-length pair as follows.
 
 {% highlight java %}
 
-This is a sentence. Here's another <25,9>
+This is a sentence. Here is another <25,9>
 
 {% endhighlight %}
 
@@ -68,6 +68,7 @@ times it appears. This can be done in O(n) time.
 | e | 3 | y | 1 |
 | m | 1 | space | 2 |
 
+
 Now that we have this table , we can generate a huffman tree by doing the following (O(nlogn)):
 
 1. Create leaf nodes for each character-frequency pair and insert them into a priority queue (least frequency"
@@ -80,12 +81,13 @@ We should now have a binary tree containing each pair as a leaf node. Using this
 we can obtain the encodings by the path from the root to each leaf. A left represents '0 and
 a right represents '1'. Here are the encodings for this example.
 
-| Char | Frequency | Char | Frequency |
+| Char | Encoding | Char | Encoding |
 | :--: | :-------: | :--: | :-------: |
 | s | 11 | i | 0011 |
 | h | 0000 | l | 100 |
 | e | 01 | y | 0001 |
 | m | 0010 | space | 101 |
+
 
 Finally, we can compress the sentence with this mapping to the following:
 
@@ -96,10 +98,10 @@ Finally, we can compress the sentence with this mapping to the following:
 {% endhighlight %}
 
 Note that in the originaly sentence, each character would have been represented by
-one byte for a total of 15 bytes or 120 bits. The compressed file was written in bits
+one byte for a total of 15 bytes or 120 bits. The compressed file was written
 in only 42 bits! If the decompressor does not know the tree, you would also have to 
 encode the tree into the file. In this example it could be done in 80 bits, bumping
-the file size to 122 bits. However, the tree size will stay small as the file size,
+the file size to 122 bits. However, the tree size will stay small even if the file size increases,
 meaning this method is more effective as file size increases. 
 
 To decompress, we simply read bit by bit and traverse the huffman tree. If we read a 
