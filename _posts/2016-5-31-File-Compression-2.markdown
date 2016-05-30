@@ -61,11 +61,14 @@ She seems silly
 The first step to compression is to build a table mapping each character with the number of
 times it appears. This can be done in O(n) time.
 
-<table>
-<tr> <td>s</td><td>4</td><td>i</td><td>1</td> </tr>
-<tr> <td>h</td><td>1</td><td>l</td><td>2</td> </tr>
-<tr> <td>e</td><td>3</td><td>y</td><td>1</td> </tr>
-<tr> <td>m</td><td>1</td><td>space</td><td>2</td> </tr>
+<table border="1">
+<thead></thead>
+<tbody>
+<tr> <td>s</td><td>4</td><td style = "text-align: center">i</td><td>1</td> </tr>
+<tr> <td>h</td><td>1</td><td style = "text-align: center">l</td><td>2</td> </tr>
+<tr> <td>e</td><td>3</td><td style = "text-align: center">y</td><td>1</td> </tr>
+<tr> <td>m</td><td>1</td><td style = "text-align: center">space</td><td>2</td> </tr>
+</tbody>
 </table>
 
 Now that we have this table, we can generate a huffman tree by doing the following (O(nlogn)):
@@ -80,11 +83,14 @@ We should now have a binary tree containing each pair as a leaf node. Using this
 we can obtain the encodings by the path from the root to each leaf. A left represents '0 and
 a right represents '1'. Here are the encodings for this example.
 
-<table>
-<tr> <td>s</td><td>11</td><td>i</td><td>0011</td> </tr>
-<tr> <td>h</td><td>0000</td><td>l</td><td>100</td> </tr>
-<tr> <td>e</td><td>01</td><td>y</td><td>0001</td> </tr>
-<tr> <td>m</td><td>0010</td><td>space</td><td>101</td> </tr>
+<table border="1">
+<thead></thead>
+<tbody>
+<tr> <td>s</td><td>11</td><td style = "text-align: center">i</td><td>0011</td> </tr>
+<tr> <td>h</td><td>0000</td><td style = "text-align: center">l</td><td>100</td> </tr>
+<tr> <td>e</td><td>01</td><td style = "text-align: center">y</td><td>0001</td> </tr>
+<tr> <td>m</td><td>0010</td><td style = "text-align: center">space</td><td>101</td> </tr>
+</tbody>
 </table>
 
 Finally, we can compress the sentence with this mapping to the following:
