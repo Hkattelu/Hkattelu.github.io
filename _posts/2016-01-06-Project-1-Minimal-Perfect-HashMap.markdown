@@ -9,8 +9,8 @@ So over these past couple of weeks I've been working on two
 side projects that I thought were interesting so that I wouldn't
 forget some of the computer science I learned over the last semester.
 Both of the projects were actually much more challenging than I 
-originally thought they were, and they doing them both taught me
-a few lessons about coding do's and don'ts. I'll go over on of
+originally thought they were, and doing them both taught me
+a few lessons about coding do's and don'ts. I'll go over one of
 them here.
 
 While browsing the internet I came across an article about O(1) Hash map lookups by using a method called Minimal perfect hashing. You can read about it here:

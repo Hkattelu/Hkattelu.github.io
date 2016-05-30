@@ -6,7 +6,7 @@ categories: jekyll update
 ---
 
 Here I'll talk about the other side project I worked on and	
-the lesson it taught me. This is actually the one that I thought
+the lesson it taught me. This is one that I thought
 would be easy but turned out to be hard.
 
 This is an algorithm I learned about last semester in my deterministic
