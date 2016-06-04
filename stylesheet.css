@@ -1,23 +1,12 @@
-.links {
-	color: black;
-	font-family: Sans-serif;
-}
 
-h1{
-	text-align: center;
-
-}
-
-.row-no-margin {
-   margin-left: 0px;
-   margin-right: 0px;
-} 
+/* HOME SECTION */
 
 #myPicture{
 
     margin-top: 40%; 
     margin-left: 5%;
     margin-bottom: 5%;
+    margin-right: 5%;
     border: 2px solid black;
 
 }
@@ -26,6 +15,7 @@ h1{
 
 	text-align: center;
 	color: white;
+	margin-right: 5%;
 }
 .box{
 	border-style:solid;
@@ -54,39 +44,81 @@ h1{
     
     text-align: center;
 	margin-left:10%;
-	font-size:1.5em;
 	margin-right:10%;
 	margin-bottom:0px;
 	color: white;
 }
 
+/* SKILLS SECTION */
+
+/* Headers*/
+.list-headers{
+	text-align: left;
+}
+
+li+p+ul {
+	text-align: left;
+	font-size: 1.1em;
+}
+
+
+/* PROJECTS SECTION */
+
+table, td {
+   border: 1px white solid;
+   color:white;
+}
+
+section ul li{
+	color: white;
+}
+
+.statement{
+	text-align: center;
+	color:black;
+}
+
+.footer{
+	position: absolute;
+	bottom: 0;
+	left: 42%;
+	text-align: center;
+}
+
+/* FLIPPING CARDS */
+
 .card-container{
-	perspective: 700;
+	text-align: center;
+	perspective: 2000px;
+	background-color: #2B547E;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 92vw;
+	height: 75vh;
+	margin-left: 4%;
+	margin-top: 4%;
 }
 
 .card{
 	color:white;
-	position: relative;
+	border: 2px solid black;
+	position:relative;
 	text-align: center;
-	margin: 20px;
-	width:300px;
-	height:200px;
-	transition: all 0.6s ease;
+	background-color: inherit;
+	width:100%;
+	height:100%;
+	overflow: hidden;
 	transform-style: preserve-3d;
 }
 
-.card:hover{
-	transform: rotateX(180deg);
-}
-
 .front,.back{
-	position: absolute;
-	line-height: 200px;
-	width: 300px;
-	height: 200px;
+	position: relative;
+	width: 100%;
+	height: 100%;
 	top: 0px;
 	left: 0px;
-	background-color: #FF944D; 
+	background-color: #2B547E; 
 	backface-visibility: hidden;
 }
 
@@ -95,6 +127,9 @@ h1{
 }
 
 .back{
+	background-color: #FF944D;
+	background-size: cover;
+	backface-visibility: hidden;
 	transform: rotateX(180deg);
 }
 
@@ -102,42 +137,40 @@ h1{
 	line-height: 40px;
 	list-style-type: none;
 	margin: 0;
+	background-color: inherit;
+}
+
+/* BUTTONS */
+
+.buttons{
+	color:black;
+}
+
+/* SITE */
+
+.site-wrapper{
+	background-color: #FF944D;
+}
+
+
+/* GENERAL */
+
+html {
+	background-size: cover;
+	background-color: #FF944D; /*Orange*/
+}
+
+h1{
+	text-align: center;
 }
 
 .links{
 	color: #FF944D;
-	font-size: 1.5em;
+	font-size: 1.2em;
 }
 
 .links:hover{
 	color: #FF944D;
-}
-
-.site-wrapper{
-	background-color: #2B547E;
-}
-
-section#home{
-	overflow: hidden;
-}
-
-section#skills{
-	overflow: hidden;
-}
-
-section#projects{
-	overflow: hidden;
-}
-
-section#end{
-	text-align:center;
-	overflow: hidden;																																																																																																																																																																																																																																					
-}
-
-section ul li{
-
-	font-size:1.2em;
-	color: white;
 }
 
 section div h1 {
@@ -145,16 +178,4 @@ section div h1 {
 	text-align: center;
 }
 
-.list-headers{
-	color:white;
-}
-
-.statement{
-	color:white;
-}
-
-table, td {
-   border: 2px white solid;
-   color:white;
-}
 
