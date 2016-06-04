@@ -20,7 +20,7 @@ $(document).ready(function() {
 					document.getElementById("home").style.visibility="visible";
 					active = sections[0];
 					$("#" + sections[0]).show();
-				},600);
+				},400);
 			},600);
 		},100);
 	});
@@ -38,7 +38,7 @@ $(document).ready(function() {
 					document.getElementById("skills").style.visibility="visible";
 					active = sections[1];
 					$("#" + sections[1]).show();
-				},600);
+				},400);
 			},600);
 		},100);
 	});
@@ -56,58 +56,10 @@ $(document).ready(function() {
 					document.getElementById("projects").style.visibility="visible";
 					active = sections[2];
 					$("#" + sections[2]).show();
-				},600);
+				},400);
 			},600);
 		},100);
 	});
-
-
-
-	// $("#buttonHome").click(function(){
-	
-	// 	$(active).hide(10,function(){
-	// 		active = sections[0];
-	// 		$(".card").animate({transform: "rotateX(180deg)",transition: "all 0.6s ease"}, 600,function(){
-
-	// 			$(".card").animate({transform: "rotateX(-180deg)",transition: "all 0.6s ease"}, 600, function(){
-
-	// 				$(active).show();
-				
-	// 			})
-	// 		})
-	// 	})
-	// });
-
-	// $("#buttonSkills").click(function(){
-	 
-	//  	$(active).hide(10,function(){
-	// 		active = sections[1];
-	// 		$(".card").animate({transform: "rotateX(180deg)",transition: "all 0.6s ease"}, 600,function(){
-
-	// 			$(".card").animate({transform: "rotateX(-180deg)",transition: "all 0.6s ease"}, 600, function(){
-
-	// 				$(active).show();
-				
-	// 			})
-	// 		})
-	// 	})
-	// });
-
-	// $("#buttonProjects").click(function(){
-	 
-	// 	$(active).hide(10,function(){
-	// 		active = sections[2];
-	// 		$(".card").animate({transform: "rotateX(180deg)",transition: "all 0.6s ease"}, 600,function(){
-
-	// 			$(".card").animate({transform: "rotateX(-180deg)",transition: "all 0.6s ease"}, 600, function(){
-
-	// 				$(active).show();
-				
-	// 			})
-	// 		})
-	// 	})
-	// });
-
 
 });
 
