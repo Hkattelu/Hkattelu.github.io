@@ -21,7 +21,7 @@ This is a sentence. Here is another sentence.
 
 {% endhighlight %}
 
-Notice that certain strings such as "sentence". We can take advantage of this by using what
+Notice that certain strings such as "sentence" repeat in the file. We can take advantage of this by using what
 is called a distance-length pair. A distance length pair takes the form <d,l>. The d is
 the number of characters you have to go back and the l is the number of characters to copy.
 To compress the file, we would start reading it and then once we reach the second "sentence.",
@@ -97,7 +97,7 @@ Finally, we can compress the sentence with this mapping to the following:
 
 {% endhighlight %}
 
-Note that in the originaly sentence, each character would have been represented by
+Note that in the original sentence, each character would have been represented by
 one byte for a total of 15 bytes or 120 bits. The compressed file was written
 in only 42 bits! If the decompressor does not know the tree, you would also have to 
 encode the tree into the file. In this example it could be done in 80 bits, bumping

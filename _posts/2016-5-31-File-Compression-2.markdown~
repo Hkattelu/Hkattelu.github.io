@@ -17,11 +17,11 @@ that certain strings of text will be repeated. Suppose we have this sentence:
 
 {% highlight java %}
 
-This is a sentence. Here's another sentence.
+This is a sentence. Here is another sentence.
 
 {% endhighlight %}
 
-Notice that certain strings such as "sentence". We can take advantage of this by using what
+Notice that certain strings such as "sentence" repeat in the file. We can take advantage of this by using what
 is called a distance-length pair. A distance length pair takes the form <d,l>. The d is
 the number of characters you have to go back and the l is the number of characters to copy.
 To compress the file, we would start reading it and then once we reach the second "sentence.",
@@ -29,7 +29,7 @@ we replace it with a distance-length pair as follows.
 
 {% highlight java %}
 
-This is a sentence. Here's another <25,9>
+This is a sentence. Here is another <25,9>
 
 {% endhighlight %}
 

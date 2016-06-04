@@ -1,161 +1,248 @@
 <!DOCTYPE html>
 <html>
-	<head>
+  <head>
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-         
-        <!--CSS--> 
-		    <link type="text/css" rel="stylesheet" href="stylesheet.css" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     
+    <!--CSS--> 
+    <link type="text/css" rel="stylesheet" href="stylesheet.css" />
 
-        <!--Website Icon-->
-        <link rel="shortcut icon" href="img/favicon.ico">
-        
-        <!--Importing Bootstrap-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-
-        <!--Importing jQuery-->
-        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-        <script src="jquery-1.11.3.min.js"></script>
-        <script type="text/javascript" src='script.js'></script>
-
-		<title>Himanshu Kattelu</title>
-	</head>
-	<body>
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-     <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-navigation-bar" aria-expanded="false">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#home"><img src="img/favicon.ico"></a>
-     </div>
-
-    <div class="collapse navbar-collapse" id="my-navigation-bar">
-      <ul class="nav navbar-nav">
-        <li><a href="Assets/Resume.pdf" target="new"><span class="links">Resume</span></a></li>
-        <li><a href="blog.html" target="new"><span class="links">Blog</span></a></li>
-      </ul>
-      
-      <ul class="nav navbar-nav navbar-right">
-
-        <!--Icons taken from IcoMoon.io-->
-        <li><a href="https://github.com/Hkattelu" target="new"><img src="img/0434-github.png"/></a></li>
-        <li><a href="https://www.linkedin.com/in/himanshukattelu" target="new"><img src="img/0457-linkedin.png"/></a></li>
-      </ul>
-      
-    </div>
-  </div>
- </nav>
-
-
- <div class = "site-wrapper">
-  <section id="home">
-
-    <div class="col-md-4">  
-      <img src="img/me.jpg" class="img-responsive img-rounded" id="myPicture" />
-    </div>
+    <!--Website Icon-->
+    <link rel="shortcut icon" href="img/favicon.ico">
     
-    <div class="col-md-8" >
+    <!--Importing Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 
-      <div>
-        <div class= "jumbotron" style = "margin-bottom : 0%">
-           <br>
-              <h1 ><span>Hi! I'm Himanshu</span></h1>
+  	<title>Himanshu Kattelu</title>
+
+  </head>
+	<body>
+
+    <div class = "site-wrapper">
+      <section id="home">
+
+        <div class="col-md-4">  
+          <img src="img/me.jpg" class="img-responsive img-rounded" id="myPicture" />
+        </div>
+        
+        <div class="col-md-8" >
+
+          <div>
+            <div class= "jumbotron" style = "margin-bottom : 0%">
+
+              <br>
+
+              <h1 style="color:white">Hi! I'm Himanshu</h1>
 
               <div class= "blurb">   
-              <p> I'm a sophomore at Stony Brook University, where I study Computer Science and 
-         Applied Mathematics. I enjoy learning new things especially when it comes to programming, data analysis,and dance. If you want to contact me, <a href= "mailto:himanshukattelu@gmail.com">Email</a> would be the best. I'd enjoy hearing from you!</p>
-         
+                <p> 
+                    I'm a sophomore at Stony Brook University, where I study Computer Science and 
+                    Applied Mathematics. I enjoy learning new things especially when it comes to programming, data analysis,and dance. If you want to contact me, <a href= "mailto:himanshukattelu@gmail.com" class="links" style="font-size: 1em">Email</a> would be the best. I'd enjoy hearing from you!
+                </p>
+              </div>
+
+            </div>
+       
+            <p class="current">
+              <strong>What I'm currently working on:</strong>
+            </p>
+
+            <p class="currentWork">
+              <small>I'm currently taking classes at Stony Brook University and am searching for places to intern over the summer.</small>
+            </p>
+
+            <p style = "text-align: center"> 
+              <a href="www.github.com/hkattelu" class = "links">Github</a> &middot 
+              <a href="www.linkedin.com/in/himanshukattelu" class = "links">Linkedin</a> &middot 
+              <a href="Assets/Resume.pdf" target="new" class = "links">Resume</a> &middot
+              <a href="blog.html" target="new" class = "links">Blog</a>
+            </p>
+
+          </div>
+        </div> 
+      </section>
+
+      <br><br><br><br><br><br><br><br>
+      <hr>
+
+      <section id="skills">
+        
+        <br><br>
+        
+        <div ><h1>Skills</h1></div>
+
+          <div class="row">
+            <div class="col-md-2 col-md-offset-1">
+              <div class="card-container">
+                <div class="card">
+                  <div class="front">
+                    <p>Applied Math</p>
+                  </div>
+                  <div class="back">
+                    <p>
+                      <ul>
+                        <li>Data Analysis</li>
+                        <li>Stepwise regression</li>
+                        <li>Linear programming</li>
+                        <li>Deterministic Models</li>
+                      </ul>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-2 col-md-offset-4">
+              <div class="card-container">
+                <div class="card">
+                  <div class="front">
+                    <p>Computer Languages</p>
+                  </div>
+                  <div class="back">
+                    <p>
+                      <ul>
+                        <li>Java</li>
+                        <li>C</li>
+                        <li>MATLAB</li>
+                        <li>Python</li>
+                      </ul>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-        </div>
-   
-        <p class="current"><strong>What I'm currently working on:</strong></p>
+          <div class="row">
+            <div class="col-md-2 col-md-offset-1">
+              <div class="card-container">
+                <div class="card">
+                  <div class="front">
+                    <p>Software</p>
+                  </div>
+                  <div class="back">
+                    <p>
+                      <ul>
+                        <li>Linux</li>
+                        <li>Git</li>
+                        <li>Eclipse</li>
+                        <li>Jekyll</li>
+                      </ul>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-          <br>
+            <div class="col-md-2 col-md-offset-4">
+              <div class="card-container">
+                <div class="card">
+                  <div class="front">
+                    <p>Other</p>
+                  </div>
+                  <div class="back">
+                    <p>
+                      <ul>
+                        <li>Network Programming</li>
+                        <li>File Compression</li>
+                        <li>Concurrency</li>
+                        <li>MIPS</li>
+                      </ul>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+      </section>  
 
-        <p class="currentWork"><small>I'm currently taking classes at Stony Brook University and am searching for places to intern over the summer.</small></p>
+      <br><br><br>
+      <hr>
 
+      <section id="projects">
 
-      <div>
+        <br>
+
+        <div><h1>Projects</h1></div>
+
+        <br>
+
+        <div class="col-md-6 col-md-offset-3">
+          <table id="projects">
+
+            <tr>
+              <td style="width: 30%">
+                <a href="http://devpost.com/software/spaceshipvr" target = "new" class="links">SpaceShipVR</a>
+              </td>
+              <td style="width: 70%"> 
+                <p>A game made at HackBU utilizing the Oculus Rift and Myo. I created the 3D environment using Autodesk 3DSMAX and programmed parts of the game, gaining experience with Oculus Rift, Myo, and Unity3D.</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="Assets/vidInspect.zip" class="links">vidInspect.m</a>
+              </td>
+              <td>
+                <p>A compilation of image processing and video searching functions that i've written in MATLAB which use FFMPEG. Demo + videos included.</p>
+              </td>
+            </tr>  
+            <tr>
+              <td>
+                <a href="http://devpost.com/software/stockdataanalyzer" target = "new" class="links">StockData Analyzer</a>
+              </td>
+              <td>
+                <p>A class that makes it easy to extract data from a MySQL database into MATLAB and run analytics such as calculating quantifiers and creating scatter plots. Can also convert data into audio (github link at the bottom).</p>
+              </td>
+            </tr>  
+            <tr>
+              <td>
+                <a href="http://devpost.com/software/gravity-4onczy" target = "new" class="links">Gravity</a>
+              </td>
+              <td>
+                <p>A game made in Unity utilizing the Oculus Rift. I worked on integrating the game with Oculus and did some 3D modelling (github link at the bottom).</p>
+              </td>
+            </tr>  
+            <tr>
+              <td>
+                <a href="https://github.com/Hkattelu/MinimalHashMap" target = "new" class="links">Minimal HashMap</a>
+              </td>
+              <td> 
+                <p>A Hash map that uses a perfectly minimal hash function to allow for a Map data structure with O(1) access time.</p>
+              </td>
+            </tr> 
+            <tr>
+              <td>
+                <a href="https://github.com/Hkattelu/Hungarian" target = "new" class="links">Hungarian Algorithm</a>
+              </td>
+              <td>
+                <p>My implementation of the hungarian algorithm, which can solve assignment problems relatively quickly.</p>
+              </td>
+            </tr>    
+            <tr>
+              <td>
+                <a href="https://github.com/Hkattelu/himanZip" target = "new" class="links">HimanZip
+                </a>
+              </td>
+              <td>
+                <p>A command-line file compressor that uses lempel-ziv and huffman encoding.</p>
+              </td>
+            </tr>   
+            </table>
+          </div>
+
+      </section>      
+
+      <br><br>
+
+      <section id="end">
+        <p class="statement"> Himanshu Kattelu © 2015. All rights reserved.</p>  
+      </section>
+
     </div> 
-
-  </section>
-
-  <section id="skills">
-  <br><br>
-   <div ><h1>Skills</h1></div>
-
-      <!--ICS are the icons next to each skillset-->
-      <!--Icons taken from IcoMoon.io-->
-
-      <!--Make this more consistent, it screws everything up on mobile. Icons should always be on the left-->
-  <br>
-    <div class="row">
-      <div class="col-md-2"><img class = "Icons-1"  src="img/0360-sigma.png"/></div>
-
-      <div class="col-md-4">
-        
-        <p class="lead"> Applied Math</p>
-        <ul>
-          <li>Data Analysis</li>
-          <li>Stepwise regression</li>
-          <li>Linear programming</li>
-          <li>Deterministic Models</li>
-        </ul>
-
-      </div>  
-
-      <div class="col-md-2"><img class = "Icons-2"  src="img/0150-cogs.png"/></div>
-      <div class="col-md-4">
-
-        <p class="lead">Computer Languages</p>
-        <ul>
-          <li>Java</li>
-          <li>C</li>
-          <li>MATLAB</li>
-          <li>Python</li>
-        </ul>
-
-      </div>
-    </div>
-
-  </section>  
-
-  <section id="projects">
-    <br><br>
-    <p class="lead"><h1>Projects</h1></p>
-     <br>
-    <div class="col-md-6 col-md-offset-3">
-    <table id="projects">
-      <tr><td><a href="http://devpost.com/software/spaceshipvr" target = "new">SpaceShipVR</a></td>
-          <td> A game made at HackBU utilizing the Oculus Rift and Myo. I created the 3D environment using Autodesk 3DSMAX and programmed parts of the game, gaining experience with Oculus Rift, Myo, and Unity3D.</td></tr>
-      <tr><td><a href="Assets/vidInspect.zip">vidInspect.m</a></td>
-          <td>A compilation of image processing and video searching functions that i've written in MATLAB which use FFMPEG. Demo + videos included.</td></tr>  
-      <tr><td><a href="http://devpost.com/software/stockdataanalyzer" target = "new">StockData Analyzer</a></td><td>A class that makes it easy to extract data from a MySQL database into MATLAB and run analytics such as calculating quantifiers and creating scatter plots. Can also convert data into audio (github link at the bottom)</td></tr>  
-      <tr><td><a href="http://devpost.com/software/gravity-4onczy" target = "new">Gravity</a></td><td>A game made in Unity utilizing the Oculus Rift.
-        I worked on integrating the game with Oculus and did some 3D modelling. (github link at the bottom)</td></tr>  
-      <tr><td><a href="https://github.com/Hkattelu/MinimalHashMap" target = "new">Minimal HashMap</a></td><td> A Hash map that uses a perfectly minimal hash function to allow for a Map data structure with O(1) access time.</td></tr> 
-       <tr><td><a href="https://github.com/Hkattelu/Hungarian" target = "new">Hungarian Algorithm</a></td><td>My implementation of the hungarian algorithm, which can solve assignment problems relatively quickly.</td></tr>     
-
-      </table>
-      </div>
-
-  </section>      
-
-<br>
-<br>
-<!--Add a return to top button here?-->
-  <section id="end">
-    <p> Himanshu Kattelu © 2015. All rights reserved.</p>  
-  </section>
-
-</div> 
 
 	</body>
 </html>
