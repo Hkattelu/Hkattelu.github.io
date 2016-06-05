@@ -61,7 +61,7 @@ section ul li{
 .card-container{
 	text-align: center;
 	perspective: 900px;
-	background-color: #488AC7;
+	background-color: #81D8D0;
 	position: absolute;
 	top: 0px;
 	left: 0px;
@@ -83,11 +83,12 @@ section ul li{
 	height:inherit;
 	overflow-x: hidden;
 	overflow-y: auto;
+	transform: rotateX(540deg);
 	transform-style: preserve-3d;
 }
 
 .blueBox{
-	background-color: #2554C7;
+	background-color: #2b3856;
 	transform-style:preserve-3d;
 }
 
@@ -98,7 +99,7 @@ section ul li{
 	height: 100%;
 	top: 0px;
 	left: 0px;
-	background-color: #2554C7; 
+	background-color: #2b3856; 
 	backface-visibility: hidden;
 }
 
@@ -124,7 +125,7 @@ section ul li{
 
 button{
 	color: white !important;
-	background-color: #2554C7;
+	background-color: #2b3856;
 	padding: 10px 24px;
 	border:none;
 	text-decoration: none;
@@ -146,7 +147,7 @@ button{
 /* SITE */
 
 .site-wrapper{
-	background-color: #488AC7;
+	background-color: #81D8D0;
 }
 
 
@@ -154,7 +155,7 @@ button{
 
 html {
 	background-size: cover;
-	background-color: #488AC7; /*Orange*/
+	background-color: #81D8D0; /*Orange*/
 }
 
 h1{
@@ -162,11 +163,11 @@ h1{
 }
 
 .links, .links:hover{
-	color: #FFA62F;
+	color: #81D8D0;
 }
 
 a:visited, a:active{
-	color: #FFA62F;
+	color: #81D8D0;
 }
 
 .links{

@@ -1,10 +1,25 @@
 var sections = ["home","skills","projects"];
 var active = sections[0];
 
-$(document).ready(function() {
+function onload(){
 
 	$("#" + sections[1]).hide();
 	$("#" + sections[2]).hide();
+
+	setTimeout(function(){
+
+			document.getElementById(active).style.visibility="hidden";
+			document.getElementsByClassName("card")[0].style.transition="all 1s ease";
+			document.getElementsByClassName("card")[0].style.transform="rotateX(0deg)";
+			setTimeout(function(){
+					document.getElementById("home").style.visibility="visible";
+
+			},900);
+	},100);
+
+}
+
+$(document).ready(function() {
 
 	$("#buttonHome").click(function(){
 		setTimeout(function(){
