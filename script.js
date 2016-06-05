@@ -9,9 +9,9 @@ $(document).ready(function() {
 	$("#buttonHome").click(function(){
 		setTimeout(function(){
 			document.getElementsByClassName("card")[0].style.transition="all 0.6s ease";
-			document.getElementsByClassName("card")[0].style.transform="rotateX(360deg)";
-			setTimeout(function(){
+			document.getElementsByClassName("card")[0].style.transform="rotateX(180deg)";
 				document.getElementById(active).style.visibility="hidden";
+			setTimeout(function(){
 				document.getElementsByClassName("card")[0].style.transition="all 0.6s ease";
 				document.getElementsByClassName("card")[0].style.transform="rotateX(0deg)";
 				setTimeout(function(){
@@ -27,9 +27,9 @@ $(document).ready(function() {
 	$("#buttonSkills").click(function(){
 		setTimeout(function(){
 			document.getElementsByClassName("card")[0].style.transition="all 0.6s ease";
-			document.getElementsByClassName("card")[0].style.transform="rotateX(360deg)";
-			setTimeout(function(){
+			document.getElementsByClassName("card")[0].style.transform="rotateX(180deg)";
 				document.getElementById(active).style.visibility="hidden";
+			setTimeout(function(){
 				document.getElementsByClassName("card")[0].style.transition="all 0.6s ease";
 				document.getElementsByClassName("card")[0].style.transform="rotateX(0deg)";
 				setTimeout(function(){
@@ -45,9 +45,9 @@ $(document).ready(function() {
 	$("#buttonProjects").click(function(){
 		setTimeout(function(){
 			document.getElementsByClassName("card")[0].style.transition="all 0.6s ease";
-			document.getElementsByClassName("card")[0].style.transform="rotateX(360deg)";
-			setTimeout(function(){
+			document.getElementsByClassName("card")[0].style.transform="rotateX(180deg)";
 				document.getElementById(active).style.visibility="hidden";
+			setTimeout(function(){
 				document.getElementsByClassName("card")[0].style.transition="all 0.6s ease";
 				document.getElementsByClassName("card")[0].style.transform="rotateX(0deg)";
 				setTimeout(function(){
