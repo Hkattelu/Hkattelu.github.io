@@ -5,10 +5,9 @@ function onload(){
 
 	$("#" + sections[1]).hide();
 	$("#" + sections[2]).hide();
+	document.getElementById(active).style.visibility="hidden";
 
 	setTimeout(function(){
-
-			document.getElementById(active).style.visibility="hidden";
 			document.getElementsByClassName("card")[0].style.transition="all 1s ease";
 			document.getElementsByClassName("card")[0].style.transform="rotateX(0deg)";
 			setTimeout(function(){

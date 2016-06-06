@@ -1,30 +1,557 @@
----
-layout: null
----
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ site.title | xml_escape }}</title>
-    <description>{{ site.description | xml_escape }}</description>
-    <link>{{ site.url }}{{ site.baseurl }}/</link>
-    <atom:link href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" rel="self" type="application/rss+xml"/>
-    <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
-    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
-    <generator>Jekyll v{{ jekyll.version }}</generator>
-    {% for post in site.posts limit:10 %}
+    <title>Himanshu&#39;s blog</title>
+    <description>I write blog posts about stuff that I find interesting
+</description>
+    <link>Hkattelu.github.io/</link>
+    <atom:link href="Hkattelu.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 06 Jun 2016 02:09:49 -0400</pubDate>
+    <lastBuildDate>Mon, 06 Jun 2016 02:09:49 -0400</lastBuildDate>
+    <generator>Jekyll v3.0.1</generator>
+    
       <item>
-        <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.content | xml_escape }}</description>
-        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-        <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
-        <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>
-        {% for tag in post.tags %}
-        <category>{{ tag | xml_escape }}</category>
-        {% endfor %}
-        {% for cat in post.categories %}
-        <category>{{ cat | xml_escape }}</category>
-        {% endfor %}
+        <title>File Compression Part 2</title>
+        <description>&lt;p&gt;Here I continue to talk about methods used to compress files. The two discussed here
+are the Lempel-Ziv (1977) method and Huffman encoding. Both of these (or variants) are
+used widely in modern file compressors such as WinRar and 7zip. The file compressor
+I’m working on uses Huffman encoding in particular.&lt;/p&gt;
+
+&lt;h3&gt;Lempel-Ziv Method&lt;/h3&gt;
+
+&lt;p&gt;The Lempel-ziv method takes advantage of the fact that in a file, it is very likely
+that certain strings of text will be repeated. Suppose we have this sentence:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;This&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sentence&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Here&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;another&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sentence&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Notice that certain strings such as “sentence” repeat in the file. We can take advantage of this by using what
+is called a distance-length pair. A distance length pair takes the form &amp;lt;d,l&amp;gt;. The d is
+the number of characters you have to go back and the l is the number of characters to copy.
+To compress the file, we would start reading it and then once we reach the second “sentence.”,
+we replace it with a distance-length pair as follows.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;This&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sentence&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Here&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;another&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Let’s say that a character is 1 byte long and a distance-length pair is 2 bytes long.
+We’ve just decreased the file length from 44 to 37. Not much, but the compression ratio increases
+dramatically as file size increases (&amp;gt;100 bytes). To decompress, we would start writing until we’ve
+reached the pair, then we copy over what we wrote 25 bytes ago for 9 bytes. This restores the
+file to the original state.&lt;/p&gt;
+
+&lt;p&gt;Although the idea is simple, my example is oversimplified and it turns out that
+this method can get complicated fast. How do we remember strings to create pairs 
+for later? How do we represent our distance-length pair? How does the decompressor
+know when it has hit a distance-length pair? Nonetheless, this method is very useful
+when you have it all figured out.&lt;/p&gt;
+
+&lt;h3&gt;Huffman Encoding&lt;/h3&gt;
+
+&lt;p&gt;Huffman encoding takes advantage of the fact that certain characters or strings appear
+more often than others, and it allows you to represent the frequent characters with fewer
+bits than the rare characters. The process of Huffman encoding involves creating a
+Huffman tree which is daunting at first, but extremely useful. Suppose we have this sentence:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;She&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seems&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;silly&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The first step to compression is to build a table mapping each character with the number of
+times it appears. This can be done in O(n) time.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Char&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Frequency&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Char&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Frequency&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;s&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;i&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;h&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;l&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;e&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;y&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;m&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;space&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Now that we have this table , we can generate a huffman tree by doing the following (O(nlogn)):&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Create leaf nodes for each character-frequency pair and insert them into a priority queue (least frequency”&lt;/li&gt;
+  &lt;li&gt;Pop 2 elements from the queue, create a new node and set its children to the two popped elements.&lt;/li&gt;
+  &lt;li&gt;Set the frequency of the new node to the sum of the frequencies of its children and then insert it into the queue.&lt;/li&gt;
+  &lt;li&gt;If there is more than one element in the queue, go back to step 2.&lt;/li&gt;
+  &lt;li&gt;You are done, the last element in the queue is the root of the tree.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;We should now have a binary tree containing each pair as a leaf node. Using this tree,
+we can obtain the encodings by the path from the root to each leaf. A left represents ‘0 and
+a right represents ‘1’. Here are the encodings for this example.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Char&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Encoding&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Char&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Encoding&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;s&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;11&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;i&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0011&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;h&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0000&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;l&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;100&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;e&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;01&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;y&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0001&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;m&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0010&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;space&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;101&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Finally, we can compress the sentence with this mapping to the following:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;mi&quot;&gt;110000011011101010010111011100111001000001&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Note that in the original sentence, each character would have been represented by
+one byte for a total of 15 bytes or 120 bits. The compressed file was written
+in only 42 bits! If the decompressor does not know the tree, you would also have to 
+encode the tree into the file. In this example it could be done in 80 bits, bumping
+the file size to 122 bits. However, the tree size will stay small even if the file size increases,
+meaning this method is more effective as file size increases.&lt;/p&gt;
+
+&lt;p&gt;To decompress, we simply read bit by bit and traverse the huffman tree. If we read a 
+0 we go left and if we read a 1 we go right. When we hit a leaf node, we just write down
+the character in that leaf node.&lt;/p&gt;
+
+&lt;p&gt;To conclude, the lempel-ziv method is most useful when certain strings repeat in the file.
+The huffman method works best when certain characters appear very frequently. Both methods
+work well for large files, and both are widely used in file compressors.&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 31 May 2016 04:46:00 -0400</pubDate>
+        <link>Hkattelu.github.io/jekyll/programming/2016/05/31/File-Compression-2.html</link>
+        <guid isPermaLink="true">Hkattelu.github.io/jekyll/programming/2016/05/31/File-Compression-2.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>programming</category>
+        
       </item>
-    {% endfor %}
+    
+      <item>
+        <title>File Compression Part 1</title>
+        <description>&lt;p&gt;I have recently started working on my own file compressor titled ‘himanZip’. While working,
+I’ve had to do a lot of research including reading articles, watching videos, and studying
+protocols. File compression can be really interesting so I’ve decided to write some blog posts
+detailing what I’ve learned.&lt;/p&gt;
+
+&lt;p&gt;Firstly there are two types of compression:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Lossy Compression:&lt;/strong&gt; Takes file A and compresses it into a smaller file B. However,
+decompressing B back to A will result in a loss of quality. This is because some quality is removed
+in order to compress A to B.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Lossless Compression:&lt;/strong&gt; Takes file A and compresses it into smaller file B. Decompression
+from B back to A does not result in any quality loss. The compression only removes redundant information.&lt;/p&gt;
+
+&lt;p&gt;To illustrate the quality loss of lossy compression, here is an example: Suppose you are trying
+to compress an image file of someone’s face. We know that most faces are generally symmetric,
+so to compress we simply save one half of the persons face, and to decompress we copy that half over to
+fully recreate the face again. However, you will lose a lot of the fine detail of the face this way because
+faces are not actually symmetric.&lt;/p&gt;
+
+&lt;p&gt;I will be focusing only on lossless compression because it is inherently more valuable. One simple
+form of lossless compression is run-length encoding.&lt;/p&gt;
+
+&lt;h3&gt;Run-length Encoding&lt;/h3&gt;
+
+&lt;p&gt;Run-length Encoding is a very simple form of compression that makes a lot of assumptions about the format
+of a file, but is nonetheless useful for illustrating the concept of compression. Suppose we have a simple text
+file:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;Hiiiiiiiiiiiiiiiiiii&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Weeeeeeeeeeeeeeeeeeoooooooooooooooooooooowwwwwwwwwwwww&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Notice that there are huge stretches of the same type of characters (i,e,o,w). We can take advantage of
+this and represent these another way. Instead of writing out the huge stretch, we can replace the i’s
+by (# of i’s)(i). We can do this for each character stretch to compress. The compressed text file would
+look like this:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;H19i&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;W18e22o13w&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;After compression, the total character length dropped from 76 to 16! To decompress, everytime we run into a
+number we just have to copy the following character that many times. Note that this may not work if you actually
+have numbers in your text file, or if there aren’t a lot of huge streches in the text, although there are ways to
+get around this.&lt;/p&gt;
+
+&lt;p&gt;That’s all for now, in the next post I will talk about Lempel-Ziv(1977) encoding, and Huffman encoding.&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 27 May 2016 01:58:00 -0400</pubDate>
+        <link>Hkattelu.github.io/jekyll/programming/2016/05/27/File-Compression-1.html</link>
+        <guid isPermaLink="true">Hkattelu.github.io/jekyll/programming/2016/05/27/File-Compression-1.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>programming</category>
+        
+      </item>
+    
+      <item>
+        <title>New website and Javascript</title>
+        <description>&lt;p&gt;After another long and hard semester, I have found myself
+with nothing to do. So, I decided to teach myself some more javascript
+to revamp my website into one with more personality. I wanted to create a
+site which served only to show off my projects, and show them off well.
+This new site would need color, animations, and pictures, all three of which
+my current site is lacking.&lt;/p&gt;
+
+&lt;p&gt;I decided to use javascript as the tool to make my new website look nice because
+it gives you more control over HTML elements than jQuery does. Also, javascript
+is an important skill to have in the world of web development, so it was about
+time I learned it.&lt;/p&gt;
+
+&lt;p&gt;After about 5 hours of coming up with ideas, searching through W3Schools, and 
+typing up new files, I created a (somewhat) functional prototype. However, I
+ended up hitting a roadblock which stopped me from turning my website vision into
+a reality. Ironically, the problem I encountered could’ve been avoided if I had
+just used a framework such as jQuery. Nonetheless, I did learn a lot and decided to
+write a blog post about the animation and styling abilities of javascript.&lt;/p&gt;
+
+&lt;h3&gt; Styling &lt;/h3&gt;
+
+&lt;p&gt;Anyone who has ever made a website knows that all HTML elements have ‘style’ attributes
+that can be modified through CSS. These style elements include all sorts of 
+things from height and width to padding and borders to position coordinates. Through
+javascript, you can access and modify those style elements to edit the look of an 
+HTML element. Specifically, you can write a function that gets called when an event occurs
+(such as a button click).&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;makeRed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;elementID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;elementID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;originalColor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Original Color: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;originalColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;color&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;red&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;New Color: Red&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This is an example javascript function that can take an HTML element by its ID
+and turn it to the color red. The object is obtained by the .getElementByID() method.
+Then, the color field in the style can be set to red. To tie this function to the click
+of a button, you would set the onClick field of the button to “makeRed(elementID);”.
+Functions like these can be written to change almost all existing attributes of an element.&lt;/p&gt;
+
+&lt;h3&gt; Animation &lt;/h3&gt;
+
+&lt;p&gt;This is what makes your website fancy. An animation can’t be created by simply
+changing attributes with javascript functions normally. However, you can create
+animations by using an object’s transformation and transition properties. The transform
+property can be changed like any other style element, except it takes in a function
+instead of a value. The function specifies what change will happen to the object.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;home&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;skills&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;projects&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;currIndex&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;currSize&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;switchUp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;currIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientHeight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;transition&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;transform 1s linear 0s&quot;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;transform&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;translate(0px,&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;px)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;currIndex&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;currIndex&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;currSize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newObject&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;currIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;transition&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;transform 1s linear 0s&quot;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;transform&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;translate(0px,&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;px)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This is a snippet from my prototype where I shift an entire section
+up and replace it with a new one from below. Here, the switchUp function is called
+whenever the user clicks on the up arrow. If the user is on the home section, it will
+shift the home up and the skills section will come from below to replace it.&lt;/p&gt;
+
+&lt;p&gt;In order to acheive this effect, I first obtain the height of the section. Then,
+I set the transition property to “transform 1s linear 0s”. This means, when the object 
+has to transform, the transformation will take 1 second and the animation will occur in
+linear time. There will also be a 0 second delay before the transform starts. Then, I 
+actually change the transform property to “translate(0px, height px)”. This translates
+the section up by height pixels. Finally, I translate the skills section from below up
+by that same height.&lt;/p&gt;
+
+&lt;p&gt;The transform property can also be used to scale up an object or rotate it along any axis.&lt;/p&gt;
+
+&lt;h3&gt; What I learned &lt;/h3&gt;
+
+&lt;p&gt;I learned to take HTML elements and transform them to create animations which add
+flavor and aesthetic to a website. Any element can be edited, so you could have anything from
+sliding colors to opening doors if you use the javascript properly.&lt;/p&gt;
+
+&lt;p&gt;Additionally, I learned that you can use any website to teach you web development. You can view
+any website’s source files by simply right clicking and selecting “view page source”. By doing this,
+you can learn how most websites create their animations by looking into the associated javascript
+and css files. By doing this, you can rapidly learn new things to add to your websites, and also
+fix existing mistakes within your own site.&lt;/p&gt;
+
+&lt;p&gt;Despite the fact that I will probably be going to be at 4:30AM tonight, and that I don’t have
+a real finished product, I am glad that I’ve learned some useful javascript skills.&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 20 May 2016 02:59:00 -0400</pubDate>
+        <link>Hkattelu.github.io/jekyll/web/2016/05/20/Website-1-Javascript-Transformations.html</link>
+        <guid isPermaLink="true">Hkattelu.github.io/jekyll/web/2016/05/20/Website-1-Javascript-Transformations.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>web</category>
+        
+      </item>
+    
+      <item>
+        <title>The Hungarian Algorithm</title>
+        <description>&lt;p&gt;Here I’ll talk about the other side project I worked on and	
+the lesson it taught me. This is one that I thought
+would be easy but turned out to be hard.&lt;/p&gt;
+
+&lt;p&gt;This is an algorithm I learned about last semester in my deterministic
+models class. It is a quick way to solve an assignment problem, which is
+a problem where you assign m workers to n jobs in order to minimize a cost
+or maximize a profit. This is not be confused with the quadratic assignment problem,
+which is NP-hard.&lt;/p&gt;
+
+&lt;p&gt;You can read more about it here: 
+&lt;a href=&quot; http://www.math.harvard.edu/archive/20_spring_05/handouts/assignment_overheads.pdf&quot;&gt;Harvard slides&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;If you’ve ever used the hungarian algorithm before, you’ll know that
+it is actually pretty straightforward to do on paper. However, there are
+some things that are a lot easier to do on paper than they are to do on a 
+computer.&lt;/p&gt;
+
+&lt;p&gt;The two steps in particular I am talking about are the “covering” step and the 
+“selection” step.&lt;/p&gt;
+
+&lt;h3&gt;The Covering Step&lt;/h3&gt;
+
+&lt;p&gt;In this step we are given an m x n matrix with some random numbers in it,
+some of which are zeroes. Our goal is to cover this matrix with horizontal
+or vertical lines such that we cover all zeroes with the minimum number of
+lines.&lt;/p&gt;
+
+&lt;p&gt;This is easy to do on paper, but on a computer, how would we do this? 
+At first I tried to find an easy way to do this, such as drawing a vertical
+and horizontal line at every zero, and then removing unnecessary lines. It
+turns out this ruins the next step, so I wasn’t able to do this. After spending
+a lot of time on thinking how to select which lines to draw, I just decided to
+draw a line in the direction with the most zeroes. Originally this didn’t work, but
+I made a few tweaks and somehow it managed to pass the tests I put in place.&lt;/p&gt;
+
+&lt;h3&gt;The Selection Step&lt;/h3&gt;
+
+&lt;p&gt;In this step we are given an m x n matrix with some random numbers in it, 
+some of which are zeroes. What we must do here is select certian zeroes
+from the matrix such that each row and each column has exactly one selected
+zero. If we have more rows than columns or vice versa, then certain rows
+or columns will not have a zero.&lt;/p&gt;
+
+&lt;p&gt;At first I thought I could just go through the rows and select the 0 in
+the first column that wasn’t already used. This works in some cases, but
+not all. In the end, I decided I would have to brute force it (O(N^2) at worst).
+I ended up looking around and found out a cool way to recursively go through a matrix.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//Call this with empty arrays for selection and filledRows. Also use row = 0.&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hungarian_select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[][]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pivotedMatrix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[][]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;selection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;filledRows&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+		
+       &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pivotedMatrix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    	   &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// When we reach the bottom of the matrix, we are done.&lt;/span&gt;
+       
+	   &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pivotedMatrix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++){&lt;/span&gt;
+		   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pivotedMatrix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;filledRows&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+			   &lt;span class=&quot;n&quot;&gt;selection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+			   &lt;span class=&quot;n&quot;&gt;filledRows&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// If we run into a zero, select it&lt;/span&gt;
+			   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hungarian_select&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pivotedMatrix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;selection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filledRows&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+				   &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+			   &lt;span class=&quot;n&quot;&gt;selection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// If that zero didn&#39;t work, reset and continue to the next zero&lt;/span&gt;
+			   &lt;span class=&quot;n&quot;&gt;filledRows&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+					   
+		   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	   
+	   &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+		
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;With this, I was able to brute force select zeroes from my matrix which allowed me to 
+finish up the algorithm successfully.&lt;/p&gt;
+
+&lt;h3&gt; What I learned &lt;/h3&gt;
+
+&lt;p&gt;The Hungarian algorithm is fairly useful. Although I don’t see myself using it in
+the foreseeable future, I can see some ways it might be used. The lessons to learn here
+are that, once again, you should always create a test suite for your projects. It was
+extremely helpful for this project, as I was always jumping between steps trying to fix
+new problems that kept on popping up.&lt;/p&gt;
+
+&lt;p&gt;Another lesson is that you should not be afraid to look through the internet for help about certain things. Here I did it to figure out a way to brute force through a matrix for the selection step. Yet another lesson would be that you should not be afraid to make helper methods and helper classes. In this particular problem it helped me break down the steps which were complicated on their own. But by breaking them into smaller steps, it became much more manageable.&lt;/p&gt;
+
+&lt;p&gt;Be persistent in finding solutions. I spent alot of time trying to implement methods for the steps, and then realizing there was a special case that I was forgetting about. It was frustrating that I had to keep on rewriting the methods, but every time I rewrote the method I learned more about the problem so
+in the end it was worth it.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 07 Jan 2016 02:54:00 -0500</pubDate>
+        <link>Hkattelu.github.io/jekyll/programming/2016/01/07/Project-2-Hungarian_Algorithm.html</link>
+        <guid isPermaLink="true">Hkattelu.github.io/jekyll/programming/2016/01/07/Project-2-Hungarian_Algorithm.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>programming</category>
+        
+      </item>
+    
+      <item>
+        <title>The Minimal Perfect HashMap</title>
+        <description>&lt;p&gt;So over these past couple of weeks I’ve been working on two
+side projects that I thought were interesting so that I wouldn’t
+forget some of the computer science I learned over the last semester.
+Both of the projects were actually much more challenging than I 
+originally thought they were, and doing them both taught me
+a few lessons about coding do’s and don’ts. I’ll go over one of
+them here.&lt;/p&gt;
+
+&lt;p&gt;While browsing the internet I came across an article about O(1) Hash map lookups by using a method called Minimal perfect hashing. You can read about it here:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://blog.demofox.org/2015/12/14/o1-data-lookups-with-minimal-perfect-hashing/&quot;&gt; DemoFox’s Blog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In short, this is a method that removes collisions entirely from HashMaps which allows for consistent O(1) lookups. The downside is that it requires more memory.&lt;/p&gt;
+
+&lt;p&gt;When I started working on this, I originally thought it was basically
+just a chained hash map with linear probing, and the “salt” values were basically
+just the location offsets from inside the map. It turns out this does not
+really work or make sense, and I ran into some problems when implementing.
+After I looked into it more, it turned out to be a lot more complicated than I
+thought it was. Essentially, the salt values are a lot more like nonce values.
+Instead of hashing a key once to find the hashmap position, you actually have to hash
+a second time with the salt value to find the hashmap position if there was a collision.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;saltHash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;salt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+    	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;salt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;^&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hashCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// XORing the hashed key with the salt value creates a decent second hash function&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Another thing about the minimal hash map is that it is not meant to be used
+in the same way as a regular hash map. In the regular hash map, you can put and
+remove elements freely as well as overwrite certain elements if you put in two elements
+with the same key.&lt;/p&gt;
+
+&lt;p&gt;The minimal hash map however, is meant to be used as a data structure where you
+put everything in, calculate the hash function, and then access elements. Once you
+calculate the hash function you are not able to add in more elements and you cannot
+remove or overwrite elements either.&lt;/p&gt;
+
+&lt;p&gt;Its use is somewhat specific, you need to have
+a set of data that you know will not change, and you must only want to access from that
+data, and not want to change it in any way. An example of this would be if you were
+managing a school database. You could create a map of student IDs to student Names, which
+would then allow you to instantaneously get a students name just from knowing their ID, and
+not having to manually search through a whole database.&lt;/p&gt;
+
+&lt;h3&gt; What I learned &lt;/h3&gt;
+
+&lt;p&gt;Overall I think that the Minimal Hashmap is a useful data structure even though the
+use case is somewhat specific. The lesson I learned here is that when you try to make
+something, you sure assure yourself that you really know what you are trying to make. Do this
+by looking through multiple sources, and maybe even trying specific use examples and see if it
+works. Also, creating test suites is very useful for these scenarios. I originally implemented
+the whole thing wrong, but because I created a test suite I was able to test my program
+quickly, and identify the problems properly when I was refactoring.&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 06 Jan 2016 02:54:00 -0500</pubDate>
+        <link>Hkattelu.github.io/jekyll/programming/2016/01/06/Project-1-Minimal-Perfect-HashMap.html</link>
+        <guid isPermaLink="true">Hkattelu.github.io/jekyll/programming/2016/01/06/Project-1-Minimal-Perfect-HashMap.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>programming</category>
+        
+      </item>
+    
+      <item>
+        <title>First blog post!</title>
+        <description>&lt;p&gt;I have a blog now! I will try to post here every once
+in a while about projects that I’m working on or even
+off topic things that I find interesting.&lt;/p&gt;
+
+&lt;p&gt;This blog uses jekyll which is a nice static site 
+generator that runs on ruby. It took me a while to get
+up and running (I actually had to do it on Ubuntu in my
+virtual machine because it does not support windows)
+but I really like the way it came out.&lt;/p&gt;
+
+&lt;p&gt;Anyways, as of now i’m working on implementing a Minimal
+perfect hashmap, and the hungarian algorithm in java. 
+You can check them out on my github but
+I’ve run into some roadblocks so it might take a while
+before any of them are actually done.&lt;/p&gt;
+
+&lt;p&gt;Thanks for checking out my blog!&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 28 Dec 2015 02:54:00 -0500</pubDate>
+        <link>Hkattelu.github.io/jekyll/web/2015/12/28/first-blog-post.html</link>
+        <guid isPermaLink="true">Hkattelu.github.io/jekyll/web/2015/12/28/first-blog-post.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>web</category>
+        
+      </item>
+    
   </channel>
 </rss>
