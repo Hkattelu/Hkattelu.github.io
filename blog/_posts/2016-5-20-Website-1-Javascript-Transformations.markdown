@@ -2,7 +2,7 @@
 layout: post
 title:  "New website and Javascript"
 date:   2016-05-20 01:59:00 -0500
-category: web
+categories: web
 ---
 
 After another long and hard semester, I have found myself
