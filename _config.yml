@@ -6,10 +6,12 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Himanshu's blog
+title: Himanshu's Blog
 email: himanshukattelu@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  I write blog posts about stuff that I find interesting
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
 baseurl: "/blog" # the subpath of your site, e.g. /blog
 url: "http://Hkattelu.github.io" # the base hostname & protocol for your site
 twitter_username: Hkattelu
@@ -17,5 +19,3 @@ github_username:  Hkattelu
 
 # Build settings
 markdown: kramdown
-timezone: America/New_York
-future: true
