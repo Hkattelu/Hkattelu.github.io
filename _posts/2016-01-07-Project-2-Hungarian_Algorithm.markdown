@@ -2,7 +2,7 @@
 layout: post
 title:  "The Hungarian Algorithm"
 date:   2016-01-07 02:54:00 -0500
-categories: jekyll programming
+categories: programming
 ---
 
 Here I'll talk about the other side project I worked on and	

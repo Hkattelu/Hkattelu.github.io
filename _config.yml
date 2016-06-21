@@ -10,8 +10,8 @@ title: Himanshu's blog
 email: himanshukattelu@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   I write blog posts about stuff that I find interesting
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "Hkattelu.github.io" # the base hostname & protocol for your site
+baseurl: "/jekyll" # the subpath of your site, e.g. /blog
+url: "http://Hkattelu.github.io" # the base hostname & protocol for your site
 twitter_username: Hkattelu
 github_username:  Hkattelu
 

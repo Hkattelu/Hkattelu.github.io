@@ -2,7 +2,7 @@
 layout: post
 title:  "File Compression Part 2"
 date:   2016-05-31 03:46:00 -0500
-categories: jekyll programming
+categories: programming
 ---
 
 Here I continue to talk about methods used to compress files. The two discussed here
