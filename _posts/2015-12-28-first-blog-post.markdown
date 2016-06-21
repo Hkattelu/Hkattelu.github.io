@@ -3,6 +3,7 @@ layout: post
 title:  "First blog post!"
 date:   2015-12-28 02:54:00 -0500
 categories: blog web
+tags: [Web]
 ---
 
 I have a blog now! I will try to post here every once

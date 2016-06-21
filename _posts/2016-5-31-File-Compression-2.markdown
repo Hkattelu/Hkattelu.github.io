@@ -3,6 +3,7 @@ layout: post
 title:  "File Compression Part 2"
 date:   2016-05-31 03:46:00 -0500
 categories: blog programming
+tags: [Programming]
 ---
 
 Here I continue to talk about methods used to compress files. The two discussed here

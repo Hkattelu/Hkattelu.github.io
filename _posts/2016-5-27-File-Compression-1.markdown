@@ -3,6 +3,7 @@ layout: post
 title:  "File Compression Part 1"
 date:   2016-05-27 00:58:00 -0500
 categories: blog programming
+tags: [Programming]
 ---
 
 I have recently started working on my own file compressor titled 'himanZip'. While working,

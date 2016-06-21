@@ -6,8 +6,8 @@
 </description>
     <link>http://Hkattelu.github.io/blog/</link>
     <atom:link href="http://Hkattelu.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 21 Jun 2016 02:25:57 -0400</pubDate>
-    <lastBuildDate>Tue, 21 Jun 2016 02:25:57 -0400</lastBuildDate>
+    <pubDate>Tue, 21 Jun 2016 03:08:28 -0400</pubDate>
+    <lastBuildDate>Tue, 21 Jun 2016 03:08:28 -0400</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -168,6 +168,8 @@ work well for large files, and both are widely used in file compressors.&lt;/p&g
         <link>http://Hkattelu.github.io/blog/blog/programming/2016/05/31/File-Compression-2.html</link>
         <guid isPermaLink="true">http://Hkattelu.github.io/blog/blog/programming/2016/05/31/File-Compression-2.html</guid>
         
+        <category>Programming</category>
+        
         
         <category>blog</category>
         
@@ -226,6 +228,8 @@ get around this.&lt;/p&gt;
         <pubDate>Fri, 27 May 2016 01:58:00 -0400</pubDate>
         <link>http://Hkattelu.github.io/blog/blog/programming/2016/05/27/File-Compression-1.html</link>
         <guid isPermaLink="true">http://Hkattelu.github.io/blog/blog/programming/2016/05/27/File-Compression-1.html</guid>
+        
+        <category>Programming</category>
         
         
         <category>blog</category>
@@ -345,6 +349,8 @@ a real finished product, I am glad that I’ve learned some useful javascript sk
         <link>http://Hkattelu.github.io/blog/blog/web/2016/05/20/Website-1-Javascript-Transformations.html</link>
         <guid isPermaLink="true">http://Hkattelu.github.io/blog/blog/web/2016/05/20/Website-1-Javascript-Transformations.html</guid>
         
+        <category>Web</category>
+        
         
         <category>blog</category>
         
@@ -445,6 +451,8 @@ in the end it was worth it.&lt;/p&gt;
         <link>http://Hkattelu.github.io/blog/blog/programming/2016/01/07/Project-2-Hungarian_Algorithm.html</link>
         <guid isPermaLink="true">http://Hkattelu.github.io/blog/blog/programming/2016/01/07/Project-2-Hungarian_Algorithm.html</guid>
         
+        <category>Programming</category>
+        
         
         <category>blog</category>
         
@@ -514,6 +522,8 @@ quickly, and identify the problems properly when I was refactoring.&lt;/p&gt;
         <link>http://Hkattelu.github.io/blog/blog/programming/2016/01/06/Project-1-Minimal-Perfect-HashMap.html</link>
         <guid isPermaLink="true">http://Hkattelu.github.io/blog/blog/programming/2016/01/06/Project-1-Minimal-Perfect-HashMap.html</guid>
         
+        <category>Programming</category>
+        
         
         <category>blog</category>
         
@@ -545,6 +555,8 @@ before any of them are actually done.&lt;/p&gt;
         <pubDate>Mon, 28 Dec 2015 02:54:00 -0500</pubDate>
         <link>http://Hkattelu.github.io/blog/blog/web/2015/12/28/first-blog-post.html</link>
         <guid isPermaLink="true">http://Hkattelu.github.io/blog/blog/web/2015/12/28/first-blog-post.html</guid>
+        
+        <category>Web</category>
         
         
         <category>blog</category>

@@ -3,6 +3,7 @@ layout: post
 title:  "The Minimal Perfect HashMap"
 date:   2016-01-06 02:54:00 -0500
 categories: blog programming 
+tags: [Programming]
 ---
 
 So over these past couple of weeks I've been working on two
