@@ -10,22 +10,20 @@ layout: default
     {% for post in site.posts %}
       <li>
         <span class="post-meta">
-		{{ post.date | date: "%b %-d, %Y" }}
-		{% for tag in post.tags %}
-		{{ tag }} 
-		{% endfor %}
-	</span>
+      		{{ post.date | date: "%b %-d, %Y" }}
+      		{% for tag in post.tags %}
+      		{{ tag }} 
+      		{% endfor %}
+  	    </span>
 
         <h2>
           <a class="post-link" href="{{ post.url }}">{{ post.title }}</a>
         </h2>
 
-	{{ post.excerpt }}
+	      {{ post.excerpt }}
 
       </li>
     {% endfor %}
   </ul>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
 </div>

@@ -45,7 +45,7 @@ I made a few tweaks and somehow it managed to pass the tests I put in place.
 <h3>The Selection Step</h3>
 
 In this step we are given an m x n matrix with some random numbers in it, 
-some of which are zeroes. What we must do here is select certian zeroes
+some of which are zeroes. What we must do here is select certain zeroes
 from the matrix such that each row and each column has exactly one selected
 zero. If we have more rows than columns or vice versa, then certain rows
 or columns will not have a zero.

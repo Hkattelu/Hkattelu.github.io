@@ -50,7 +50,7 @@ Its use is somewhat specific, you need to have
 a set of data that you know will not change, and you must only want to access from that
 data, and not want to change it in any way. An example of this would be if you were
 managing a school database. You could create a map of student IDs to student Names, which
-would then allow you to instantaneously get a students name just from knowing their ID, and
+would then allow you to instantaneously get a student's name just from knowing their ID, and
 not having to manually search through a whole database.
 
 <h3> What I learned </h3>

@@ -9,7 +9,9 @@
 title: Himanshu's Blog
 email: himanshukattelu@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  I write blog posts about things I find interesting.
+  I write blog posts. I write about things that I find interesting,
+  things that are going on in my life, and things that I feel are
+  worth sharing.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://Hkattelu.github.io/blog" # the base hostname & protocol for your site
 twitter_username: Hkattelu
