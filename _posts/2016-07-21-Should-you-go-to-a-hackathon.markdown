@@ -2,8 +2,8 @@
 layout: post
 title:  "Should you go to a hackathon?"
 date:   2016-07-21 08:44:00 -0800
-categories: blog other
-tags: [other]
+categories: blog Other
+tags: [Other]
 ---
 
 About twice a semester I'll go to a hackathon as a break from school to

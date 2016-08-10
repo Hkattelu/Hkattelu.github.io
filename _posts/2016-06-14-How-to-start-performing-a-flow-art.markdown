@@ -2,8 +2,8 @@
 layout: post
 title:  "How to start performing a flow art"
 date:   2016-06-14 09:55:00 -0400
-categories: blog other
-tags: [other]
+categories: blog Flow
+tags: [Flow]
 ---
 
 One of my main hobbies is spending time on some sort of flow art. Most of the time I'll be spinning poi with

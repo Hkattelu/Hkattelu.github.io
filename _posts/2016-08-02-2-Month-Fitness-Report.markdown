@@ -2,8 +2,8 @@
 layout: post
 title:  "2 Month fitness report"
 date:   2016-08-02 03:21:00 -0800
-categories: blog other
-tags: [other]
+categories: blog Fitness
+tags: [Fitness]
 ---
 
 I first started officially working out a little over 2 years ago in my last year of high school.
