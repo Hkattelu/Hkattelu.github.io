@@ -2,9 +2,8 @@
  * Site header
  */
 .site-header {
-    border-top: 5px solid $grey-color-dark;
-    border-bottom: 1px solid $grey-color-light;
     min-height: 56px;
+    background-color: $card-color;
 
     // Positioning context for the mobile navigation icon
     position: relative;
@@ -20,7 +19,7 @@
 
     &,
     &:visited {
-        color: $grey-color-dark;
+        color: $grey-color-light;
     }
 }
 
@@ -33,7 +32,7 @@
     }
 
     .page-link {
-        color: $text-color;
+        color: $grey-color-light;
         line-height: $base-line-height;
 
         // Gaps between nav items, but not on the last one
@@ -98,8 +97,8 @@
  * Site footer
  */
 .site-footer {
-    border-top: 1px solid $grey-color-light;
     padding: $spacing-unit 0;
+    background-color: $card-color;
 }
 
 .footer-heading {
@@ -111,6 +110,7 @@
 .social-media-list {
     list-style: none;
     margin-left: 0;
+    color: $grey-color-light;
 }
 
 .footer-col-wrapper {
@@ -181,6 +181,8 @@
 
     > li {
         margin-bottom: $spacing-unit;
+        background-color: $card-color;
+        padding: $spacing-unit;
     }
 }
 
@@ -192,13 +194,20 @@
 .post-link {
     display: block;
     font-size: 24px;
+    color: $grey-color-light;
 }
 
+.post {
+    margin-bottom: $spacing-unit;
+    background-color: $card-color;
+    padding: $spacing-unit;     
+}
 
 
 /**
  * Posts
  */
+
 .post-header {
     margin-bottom: $spacing-unit;
 }
@@ -207,6 +216,7 @@
     font-size: 42px;
     letter-spacing: -1px;
     line-height: 1;
+    color: $grey-color;
 
     @include media-query($on-laptop) {
         font-size: 36px;
@@ -215,6 +225,7 @@
 
 .post-content {
     margin-bottom: $spacing-unit;
+    color: $grey-color;
 
     h2 {
         font-size: 32px;
@@ -240,3 +251,19 @@
         }
     }
 }
+
+/**
+ * About & Archive
+ */
+
+.wrapper-special {
+    margin-bottom: $spacing-unit;
+    background-color: $card-color;
+    padding: $spacing-unit;
+
+     > ul {
+        list-style-type: none;
+    }
+}
+
+

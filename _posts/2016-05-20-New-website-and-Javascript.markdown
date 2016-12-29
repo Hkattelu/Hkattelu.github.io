@@ -3,7 +3,7 @@ layout: post
 title:  "New website and Javascript"
 date:   2016-05-20 01:59:00 -0500
 categories: blog web
-tags: [Web]
+tags: [Web Programming]
 ---
 
 After another long and hard semester, I have found myself
