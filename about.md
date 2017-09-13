@@ -13,7 +13,7 @@ permalink: /about/
 
 <p style="font-size: 1.3em;">
 I'm currently a junior studying Computer Science and Applied Mathematics at Stony Brook University. If you had to 
-know one thing about me, it's that I don't do leave things half-done. I pride myself in taking a system and 
+know one thing about me, it's that I don't leave things half-done. I pride myself in taking a system and 
 figuring out every single detail of it. I put in the <strong>time</strong> and <strong>effort</strong> needed to produce quality work that I am 
 proud of. I challenge myself to not believe things blindly without understanding.</p>
 

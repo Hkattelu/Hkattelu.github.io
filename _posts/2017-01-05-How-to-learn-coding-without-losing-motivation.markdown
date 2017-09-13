@@ -10,7 +10,7 @@ Sometimes my friends ask me, "How long would it take for me to learn python?" or
 to get a job?". I tell them that if they pick a language and stick to it, then maybe work on a project or two,
 they will be well on their way to being a capable programmer. Then, they might ask me some follow-ups like
 "How exactly do I start? What should I download? Where are tutorials?" and I will point them in the right direction.
-I then go about my life as usually and then check on them a week later. What happens?
+I then go about my life as usual and then check on them a week later. What happens?
 
 They've given up! I'm so confused! How could it be that my friend was so excited to learn about programming but quit so
 quickly? The process of obtaining the software wasn't hard (These days, sites like codecademy let you type code on the web),
@@ -74,7 +74,7 @@ skating, when you make your first website go get a massage. It's a simple idea t
 ![Website](http://betamore.com/wp-content/uploads/2016/01/Learn-to-Code.png){:height="300px" width="300px" text-align="center"}
 
 A beginner might be tempted to do another tutorial after they finished the first one if they do not feel like they learned 
-enough. To this is say, no. As soon as you finish your tutorials on a subject, I say you should jump right into a project. The 
+enough. To this I say, no. As soon as you finish your tutorials on a subject, I say you should jump right into a project. The 
 main reason is that once you've started on something, you will typically feel uneasy if you let it go unfinished. As a result, 
 you have a much bigger incentive to return to coding once you've lost your motivation. This will also teach you good future 
 habits such as googling/using stack overflow if you don't know how to solve a problem. In the end, you will eventually finish
