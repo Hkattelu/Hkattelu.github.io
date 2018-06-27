@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Books I read in the last year"
-date:   2017-06-20 00:58:00 -0500
+date:   2018-06-20 00:58:00 -0500
 categories: blog Books
 tags: [Books]
 ---
@@ -34,7 +34,7 @@ recommend it only if you are interested in this sort of stuff abd don't know
 too much about it already.
 
 <h3>Weapons of Math Destruction: How Big Data Increases Inequality and Threatens
-Democracy- Cathy O Neil</h3>
+Democracy - Cathy O Neil</h3>
 
 You would never think that big data and machine learning could actually have
 a negative impact on parts of society. That's the big idea that this book
