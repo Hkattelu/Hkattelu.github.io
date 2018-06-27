@@ -1,4 +1,3 @@
-
 /* HOME SECTION */
 
 #myPicture {
@@ -36,17 +35,15 @@
 
 /* SKILLS SECTION */
 
-/* Headers*/
 .list-headers {
 	text-align: left;
 }
 
-li+p+ul {
+ul {
 	text-align: left;
 	font-size: 1.1em;
 	list-style-type: square;
 }
-
 
 /* PROJECTS SECTION */
 
@@ -234,7 +231,7 @@ section div h1 {
 		font-size: 2em;
 	}
 
-	.sk-desk {
+	.ignore-on-mobile {
 		display: none;
 	}
 

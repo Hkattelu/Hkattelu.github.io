@@ -1,79 +1,55 @@
-var sections = ["home","skills","projects"];
+var sections = ["home", "skills", "projects"];
 var active = sections[0];
+var card = document.getElementsByClassName("card")[0];
 
-function onload(){
-
-	$("#" + sections[1]).hide();
-	$("#" + sections[2]).hide();
-	document.getElementById(active).style.visibility="hidden";
-
-	setTimeout(function(){
-			document.getElementsByClassName("card")[0].style.transition="all 1s ease";
-			document.getElementsByClassName("card")[0].style.transform="rotateX(0deg)";
-			setTimeout(function(){
-					document.getElementById("home").style.visibility="visible";
-
-			},900);
-	},100);
-
+function hideCardFront() {
+	document.getElementById(active).style.visibility = "hidden";
 }
 
-$(document).ready(function() {
+function showCardSection(section) {
+	document.getElementById(section).style.visibility = "visible";
+}
 
-	$("#buttonHome").click(function(){
+function hideAllSections() {
+	sections.forEach(function(element) {
+		$("#" + element).hide();		
+	});
+}
+
+function initialSpin() {
+	$("#" + active).show();
+	setTimeout(function(){
+		card.style.transition = "all 1s ease";
+		card.style.transform = "rotateX(0deg)";
+		setTimeout(function(){ 
+			card.style.transition = "all 0.6s ease";
+		}, 900);
+	}, 100);
+} 
+
+function setButtonHandler(section) {
+	$('#button-'+section).click(function(){
 		setTimeout(function(){
-			document.getElementsByClassName("card")[0].style.transition="all 0.6s ease";
-			document.getElementsByClassName("card")[0].style.transform="rotateX(180deg)";
-				document.getElementById(active).style.visibility="hidden";
+			card.style.transform="rotateX(180deg)";
+			hideCardFront()
 			setTimeout(function(){
-				document.getElementsByClassName("card")[0].style.transition="all 0.6s ease";
-				document.getElementsByClassName("card")[0].style.transform="rotateX(0deg)";
+				card.style.transform="rotateX(0deg)";
 				setTimeout(function(){
-					$("#" + sections[1]).hide();
-					$("#" + sections[2]).hide();
-					document.getElementById("home").style.visibility="visible";
-					active = sections[0];
-					$("#" + sections[0]).show();
+					hideAllSections()
+					showCardSection(section)
+					active = section;
+					$("#" + section).show();
 				},400);
 			},600);
 		},100);
-	});
-	$("#buttonSkills").click(function(){
-		setTimeout(function(){
-			document.getElementsByClassName("card")[0].style.transition="all 0.6s ease";
-			document.getElementsByClassName("card")[0].style.transform="rotateX(180deg)";
-				document.getElementById(active).style.visibility="hidden";
-			setTimeout(function(){
-				document.getElementsByClassName("card")[0].style.transition="all 0.6s ease";
-				document.getElementsByClassName("card")[0].style.transform="rotateX(0deg)";
-				setTimeout(function(){
-					$("#" + sections[0]).hide();
-					$("#" + sections[2]).hide();
-					document.getElementById("skills").style.visibility="visible";
-					active = sections[1];
-					$("#" + sections[1]).show();
-				},400);
-			},600);
-		},100);
-	});
-	$("#buttonProjects").click(function(){
-		setTimeout(function(){
-			document.getElementsByClassName("card")[0].style.transition="all 0.6s ease";
-			document.getElementsByClassName("card")[0].style.transform="rotateX(180deg)";
-				document.getElementById(active).style.visibility="hidden";
-			setTimeout(function(){
-				document.getElementsByClassName("card")[0].style.transition="all 0.6s ease";
-				document.getElementsByClassName("card")[0].style.transform="rotateX(0deg)";
-				setTimeout(function(){
-					$("#" + sections[0]).hide();
-					$("#" + sections[1]).hide();
-					document.getElementById("projects").style.visibility="visible";
-					active = sections[2];
-					$("#" + sections[2]).show();
-				},400);
-			},600);
-		},100);
-	});
+	})
+}
 
-});
-
+function onload() {
+	hideAllSections();
+	showCardSection(active);
+	initialSpin();
+	sections.forEach(function(element) {
+		setButtonHandler(element);
+	})
+}
