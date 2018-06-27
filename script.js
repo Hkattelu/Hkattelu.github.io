@@ -17,12 +17,14 @@ function hideAllSections() {
 }
 
 function initialSpin() {
-	$("#" + active).show();
+	hideCardFront
 	setTimeout(function(){
 		card.style.transition = "all 1s ease";
 		card.style.transform = "rotateX(0deg)";
 		setTimeout(function(){ 
 			card.style.transition = "all 0.6s ease";
+			showCardSection(active);
+	    $("#" + active).show();
 		}, 900);
 	}, 100);
 } 
