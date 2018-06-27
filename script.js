@@ -51,5 +51,5 @@ function onload() {
 	initialSpin();
 	sections.forEach(function(element) {
 		setButtonHandler(element);
-	})
+	});
 }

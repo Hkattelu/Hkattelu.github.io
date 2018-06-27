@@ -10,7 +10,7 @@
 .welcome {
 	margin-top: 120px;
 	margin-bottom: 30px;
-	color:white; 
+	color: white; 
 	padding-bottom: 0px;
 }
 
@@ -180,7 +180,7 @@ section div h1 {
 	background: rgba(255,255,255,1);
 }
 
-/** MOBILE VERSION (Sadly not mobile-first :[ )**/
+/** MOBILE CSS**/
 @media screen and (max-width:  767px){
 
 	/** GENERAL **/
@@ -226,7 +226,7 @@ section div h1 {
 	}
 
 	/** PROJECTS **/
-	td{
+	td {
 		font-size: 0.65em;
 	}
 }
