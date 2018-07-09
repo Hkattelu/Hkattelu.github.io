@@ -20,12 +20,10 @@ Engineering.
 Electrical Engineering? But you're a computer science major! Hold on, the story isn't over yet.
 While I was pretty set on electrical engineering I was also considering applied math or even physics.
 At the time, I had only ever coded in a functional programming language called scheme in a mandatory
-CS class my sophomore year. I had little to no interest in it, especially considering my lack of
+CS class my sophomore year of high school. I had little to no interest in it, especially considering my lack of
 experience.
 
 My idea of computer science at the time : ![Picture](http://insight.jbs.cam.ac.uk/assets/2016_news_computerscience-883x432.jpg){:height="400px" width="600px"}
-
-^
 
 I ended up choosing Stony brook university, a school known for its computer science program. I
 was still set on electrical engineering, but what changed my mind was my acceptance into an 
