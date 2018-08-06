@@ -86,6 +86,7 @@ move lines up and down. Also, vim runs in a terminal which is very
 convenient for any sort of writing on a mac or linux. For anyone
 interested, by .vimrc is here..
 
+{% highlight java %}
 colorscheme slate
 syntax enable "Enable syntax highlighting"
 set tabstop=2 "Tabs are displayed as 2 spaces"
@@ -99,6 +100,7 @@ set hlsearch "Highlight all matches when ? or / searching"
 nnoremap J 0v$yddp
 nnoremap K k0v$yddpk
 nnoremap <leader><space> :nohlsearch<CR>
+{% endhighlight %}
 
 For HTML, CSS, and Javascript I like to use sublime. The convenient
 thing about sublime is that my mouse is already going to be moving

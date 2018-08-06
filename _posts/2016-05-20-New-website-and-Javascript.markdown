@@ -35,18 +35,14 @@ HTML element. Specifically, you can write a function that gets called when an ev
 (such as a button click).
 
 {% highlight javascript %}
-
-function makeRed(elementID){
-
+function makeRed(elementID) {
   var object = document.getElementById(elementID);
   var originalColor = object.style.color;
   console.log("Original Color: " + originalColor);
 
   object.style.color = "red";
   console.log("New Color: Red");
-
 }
-
 {% endhighlight %}
 
 This is an example javascript function that can take an HTML element by its ID
@@ -64,13 +60,11 @@ property can be changed like any other style element, except it takes in a funct
 instead of a value. The function specifies what change will happen to the object.
 
 {% highlight javascript %}
-
 var order = ['home','skills','projects'];
 var currIndex = 0;
 var currSize = order.length;
 
-function switchUp(){
-
+function switchUp() {
   var object = document.getElementById(order[currIndex]);
   var height = object.clientHeight;
 
@@ -83,9 +77,7 @@ function switchUp(){
 
   object.style.transition = "transform 1s linear 0s"
   object.style.transform = "translate(0px," + height + "px)";
-
 }
-
 {% endhighlight %}
 
 This is a snippet from my prototype where I shift an entire section

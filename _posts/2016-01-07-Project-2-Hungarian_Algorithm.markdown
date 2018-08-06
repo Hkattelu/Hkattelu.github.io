@@ -56,29 +56,26 @@ not all. In the end, I decided I would have to brute force it (O(N^2) at worst).
 I ended up looking around and found out a cool way to recursively go through a matrix.
 
 {% highlight java %}
-
 //Call this with empty arrays for selection and filledRows. Also use row = 0.
-public static boolean hungarian_select(int[][] pivotedMatrix, int[][] selection, int[] filledRows, int row){
-		
-       if (row == pivotedMatrix.length)
-    	   return true; // When we reach the bottom of the matrix, we are done.
+public static boolean hungarianSelect(
+  int[][] pivotedMatrix, int[][] selection, int[] filledRows, int row) {
+  
+  if (row == pivotedMatrix.length)
+    return true; // When we reach the bottom of the matrix, we are done.
        
-	   for(int i = 0; i < pivotedMatrix[row].length; i++){
-		   if(pivotedMatrix[row][i] == 0 && filledRows[i] == 0){
-			   selection[row][i] = 1;
-			   filledRows[i] = 1; // If we run into a zero, select it
-			   if(hungarian_select(pivotedMatrix,selection,filledRows,row+1))
-				   return true;
-			   selection[row][i] = 0; // If that zero didn't work, reset and continue to the next zero
-			   filledRows[i] = 0;
-					   
-		   }
-	   }
-	   
-	   return false;
-		
+	for(int i = 0; i < pivotedMatrix[row].length; i++){
+	  if(pivotedMatrix[row][i] == 0 && filledRows[i] == 0){
+	    selection[row][i] = 1;
+			filledRows[i] = 1; // If we run into a zero, select it
+			if(hungarianSelect(pivotedMatrix,selection,filledRows,row+1))
+			  return true;
+			selection[row][i] = 0; // If that zero didn't work, reset and continue to the next zero
+			filledRows[i] = 0;
+		}
 	}
-
+	   
+	return false;
+}
 {% endhighlight %}
 
 With this, I was able to brute force select zeroes from my matrix which allowed me to 
