@@ -30,10 +30,10 @@ Instead of hashing a key once to find the hashmap position, you actually have to
 a second time with the salt value to find the hashmap position if there was a collision.
 
 {% highlight java %}
+private int saltHash(Object key, int salt){
+    	return salt ^ key.hashCode();
+    }
 // XORing the hashed key with the salt value creates a decent second hash function
-private int saltHash(Object key, int salt) {
- 	return salt ^ key.hashCode();
-}
 {% endhighlight %}
 
 Another thing about the minimal hash map is that it is not meant to be used

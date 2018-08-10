@@ -23,7 +23,7 @@ At the time, I had only ever coded in a functional programming language called s
 CS class my sophomore year of high school. I had little to no interest in it, especially considering my lack of
 experience.
 
-My idea of computer science at the time : ![Picture](http://www.gampmedia.com/wp-content/gallery/The-great-benefits-of-choosing-bespoke-software-pictures/Steps-to-finding-the-best-software-development-company.jpg){:height="400px" width="600px"}
+My idea of computer science at the time : ![Picture](http://insight.jbs.cam.ac.uk/assets/2016_news_computerscience-883x432.jpg){:height="400px" width="600px"}
 
 I ended up choosing Stony brook university, a school known for its computer science program. I
 was still set on electrical engineering, but what changed my mind was my acceptance into an 
