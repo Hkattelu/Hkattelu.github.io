@@ -2,8 +2,8 @@
 layout: post
 title:  "How I deal with procrastination"
 date:   2016-06-27 04:12:00 -0200
-categories: blog Other
-tags: [Other]
+categories: blog Personal
+tags: [Personal]
 ---
 
 Whether or not you're willing to admit it, procrastination affects all of us. Some people brag

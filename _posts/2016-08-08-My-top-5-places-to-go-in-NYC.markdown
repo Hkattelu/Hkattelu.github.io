@@ -2,8 +2,8 @@
 layout: post
 title:  "My top 5 places to go in NYC"
 date:   2016-08-08 01:02:00 -0100
-categories: blog Other
-tags: [Other]
+categories: blog Travel
+tags: [Travel]
 ---
 
 When you've lived in queens for years and went to high school in manhattan you eventually

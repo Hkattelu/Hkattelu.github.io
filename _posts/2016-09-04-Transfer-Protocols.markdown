@@ -2,7 +2,7 @@
 layout: post
 title:  "Transfer Protocols"
 date:   2016-09-04 02:03:00 -0100
-categories: blog Other
+categories: blog Web
 tags: [Web]
 ---
 

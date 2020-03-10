@@ -2,8 +2,8 @@
 layout: post
 title:  "Why I study computer science"
 date:   2016-07-12 03:13:00 -0200
-categories: blog Other
-tags: [Other]
+categories: blog Personal
+tags: [Personal]
 ---
 
 When I first started applying to colleges in late 2013, I had no idea what I wanted

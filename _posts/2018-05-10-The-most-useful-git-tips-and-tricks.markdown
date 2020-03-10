@@ -2,8 +2,8 @@
 layout: post
 title:  "My most useful git tips and tricks"
 date:   2018-05-10 00:58:00 -0500
-categories: blog Other
-tags: [Other]
+categories: blog Programming
+tags: [Programming]
 ---
 
 Most people see git as a nuisance when they first learn about it in school.

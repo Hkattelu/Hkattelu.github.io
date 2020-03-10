@@ -2,8 +2,8 @@
 layout: post
 title:  "How to learn coding without losing motivation"
 date:   2017-01-05 00:58:00 -0500
-categories: blog Other
-tags: [Other]
+categories: blog Personal
+tags: [Personal]
 ---
 
 Sometimes my friends ask me, "How long would it take for me to learn python?" or "Where do I start coding
