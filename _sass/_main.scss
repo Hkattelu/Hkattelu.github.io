@@ -1,22 +1,23 @@
 /* HOME SECTION */
 .welcome {
   color: white;
-  padding-bottom: 0px;
 }
 
 .blurb {
   position: relative;
   text-align: center;
   color: white;
-  margin-left: 20px;
-  margin-right: 20px;
-}
 
-.blurb p {
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  font-size: 1.5em;
+  p {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    font-size: 1.5em;
+  }
 }
 
 .links-list {
@@ -71,40 +72,39 @@ section ul li {
   height: 70%;
   margin-left: 4%;
   margin-top: 4%;
-}
 
-.card {
-  color: white;
-  position: relative;
-  text-align: center;
-  overflow-x: hidden;
-  overflow-y: auto;
-  height: 100%;
-  transform: rotateX(540deg);
-  transform-style: preserve-3d;
-}
+  .card {
+    color: white;
+    position: relative;
+    text-align: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+    transform: rotateX(540deg);
+    transform-style: preserve-3d;
 
-.blueBox {
-  background-color: #2b3856;
-  min-height: 100%;
-  transform-style: preserve-3d;
-  padding: 50px;
+    .blue-box {
+      background-color: #2b3856;
+      min-height: 100%;
+      transform-style: preserve-3d;
+      padding: 50px;
+    }
+  }
 }
 
 .front,
 .back {
   position: relative;
-  float: top;
   width: 100%;
   height: 100%;
   top: 0px;
   left: 0px;
   background-color: #2b3856;
   backface-visibility: hidden;
-}
 
-.front p {
-  font-size: 1.2em;
+  p {
+    font-size: 1.2em;
+  }
 }
 
 .back {
@@ -179,7 +179,7 @@ section div h1 {
 
 ::-webkit-scrollbar-track {
   /* TRACK */
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -192,14 +192,6 @@ section div h1 {
   /** GENERAL **/
   .card {
     overflow-y: none;
-  }
-
-  /** HOME **/
-  #myPicture {
-    width: 90%;
-    height: 90%;
-    margin: 20px 15px 0px 20px;
-    border: 1px solid black;
   }
 
   .welcome {
@@ -217,10 +209,10 @@ section div h1 {
   /** SKILLS **/
   ul {
     padding-left: 20px;
-  }
 
-  ul li {
-    font-size: 0.65em;
+    li {
+      font-size: 0.65em;
+    }
   }
 
   .list-headers {
