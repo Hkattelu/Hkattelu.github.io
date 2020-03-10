@@ -1,21 +1,17 @@
-/* HOME SECTION */
-.welcome {
-  color: white;
+section {
+  width: 100%;
 }
 
+/* HOME SECTION */
 .blurb {
-  position: relative;
   text-align: center;
-  color: white;
+  color: $text-color;
+
+  .welcome {
+    color: $text-color;
+  }
 
   p {
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
     font-size: 1.5em;
   }
 }
@@ -29,13 +25,7 @@
 .box {
   border-style: solid;
   border-spacing: 5px;
-  border-color: white;
-}
-
-.current {
-  text-align: center;
-  font-size: 2em;
-  color: white;
+  border-color: $text-color;
 }
 
 /* SKILLS SECTION */
@@ -52,30 +42,25 @@ ul {
 /* PROJECTS SECTION */
 table,
 td {
-  border: 1px white solid;
-  color: white;
+  border: 1px $text-color solid;
+  color: $text-color;
 }
 
 section ul li {
-  color: white;
+  color: $text-color;
 }
 
 /* FLIPPING CARDS */
 .card-container {
   text-align: center;
   perspective: 900px;
-  background-color: #81d8d0;
-  position: absolute;
-  top: 0px;
-  left: 0px;
+  background-color: $brand-color;
   width: 92vw;
-  height: 70%;
-  margin-left: 4%;
-  margin-top: 4%;
+  height: 70vh;
+  margin: 50px;
 
   .card {
-    color: white;
-    position: relative;
+    color: $text-color;
     text-align: center;
     overflow-x: hidden;
     overflow-y: auto;
@@ -84,22 +69,18 @@ section ul li {
     transform-style: preserve-3d;
 
     .blue-box {
-      background-color: #2b3856;
+      background-color: $card-color;
       min-height: 100%;
       transform-style: preserve-3d;
       padding: 50px;
+      display: flex;
     }
   }
 }
 
 .front,
 .back {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  top: 0px;
-  left: 0px;
-  background-color: #2b3856;
+  background-color: $card-color;
   backface-visibility: hidden;
 
   p {
@@ -107,17 +88,29 @@ section ul li {
   }
 }
 
+.front {
+  flex: 1 1;
+  align-items: center;
+  display: flex;
+}
+
 .back {
+  flex: 0 auto;
   float: bottom;
   width: 0%;
   height: 0%;
   transform: rotateX(180deg);
 }
 
+.align-center {
+  display: flex;
+  align-items: center;
+}
+
 /* BUTTONS */
 button {
-  color: white !important;
-  background-color: #2b3856;
+  color: $text-color !important;
+  background-color: $card-color;
   padding: 10px 24px;
   border: none;
   text-decoration: none;
@@ -139,52 +132,7 @@ button {
 /* SITE */
 
 .site-wrapper {
-  background-color: #81d8d0;
-}
-
-/* GENERAL */
-
-html {
-  background-size: cover;
-  background-color: #81d8d0;
-}
-
-h1 {
-  text-align: center;
-}
-
-.links,
-.links:hover {
-  color: #81d8d0;
-}
-
-a:visited,
-a:active {
-  color: #81d8d0;
-}
-
-.links {
-  font-size: 1.2em;
-}
-
-section div h1 {
-  color: white;
-  text-align: center;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  /* TRACK */
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
-
-::-webkit-scrollbar-thumb {
-  /* Cursor */
-  background: rgba(255, 255, 255, 1);
+  background-color: $brand-color;
 }
 
 /** MOBILE CSS**/

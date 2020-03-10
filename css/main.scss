@@ -1,5 +1,5 @@
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
+# Main sass for the full site
 ---
 
 @charset "utf-8";
@@ -25,6 +25,15 @@ $grey-color-dark: darken($grey-color, 25%);
 $content-width: 800px;
 $on-palm: 600px;
 $on-laptop: 800px;
+
+html {
+  background-size: cover;
+  background-color: $brand-color;
+}
+
+h1 {
+  text-align: center;
+}
 
 @mixin media-query($device) {
   @media screen and (max-width: $device) {
