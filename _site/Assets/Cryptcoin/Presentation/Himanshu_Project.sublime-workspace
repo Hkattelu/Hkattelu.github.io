@@ -1,0 +1,452 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"padd",
+				"padding-left"
+			],
+			[
+				"borde",
+				"border-spacing"
+			],
+			[
+				"e",
+				"EEEEEE"
+			],
+			[
+				"bord",
+				"border-spacing"
+			],
+			[
+				"border-",
+				"border-radius"
+			],
+			[
+				"mar",
+				"margin-right"
+			],
+			[
+				"descriptio",
+				"description2"
+			],
+			[
+				"font-",
+				"font-family"
+			],
+			[
+				"font",
+				"font-style"
+			],
+			[
+				"background",
+				"background-color"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/Users/himanshu/Desktop/Hkattelu.github.io/Hkattelu.github.io/index.html",
+			"settings":
+			{
+				"buffer_size": 8897,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Himanshu_Project.html",
+			"settings":
+			{
+				"buffer_size": 8625,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/himanshu/Desktop/Hkattelu.github.io/Hkattelu.github.io/script.js",
+			"settings":
+			{
+				"buffer_size": 583,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/himanshu/Desktop/Hkattelu.github.io/Hkattelu.github.io/stylesheet.css",
+			"settings":
+			{
+				"buffer_size": 1521,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "start with 73\n\n4th sem \nCSE 350\nCSE 300\nAMS 311\nCSE 320\nTHR 101\n\n\nassuming 16, end with 89 creds\n\n\n\nSophomore year ends, do some internship over the summer hopefully, think about where to go after college\n\nPossible Tracks:\n\n4 more AMS courses to go \nOptions: Statistics Track: AMS316,AMS394,AMS412 ; MAT310 and MAT320 for graduate continuation\n         Operations Research: AMS342 ; MAT310 and MAT320 for graduate continuation\n         Programmer-Analyst Track: AMS321, AMS326, CSE301  [ NOTE: CSE301 DOES NOT GO TO CS DEGREE, IT IS DESCRIBED AS NON-TECHNICAL ]\n\n\n\n\n5th sem\n\nassuming 15, end with 104 creds\n\n6th sem\n\nassume 15, end 119\n\n7th\nCSE495\n\nassume 15, end 134\n\n8th\nCSE496\n\nassume 15 end 149\n\ngraduation\n\n",
+			"file": "/C/Users/himanshu/Desktop/Schedule 4 lyfe.txt",
+			"file_size": 508,
+			"file_write_time": 130909207857847859,
+			"settings":
+			{
+				"buffer_size": 712,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/himanshu/Desktop/Workshop",
+			"settings":
+			{
+				"buffer_size": 580,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/HaxLogs.txt",
+		"/C/Users/himanshu/Desktop/README.txt",
+		"/C/Users/himanshu/Downloads/315_project1_A_analysisresults_group18.txt",
+		"/C/Users/himanshu/Downloads/315_project1_B_analysis_group18 (1).R  ",
+		"/C/Users/himanshu/Downloads/315_project1_A_analysis_group18.R  ",
+		"/C/Users/himanshu/Downloads/315_project1_A_newfile_group18.R  ",
+		"/C/Users/himanshu/Downloads/315_project1_B_analysis_group18.R  ",
+		"/C/Users/himanshu/Downloads/315_project1_B_analysisresults_group18.txt",
+		"/C/Users/himanshu/Downloads/hw3/memes.txt",
+		"/C/Users/himanshu/Desktop/worst hex editor.txt",
+		"/C/Users/himanshu/Desktop/CompSciShit/Workshop.html",
+		"/C/Users/himanshu/Desktop/Workshop.html",
+		"/C/Users/himanshu/AppData/Roaming/Sublime Text 2/Packages/Emmet/Emmet.sublime-settings",
+		"/C/Users/himanshu/Downloads/ShotTransition/data/00043/info.txt",
+		"/C/Users/himanshu/Downloads/ShotTransition/data/00023/info.txt",
+		"/C/Users/himanshu/Desktop/Cryptcoin2/Protocol and GUI Description.txt",
+		"/C/Users/himanshu/Desktop/Cryptcoin2/GUI description",
+		"/C/Users/himanshu/Desktop/Cryptcoin2/Himanshu_Protocol.txt",
+		"/C/Users/himanshu/Downloads/thestuff.matlab  ",
+		"/C/Users/himanshu/Desktop/HimanshuFunctions/test1files/data.html",
+		"/E/stocks/stocks.sql  ",
+		"/C/Users/himanshu/Downloads/vlfeat-0.9.20/vl/hog.h",
+		"/C/Users/himanshu/Downloads/vlfeat-0.9.20/vl/hog.c",
+		"/C/Users/himanshu/Desktop/my site/MySite.html",
+		"/C/Users/himanshu/Downloads/jquery-1.11.3.min.js",
+		"/E/portfolio/style.css",
+		"/E/portfolio/index.html",
+		"/C/Users/himanshu/Downloads/IcoMoon-Free-master/Font/demo-files/demo.js",
+		"/C/ffmpeg/doc/examples/decoding_encoding.c",
+		"/C/ffmpeg/doc/examples/avio_list_dir.c",
+		"/C/ffmpeg/doc/examples/practice.c",
+		"/C/ffmpeg/doc/examples/avio_reading.c  ",
+		"/C/Program Files (x86)/nodejs/nodetest1/public/stylesheets/stylesheet.css",
+		"/C/Program Files (x86)/nodejs/nodetest1/views/stylesheet.css",
+		"/C/Users/himanshu/Desktop/MySite.html",
+		"/C/Program Files (x86)/nodejs/nodetest1/views/home.jade",
+		"/C/Program Files (x86)/nodejs/nodetest1/routes/index.js",
+		"/C/Program Files (x86)/nodejs/nodetest1/app.js",
+		"/C/Program Files (x86)/nodejs/nodetest1/package.json  ",
+		"/C/Users/himanshu/Desktop/GitHub.appref-ms",
+		"/C/Program Files (x86)/nodejs/nodetest1/views/helloworld.jade",
+		"/C/nodejs/nodetest1/app.js",
+		"/C/nodejs/nodetest1/package.json  ",
+		"/C/Users/himanshu/Desktop/Thirst/node-js-getting-started/index.js",
+		"/C/Users/himanshu/Desktop/Thirst/node-js-getting-started/home.jade",
+		"/C/Users/himanshu/Desktop/Thirst/node-js-getting-started/app.json  ",
+		"/C/Users/himanshu/Desktop/Thirst/node-js-getting-started/package.json  ",
+		"/C/Users/himanshu/Desktop/nodetest1/views/helloworld.jade",
+		"/C/Users/himanshu/Desktop/nodetest1/routes/index.js",
+		"/C/Users/himanshu/Desktop/node-js-getting-started/index.js",
+		"/C/Users/himanshu/Desktop/hack/thirst/views/error.ejs",
+		"/C/Users/himanshu/Desktop/Thirst/game.html",
+		"/C/Users/himanshu/Desktop/Thirst/gameSelect.php"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"welcome",
+			"description	",
+			">\n",
+			"\"\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/himanshu/Desktop/Hkattelu.github.io/Hkattelu.github.io/index.html",
+					"settings":
+					{
+						"buffer_size": 8897,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7334,
+								7334
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 204.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Himanshu_Project.html",
+					"settings":
+					{
+						"buffer_size": 8625,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8598,
+								8598
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3571.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/himanshu/Desktop/Hkattelu.github.io/Hkattelu.github.io/script.js",
+					"settings":
+					{
+						"buffer_size": 583,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								87,
+								87
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Users/himanshu/Desktop/Hkattelu.github.io/Hkattelu.github.io/stylesheet.css",
+					"settings":
+					{
+						"buffer_size": 1521,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1061,
+								1061
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1587.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/Users/himanshu/Desktop/Schedule 4 lyfe.txt",
+					"settings":
+					{
+						"buffer_size": 712,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								38,
+								38
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 228.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/C/Users/himanshu/Desktop/Workshop",
+					"settings":
+					{
+						"buffer_size": 580,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}
