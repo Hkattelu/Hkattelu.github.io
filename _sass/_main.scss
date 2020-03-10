@@ -18,8 +18,6 @@ section {
 
 .links-list {
   text-align: center;
-  padding-bottom: 5px;
-  margin-left: 5%;
 }
 
 .box {
@@ -130,49 +128,27 @@ button {
 }
 
 /* SITE */
-
 .site-wrapper {
   background-color: $brand-color;
 }
 
 /** MOBILE CSS**/
 @media screen and (max-width: 767px) {
-  /** GENERAL **/
-  .card {
-    overflow-y: none;
+  .row {
+    margin-right: 0px;
   }
 
-  .welcome {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 2em;
-  }
+  /** HOME **/
+  .card-container {
+    height: 80vh;
+    margin: 20px;
 
-  .blurb {
-    font-size: 0.65em;
-    margin-left: 20px;
-    margin-right: 20px;
-  }
+    .card .blue-box {
+      padding: 20px;
 
-  /** SKILLS **/
-  ul {
-    padding-left: 20px;
-
-    li {
-      font-size: 0.65em;
+      .align-center {
+        display: block;
+      }
     }
-  }
-
-  .list-headers {
-    font-size: 2em;
-  }
-
-  .ignore-on-mobile {
-    display: none;
-  }
-
-  /** PROJECTS **/
-  td {
-    font-size: 0.65em;
   }
 }

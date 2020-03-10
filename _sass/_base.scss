@@ -108,6 +108,10 @@ a {
   color: $brand-color;
   cursor: pointer;
   text-decoration: none;
+
+  &:visited {
+    color: $brand-color;
+  }
 }
 
 /**
