@@ -1,210 +1,150 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible"
-        content="IE=edge">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1">
-  <link type="text/css"
-        rel="stylesheet"
-        href="/css/main.css" />
-  <link rel="shortcut icon"
-        href="img/favicon.ico">
-  <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-  <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-  <title>Himanshu Kattelu</title>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Himanshu Kattelu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="shortcut icon" href="images/favicon.ico">
 
-<body onload="onload();">
-  <div class="site-wrapper">
-    <div class="card-container">
-      <div class="card">
-        <div class="blue-box">
-          <div class="front">
-            <section id="home">
-              <div class="row align-center">
-                <div class="col-xs-12 col-s-12 col-md-4">
-                  <img src="img/me.jpg"
-                       class="img-responsive" />
-                </div>
-                <div class="col-xs-12 col-s-11 col-md-8">
-                  <div class="blurb">
-                    <h1 class="welcome">Hi! I'm Himanshu</h1>
-                    <p>
-                      I graduated from SUNY Stony Brook University with a B.S in Computer Science
-                      and Applied Mathematics. I currently work at Google in GCP logging.
-                      I have a lot of experience in Front-end web development and project design.
-                    </p>
-                    <p>
-                      If
-                      you had to know one thing about me, it's that I genuinely like learning about
-                      and building new things (even if they sometimes break along the way). I pride
-                      myself in taking a system and figuring out every single detail of it. I put in
-                      the time and effort needed to produce quality work that I am proud of. I
-                      challenge myself to not believe things blindly without understanding.
-                    </p>
-                    <p>
-                      And I like doing it every step of the way.
-                    </p>
-                    <p>
-                      My primary interests are in scalability, databases, asynchronous systems,
-                      machine learning, and cryptocurrency. Surprisingly, I also do things besides
-                      program. I'm usually hanging out with my friends, producing/listening to
-                      music,
-                      working out, travelling, or juggling (sometimes all at once). I am
-                      also known to occasionally read books and write blog posts.
-                      If you want to contact me,
-                      <a title="himanshukattelu <at> gmail.com">Email</a>
-                      would be the best. I'd enjoy hearing from you!
-                    </p>
-                  </div>
-                  <p class="links-list">
-                    <a href="http://www.github.com/hkattelu">
-                      Github</a> &middot
-                    <a href="http://www.linkedin.com/in/himanshukattelu">LinkedIn</a> &middot
-                    <a href="/blog"
-                       target="new">Blog</a>
-                  </p>
-                </div>
-              </div>
-            </section>
-            <section id="skills">
-              <br>
-              <h1>Skills</h1>
-              <div class="row">
-                <div class="col-xs-12 col-md-3 col-md-offset-1">
-                  <h2 class="list-headers">Languages</h2>
-                  <ul>
-                    <li>Typescript & Javascript</li>
-                    <li>HTML/CSS/SASS</li>
-                    <li>Java</li>
-                    <li>Python</li>
-                    <li>Scala</li>
-                    <li>C++</li>
-                    <li>MATLAB</li>
-                  </ul>
-                  <h2 class="list-headers">Web</h2>
-                  <ul>
-                    <li>Angular & AngularJS</li>
-                    <li>Web accessibility</li>
-                    <li>Responsive/Mobile-first design</li>
-                    <li>Spring MVC</li>
-                    <li>Karma and Protractor</li>
-                    <li>Flask</li>
-                  </ul>
-                </div>
-                <div class="col-xs-12 col-md-3">
-                  <h2 class="list-headers">Tooling & DevOps</h2>
-                  <ul>
-                    <li>Git/Perforce</li>
-                    <li>GCP AppEngine</li>
-                    <li>GCP Ops Management (Stackdriver)</li>
-                    <li>Webpack</li>
-                  </ul>
-                  <h2 class="list-headers">Learning</h2>
-                  <ul>
-                    <li>Electron and PWAs</li>
-                    <li>Node.js</li>
-                    <li>Creating programming languages</li>
-                    <li>UX Design</li>
-                  </ul>
-                </div>
-                <div class="col-xs-12 col-md-3">
-                  <h2 class="list-headers">Other</h2>
-                  <ul>
-                    <li>Apollo GraphQL</li>
-                    <li>Asynchronous programming (Actor model & Promises)</li>
-                    <li>Pandas/Numpy</li>
-                    <li>TensorFlow</li>
-                    <li>SCRUM and Agile Team management</li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-            <section id="projects">
-              <br>
-              <h1>Projects</h1>
-              <br>
-              <div class="row">
-                <div class="col-xs-12 col-md-6 col-md-offset-3">
-                  <table>
-                    <tr>
-                      <td><a href="https://github.com/Hkattelu/BurstPool"
-                           target="_new">Burstcoin Mining Pool</a></td>
-                      <td>
-                        <p>An Actor-programming based mining pool for Burstcoin</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="https://www.github.com/Hkattelu/imdb-data-visualizations"
-                           target="_new">Imdb data visualizations</a>
-                      </td>
-                      <td>
-                        <p>Data visualizations made for Kaggle's Imdb dataset</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="http://www.github.com/Hkattelu/himanZip"
-                           target="_new">HimanZip</a>
-                      </td>
-                      <td>
-                        <p>A command-line file compressor using Huffman encoding</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="Assets/Cryptcoin/Presentation/index.html"
-                           target="_new">Cryptcoin</a>
-                      </td>
-                      <td>
-                        <p>My implementation of a crpytcoin network and
-                          mining node</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="https://github.com/Hkattelu/MinimalHashMap"
-                           target="_new">Minimal HashMap</a>
-                      </td>
-                      <td>
-                        <p>A Hash map that uses a perfectly minimal hash function to
-                          allow for a Map data structure with O(1) access time.</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="https://github.com/Hkattelu/Hungarian"
-                           target="_new">Hungarian Algorithm</a>
-                      </td>
-                      <td>
-                        <p>My implementation of the hungarian algorithm, which can
-                          solve assignment problems relatively quickly.</p>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div class="back"></div>
-        </div>
-      </div>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://unpkg.com/@glidejs/glide@3.3.0/dist/css/glide.core.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="left-options">
+        <div class="option"><span tabindex="0" autofocus>About me</span></div>
+        <div class="option"><span tabindex="0">What I value</span></div>
+        <div class="option"><span tabindex="0">Projects</span></div>
+        <div class="option"><span tabindex="0">Contact</span></div>
+        <div class="option"><span tabindex="0">Blog</span></div>
+        <div class="option"><span tabindex="0">Credits</span></div>
     </div>
-    <div class="footer">
-      <button id="button-home">Home</button>
-      <button id="button-skills">Skills</button>
-      <button id="button-projects">Projects</button>
+    <div class="page home visible">
+        <div class="controls">
+            <p>Use the ↑ and ↓ keys to navigate.</p>
+            <p>Hit ENTER to select an option.</p>
+        </div>
+    </div>
+    <div class="page about-me" tabindex="-1">
+        <div class="controls">
+          <p>Press BACKSPACE or ESC to return home.</p>
+        </div>
+        <div class="text-section">
+            <p>Hi, I’m Himanshu—a software engineer at Google passionate about building scalable systems,
+                fostering creativity, and exploring the intersections of technology and education.</p>
+            <p> I'm an Indian immigrant who grew up in <b>Hyderabad</b> and <b>New York City</b>.
+                At my core, I’m a builder and a lifelong learner.
+                I take pride in understanding every detail of the systems I work with,
+                putting in the effort needed to produce quality work that resonates with my values.</p>
+            <p>Currently, I work at Google on features for YouTube that empower creators and learners.
+               In my free time, I juggle hobbies like Crossfit, Poi spinning, and creating content for YouTube.</p>
+        </div>
+    </div>
+    <div class="page what-i-value" tabindex="-1">
+        <div class="controls">
+          <p>Press BACKSPACE or ESC to return home.</p>
+        </div>
+        <div class="text-section">
+            <p> My journey has been driven by curiosity, resilience, and a love for science. These values guide me to:</p>
+            <ul>
+                <li><span class="fa fa-heart"></span>Stay positive and optimistic, even during tough times.</li>
+                <li><span class="fa fa-hand-fist"></span>Be relentless in the pursuit of high quality.</li>
+                <li><span class="fa fa-hand-holding-heart"></span>Treat myself and others, with kindness and respect.</li>
+                <li><span class="fa fa-star"></span>Embrace individuality, even in the face of criticism.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="page projects" tabindex="-1">
+        <div class="controls">
+          <p>Use the ← and → keys to navigate.</p>
+          <p>Press BACKSPACE or ESC to return home.</p>
+        </div>
+        <div class="text-section">
+          <p>Here are some of the projects I've worked on:</p>
+          <div class="glider-contain">
+            <div class="glide">
+              <div class="glide__track" data-glide-el="track">
+                <ul class="glide__slides">
+                  <li class="glide__slide">
+                    <h3><a href="https://www.youtube.com/feed/courses_destination">YouTube Courses</a></h3>
+                    <p>I developed some of the core infrastructure for YouTube's courses platform. I specifically worked on
+                        a large part of the data pipeline, the reliability operations, and the UI for course videos.
+                    </p>
+                  </li>
+                  <li class="glide__slide">
+                    <h3><a href="https://support.google.com/youtube/answer/7124474?hl=en&co=GENIE.Platform%3DAndroid">
+                        YouTube Quiz posts</a>
+                    </h3>
+                    <p>
+                        I led a small team to implement YouTube's Quiz post feature.
+                        This included the UI, backend, data pipeline, and reliability operations.
+                        We also implemented an exciting feature for creators to
+                        add quizzes on their videos</a>.
+                        
+                    </p>
+                    <p>An example is <a href="https://www.youtube.com/watch?v=9He4UBLyk8Y&ab_channel=freeCodeCamp.org">this video</a> which
+                    has quiz posts in the description.</p>
+                  </li>
+                  <li class="glide__slide">
+                    <h3><a href="https://support.google.com/youtube/answer/14110396?hl=en">YouTube's "Ask" Button</a></h3>
+                    <p>I worked on the "Ask" button which lets YouTube premium users ask questions about any video.
+                    </p>
+                    <p>I worked on the complete end to end stack including web UI, backend, serving, reliability, generative AI, data quality,
+                        compliance, legal requirements, and android app. I also implemented specific features for the ask button
+                        to behave differently on educational and learning videos.
+                    </p>
+                  </li>
+                </ul>
+              </div>
+              <div class="glide__bullets">
+                <button class="glide__bullet" data-glide-dir="=0"></button>
+                <button class="glide__bullet" data-glide-dir="=1"></button>
+                <button class="glide__bullet" data-glide-dir="=2"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="page contact" tabindex="-1">
+        <div class="controls">
+          <p>Press BACKSPACE or ESC to return home.</p>
+        </div>
+        <div class="text-section">
+            <p>You can get into touch with me through the following links:</p>
+            <ul>
+                <li><a class="fa fa-envelope"></a><a tabindex="-1" href="mailto:himanshu.kattelu@gmail.com">Email</a></li>
+                <li><a class="fa fa-brands fa-linkedin"></a><a  tabindex="-1" href="https://linkedin.com/in/himanshukattelu">LinkedIn</a></li>
+                <li><a class="fa fa-brands fa-youtube"></a><a  tabindex="-1" href="https://www.youtube.com/channel/UCVdwqa11Ixf0MwpsVfzCZHw">YouTube</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="page blog" tabindex="-1">
+        <div class="controls">
+          <p>Press BACKSPACE or ESC to return home.</p>
+        </div>
+        <div class="text-section">
+            <p>I like to write about my experiences and learnings.</p>
+            <p>Check out <a  tabindex="-1" href="https://hkattelu.github.io/blog/">my blog here</a></p>
+            <p>(I'll bring it into this site eventually)</p>
+        </div>
+    </div>
+    <div class="page credits" tabindex="-1">
+        <div class="controls">
+          <p>Press BACKSPACE or ESC to return home.</p>
+        </div>
+        <div class="text-section">
+            <p> This site is heavily inspired by the pause menu of the game <a  tabindex="-1" href="https://en.m.wikipedia.org/wiki/Metaphor:_ReFantazio">Metaphor: Refantazio</a></p>
+            <p> A big help for me was <a  tabindex="-1" href="https://css-tricks.com/set-text-on-a-circle/">this article for circles</a>
+                and <a  tabindex="-1" href="https://css-tricks.com/css-only-carousel/">this article for carousels</a> on CSS Tricks.</p>
+            <p> I'm not a professional designer, so I'm sure there are many improvements that can be made.</p>
+        </div> 
     </div>
   </div>
-  <script src="jquery-1.11.3.min.js"></script>
-  <script type="text/javascript"
-          src="script.js"></script>
+  <script src="https://unpkg.com/@glidejs/glide@3.3.0/dist/glide.min.js"></script>
+  <script src="script.js"></script>
 </body>
-
 </html>
