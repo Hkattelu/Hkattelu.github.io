@@ -6,7 +6,7 @@ function getOptions() {
 document.addEventListener("DOMContentLoaded", () => {
     const options = getOptions();
   
-    options.forEach((box, index) => {
+    options.forEach((box) => {
       box.addEventListener('click', function(event) {
         hideOptions();
       });
@@ -23,15 +23,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function hideOptions() {
     const options = getOptions();
-    options.forEach((box, index) => {
+    options.forEach((box) => {
+        box.style['transition-delay'] = "0s";
         box.style.transform = "rotate3d(0, 0, 1, 90deg)";
     });
+
+    const background = document.querySelector(".background");
+    background.style['transition-delay'] = "var(--base-transition-duration)";
+    background.style.transform = "rotate3d(0, 0, 1, 90deg)";
+
+    const controls = document.querySelector(".controls");
+    controls.style.display = "none";
 }
 
 function showOptions() {
+    const background = document.querySelector(".background");
+    background.style['transition-delay'] = "0s";
+    background.style.transform = '';
+
     const options = getOptions();
-    options.forEach((box, index) => {
-        box.removeAttribute('style');
+    options.forEach((box) => {
+        box.style['transition-delay'] = "var(--base-transition-duration)";
+        box.style.transform = '';
     });
 }
 

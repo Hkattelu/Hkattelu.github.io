@@ -16,6 +16,8 @@
   --color-hover-accent: #FF9B42; /* Hover variation of accent */
   --color-hover-dark: #123C3E; /* Hover variation of dark primary */
 
+  --base-transition-duration: 0.4s;
+
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
 }
@@ -56,6 +58,7 @@ a:hover {
   position: relative;
   display: flex;
   justify-content: center;
+  z-index: 3;
 
   .option {
     text-align: center;
@@ -70,7 +73,7 @@ a:hover {
     top: 80vh;
     left: 12vw;
     transform-origin: 130vw 0px 0px;
-    transition: transform 1s ease-in;
+    transition: transform var(--base-transition-duration) ease-in;
 
     background-color: rgba(1, 1, 1, 0.98);
     color: var(--color-accent);
@@ -84,7 +87,6 @@ a:hover {
       background-color: var(--color-accent);
       color: var(--color-secondary-dark);
       outline: none;
-      animation: graininess 1s step-end infinite;
     }
 
     &::after {
@@ -99,13 +101,13 @@ a:hover {
       transform:  rotate3d(-2, 6, 4, 41deg);
     }
     &[tabindex="3"] {
-      transform:  rotate3d(-2, 6, 4, 33deg);
+      transform:  rotate3d(-2, 6, 4, 32deg);
     }
     &[tabindex="4"] {
       transform:  rotate3d(-2, 6, 4, 23deg);
     }
     &[tabindex="5"] {
-      transform:  rotate3d(-2, 6, 4, 15deg);
+      transform:  rotate3d(-2, 6, 4, 14deg);
     }
     &[tabindex="6"] {
       transform:  rotate3d(-2, 6, 4, 5deg);
@@ -119,6 +121,12 @@ a:hover {
 /* The controls */
 .controls {
   position: absolute;
+  width: 380px;
+  bottom: 50vh;
+  right: 10vw;
+  
+  border-radius: 10px;
+  border: 2px solid var(--color-secondary-dark);
   background-color: var(--color-accent);
   color: var(--color-secondary-dark);
 }
@@ -134,6 +142,8 @@ a:hover {
 
   background-image: url('images/pittsburgh.jpg');
   background-size: cover;
+  transition: transform var(--base-transition-duration) ease-in;
+  transform-origin: 130vw 0px 0px;
 
   /** adjust these values to move the background image */
   /* background-position-x: 50px;
