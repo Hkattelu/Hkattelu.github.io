@@ -55,7 +55,6 @@ a:hover {
   background-color: navajowhite;
 }
 
-
 .left-options {
   flex: 0 0 0;
   position: relative;
@@ -95,7 +94,7 @@ a:hover {
       padding: none;
       margin: none;
 
-      &:focus, &:hover {
+      &:focus {
         background-color: transparent;
         background-image: url(images/mask.png);
         background-repeat: no-repeat;
@@ -224,8 +223,8 @@ a:hover {
 }
 
 .what-i-value {
-    background-image: url('images/wedding.jpg');
-    background-position-y: center;
+    background-image: url('images/wedding2.jpg');
+    background-position: 20vw 30%;
   
     .text-section {
       margin-left: 10vw;
@@ -233,13 +232,23 @@ a:hover {
 }
 
 .projects {
-  background-image: url('images/british.jpg');
-  background-position: 30% 30%;
+  background-image: url('images/garden1.jpg');
+  background-position-y: 30%;
 
   .text-section {
     margin-left: 50vw;
   }
-}
+
+  .glider-container {
+    height: 350px;
+  }
+  .glide__slides {
+    height: 250px;
+  }
+  .glide__bullets {
+    text-align: center;
+  }
+}   
 
 .contact {
   background-image: url('images/big ben.jpg');
@@ -252,19 +261,36 @@ a:hover {
 
 .blog {
   background-image: url('images/brandenburg.jpg');
-  background-position-y: center;
+  background-position-y: bottom;
 
   .text-section {
     margin-left: 50vw;
+    min-height: 20vh;
+    border: 1px solid white;
+    border-radius: 10px;
   }
+}
+
+/* Font Awesome Icons */
+.fa {
+  font-size: 24px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+ul > li {
+    list-style: none;
 }
 
 .credits {
   background-image: url('images/metaphor.jpg');
 
   .text-section {
-    margin-top: 10vh;
+    margin-top: 50vh;
     margin-left: 60vw;
+    min-height: 20vh;
+    border: 1px solid white;
+    border-radius: 10px;
   }
 }
 
@@ -310,6 +336,12 @@ img.box {
   border-radius: 10px;
 }
 
+/** Projects carousel */
+.glider-container {
+  width: 500px;
+  max-width: 80%;
+  margin: 0 auto;
+}
   
 /* Keyframe Animation for Falling Images */
 @keyframes fall {

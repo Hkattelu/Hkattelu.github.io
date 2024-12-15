@@ -59,18 +59,38 @@ document.addEventListener("DOMContentLoaded", () => {
         showPage(index);
       });
     });
+
+    setupGlider();
 });
+
+let glide;
+function setupGlider() {
+    glide = new Glide('.glide', {
+        startAt: 0,
+        dots: '#dots',
+        draggable: true,
+        arrows: {
+            prev: '.glider-prev',
+            next: '.glider-next'
+        }
+    });
+    glide.mount();
+}
+
+
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Backspace' || event.key === 'Escape') {
       showOptions();
       backToHome();
     }
-    if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
       if (document.activeElement.tagName.toLowerCase() !== 'span') {
         document.querySelector('span:not(:focus)').focus();
         event.preventDefault();
-      } else {
-        // event.stopImmediatePropagation();
       }
+    }
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        glide.go(event.key === 'ArrowLeft' ? '<' : '>');
+        event.preventDefault();
     }
   });
