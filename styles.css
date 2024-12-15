@@ -16,7 +16,7 @@
   --color-hover-accent: #FF9B42; /* Hover variation of accent */
   --color-hover-dark: #123C3E; /* Hover variation of dark primary */
 
-  --base-transition-duration: 0.4s;
+  --base-transition-duration: 0.3s;
 
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
@@ -25,6 +25,7 @@
 html {
   height: 100%;
   overflow: hidden;
+  caret-color: transparent;
 }
 
 body {
@@ -51,6 +52,7 @@ a:hover {
   flex: 1 1 0;
   flex-direction: row;
   width: 60vw;
+  background-color: navajowhite;
 }
 
 /* The controls */
@@ -78,8 +80,8 @@ a:hover {
 
   .option {
     text-align: center;
-    width: max-content;
     padding: 8px 16px;
+    width: max-content;
     height: 10vh;
     font-size: 10vh;
     line-height: 10vh;
@@ -88,13 +90,12 @@ a:hover {
     position: absolute;
     top: 80vh;
     left: 12vw;
-    transform-origin: 130vw 0px 0px;
-    transition: transform var(--base-transition-duration) ease-in;
+    transform-origin: 110vw 0px 0px;
+    transition: transform var(--base-transition-duration) ease;
 
     background-color: rgba(1, 1, 1, 0.98);
     color: var(--color-accent);
 
-    caret-color: transparent;
     font-family: monospace, 'Helvetica', sans-serif;
     font-weight: 500px;
     isolation: isolate;
@@ -142,6 +143,7 @@ a:hover {
   width: 100%;
   display: flex;
   flex: 1 1 0;
+  align-items: center;
 
   background-size: cover;
   transition: transform var(--base-transition-duration) ease-in;
@@ -159,12 +161,30 @@ a:hover {
     transition-delay: 0s;
     transform: rotate3d(0, 0, 1, -90deg);
   }
+
+  .text-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background-color: black;
+    color: var(--color-accent);
+
+    min-width: 30vw;
+    max-width: 40vw;
+    min-height: 30vh;
+    max-height: 80vh;
+    border-radius: 10px;
+    padding: 16px;
+  }
 }
 
 .page.home {
   background-image: url('images/pittsburgh.jpg');
+  background-position-y: center;
   &:not(.visible) {
-    transition-delay: 0s;
+    transition-timing-function: ease;
+    transition-delay: 0.3s;
     transform: rotate3d(0, 0, 1, 90deg);
   }
 }
@@ -173,32 +193,62 @@ a:hover {
   background-image: url('images/wedding.jpg');
   background-position-y: center;
 
+  .text-section {
+    margin-left: 10vw;
+  }
 }
 
 .about-me {
   background-position: 30% 30%;
   background-image: url('images/highline.jpg');
+
+  .text-section {
+    margin-left: 50vw;
+  }
 }
 
 .what-i-value {
   background-image: url('images/battery.jpg');
+
+  .text-section {
+    margin-left: 10vw;
+  }
 }
 
 .projects {
   background-image: url('images/british.jpg');
   background-position: 30% 30%;
+
+  .text-section {
+    margin-left: 50vw;
+  }
 }
 
 .contact {
   background-image: url('images/big ben.jpg');
+  background-position-y: 50%;
+
+  .text-section {
+    margin-left: 60vw;
+  }
 }
 
 .blog {
   background-image: url('images/brandenburg.jpg');
+  background-position-y: center;
+
+  .text-section {
+    margin-left: 50vw;
+  }
 }
 
 .credits {
   background-image: url('images/metaphor.jpg');
+
+  .text-section {
+    margin-top: 10vh;
+    margin-left: 60vw;
+  }
 }
 
 .type-text {
@@ -226,7 +276,6 @@ a:hover {
   animation-delay: 3s;
 }
 
-
 img.box {
   max-width: 500px;
 
@@ -237,19 +286,13 @@ img.box {
   animation: fall 1s ease-out forwards;
 }
 
-.tagline, .text-section {
+.tagline {
   background-color: var(--color-accent);
   color: var(--color-secondary-dark);
   border: 3px solid var(--color-secondary-dark);
   border-radius: 10px;
 }
 
-.text-section {
-  font-weight: 700;
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-}
   
 /* Keyframe Animation for Falling Images */
 @keyframes fall {

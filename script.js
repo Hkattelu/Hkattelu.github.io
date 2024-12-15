@@ -1,4 +1,5 @@
 const pageMap = {
+    "-1": "home",
     "0": "welcome",
     "1": "about-me",
     "2": "what-i-value",
@@ -42,8 +43,7 @@ function backToHome() {
     for (const page of pages) {
       page.classList.remove('visible');
     }
-    const home = document.getElementsByClassName('home')[0];
-    home.classList.add('visible');
+    showPage(-1);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
