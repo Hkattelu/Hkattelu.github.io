@@ -79,60 +79,73 @@ a:hover {
   z-index: 3;
 
   .option {
-    text-align: center;
-    padding: 8px 16px;
-    width: max-content;
     height: 10vh;
+    width: max-content;
     font-size: 10vh;
     line-height: 10vh;
+    
 
-    /** Controls the y position of the option */
+    /** Controls the xy position of the option */
     position: absolute;
     top: 80vh;
     left: 12vw;
+    
     transform-origin: 110vw 0px 0px;
     transition: transform var(--base-transition-duration) ease;
+    /* outline: none; */
+    cursor: pointer;
 
-    background-color: rgba(1, 1, 1, 0.98);
-    color: var(--color-accent);
-
-    font-family: monospace, 'Helvetica', sans-serif;
-    font-weight: 500px;
-    isolation: isolate;
-
-    &:focus, &:hover {
-      background-color: var(--color-accent);
-      color: var(--color-secondary-dark);
+    span {
+      text-align: center;
+    
+      background-color: rgba(1, 1, 1, 0.98);
+      color: var(--color-accent);
+    
+      font-family: monospace, 'Helvetica', sans-serif;
+      font-weight: 500;
       outline: none;
       cursor: pointer;
-    }
 
-    &::after {
-      background: moccasin;
-      mix-blend-mode: multiply;
-    }
+      transition: none;
+      padding: none;
+      margin: none;
 
-    &[tabindex="1"] {
-      transform:  rotate3d(-2, 6, 4, 50deg);
+      &:focus, &:hover {
+        background-color: transparent;
+        background-image: url(images/mask.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 45vw;
+
+        /** Hack to allow the background to overflow the mask */
+        transition: all 0.3s ease-out;
+        padding: 30vw;
+        margin: -30vw;
+        border-radius: 90%;
+      }
     }
-    &[tabindex="2"] {
-      transform:  rotate3d(-2, 6, 4, 41deg);
-    }
-    &[tabindex="3"] {
-      transform:  rotate3d(-2, 6, 4, 32deg);
-    }
-    &[tabindex="4"] {
-      transform:  rotate3d(-2, 6, 4, 23deg);
-    }
-    &[tabindex="5"] {
-      transform:  rotate3d(-2, 6, 4, 14deg);
-    }
-    &[tabindex="6"] {
-      transform:  rotate3d(-2, 6, 4, 5deg);
-    }
-    &[tabindex="7"] {
-      transform:  rotate3d(-2, 6, 4, -2deg);
-    }
+  }
+
+  .option:nth-of-type(1) {
+    transform:  rotate3d(-2, 6, 4, 50deg);
+  }
+  .option:nth-of-type(2) {
+    transform:  rotate3d(-2, 6, 4, 41deg);
+  }
+  .option:nth-of-type(3) {
+    transform:  rotate3d(-2, 6, 4, 32deg);
+  }
+  .option:nth-of-type(4) {
+    transform:  rotate3d(-2, 6, 4, 23deg);
+  }
+  .option:nth-of-type(5) {
+    transform:  rotate3d(-2, 6, 4, 14deg);
+  }
+  .option:nth-of-type(6) {
+    transform:  rotate3d(-2, 6, 4, 5deg);
+  }
+  .option:nth-of-type(7) {
+    transform:  rotate3d(-2, 6, 4, -2deg);
   }
 }
 

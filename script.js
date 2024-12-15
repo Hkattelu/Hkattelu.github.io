@@ -67,8 +67,10 @@ document.addEventListener('keydown', function(event) {
       backToHome();
     }
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-      if (!document.activeElement.classList.contains('option')) {
-        document.querySelector('.option:not(:focus)').focus();
+      if (!document.activeElement.tagName === 'span') {
+        document.querySelector('span:not(:focus)').focus();
+      } else {
+        event.preventDefault();
       }
     }
   });

@@ -13,13 +13,13 @@
 <body>
   <div class="container">
     <div class="left-options">
-        <div class="option" tabindex="1">Welcome</div>
-        <div class="option" tabindex="2">About me</div>
-        <div class="option" tabindex="3">What I value</div>
-        <div class="option" tabindex="4">Projects</div>
-        <div class="option" tabindex="5">Contact</div>
-        <div class="option" tabindex="6">Blog</div>
-        <div class="option" tabindex="7">Credits</div>
+        <div class="option"><span tabindex="0">Welcome</span></div>
+        <div class="option"><span tabindex="0">About me</span></div>
+        <div class="option"><span tabindex="0">What I value</span></div>
+        <div class="option"><span tabindex="0">Projects</span></div>
+        <div class="option"><span tabindex="0">Contact</span></div>
+        <div class="option"><span tabindex="0">Blog</span></div>
+        <div class="option"><span tabindex="0">Credits</span></div>
     </div>
     <div class="controls">
       <div class="type-text"><p>Hey. I'm Himanshu.</p></div>
@@ -27,7 +27,7 @@
       <div class="type-text delay-2"><p>Hit enter to select an option.</p></div>
     </div>
     <div class="page home visible"></div>
-    <div class="page welcome">
+    <div class="page welcome" tabindex="-1">
         <div class="text-section">
             <p>Hi, I’m Himanshu—a software engineer at Google passionate about building scalable systems,
                 fostering creativity, and exploring the intersections of technology and education.</p>
@@ -45,29 +45,29 @@
                In my free time, I juggle hobbies like Crossfit, Poi spinning, and creating content for YouTube.</p>
         </div>
     </div>
-    <div class="page about-me">
+    <div class="page about-me" tabindex="-1">
         <div class="text-section"></div>
     </div>
-    <div class="page what-i-value">
+    <div class="page what-i-value" tabindex="-1">
         <div class="text-section"></div>
     </div>
-    <div class="page projects">
+    <div class="page projects" tabindex="-1">
         <div class="text-section"></div>
     </div>
-    <div class="page contact">
+    <div class="page contact" tabindex="-1">
         <div class="text-section"></div>
     </div>
-    <div class="page blog">
+    <div class="page blog" tabindex="-1">
         <div class="text-section">
             <p>I like to write about my experiences and learnings.</p>
-            <p>Check out <a href="https://hkattelu.github.io/blog/">my blog here</a></p>
+            <p>Check out <a  tabindex="-1" href="https://hkattelu.github.io/blog/">my blog here</a></p>
             <p>(I'll bring it into this site eventually)</p>
         </div>
     </div>
-    <div class="page credits">
+    <div class="page credits" tabindex="-1">
         <div class="text-section">
-            <p> This site is heavily inspired by the pause menu of the game <a href="https://en.m.wikipedia.org/wiki/Metaphor:_ReFantazio">Metaphor: Refantazio</a></p>
-            <p> A big help for me was <a href="https://css-tricks.com/set-text-on-a-circle/">this article</a> on CSS Tricks.</p>
+            <p> This site is heavily inspired by the pause menu of the game <a  tabindex="-1" href="https://en.m.wikipedia.org/wiki/Metaphor:_ReFantazio">Metaphor: Refantazio</a></p>
+            <p> A big help for me was <a  tabindex="-1" href="https://css-tricks.com/set-text-on-a-circle/">this article</a> on CSS Tricks.</p>
             <p> I'm not a professional designer, so I'm sure there are many improvements that can be made.</p>
         </div> 
     </div>
