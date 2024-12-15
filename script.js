@@ -1,12 +1,11 @@
 const pageMap = {
     "-1": "home",
-    "0": "welcome",
-    "1": "about-me",
-    "2": "what-i-value",
-    "3": "projects",
-    "4": "contact",
-    "5": "blog",
-    "6": "credits",
+    "0": "about-me",
+    "1": "what-i-value",
+    "2": "projects",
+    "3": "contact",
+    "4": "blog",
+    "5": "credits",
 }
 
 function getOptions() {
@@ -67,10 +66,11 @@ document.addEventListener('keydown', function(event) {
       backToHome();
     }
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-      if (!document.activeElement.tagName === 'span') {
+      if (document.activeElement.tagName.toLowerCase() !== 'span') {
         document.querySelector('span:not(:focus)').focus();
-      } else {
         event.preventDefault();
+      } else {
+        // event.stopImmediatePropagation();
       }
     }
   });

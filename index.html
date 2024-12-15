@@ -13,21 +13,23 @@
 <body>
   <div class="container">
     <div class="left-options">
-        <div class="option"><span tabindex="0">Welcome</span></div>
-        <div class="option"><span tabindex="0">About me</span></div>
+        <div class="option"><span tabindex="0" autofocus>About me</span></div>
         <div class="option"><span tabindex="0">What I value</span></div>
         <div class="option"><span tabindex="0">Projects</span></div>
         <div class="option"><span tabindex="0">Contact</span></div>
         <div class="option"><span tabindex="0">Blog</span></div>
         <div class="option"><span tabindex="0">Credits</span></div>
     </div>
-    <div class="controls">
-      <div class="type-text"><p>Hey. I'm Himanshu.</p></div>
-      <div class="type-text delay-1"><p>Use the arrow keys to navigate.</p></div>
-      <div class="type-text delay-2"><p>Hit enter to select an option.</p></div>
+    <div class="page home visible">
+        <div class="controls">
+            <p>Use the ↑ and ↓ keys to navigate.</p>
+            <p>Hit enter to select an option.</p>
+        </div>
     </div>
-    <div class="page home visible"></div>
-    <div class="page welcome" tabindex="-1">
+    <div class="page about-me" tabindex="-1">
+        <div class="controls">
+          <p>Press BACKSPACE or ESC to return home.</p>
+        </div>
         <div class="text-section">
             <p>Hi, I’m Himanshu—a software engineer at Google passionate about building scalable systems,
                 fostering creativity, and exploring the intersections of technology and education.</p>
@@ -45,19 +47,28 @@
                In my free time, I juggle hobbies like Crossfit, Poi spinning, and creating content for YouTube.</p>
         </div>
     </div>
-    <div class="page about-me" tabindex="-1">
-        <div class="text-section"></div>
-    </div>
     <div class="page what-i-value" tabindex="-1">
+        <div class="controls">
+          <p>Press BACKSPACE or ESC to return home.</p>
+        </div>
         <div class="text-section"></div>
     </div>
     <div class="page projects" tabindex="-1">
+        <div class="controls">
+          <p>Press BACKSPACE or ESC to return home.</p>
+        </div>
         <div class="text-section"></div>
     </div>
     <div class="page contact" tabindex="-1">
+        <div class="controls">
+          <p>Press BACKSPACE or ESC to return home.</p>
+        </div>
         <div class="text-section"></div>
     </div>
     <div class="page blog" tabindex="-1">
+        <div class="controls">
+          <p>Press BACKSPACE or ESC to return home.</p>
+        </div>
         <div class="text-section">
             <p>I like to write about my experiences and learnings.</p>
             <p>Check out <a  tabindex="-1" href="https://hkattelu.github.io/blog/">my blog here</a></p>
@@ -65,6 +76,9 @@
         </div>
     </div>
     <div class="page credits" tabindex="-1">
+        <div class="controls">
+          <p>Press BACKSPACE or ESC to return home.</p>
+        </div>
         <div class="text-section">
             <p> This site is heavily inspired by the pause menu of the game <a  tabindex="-1" href="https://en.m.wikipedia.org/wiki/Metaphor:_ReFantazio">Metaphor: Refantazio</a></p>
             <p> A big help for me was <a  tabindex="-1" href="https://css-tricks.com/set-text-on-a-circle/">this article</a> on CSS Tricks.</p>

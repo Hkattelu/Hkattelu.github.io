@@ -55,21 +55,6 @@ a:hover {
   background-color: navajowhite;
 }
 
-/* The controls */
-.controls {
-  position: absolute;
-  width: 380px;
-  bottom: 50vh;
-  right: 10vw;
-  
-  /* Temporary */
-  display: none;
-
-  border-radius: 10px;
-  border: 2px solid var(--color-secondary-dark);
-  background-color: var(--color-accent);
-  color: var(--color-secondary-dark);
-}
 
 .left-options {
   flex: 0 0 0;
@@ -157,6 +142,7 @@ a:hover {
   display: flex;
   flex: 1 1 0;
   align-items: center;
+  z-index: 1;
 
   background-size: cover;
   transition: transform var(--base-transition-duration) ease-in;
@@ -168,11 +154,37 @@ a:hover {
 
   &.visible {
     transform: rotate3d(0, 0, 0, 0deg);
+
+    .controls {
+        transition-delay: 0s;
+        animation: fall 1s ease-out forwards;
+        display: block;
+    }
   }
   &:not(.visible) {
     /* transition-delay: var(--base-transition-duration); */
     transition-delay: 0s;
     transform: rotate3d(0, 0, 1, -90deg);
+
+    .controls {
+        transition-delay: 0s;
+        animation: rise 1s ease-out forwards;
+        display: none;
+    }
+  }
+
+  /* The controls */
+  .controls {
+    position: absolute;
+    text-align: end;
+    padding: 16px;
+    top: 32px;
+    right: 32px;
+    z-index: 2;
+  
+    border-radius: 10px;
+    background-color: rgba(1, 1, 1, 0.98);
+    color: var(--color-accent);
   }
 
   .text-section {
@@ -202,15 +214,6 @@ a:hover {
   }
 }
 
-.welcome {
-  background-image: url('images/wedding.jpg');
-  background-position-y: center;
-
-  .text-section {
-    margin-left: 10vw;
-  }
-}
-
 .about-me {
   background-position: 30% 30%;
   background-image: url('images/highline.jpg');
@@ -221,11 +224,12 @@ a:hover {
 }
 
 .what-i-value {
-  background-image: url('images/battery.jpg');
-
-  .text-section {
-    margin-left: 10vw;
-  }
+    background-image: url('images/wedding.jpg');
+    background-position-y: center;
+  
+    .text-section {
+      margin-left: 10vw;
+    }
 }
 
 .projects {
@@ -319,30 +323,16 @@ img.box {
   }
 }
 
-/* The typing effect */
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: var(--color-secondary-dark); }
-}
-
-@keyframes graininess {
-    from, to { border-color: transparent }
-    50% {
-        /* background:     
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(255, 255, 255, 1),
-            rgba(200, 200, 200, 1)
-          ), 
-            url(https://grainy-gradients.vercel.app/noise.svg);  */
-        background: none;
-    }
+/* Keyframe Animation for Rising up  */
+@keyframes rise {
+  from {
+      transform: translateY(-100vh);
+      opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 footer {
