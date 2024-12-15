@@ -58,13 +58,18 @@ a:hover {
 
   .option {
     text-align: center;
-    width: 35vw;
+    width: 40vw;
     height: 10vh;
     font-size: 10vh;
     line-height: 10vh;
 
     /** Controls the y position of the option */
     position: absolute;
+    top: 80vh;
+    left: 12vw;
+    transform-origin: 130vw 0px 0px;
+    transition: transform 1s ease-in;
+
     background-color: rgba(1, 1, 1, 0.98);
     color: var(--color-accent);
 
@@ -79,46 +84,25 @@ a:hover {
     }
 
     &[tabindex="1"] {
-      top: 80vh;
-      left: 12vw;
       transform:  rotate3d(-2, 6, 4, 50deg);
-      transform-origin: 130vw 0px 0px;
     }
     &[tabindex="2"] {
-      top: 80vh;
-      left: 12vw;
       transform:  rotate3d(-2, 6, 4, 41deg);
-      transform-origin: 130vw 0px 0px;
     }
     &[tabindex="3"] {
-      top: 80vh;
-      left: 12vw;
       transform:  rotate3d(-2, 6, 4, 33deg);
-      transform-origin: 130vw 0px 0px;
     }
     &[tabindex="4"] {
-      top: 80vh;
-      left: 12vw;
       transform:  rotate3d(-2, 6, 4, 23deg);
-      transform-origin: 130vw 0px 0px;
     }
     &[tabindex="5"] {
-      top: 80vh;
-      left: 12vw;
       transform:  rotate3d(-2, 6, 4, 15deg);
-      transform-origin: 130vw 0px 0px;
     }
     &[tabindex="6"] {
-      top: 80vh;
-      left: 12vw;
       transform:  rotate3d(-2, 6, 4, 5deg);
-      transform-origin: 130vw 0px 0px;
     }
     &[tabindex="7"] {
-      top: 80vh;
-      left: 12vw;
       transform:  rotate3d(-2, 6, 4, -2deg);
-      transform-origin: 130vw 0px 0px;
     }
   }
 }
@@ -134,6 +118,8 @@ a:hover {
 
   background-image: url('images/pittsburgh.jpg');
   background-size: cover;
+  background-position-x: 50px;
+  background-position-y: -50px;
 
   img.box {
     max-width: 500px;

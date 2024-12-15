@@ -1,16 +1,39 @@
+
+function getOptions() {
+    return document.querySelectorAll(".option");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-    const boxes = document.querySelectorAll(".box");
+    const options = getOptions();
   
-    boxes.forEach((box, index) => {
-      setTimeout(() => {
-        box.style.transform = "translateY(0)";
-        box.style.opacity = "1";
-        box.style.transition = "transform 1s ease-out, opacity 1s ease-out";
-      }, index * 500); // Delay each box's animation
-    });
-  
-    // Initial offset
-    boxes.forEach(box => {
-        box.style.transform = "translateY(-200vh)";
+    options.forEach((box, index) => {
+      box.addEventListener('click', function(event) {
+        hideOptions();
+      });
+
+      box.addEventListener('keypress', function(event) {
+        hideOptions();
+      });
     });
 });
+
+function hideOptions() {
+    const options = getOptions();
+    options.forEach((box, index) => {
+        box.style.transform = "rotate3d(0, 0, 1, 90deg)";
+    });
+}
+
+function showOptions() {
+    const options = getOptions();
+    options.forEach((box, index) => {
+        box.removeAttribute('style');
+    });
+}
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Backspace' || event.key === 'Escape') {
+      // Do something here
+      showOptions();
+    }
+  });
