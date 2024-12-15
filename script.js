@@ -12,6 +12,10 @@ function getOptions() {
     return document.querySelectorAll(".option");
 }
 
+function getCurrentPage() {
+  return document.querySelector('.visible');
+}
+
 function hideOptions() {
     const options = getOptions();
     options.forEach((box) => {
@@ -77,7 +81,6 @@ function setupGlider() {
     glide.mount();
 }
 
-
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Backspace' || event.key === 'Escape') {
       showOptions();
@@ -86,6 +89,8 @@ document.addEventListener('keydown', function(event) {
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
       if (document.activeElement.tagName.toLowerCase() !== 'span') {
         document.querySelector('span:not(:focus)').focus();
+        event.preventDefault();
+      } else if (!getCurrentPage().classList.contains('home')) {
         event.preventDefault();
       }
     }
