@@ -1,0 +1,377 @@
+:root {
+  /* Primary Colors */
+  --color-accent: white; /* Accent color */
+  --color-secondary-accent: #FAB997; /* Secondary accent */
+  --color-tertiary-accent: #f3b36a; /* Soft tertiary color */
+
+  /* Dark Theme Colors */
+  --color-primary-dark: #0E4749; /* Primary dark background or text */
+  --color-secondary-dark: black; /* Secondary dark background or text */
+
+  /* Text and Background */
+  --color-background-light: #F1D9CC; /* Optional light background */
+  --color-text-dark: #000000; /* Optional dark text */
+
+  /* Hover and Active States */
+  --color-hover-accent: #FF9B42; /* Hover variation of accent */
+  --color-hover-dark: #123C3E; /* Hover variation of dark primary */
+
+  --base-transition-duration: 0.3s;
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+}
+
+html {
+  height: 100%;
+  overflow: hidden;
+  caret-color: transparent;
+}
+
+body {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+  
+a {
+  color: var(--color-accent);
+}
+  
+a:hover {
+  color: var(--color-hover-accent);
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  flex: 1 1 0;
+  flex-direction: row;
+  width: 60vw;
+  background-color: navajowhite;
+}
+
+.left-options {
+  flex: 0 0 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  z-index: 3;
+
+  .option {
+    height: 10vh;
+    width: max-content;
+    font-size: 10vh;
+    line-height: 10vh;
+    
+
+    /** Controls the xy position of the option */
+    position: absolute;
+    top: 80vh;
+    left: 12vw;
+    
+    transform-origin: 110vw 0px 0px;
+    transition: transform var(--base-transition-duration) ease;
+    /* outline: none; */
+    cursor: pointer;
+
+    span {
+      text-align: center;
+    
+      background-color: rgba(1, 1, 1, 0.98);
+      color: var(--color-accent);
+    
+      font-family: monospace, 'Helvetica', sans-serif;
+      font-weight: 500;
+      outline: none;
+      cursor: pointer;
+
+      transition: none;
+      padding: none;
+      margin: none;
+
+      &:focus {
+        background-color: transparent;
+        background-image: url(images/mask.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 45vw;
+
+        /** Hack to allow the background to overflow the mask */
+        transition: all 0.3s ease-out;
+        padding: 30vw;
+        margin: -30vw;
+        border-radius: 90%;
+      }
+    }
+  }
+
+  .option:nth-of-type(1) {
+    transform:  rotate3d(-2, 6, 4, 50deg);
+  }
+  .option:nth-of-type(2) {
+    transform:  rotate3d(-2, 6, 4, 41deg);
+  }
+  .option:nth-of-type(3) {
+    transform:  rotate3d(-2, 6, 4, 32deg);
+  }
+  .option:nth-of-type(4) {
+    transform:  rotate3d(-2, 6, 4, 23deg);
+  }
+  .option:nth-of-type(5) {
+    transform:  rotate3d(-2, 6, 4, 14deg);
+  }
+  .option:nth-of-type(6) {
+    transform:  rotate3d(-2, 6, 4, 5deg);
+  }
+  .option:nth-of-type(7) {
+    transform:  rotate3d(-2, 6, 4, -2deg);
+  }
+}
+
+/* The background */
+.page {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  z-index: 1;
+
+  background-size: cover;
+  transition: transform var(--base-transition-duration) ease-in;
+  transform-origin: 130vw 0px 0px;
+
+  /** adjust these values to move the background image */
+  /* background-position-x: 50px;
+  background-position-y: -50px; */
+
+  &.visible {
+    transform: rotate3d(0, 0, 0, 0deg);
+
+    .controls {
+        transition-delay: 0s;
+        animation: fall 1s ease-out forwards;
+        display: block;
+    }
+  }
+  &:not(.visible) {
+    /* transition-delay: var(--base-transition-duration); */
+    transition-delay: 0s;
+    transform: rotate3d(0, 0, 1, -90deg);
+
+    .controls {
+        transition-delay: 0s;
+        animation: rise 1s ease-out forwards;
+        display: none;
+    }
+  }
+
+  /* The controls */
+  .controls {
+    position: absolute;
+    text-align: end;
+    padding: 16px;
+    top: 32px;
+    right: 32px;
+    z-index: 2;
+  
+    border-radius: 10px;
+    background-color: rgba(1, 1, 1, 0.98);
+    color: var(--color-accent);
+  }
+
+  .text-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background-color: black;
+    color: var(--color-accent);
+
+    min-width: 30vw;
+    max-width: 40vw;
+    min-height: 30vh;
+    max-height: 80vh;
+    border-radius: 10px;
+    padding: 16px;
+  }
+}
+
+.page.home {
+  background-image: url('images/pittsburgh.jpg');
+  background-position-y: center;
+  &:not(.visible) {
+    transition-timing-function: ease;
+    transition-delay: 0.3s;
+    transform: rotate3d(0, 0, 1, 90deg);
+  }
+}
+
+.about-me {
+  background-position: 30% 30%;
+  background-image: url('images/highline.jpg');
+
+  .text-section {
+    margin-left: 50vw;
+  }
+}
+
+.what-i-value {
+    background-image: url('images/wedding2.jpg');
+    background-position: 20vw 30%;
+  
+    .text-section {
+      margin-left: 10vw;
+    }
+}
+
+.projects {
+  background-image: url('images/garden1.jpg');
+  background-position-y: 30%;
+
+  .text-section {
+    margin-left: 50vw;
+  }
+
+  .glider-container {
+    height: 350px;
+  }
+  .glide__slides {
+    height: 250px;
+  }
+  .glide__bullets {
+    text-align: center;
+  }
+}   
+
+.contact {
+  background-image: url('images/big ben.jpg');
+  background-position-y: 50%;
+
+  .text-section {
+    margin-left: 60vw;
+  }
+}
+
+.blog {
+  background-image: url('images/brandenburg.jpg');
+  background-position-y: bottom;
+
+  .text-section {
+    margin-left: 50vw;
+    min-height: 20vh;
+    border: 1px solid white;
+    border-radius: 10px;
+  }
+}
+
+/* Font Awesome Icons */
+.fa {
+  font-size: 24px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+ul > li {
+    list-style: none;
+}
+
+.credits {
+  background-image: url('images/metaphor.jpg');
+
+  .text-section {
+    margin-top: 50vh;
+    margin-left: 60vw;
+    min-height: 20vh;
+    border: 1px solid white;
+    border-radius: 10px;
+  }
+}
+
+.type-text {
+  font-size: 24px;
+  font-weight: 700;
+  width: fit-content;
+
+  p {
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+  
+    margin: 10px 16px;
+    border-right: .15em solid var(--color-accent); /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    animation: 
+      typing 1.5s steps(40, end) forwards,
+      blink-caret .6s step-end forwards;
+  }
+}
+.type-text.delay-1 p {
+  width: 0;
+  animation-delay: 1.5s;
+}
+.type-text.delay-2 p {
+  width: 0;
+  animation-delay: 3s;
+}
+
+img.box {
+  max-width: 500px;
+
+  background-color: #FF9B42;
+  border: 2px solid #0E4749;
+  border-radius: 10px;
+  opacity: 0; /* Start hidden for animation */
+  animation: fall 1s ease-out forwards;
+}
+
+.tagline {
+  background-color: var(--color-accent);
+  color: var(--color-secondary-dark);
+  border: 3px solid var(--color-secondary-dark);
+  border-radius: 10px;
+}
+
+/** Projects carousel */
+.glider-container {
+  width: 500px;
+  max-width: 80%;
+  margin: 0 auto;
+}
+  
+/* Keyframe Animation for Falling Images */
+@keyframes fall {
+  from {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Keyframe Animation for Rising up  */
+@keyframes rise {
+  from {
+      transform: translateY(-100vh);
+      opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+footer {
+  text-align: center;
+  padding: 10px 0;
+  background: #35424a;
+  color: #ffffff;
+  width: 100%;
+  bottom: 0;
+}
