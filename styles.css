@@ -53,6 +53,22 @@ a:hover {
   width: 60vw;
 }
 
+/* The controls */
+.controls {
+  position: absolute;
+  width: 380px;
+  bottom: 50vh;
+  right: 10vw;
+  
+  /* Temporary */
+  display: none;
+
+  border-radius: 10px;
+  border: 2px solid var(--color-secondary-dark);
+  background-color: var(--color-accent);
+  color: var(--color-secondary-dark);
+}
+
 .left-options {
   flex: 0 0 0;
   position: relative;
@@ -79,14 +95,15 @@ a:hover {
     color: var(--color-accent);
 
     caret-color: transparent;
-    font-family: 'Helvetica', sans-serif;
+    font-family: monospace, 'Helvetica', sans-serif;
     font-weight: 500px;
     isolation: isolate;
 
-    &:focus {
+    &:focus, &:hover {
       background-color: var(--color-accent);
       color: var(--color-secondary-dark);
       outline: none;
+      cursor: pointer;
     }
 
     &::after {
@@ -118,29 +135,14 @@ a:hover {
   }
 }
 
-/* The controls */
-.controls {
-  position: absolute;
-  width: 380px;
-  bottom: 50vh;
-  right: 10vw;
-  
-  border-radius: 10px;
-  border: 2px solid var(--color-secondary-dark);
-  background-color: var(--color-accent);
-  color: var(--color-secondary-dark);
-}
-
 /* The background */
-.background {
+.page {
+  position: absolute;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex: 1 1 0;
-  gap: 16px;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
 
-  background-image: url('images/pittsburgh.jpg');
   background-size: cover;
   transition: transform var(--base-transition-duration) ease-in;
   transform-origin: 130vw 0px 0px;
@@ -149,22 +151,54 @@ a:hover {
   /* background-position-x: 50px;
   background-position-y: -50px; */
 
-  img.box {
-    max-width: 500px;
-  
-    background-color: #FF9B42;
-    border: 2px solid #0E4749;
-    border-radius: 10px;
-    opacity: 0; /* Start hidden for animation */
-    animation: fall 1s ease-out forwards;
+  &.visible {
+    transform: rotate3d(0, 0, 0, 0deg);
   }
+  &:not(.visible) {
+    /* transition-delay: var(--base-transition-duration); */
+    transition-delay: 0s;
+    transform: rotate3d(0, 0, 1, -90deg);
+  }
+}
 
-  .tagline, .text-section {
-    background-color: var(--color-accent);
-    color: var(--color-secondary-dark);
-    border: 3px solid var(--color-secondary-dark);
-    border-radius: 10px;
+.page.home {
+  background-image: url('images/pittsburgh.jpg');
+  &:not(.visible) {
+    transition-delay: 0s;
+    transform: rotate3d(0, 0, 1, 90deg);
   }
+}
+
+.welcome {
+  background-image: url('images/wedding.jpg');
+  background-position-y: center;
+
+}
+
+.about-me {
+  background-position: 30% 30%;
+  background-image: url('images/highline.jpg');
+}
+
+.what-i-value {
+  background-image: url('images/battery.jpg');
+}
+
+.projects {
+  background-image: url('images/british.jpg');
+  background-position: 30% 30%;
+}
+
+.contact {
+  background-image: url('images/big ben.jpg');
+}
+
+.blog {
+  background-image: url('images/brandenburg.jpg');
+}
+
+.credits {
+  background-image: url('images/metaphor.jpg');
 }
 
 .type-text {
@@ -192,6 +226,23 @@ a:hover {
   animation-delay: 3s;
 }
 
+
+img.box {
+  max-width: 500px;
+
+  background-color: #FF9B42;
+  border: 2px solid #0E4749;
+  border-radius: 10px;
+  opacity: 0; /* Start hidden for animation */
+  animation: fall 1s ease-out forwards;
+}
+
+.tagline, .text-section {
+  background-color: var(--color-accent);
+  color: var(--color-secondary-dark);
+  border: 3px solid var(--color-secondary-dark);
+  border-radius: 10px;
+}
 
 .text-section {
   font-weight: 700;
