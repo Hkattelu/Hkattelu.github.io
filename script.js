@@ -15,6 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
         hideOptions();
       });
     });
+
+
+    // Render the controls.
+    const controls = document.querySelector(".controls");
 });
 
 function hideOptions() {
@@ -35,5 +39,10 @@ document.addEventListener('keydown', function(event) {
     if (event.key === 'Backspace' || event.key === 'Escape') {
       // Do something here
       showOptions();
+    }
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      if (!document.activeElement.classList.contains('option')) {
+        document.querySelector('.option:not(:focus)').focus();
+      }
     }
   });

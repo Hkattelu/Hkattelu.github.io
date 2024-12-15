@@ -22,6 +22,7 @@
 
 html {
   height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -58,7 +59,8 @@ a:hover {
 
   .option {
     text-align: center;
-    width: 40vw;
+    width: max-content;
+    padding: 8px 16px;
     height: 10vh;
     font-size: 10vh;
     line-height: 10vh;
@@ -76,11 +78,18 @@ a:hover {
     caret-color: transparent;
     font-family: 'Helvetica', sans-serif;
     font-weight: 500px;
+    isolation: isolate;
 
     &:focus {
       background-color: var(--color-accent);
       color: var(--color-secondary-dark);
       outline: none;
+      animation: graininess 1s step-end infinite;
+    }
+
+    &::after {
+      background: moccasin;
+      mix-blend-mode: multiply;
     }
 
     &[tabindex="1"] {
@@ -107,8 +116,15 @@ a:hover {
   }
 }
 
-/* Right Side: Content Lines */
-.right-content {
+/* The controls */
+.controls {
+  position: absolute;
+  background-color: var(--color-accent);
+  color: var(--color-secondary-dark);
+}
+
+/* The background */
+.background {
   display: flex;
   flex: 1 1 0;
   gap: 16px;
@@ -118,8 +134,10 @@ a:hover {
 
   background-image: url('images/pittsburgh.jpg');
   background-size: cover;
-  background-position-x: 50px;
-  background-position-y: -50px;
+
+  /** adjust these values to move the background image */
+  /* background-position-x: 50px;
+  background-position-y: -50px; */
 
   img.box {
     max-width: 500px;
@@ -139,7 +157,7 @@ a:hover {
   }
 }
 
-.tagline {
+.type-text {
   font-size: 24px;
   font-weight: 700;
   width: fit-content;
@@ -150,12 +168,20 @@ a:hover {
     margin: 10px 16px;
     border-right: .15em solid var(--color-accent); /* The typwriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
-    
     animation: 
-      typing 1.5s steps(40, end),
-      blink-caret .6s step-end;
+      typing 1.5s steps(40, end) forwards,
+      blink-caret .6s step-end forwards;
   }
 }
+.type-text.delay-1 p {
+  width: 0;
+  animation-delay: 1.5s;
+}
+.type-text.delay-2 p {
+  width: 0;
+  animation-delay: 3s;
+}
+
 
 .text-section {
   font-weight: 700;
@@ -186,6 +212,20 @@ a:hover {
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: var(--color-secondary-dark); }
+}
+
+@keyframes graininess {
+    from, to { border-color: transparent }
+    50% {
+        /* background:     
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255, 255, 255, 1),
+            rgba(200, 200, 200, 1)
+          ), 
+            url(https://grainy-gradients.vercel.app/noise.svg);  */
+        background: none;
+    }
 }
 
 footer {
