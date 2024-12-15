@@ -1,12 +1,12 @@
 :root {
   /* Primary Colors */
-  --color-accent: #FF9B42; /* Accent color */
+  --color-accent: white; /* Accent color */
   --color-secondary-accent: #FAB997; /* Secondary accent */
   --color-tertiary-accent: #f3b36a; /* Soft tertiary color */
 
   /* Dark Theme Colors */
   --color-primary-dark: #0E4749; /* Primary dark background or text */
-  --color-secondary-dark: #002626; /* Secondary dark background or text */
+  --color-secondary-dark: black; /* Secondary dark background or text */
 
   /* Text and Background */
   --color-background-light: #F1D9CC; /* Optional light background */
@@ -22,7 +22,6 @@
 
 html {
   height: 100%;
-  background-color: var(--color-background-light);
 }
 
 body {
@@ -33,7 +32,6 @@ body {
   line-height: 1.6;
   margin: 0;
   padding: 0;
-  background-color: var(--color-background-light);
 }
   
 a {
@@ -49,52 +47,78 @@ a:hover {
   height: 100%;
   flex: 1 1 0;
   flex-direction: row;
-  padding: 32px;
   width: 60vw;
 }
 
 .left-options {
-  flex: 1 1 0;
-  padding: 24px;
+  flex: 0 0 0;
   position: relative;
   display: flex;
   justify-content: center;
 
   .option {
-    height: 50px;
-    font-size: 50px;
-    line-height: 50px;
+    text-align: center;
+    width: 35vw;
+    height: 10vh;
+    font-size: 10vh;
+    line-height: 10vh;
 
+    /** Controls the y position of the option */
     position: absolute;
-    top: 50vh;
-    transform-origin: 1500px 0px 0px;
+    background-color: rgba(1, 1, 1, 0.98);
+    color: var(--color-accent);
 
+    caret-color: transparent;
     font-family: 'Helvetica', sans-serif;
     font-weight: 500px;
-    background-color: var(--color-accent);
-    color: var(--color-secondary-dark);
-    border: 3px solid var(--color-secondary-dark);
 
-    &[tabindex="0"] {
-      transform:  rotate3d(0, 3, 1, 30deg);
+    &:focus {
+      background-color: var(--color-accent);
+      color: var(--color-secondary-dark);
+      outline: none;
     }
+
     &[tabindex="1"] {
-      transform:  rotate3d(0, 3, 1, 20deg);
+      top: 80vh;
+      left: 12vw;
+      transform:  rotate3d(-2, 6, 4, 50deg);
+      transform-origin: 130vw 0px 0px;
     }
     &[tabindex="2"] {
-      transform:  rotate3d(0, 3, 1, 10deg);
+      top: 80vh;
+      left: 12vw;
+      transform:  rotate3d(-2, 6, 4, 41deg);
+      transform-origin: 130vw 0px 0px;
     }
     &[tabindex="3"] {
-      transform:  rotate3d(0, 3, 1, 0deg);
+      top: 80vh;
+      left: 12vw;
+      transform:  rotate3d(-2, 6, 4, 33deg);
+      transform-origin: 130vw 0px 0px;
     }
     &[tabindex="4"] {
-      transform:  rotate3d(0, 3, 1, -10deg);
+      top: 80vh;
+      left: 12vw;
+      transform:  rotate3d(-2, 6, 4, 23deg);
+      transform-origin: 130vw 0px 0px;
     }
     &[tabindex="5"] {
-      transform:  rotate3d(0, 3, 1, -20deg);
+      top: 80vh;
+      left: 12vw;
+      transform:  rotate3d(-2, 6, 4, 15deg);
+      transform-origin: 130vw 0px 0px;
     }
     &[tabindex="6"] {
-      transform:  rotate3d(0, 3, 1, -30deg);
+      top: 80vh;
+      left: 12vw;
+      transform:  rotate3d(-2, 6, 4, 5deg);
+      transform-origin: 130vw 0px 0px;
+    }
+    &[tabindex="7"] {
+      top: 80vh;
+      left: 12vw;
+      transform:  rotate3d(-2, 6, 4, -2deg);
+      transform-origin: 130vw 0px 0px;
     }
   }
 }
@@ -102,12 +126,13 @@ a:hover {
 /* Right Side: Content Lines */
 .right-content {
   display: flex;
-  flex: 70% 0 0;
-  padding: 32px;
+  flex: 1 1 0;
   gap: 16px;
   flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
 
-  background-image: url('images/wedding.jpg');
+  background-image: url('images/pittsburgh.jpg');
   background-size: cover;
 
   img.box {
