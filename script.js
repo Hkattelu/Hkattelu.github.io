@@ -1,18 +1,16 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('contact-form');
-
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-
-        if (name && email && message) {
-            alert(`Thank you, ${name}! Your message has been received.`);
-            form.reset();
-        } else {
-            alert('Please fill out all fields before submitting.');
-        }
+document.addEventListener("DOMContentLoaded", () => {
+    const boxes = document.querySelectorAll(".box");
+  
+    boxes.forEach((box, index) => {
+      setTimeout(() => {
+        box.style.transform = "translateY(0)";
+        box.style.opacity = "1";
+        box.style.transition = "transform 1s ease-out, opacity 1s ease-out";
+      }, index * 500); // Delay each box's animation
+    });
+  
+    // Initial offset
+    boxes.forEach(box => {
+        box.style.transform = "translateY(-200vh)";
     });
 });
