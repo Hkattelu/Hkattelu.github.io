@@ -95,11 +95,17 @@ document.addEventListener('keydown', function(event) {
       break;
     case 'ArrowUp':
     case 'ArrowDown':
-      if (document.activeElement.tagName.toLowerCase() !== 'span') {
+      const activeEl = document.activeElement;
+      if (activeEl.tagName.toLowerCase() !== 'span') {
         document.querySelector('span:not(:focus)').focus();
         event.preventDefault();
       } else if (!getCurrentPage().classList.contains('home')) {
         event.preventDefault();
+      } else {
+        const allOptions = Array.from(document.querySelectorAll('span[tabindex="0"]'));
+        const currentIndex = allOptions.findIndex((el) => el === activeEl);
+        const newIndex = event.code === 'ArrowDown' ? currentIndex + 1 : currentIndex - 1;
+        allOptions[newIndex % allOptions.length].focus();
       }
       break;
     case 'ArrowLeft':
