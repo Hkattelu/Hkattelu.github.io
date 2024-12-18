@@ -106,6 +106,7 @@ document.addEventListener('keydown', function(event) {
         const currentIndex = allOptions.findIndex((el) => el === activeEl);
         const newIndex = event.code === 'ArrowDown' ? currentIndex + 1 : currentIndex - 1;
         allOptions[newIndex % allOptions.length].focus();
+        event.preventDefault();
       }
       break;
     case 'ArrowLeft':
