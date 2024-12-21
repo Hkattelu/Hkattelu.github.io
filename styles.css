@@ -26,6 +26,8 @@ html {
   height: 100%;
   overflow: hidden;
   caret-color: transparent;
+  overscroll-behavior: none;
+  touch-action: none;
 }
 
 body {
@@ -92,7 +94,6 @@ a {
     
     transform-origin: 110vw 0px 0px;
     transition: transform var(--base-transition-duration) ease;
-    /* outline: none; */
     cursor: pointer;
 
     span {
@@ -115,8 +116,9 @@ a {
         background-position: center;
         background-size: 45vw;
 
-        /** Hack to allow the background to overflow the mask */
         transition: all 0.3s ease-out;
+
+        /** Hack to allow the background to overflow the mask */
         padding: 30vw;
         margin: -30vw;
         border-radius: 90%;
@@ -179,10 +181,6 @@ a {
   transition: transform var(--base-transition-duration) ease-in;
   transform-origin: 130vw 0px 0px;
 
-  /** adjust these values to move the background image */
-  /* background-position-x: 50px;
-  background-position-y: -50px; */
-
   &.visible {
     transform: rotate3d(0, 0, 0, 0deg);
 
@@ -194,7 +192,6 @@ a {
   }
 
   &:not(.visible) {
-    /* transition-delay: var(--base-transition-duration); */
     transition-delay: 0s;
     transform: rotate3d(0, 0, 1, -90deg);
 
@@ -260,6 +257,7 @@ a {
 .page.home {
   background-image: url('images/pittsburgh.jpg');
   background-position-y: center;
+
   &:not(.visible) {
     transition-timing-function: ease;
     transition-delay: 0.3s;
