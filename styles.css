@@ -87,7 +87,7 @@ a {
 
     /** Controls the xy position of the option */
     position: absolute;
-    top: 80vh;
+    top: 85vh;
     left: 12vw;
     
     transform-origin: 110vw 0px 0px;
@@ -277,6 +277,7 @@ a {
   background-image: url('images/highline.jpg');
 
   .text-section {
+    font-size: 0.9em;
     margin-left: 50vw;
   }
 }
@@ -291,6 +292,10 @@ a {
 
   @media screen and (max-width: 767px) {
     background-position: center;
+
+    .text-section {
+      font-size: 0.9em;
+    }
   }
 }
 
@@ -302,10 +307,6 @@ a {
     margin-left: 50vw;
   }
 
-  @media screen and (max-width: 767px) {
-    background-position: center;
-  }
-
   .glider-container {
     height: 350px;
   }
@@ -314,6 +315,20 @@ a {
   }
   .glide__bullets {
     text-align: center;
+  }
+
+  @media screen and (max-width: 767px) {
+    background-position: center;
+
+    .text-section {
+      font-size: 0.8em;
+    }
+    .glider-container {
+      height: 500px;
+    }
+    .glide__slides {
+      height: 450px;
+    }
   }
 }   
 
@@ -330,6 +345,7 @@ a {
 
     .text-section {
       margin-left: 50vw;
+      margin-top: 40vh;
     }
   }
 }
@@ -361,19 +377,16 @@ a {
 
 .credits {
   background-image: url('images/metaphor.jpg');
+  background-size: contain;
 
   .text-section {
-    margin-top: 50vh;
+    margin-top: 30vh;
     margin-left: 60vw;
     min-height: 20vh;
     border: 1px solid white;
     border-radius: 10px;
-  }
 
-  @media screen and (max-width: 767px) {
-    background-size: contain;
-
-    .text-section {
+    @media screen and (max-width: 767px) {
       margin-top: 0;
       margin-left: 0;
       align-self: flex-end;
