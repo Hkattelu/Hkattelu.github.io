@@ -30,6 +30,7 @@ html {
 
 body {
   height: 100%;
+  overflow: hidden;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -37,17 +38,31 @@ body {
   margin: 0;
   padding: 0;
 }
-  
+
+/* Scrollbar */
+::-webkit-scrollbar {
+	width: 6px ;
+}
+
+::-webkit-scrollbar-track { /* TRACK */
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb { /* Cursor */
+	background: rgba(255,255,255,1);
+}
+
+
 a {
   color: var(--color-accent);
-}
-  
-a:hover {
-  color: var(--color-hover-accent);
+  &:hover {
+    color: var(--color-hover-accent);
+  }
 }
 
 .container {
   display: flex;
+  overflow: hidden;
   height: 100%;
   flex: 1 1 0;
   flex-direction: row;
@@ -59,6 +74,7 @@ a:hover {
   flex: 0 0 0;
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   z-index: 3;
 
@@ -82,7 +98,7 @@ a:hover {
     span {
       text-align: center;
     
-      background-color: rgba(1, 1, 1, 0.98);
+      text-shadow: 4px 4px 1px black;
       color: var(--color-accent);
     
       font-family: monospace, 'Helvetica', sans-serif;
@@ -91,8 +107,6 @@ a:hover {
       cursor: pointer;
 
       transition: none;
-      padding: none;
-      margin: none;
 
       &:focus {
         background-color: transparent;
@@ -131,6 +145,23 @@ a:hover {
   .option:nth-of-type(7) {
     transform:  rotate3d(-2, 6, 4, -2deg);
   }
+
+  
+  @media screen and (max-width: 767px) {
+    margin-top: 32px;
+    justify-content: flex-start;
+
+    .option.option {
+      position: static;
+      transform: none;
+      transform-origin: 0px 0px;
+
+      height: 2em;
+      font-size: 2em;
+      line-height: 2em;
+      margin-left: 32px;
+    }
+  }
 }
 
 /* The background */
@@ -138,6 +169,7 @@ a:hover {
   position: absolute;
   height: 100%;
   width: 100%;
+  overflow: hidden;
   display: flex;
   flex: 1 1 0;
   align-items: center;
@@ -155,20 +187,21 @@ a:hover {
     transform: rotate3d(0, 0, 0, 0deg);
 
     .controls {
-        transition-delay: 0s;
-        animation: fall 1s ease-out forwards;
-        display: block;
+      transition-delay: 0s;
+      animation: fall 1s ease-out forwards;
+      display: block;
     }
   }
+
   &:not(.visible) {
     /* transition-delay: var(--base-transition-duration); */
     transition-delay: 0s;
     transform: rotate3d(0, 0, 1, -90deg);
 
     .controls {
-        transition-delay: 0s;
-        animation: rise 1s ease-out forwards;
-        display: none;
+      transition-delay: 0s;
+      animation: rise 1s ease-out forwards;
+      display: none;
     }
   }
 
@@ -184,6 +217,10 @@ a:hover {
     border-radius: 10px;
     background-color: rgba(1, 1, 1, 0.98);
     color: var(--color-accent);
+
+    @media screen and (max-width: 767px) {
+      display: none !important;
+    }
   }
 
   .text-section {
@@ -200,6 +237,23 @@ a:hover {
     max-height: 80vh;
     border-radius: 10px;
     padding: 16px;
+
+    ul > li {
+      list-style: none;
+    }
+    
+    @media screen and (max-width: 767px) {
+      justify-content: flex-start;
+      overflow-y: scroll;
+
+      ul {
+        padding-inline-start: 0px;
+
+        li {
+          margin-bottom: 16px;
+        }
+      }
+    }
   }
 }
 
@@ -210,6 +264,11 @@ a:hover {
     transition-timing-function: ease;
     transition-delay: 0.3s;
     transform: rotate3d(0, 0, 1, 90deg);
+  }
+
+  
+  @media screen and (max-width: 767px) {
+    background-position-x: 75%;
   }
 }
 
@@ -223,12 +282,16 @@ a:hover {
 }
 
 .what-i-value {
-    background-image: url('images/wedding2.jpg');
-    background-position: 20vw 30%;
-  
-    .text-section {
-      margin-left: 10vw;
-    }
+  background-image: url('images/wedding2.jpg');
+  background-position: 20vw 30%;
+
+  .text-section {
+    margin-left: 10vw;
+  }
+
+  @media screen and (max-width: 767px) {
+    background-position: center;
+  }
 }
 
 .projects {
@@ -237,6 +300,10 @@ a:hover {
 
   .text-section {
     margin-left: 50vw;
+  }
+
+  @media screen and (max-width: 767px) {
+    background-position: center;
   }
 
   .glider-container {
@@ -257,6 +324,14 @@ a:hover {
   .text-section {
     margin-left: 60vw;
   }
+
+  @media screen and (max-width: 767px) {
+    background-position: center;
+
+    .text-section {
+      margin-left: 50vw;
+    }
+  }
 }
 
 .blog {
@@ -268,6 +343,12 @@ a:hover {
     min-height: 20vh;
     border: 1px solid white;
     border-radius: 10px;
+
+    @media screen and (max-width: 767px) {
+      align-self: flex-start;
+      margin-left: 32px;
+      margin-top: 32px;
+    }
   }
 }
 
@@ -276,10 +357,6 @@ a:hover {
   font-size: 24px;
   margin-right: 10px;
   border-radius: 50%;
-}
-
-ul > li {
-    list-style: none;
 }
 
 .credits {
@@ -291,6 +368,18 @@ ul > li {
     min-height: 20vh;
     border: 1px solid white;
     border-radius: 10px;
+  }
+
+  @media screen and (max-width: 767px) {
+    background-size: contain;
+
+    .text-section {
+      margin-top: 0;
+      margin-left: 0;
+      align-self: flex-end;
+      min-width: fit-content;
+      min-height: calc(100% - 275px);
+    }
   }
 }
 

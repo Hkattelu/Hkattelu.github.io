@@ -1,3 +1,4 @@
+
 const pageMap = {
   "-1": "home",
   "0": "about-me",
@@ -13,14 +14,30 @@ function getOptions() {
 }
 
 function getCurrentPage() {
-return document.querySelector('.visible');
+  return document.querySelector('.visible');
+}
+
+function isMobile() {
+  const toMatch = [
+      /Android/i,
+      /webOS/i,
+      /iPhone/i,
+      /iPad/i,
+      /iPod/i,
+      /BlackBerry/i,
+      /Windows Phone/i
+  ];
+  
+  return toMatch.some((toMatchItem) => {
+      return navigator.userAgent.match(toMatchItem);
+  });
 }
 
 function hideOptions() {
   const options = getOptions();
   options.forEach((box) => {
       box.style['transition-delay'] = "0s";
-      box.style.transform = "rotate3d(0, 0, 1, 90deg)";
+      box.style.transform = isMobile() ? "translateY(-800px)": "rotate3d(0, 0, 1, 90deg)";
   });
 
   const home = document.querySelector(".home");
