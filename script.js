@@ -53,6 +53,11 @@ function showOptions() {
 }
 
 function showPage(index) {
+  const pages = document.getElementsByClassName('page');
+  for (const page of pages) {
+    page.classList.remove('visible');
+  }
+
   const page = document.getElementsByClassName(String(pageMap[index]))[0];
   page.style['transition-delay'] = "var(--base-transition-duration)";
   page.classList.add('visible');
@@ -61,6 +66,14 @@ function showPage(index) {
   if (currentVideo) {
     currentVideo.play();
   }
+
+  if (index < 0) {
+    showOptions();
+  } else {
+    hideOptions();
+  }
+
+  history.pushState({pageIndex: index}, '');
 }
 
 function backToHome() {
@@ -71,12 +84,19 @@ function backToHome() {
   showPage(-1);
 }
 
+window.addEventListener('popstate', (event) => {
+  if (event.state.pageIndex < 0) {
+    backToHome();
+  } else {
+    showPage(event.state.pageIndex);
+  }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   const options = getOptions();
 
   options.forEach((box, index) => {
     box.addEventListener('click', function(event) {
-      hideOptions();
       showPage(index);
     });
 
@@ -84,7 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (event.key !== 'Enter') {
         return;
       }
-      hideOptions();
       showPage(index);
       event.preventDefault();
     });
@@ -111,7 +130,6 @@ document.addEventListener('keydown', function(event) {
   switch (event.code) {
     case 'Backspace':
     case 'Escape':
-      showOptions();
       backToHome();
       event.preventDefault();
       break;
@@ -139,3 +157,5 @@ document.addEventListener('keydown', function(event) {
       break;
   }
 });
+
+history.pushState({pageIndex: -1}, '');
