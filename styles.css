@@ -202,6 +202,12 @@ a {
     }
   }
 
+  video {
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+  }
+
   /* The controls */
   .controls {
     position: absolute;
@@ -298,9 +304,6 @@ a {
 }
 
 .projects {
-  background-image: url('images/garden1.jpg');
-  background-position-y: 30%;
-
   .text-section {
     margin-left: 50vw;
   }
@@ -316,8 +319,6 @@ a {
   }
 
   @media screen and (max-width: 767px) {
-    background-position: center;
-
     .text-section {
       font-size: 0.8em;
     }
@@ -326,6 +327,11 @@ a {
     }
     .glide__slides {
       height: 450px;
+    }
+
+    video {
+      width: auto;
+      left: -450px;
     }
   }
 }   

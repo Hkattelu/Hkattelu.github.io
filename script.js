@@ -37,7 +37,7 @@ function hideOptions() {
   const options = getOptions();
   options.forEach((box) => {
       box.style['transition-delay'] = "0s";
-      box.style.transform = isMobile() ? "translateY(-800px)": "rotate3d(0, 0, 1, 90deg)";
+      box.style.transform = isMobile() ? "translateY(-1000px)": "rotate3d(0, 0, 1, 120deg)";
   });
 
   const home = document.querySelector(".home");
@@ -56,6 +56,11 @@ function showPage(index) {
   const page = document.getElementsByClassName(String(pageMap[index]))[0];
   page.style['transition-delay'] = "var(--base-transition-duration)";
   page.classList.add('visible');
+
+  const currentVideo = getCurrentPage().querySelector('video');
+  if (currentVideo) {
+    currentVideo.play();
+  }
 }
 
 function backToHome() {
