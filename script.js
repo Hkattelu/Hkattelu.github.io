@@ -88,14 +88,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   options.forEach((box, index) => {
     box.addEventListener('click', function(event) {
-      setTimeout(showPage(index), isMobile() ? 2000 : 0);
+      setTimeout(() => showPage(index), isMobile() ? 120 : 0);
     });
 
     box.addEventListener('keydown', function(event) {
       if (event.key !== 'Enter') {
         return;
       }
-      setTimeout(showPage(index), isMobile() ? 2000 : 0);
+      setTimeout(() => showPage(index), isMobile() ? 120 : 0);
       event.preventDefault();
     });
   });
