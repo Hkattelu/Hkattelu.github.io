@@ -1,20 +1,9 @@
 :root {
   /* Primary Colors */
   --color-accent: white; /* Accent color */
-  --color-secondary-accent: #FAB997; /* Secondary accent */
-  --color-tertiary-accent: #f3b36a; /* Soft tertiary color */
-
-  /* Dark Theme Colors */
-  --color-primary-dark: #0E4749; /* Primary dark background or text */
-  --color-secondary-dark: black; /* Secondary dark background or text */
-
-  /* Text and Background */
-  --color-background-light: #F1D9CC; /* Optional light background */
-  --color-text-dark: #000000; /* Optional dark text */
 
   /* Hover and Active States */
-  --color-hover-accent: #FF9B42; /* Hover variation of accent */
-  --color-hover-dark: #123C3E; /* Hover variation of dark primary */
+  --color-hover-dark: deepskyblue; /* Hover variation of dark primary */
 
   --base-transition-duration: 0.3s;
 
@@ -58,7 +47,7 @@ body {
 a {
   color: var(--color-accent);
   &:hover {
-    color: var(--color-hover-accent);
+    color: var(--color-hover-dark);
   }
 }
 
@@ -75,6 +64,7 @@ a {
 .left-options {
   flex: 0 0 0;
   position: relative;
+  pointer-events: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -85,7 +75,7 @@ a {
     width: max-content;
     font-size: 10vh;
     line-height: 10vh;
-    
+    pointer-events: auto; 
 
     /** Controls the xy position of the option */
     position: absolute;
@@ -436,13 +426,6 @@ img.box {
   border-radius: 10px;
   opacity: 0; /* Start hidden for animation */
   animation: fall 1s ease-out forwards;
-}
-
-.tagline {
-  background-color: var(--color-accent);
-  color: var(--color-secondary-dark);
-  border: 3px solid var(--color-secondary-dark);
-  border-radius: 10px;
 }
 
 /** Projects carousel */
