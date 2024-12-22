@@ -281,8 +281,11 @@ a {
   background-image: url('images/highline.jpg');
 
   .text-section {
-    font-size: 0.9em;
     margin-left: 50vw;
+
+    @media screen and (max-width: 767px) {
+      font-size: 0.9em;
+    }
   }
 }
 
