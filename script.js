@@ -18,19 +18,7 @@ function getCurrentPage() {
 }
 
 function isMobile() {
-  const toMatch = [
-      /Android/i,
-      /webOS/i,
-      /iPhone/i,
-      /iPad/i,
-      /iPod/i,
-      /BlackBerry/i,
-      /Windows Phone/i
-  ];
-  
-  return toMatch.some((toMatchItem) => {
-      return navigator.userAgent.match(toMatchItem);
-  });
+  return typeof screen.orientation !== 'undefined';
 }
 
 function hideOptions() {
@@ -69,6 +57,9 @@ function showPage(index) {
 
   if (index < 0) {
     showOptions();
+    if (isMobile()) {
+      document.activeElement.blur();
+    }
   } else {
     hideOptions();
   }
@@ -97,14 +88,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   options.forEach((box, index) => {
     box.addEventListener('click', function(event) {
-      showPage(index);
+      setTimeout(showPage(index), isMobile() ? 2000 : 0);
     });
 
     box.addEventListener('keydown', function(event) {
       if (event.key !== 'Enter') {
         return;
       }
-      showPage(index);
+      setTimeout(showPage(index), isMobile() ? 2000 : 0);
       event.preventDefault();
     });
   });
