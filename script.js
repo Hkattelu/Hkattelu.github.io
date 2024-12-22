@@ -18,14 +18,15 @@ function getCurrentPage() {
 }
 
 function isMobile() {
-  return typeof screen.orientation !== 'undefined';
+  const minWidth = 768; // Minimum width for desktop devices
+  return window.innerWidth < minWidth || screen.width < minWidth;
 }
 
 function hideOptions() {
   const options = getOptions();
   options.forEach((box) => {
       box.style['transition-delay'] = "0s";
-      box.style.transform = isMobile() ? "translateY(-1000px)": "rotate3d(0, 0, 1, 120deg)";
+      box.style.transform = isMobile() ? "translateY(-2000px)": "rotate3d(0, 0, 1, 120deg)";
   });
 
   const home = document.querySelector(".home");
