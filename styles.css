@@ -335,10 +335,19 @@ a {
   }
 
   @media screen and (max-width: 767px) {
-    .controls {
+    .controls.controls {
       display: block;
       padding: 0px 8px;
       line-height: normal;
+      width: fit-content;
+
+      animation: none;
+      margin: auto;
+      right: 0;
+      left: 0;
+      top: auto;
+      bottom: 32px;
+      text-align: center;
     }
 
     video {
@@ -359,7 +368,7 @@ a {
     }
 
     .glide__slides {
-      height: 35vh;
+      height: 40vh;
     }
   }
 }   

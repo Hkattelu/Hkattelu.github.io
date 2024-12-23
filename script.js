@@ -175,6 +175,7 @@ function setupGlider() {
   });
 }
 
+
 document.addEventListener('keydown', function(event) {
   switch (event.code) {
     case 'Backspace':
