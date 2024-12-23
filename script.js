@@ -84,6 +84,10 @@ window.addEventListener('popstate', (event) => {
   }
 });
 
+function mod(n, m) {
+  return ((n % m) + m) % m;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const options = getOptions();
 
@@ -116,6 +120,56 @@ function setupGlider() {
       }
   });
   glide.mount();
+  glide.on('run.before', (item) => {
+    const page = document.querySelector('.projects');
+    const video = page.querySelector('video');
+    const source = video.querySelector('source');
+
+    video.style.transition = '0s all ease';
+    video.style.opacity = '0';
+    const nextIndex = item.direction === '>' ? (glide.index + 1) : (glide.index - 1);
+    const newIndex = mod(nextIndex, 4);
+    source.setAttribute('src', `videos/projects_${newIndex}.mp4`);
+    const mobileUi = isMobile();
+    switch (newIndex) {
+      case 0:
+        // Youtube ai tool
+        page.style.background = 'linear-gradient(to right, purple, black)';
+        video.style.height = '100%';
+        video.style.left = mobileUi ? '0vw' : '20vw';
+        video.style.transform = 'scale(1)';
+        break;
+      case 1:
+        // Youtube quizzes
+        page.style.background = mobileUi ? 'black' : 'linear-gradient(to right, grey, black)';
+        video.style.height = mobileUi ? '275px' : '100%';
+        video.style.left = mobileUi ? '0vw' : '5vw';
+        video.style.transform = mobileUi ? 'scale(1)' : 'scale(1.15)';
+        break;
+      case 2:
+        // Logs Viewer
+        page.style.background = mobileUi ? 'black' : 'linear-gradient(to right, grey, white)';
+        video.style.height = mobileUi ? '275px' : '100%';
+        video.style.left = mobileUi ? '0vw' : '5vw';
+        video.style.transform = mobileUi ? 'scale(1)' : 'scale(1.15)';
+        break;
+      case 3:
+        // Youtube Courses
+        page.style.background = mobileUi ? 'black' : 'linear-gradient(to right, grey, black)';
+        video.style.height = mobileUi ? '275px' : '100%';
+        video.style.left = mobileUi ? '0vw' : '5vw';
+        video.style.transform = mobileUi ? 'scale(1)' : 'scale(1.15)';
+        break;
+      default:
+        break;
+    }
+    video.load();
+    setTimeout(() => {
+      video.style.transition = '0.3s all ease';
+      video.style.opacity = '1';
+      video.play();
+    }, 300);
+  });
 }
 
 document.addEventListener('keydown', function(event) {
@@ -150,4 +204,5 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
+document.querySelector('#metaphor-video').playbackRate = 0.5;
 history.pushState({pageIndex: -1}, '');
