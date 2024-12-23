@@ -61,6 +61,12 @@ a {
   background-color: navajowhite;
 }
 
+.hidden-on-mobile {
+  @media screen and (max-width: 767px) {
+    display: none !important;
+  }
+}
+
 .left-options {
   flex: 0 0 0;
   position: relative;
@@ -213,7 +219,9 @@ a {
     color: var(--color-accent);
 
     @media screen and (max-width: 767px) {
-      display: none !important;
+      &.controls {
+        display: none;
+      }
     }
   }
 
@@ -304,10 +312,10 @@ a {
   }
 }
 
-.projects {
+.page.projects {
   .text-section {
     margin-left: 50vw;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.65);
   }
 
   .glide__slides {
@@ -327,10 +335,17 @@ a {
   }
 
   @media screen and (max-width: 767px) {
+    .controls {
+      display: block;
+      padding: 0px 8px;
+      line-height: normal;
+    }
+
     video {
-      left: 0vw;
+      left: -8vw;
       align-self: flex-start;
     }
+
     .text-section {
       font-size: 1em;
       padding-top: 0px;
@@ -342,6 +357,7 @@ a {
       box-sizing: border-box;
       height: calc(100% - 275px);
     }
+
     .glide__slides {
       height: 35vh;
     }

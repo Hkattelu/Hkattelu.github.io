@@ -131,12 +131,15 @@ function setupGlider() {
     const newIndex = mod(nextIndex, 4);
     source.setAttribute('src', `videos/projects_${newIndex}.mp4`);
     const mobileUi = isMobile();
+    if (mobileUi) {
+      page.querySelector('.controls').style.display = 'none';
+    }
     switch (newIndex) {
       case 0:
         // Youtube ai tool
         page.style.background = 'linear-gradient(to right, purple, black)';
         video.style.height = '100%';
-        video.style.left = mobileUi ? '0vw' : '20vw';
+        video.style.left = mobileUi ? '-8vw' : '20vw';
         video.style.transform = 'scale(1)';
         break;
       case 1:
