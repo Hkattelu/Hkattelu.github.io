@@ -276,9 +276,6 @@ a {
 }
 
 .about-me {
-  background-position: 30% 30%;
-  background-image: url('images/highline.jpg');
-
   .text-section {
     margin-left: 50vw;
   }
@@ -392,20 +389,14 @@ a {
 }
 
 .blog {
-  background-image: url('images/brandenburg.jpg');
-  background-position-y: bottom;
+  background-image: url('images/highline.jpg');
+  background-position: 30% 30%;
 
   .text-section {
     margin-left: 50vw;
     min-height: 20vh;
     border: 1px solid white;
     border-radius: 10px;
-
-    @media screen and (max-width: 767px) {
-      align-self: flex-start;
-      margin-left: 32px;
-      margin-top: 32px;
-    }
   }
 }
 
