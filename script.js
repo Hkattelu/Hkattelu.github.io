@@ -139,6 +139,7 @@ function setupGlider() {
         // Youtube ai tool
         page.style.background = 'linear-gradient(to right, purple, black)';
         video.style.height = '100%';
+        video.style.width = mobileUi ? 'auto' : '100%';
         video.style.left = mobileUi ? '-8vw' : '20vw';
         video.style.transform = 'scale(1)';
         break;
@@ -146,13 +147,15 @@ function setupGlider() {
         // Youtube quizzes
         page.style.background = mobileUi ? 'black' : 'linear-gradient(to right, grey, black)';
         video.style.height = mobileUi ? '275px' : '100%';
-        video.style.left = mobileUi ? '0vw' : '5vw';
+        video.style.width = mobileUi ? '100%' : 'auto';
+        video.style.left = mobileUi ? '-5vw' : '5vw';
         video.style.transform = mobileUi ? 'scale(1)' : 'scale(1.15)';
         break;
       case 2:
         // Logs Viewer
         page.style.background = mobileUi ? 'black' : 'linear-gradient(to right, grey, white)';
         video.style.height = mobileUi ? '275px' : '100%';
+        video.style.width = mobileUi ? '100%' : 'auto';
         video.style.left = mobileUi ? '0vw' : '5vw';
         video.style.transform = mobileUi ? 'scale(1)' : 'scale(1.15)';
         break;
@@ -160,6 +163,7 @@ function setupGlider() {
         // Youtube Courses
         page.style.background = mobileUi ? 'black' : 'linear-gradient(to right, grey, black)';
         video.style.height = mobileUi ? '275px' : '100%';
+        video.style.width = mobileUi ? '100%' : 'auto';
         video.style.left = mobileUi ? '0vw' : '5vw';
         video.style.transform = mobileUi ? 'scale(1)' : 'scale(1.15)';
         break;
