@@ -7,7 +7,8 @@ const pageMap = {
   "3": "contact",
   "4": "blog",
   "5": "credits",
-}
+};
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 function getOptions() {
   return document.querySelectorAll(".option");
@@ -88,23 +89,58 @@ function mod(n, m) {
   return ((n % m) + m) % m;
 }
 
+let scrambledTextInterval = null;
+function applyScrambleTextEffect(element, tickMs) {
+  let iteration = 0;
+  clearInterval(scrambledTextInterval);
+  
+  scrambledTextInterval = setInterval(() => {
+    element.innerText = element.innerText
+      .split("")
+      .map((letter, index) => {
+        if(index < iteration) {
+          return element.dataset.value[index];
+        }
+      
+        return letters[Math.floor(Math.random() * 26)]
+      })
+      .join("");
+    
+    if(iteration >= element.dataset.value.length){ 
+      clearInterval(scrambledTextInterval);
+    }
+    
+    iteration++;
+  }, tickMs);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const options = getOptions();
 
+  // Assign click and enter handlers
   options.forEach((box, index) => {
-    box.addEventListener('click', function(event) {
+    box.addEventListener('click', () => {
       setTimeout(() => showPage(index), isMobile() ? 120 : 0);
     });
 
-    box.addEventListener('keydown', function(event) {
+    box.addEventListener('keydown', (event) => {
       if (event.key !== 'Enter') {
         return;
       }
       setTimeout(() => showPage(index), isMobile() ? 120 : 0);
       event.preventDefault();
     });
+
+    const span = box.querySelector('span');
+    span.addEventListener('focus', (event) => { 
+      applyScrambleTextEffect(event.target, 45);
+    });
+    span.addEventListener('blur', (event) => { 
+      event.target.innerText = event.target.dataset.value;
+    });
   });
 
+  // Initialize projects carousel
   setupGlider();
 });
 

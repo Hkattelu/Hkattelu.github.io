@@ -79,8 +79,8 @@ a {
   .option {
     height: 10vh;
     width: max-content;
-    font-size: 10vh;
-    line-height: 10vh;
+    font-size: clamp(3rem, 10vh, 10rem);
+    line-height: clamp(3rem, 10vh, 10rem);
     pointer-events: auto; 
 
     /** Controls the xy position of the option */
@@ -93,12 +93,11 @@ a {
     cursor: pointer;
 
     span {
-      text-align: center;
-    
+      text-transform: uppercase;
       text-shadow: 4px 4px 1px black;
       color: var(--color-accent);
     
-      font-family: monospace, 'Helvetica', sans-serif;
+      font-family: 'Space Mono', monospace;
       font-weight: 500;
       outline: none;
       cursor: pointer;
