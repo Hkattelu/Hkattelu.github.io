@@ -106,10 +106,10 @@ a {
 
       &:focus {
         background-color: transparent;
-        background-image: url(images/mask.png);
+        background-image: url(images/masks0.png);
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 45vw;
+        background-size: calc(100% - 40vw) 30%;
 
         transition: all 0.3s ease-out;
 
@@ -432,31 +432,6 @@ a {
       align-self: flex-start;
     }
   }
-}
-
-.type-text {
-  font-size: 24px;
-  font-weight: 700;
-  width: fit-content;
-
-  p {
-    overflow: hidden; /* Ensures the content is not revealed until the animation */
-  
-    margin: 10px 16px;
-    border-right: .15em solid var(--color-accent); /* The typwriter cursor */
-    white-space: nowrap; /* Keeps the content on a single line */
-    animation: 
-      typing 1.5s steps(40, end) forwards,
-      blink-caret .6s step-end forwards;
-  }
-}
-.type-text.delay-1 p {
-  width: 0;
-  animation-delay: 1.5s;
-}
-.type-text.delay-2 p {
-  width: 0;
-  animation-delay: 3s;
 }
 
 img.box {

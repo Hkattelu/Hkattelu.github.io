@@ -90,6 +90,9 @@ function mod(n, m) {
 }
 
 let scrambledTextInterval = null;
+let backgroundChangingInterval = null;
+const MAX_SCRAMBLE_ITERATIONS = 6;
+const NUM_BACKGROUND_MASKS = 9;
 function applyScrambleTextEffect(element, tickMs) {
   let iteration = 0;
   clearInterval(scrambledTextInterval);
@@ -98,45 +101,59 @@ function applyScrambleTextEffect(element, tickMs) {
     element.innerText = element.innerText
       .split("")
       .map((letter, index) => {
-        if(index < iteration) {
-          return element.dataset.value[index];
-        }
-      
-        return letters[Math.floor(Math.random() * 26)]
+        return letters[Math.floor(Math.random() * letters.length)]
       })
       .join("");
-    
-    if(iteration >= element.dataset.value.length){ 
+    if(iteration >= MAX_SCRAMBLE_ITERATIONS){ 
+      element.innerText = element.dataset.value;
       clearInterval(scrambledTextInterval);
     }
     
     iteration++;
   }, tickMs);
 }
+function applyBackgroundChangingInterval(element) {
+  clearInterval(backgroundChangingInterval);
+  let iteration = 0;
+  element.style.transition = 'none';
+  element.style.backgroundImage = `url(images/masks${mod(iteration, NUM_BACKGROUND_MASKS)}.png)`;
+  iteration = mod(iteration + 1, NUM_BACKGROUND_MASKS);
+  backgroundChangingInterval = setInterval(() => {
+    element.style.backgroundImage = `url(images/masks${mod(iteration, NUM_BACKGROUND_MASKS)}.png)`;
+    iteration = mod(iteration + 1, NUM_BACKGROUND_MASKS);
+  }, 250);
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const options = getOptions();
 
+  const MOBILE_PAGE_TRANSITION_DELAY = 120;
   // Assign click and enter handlers
   options.forEach((box, index) => {
     box.addEventListener('click', () => {
-      setTimeout(() => showPage(index), isMobile() ? 120 : 0);
+      setTimeout(() => showPage(index), isMobile() ? MOBILE_PAGE_TRANSITION_DELAY : 0);
     });
 
     box.addEventListener('keydown', (event) => {
       if (event.key !== 'Enter') {
         return;
       }
-      setTimeout(() => showPage(index), isMobile() ? 120 : 0);
+      setTimeout(() => showPage(index), isMobile() ? MOBILE_PAGE_TRANSITION_DELAY : 0);
       event.preventDefault();
     });
 
     const span = box.querySelector('span');
     span.addEventListener('focus', (event) => { 
-      applyScrambleTextEffect(event.target, 45);
+      event.target.style.transition = 'none';
+      applyScrambleTextEffect(event.target, 30);
+      applyBackgroundChangingInterval(event.target);
     });
     span.addEventListener('blur', (event) => { 
+      clearInterval(scrambledTextInterval);
+      clearInterval(backgroundChangingInterval);
       event.target.innerText = event.target.dataset.value;
+      event.target.style.backgroundImage = 'none';
+      event.target.style.transition = 'none';
     });
   });
 
@@ -247,6 +264,10 @@ document.addEventListener('keydown', function(event) {
       break;
   }
 });
+
+// Initiate the changing background on the "About me" button.
+// document.activeElement.style.transition = 'none';
+applyBackgroundChangingInterval(document.activeElement);
 
 document.querySelector('#metaphor-video').playbackRate = 0.5;
 history.pushState({pageIndex: -1}, '');
