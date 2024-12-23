@@ -265,9 +265,43 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
-// Initiate the changing background on the "About me" button.
-// document.activeElement.style.transition = 'none';
-applyBackgroundChangingInterval(document.activeElement);
+function onInit() {
+  // Destroy the loader
+  document.querySelector('.loader').remove();
 
-document.querySelector('#metaphor-video').playbackRate = 0.5;
-history.pushState({pageIndex: -1}, '');
+  // Fade in the page
+  const container = document.querySelector('.container');
+  container.style.opacity = '1';  
+  
+  // Initiate the changing background on the "About me" button.
+  if (!isMobile()) {
+    applyBackgroundChangingInterval(document.activeElement);
+  }
+
+  // Slow down the metaphor video because its kind of fast.
+  document.querySelector('#metaphor-video').playbackRate = 0.5;
+
+  // Add a history entry. Needed for back button support.
+  history.pushState({pageIndex: -1}, '');
+}
+
+// Validate that all videos have fully loaded. Only then, drop the loader
+const videos = document.querySelectorAll('video');
+function checkAllVideosLoaded() {
+  const allLoaded =  Array.from(videos).reduce((tempLoaded, video) => tempLoaded && video.readyState >=4, true);
+  if (!allLoaded) {
+    return;
+  }
+
+  // All videos have loaded
+  onInit();
+}
+
+const allLoaded = Array.from(videos).reduce((tempLoaded, video) => tempLoaded && video.readyState >=4, true);
+if (allLoaded) {
+  onInit();
+} else {
+  videos.forEach(video => {
+    video.addEventListener('canplaythrough', () => checkAllVideosLoaded());
+  });
+}
