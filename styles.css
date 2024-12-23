@@ -343,7 +343,7 @@ a {
       height: calc(100% - 275px);
     }
     .glide__slides {
-      height: 400px;
+      height: 35vh;
     }
   }
 }   
