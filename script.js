@@ -281,9 +281,6 @@ function onInit() {
     applyBackgroundChangingInterval(document.activeElement);
   }
 
-  // Slow down the metaphor video because its kind of fast.
-  document.querySelector('#metaphor-video').playbackRate = 0.5;
-
   // Add a history entry. Needed for back button support.
   history.pushState({pageIndex: -1}, '');
 }
