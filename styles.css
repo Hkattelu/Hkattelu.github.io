@@ -523,6 +523,7 @@ h3 {
 
     .glide__slides {
       overflow-y: scroll;
+      overscroll-behavior: none;
       height: 50vh;
     }
   }

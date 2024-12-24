@@ -278,6 +278,39 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
+let xDown = null;
+let yDown = null;
+
+function getTouches(evt) {
+  return evt.touches || evt.originalEvent.touches;
+}
+
+function handleTouchStart(evt) {
+  const firstTouch = getTouches(evt)[0];                                      
+  xDown = firstTouch.clientX;                                      
+  yDown = firstTouch.clientY;                                      
+};                                                
+                                                                       
+function handleTouchMove(evt) {
+  if (!xDown || !yDown) {
+      return;
+  }
+
+  var xUp = evt.touches[0].clientX;                                    
+  var yUp = evt.touches[0].clientY;
+
+  var xDiff = xDown - xUp;
+  var yDiff = yDown - yUp;
+                                                                       
+  if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
+    glide.go(xDiff > 0 ? '>' : '<');                
+  }
+
+  // reset values
+  xDown = null;
+  yDown = null;                                             
+};
+
 function onInit() {
   // Destroy the loader
   const loader = document.querySelector('.loader');
@@ -294,6 +327,11 @@ function onInit() {
   // Initiate the changing background on the "About me" button.
   if (!isMobile()) {
     applyBackgroundChangingInterval(document.activeElement);
+  } else {
+    // Add swipe event listeners to projects carousel on mobile.
+    const video = document.querySelector('.projects video');
+    video.addEventListener('touchstart', (evt) => handleTouchStart(evt));
+    video.addEventListener('touchmove', (evt) => handleTouchMove(evt));
   }
 
   // Add a history entry. Needed for back button support.
