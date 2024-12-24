@@ -429,6 +429,11 @@ a {
       width: 100vw;
       box-sizing: border-box;
       height: calc(100% - 220px);
+
+      ul li {
+        list-style-type: disc;
+        list-style-position: inside;
+      }
     }
 
     video {

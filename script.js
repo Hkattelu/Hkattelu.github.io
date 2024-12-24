@@ -267,7 +267,10 @@ document.addEventListener('keydown', function(event) {
 
 function onInit() {
   // Destroy the loader
-  document.querySelector('.loader').remove();
+  const loader = document.querySelector('.loader');
+  if (loader) {
+    loader.remove();
+  }
 
   // Fade in the page
   const container = document.querySelector('.container');
