@@ -452,12 +452,14 @@ h3 {
     transition: transform var(--base-transition-duration) ease;
     box-shadow: 0px 4px 4px #00000030;
     height: fit-content;
-    transform: rotateY(10deg);
 
-    /* The first page load needs to be instantiated in CSS */
-    /* The rest are handled in JS */
+    /* The first video is different, since its the only vertical one */
     &[data-index="0"] {
       height: 80vh;
+    }
+
+    transform: rotateY(10deg);
+    @media screen and (max-width: 767px) {
       transform: rotateX(-5deg);
     }
   }
