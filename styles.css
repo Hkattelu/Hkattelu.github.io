@@ -1,14 +1,24 @@
 :root {
-  /* Primary Colors */
-  --color-accent: white; /* Accent color */
-
-  /* Hover and Active States */
-  --color-hover-dark: deepskyblue; /* Hover variation of dark primary */
-
   --base-transition-duration: 0.3s;
+  --hue: 182;
 
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
+
+  --tertiary-hue: calc(var(--hue) + 300);
+  --accent-hue: calc(var(--hue) + 60);
+  --primary-color: hsl(var(--hue), 50%, 0%);
+  --pre-primary-color: hsl(var(--hue), 50%, 95%);
+  --secondary-color: hsl(var(--hue), 50%, 10%);
+  --tertiary-color: hsl(var(--tertiary-hue), 80%, 20%);
+  --accent-color: hsl(var(--accent-hue), 80%, 20%);
+
+  @media (prefers-color-scheme: dark) {
+    --primary-color: hsl(var(--hue), 100%, 100%);
+    --pre-primary-color: hsl(var(--hue), 50%, 55%);
+    --secondary-color: hsl(var(--hue), 50%, 90%);
+    --tertiary-color: hsl(var(--tertiary-hue), 80%, 80%);
+  }
 }
 
 html {
@@ -44,19 +54,19 @@ body {
 }
 
 a:not(.fa) {
-  color: var(--color-hover-dark);
+  color: var(--pre-primary-color);
 
   h3 & {
-    color: var(--color-accent);
+    color: var(--primary-color);
   }
   
   &:hover {
-    color: var(--color-hover-dark);
+    color: var(--pre-primary-color);
   }
 }
 
 h3 {
-  border: 1px solid var(--color-accent);
+  border: 1px solid var(--primary-color);
   border-radius: 2px;
   width: fit-content;
   padding: 6px 12px;
@@ -82,7 +92,7 @@ h3 {
   flex: 1 1 0;
   flex-direction: row;
   width: 60vw;
-  background-color: navajowhite;
+  background-color: var(--secondary-color);
 }
 
 .hidden-on-mobile {
@@ -121,7 +131,7 @@ h3 {
     span {
       text-transform: uppercase;
       text-shadow: 4px 4px 1px black;
-      color: var(--color-accent);
+      color: var(--primary-color);
     
       font-family: 'Space Mono', monospace;
       font-weight: 500;
@@ -273,7 +283,7 @@ h3 {
     transition: var(--base-transition-duration) all ease;
     border-radius: 10px;
     background-color: rgba(1, 1, 1, 0.98);
-    color: var(--color-accent);
+    color: var(--primary-color);
 
     @media screen and (max-width: 767px) {
       &.controls {
@@ -288,7 +298,7 @@ h3 {
     justify-content: center;
 
     background-color: black;
-    color: var(--color-accent);
+    color: var(--primary-color);
 
     min-width: 30vw;
     max-width: 40vw;
@@ -428,6 +438,7 @@ h3 {
       list-style-position: inside;
     }
   }
+
   .glide__bullets {
     text-align: center;
 
@@ -456,11 +467,16 @@ h3 {
     /* The first video is different, since its the only vertical one */
     &[data-index="0"] {
       height: 80vh;
+      width: fit-content;
+      left: 18vw;
     }
 
     transform: rotateY(10deg);
     @media screen and (max-width: 767px) {
       transform: rotateX(-5deg);
+      &[data-index="0"] {
+        left: 25vw;
+      }
     }
   }
 
