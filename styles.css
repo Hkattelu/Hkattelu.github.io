@@ -43,10 +43,31 @@ body {
 	background: rgba(255,255,255,1);
 }
 
-a {
+a:not(.fa) {
   color: var(--color-hover-dark);
+
+  h3 & {
+    color: var(--color-accent);
+  }
+  
   &:hover {
     color: var(--color-hover-dark);
+  }
+}
+
+h3 {
+  border: 1px solid var(--color-accent);
+  border-radius: 2px;
+  width: fit-content;
+  padding: 6px 12px;
+
+  a {
+    text-decoration: none;
+  }
+
+  .fa {
+    margin-left: 8px;
+    font-size: 18px;
   }
 }
 
@@ -221,6 +242,7 @@ a {
     top: 32px;
     right: 32px;
     z-index: 2;
+    text-align: center;
   
     transition: 0.3s all ease;
     border-radius: 10px;
@@ -248,6 +270,22 @@ a {
     max-height: 80vh;
     border-radius: 10px;
     padding: 16px;
+
+    h3 {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    h4 {
+      font-family: Helvetica, sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    p, li {
+      font-size: 1em;
+    }
 
     ul > li {
       list-style: none;
@@ -283,7 +321,7 @@ a {
   }
 }
 
-.about-me {
+.page.about-me {
   .text-section {
     margin-left: 50vw;
   }
@@ -300,7 +338,7 @@ a {
   }
 }
 
-.what-i-value {
+.page.what-i-value {
   background-image: url('images/wedding2.jpg');
   background-position: 20vw 30%;
 
@@ -336,11 +374,19 @@ a {
     max-width: none;
     height: 90vh;
     justify-content: flex-start;
-    background-color: rgba(0,0,0,0.65);
+    background-color: rgba(0, 0, 0, 0.65);
+
+    /** This is needed to prevent bleeding out of the page */
+    overflow: hidden;
   }
 
   .glide__slides {
-    height: 60vh;
+    height: 70vh;
+
+    ul > li {
+      list-style-type: disc;
+      list-style-position: inside;
+    }
   }
   .glide__bullets {
     text-align: center;
@@ -365,8 +411,8 @@ a {
       margin: auto;
       right: 0;
       left: 0;
-      top: auto;
-      bottom: 32px;
+      top: 16px;
+      bottom: auto;
       text-align: center;
     }
 
@@ -391,8 +437,13 @@ a {
       height: calc(100% - 40vh);
     }
 
+    .glider-contain {
+      height: 100%;
+    }
+
     .glide__slides {
-      height: 40vh;
+      overflow-y: scroll;
+      height: 50vh;
     }
   }
 }   
@@ -430,7 +481,7 @@ a {
 /* Font Awesome Icons */
 .fa {
   font-size: 24px;
-  margin-right: 10px;
+  margin: 0px 6px;
   border-radius: 50%;
 }
 
@@ -444,7 +495,7 @@ a {
     border: 1px solid white;
     border-radius: 10px;
 
-    ul li {
+    ul > li {
       list-style-type: disc;
       list-style-position: inside;
     }
@@ -517,7 +568,6 @@ footer {
 }
 
 /** Initial page loader */
-/* HTML: <div class="loader"></div> */
 .loader {
   position: absolute;
   margin: auto;
