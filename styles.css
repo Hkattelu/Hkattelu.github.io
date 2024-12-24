@@ -465,10 +465,12 @@ a {
       max-width: 100vw;
       width: 100vw;
       box-sizing: border-box;
-      height: calc(100% - 220px);
+      height: calc(100% - 40vh);
     }
 
     video {
+      height: 40vh;
+      width: auto;
       align-self: flex-start;
     }
   }
