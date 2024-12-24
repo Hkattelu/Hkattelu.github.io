@@ -7,18 +7,11 @@
 
   --tertiary-hue: calc(var(--hue) + 300);
   --accent-hue: calc(var(--hue) + 60);
-  --primary-color: hsl(var(--hue), 50%, 0%);
-  --pre-primary-color: hsl(var(--hue), 50%, 95%);
-  --secondary-color: hsl(var(--hue), 50%, 10%);
-  --tertiary-color: hsl(var(--tertiary-hue), 80%, 20%);
+  --primary-color: hsl(var(--hue), 100%, 100%);
+  --pre-primary-color: hsl(var(--hue), 50%, 55%);
+  --secondary-color: hsl(var(--hue), 50%, 90%);
+  --tertiary-color: hsl(var(--tertiary-hue), 80%, 80%);
   --accent-color: hsl(var(--accent-hue), 80%, 20%);
-
-  @media (prefers-color-scheme: dark) {
-    --primary-color: hsl(var(--hue), 100%, 100%);
-    --pre-primary-color: hsl(var(--hue), 50%, 55%);
-    --secondary-color: hsl(var(--hue), 50%, 90%);
-    --tertiary-color: hsl(var(--tertiary-hue), 80%, 80%);
-  }
 }
 
 html {
