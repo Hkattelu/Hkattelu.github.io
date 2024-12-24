@@ -406,6 +406,7 @@ h3 {
 .page.projects {
   --gradient1: purple;
   --gradient2: black;
+  perspective: 500px;
 
   .text-section {
     margin-left: 50vw;
@@ -429,14 +430,33 @@ h3 {
   }
   .glide__bullets {
     text-align: center;
+
+    .glide__bullet {
+      height: 16px;
+      width: 16px;
+
+      border: 1px solid white;
+      border-radius: 50%;
+      background-color: black;
+
+      &.glide__bullet--active {
+        background-color: white;
+        border-color: black;
+      }
+    }
   }
 
   video {
-    height: 80vh;
     width: 40vw;
-    left: 5vw;
+    left: 8vw;
     transition: transform var(--base-transition-duration) ease;
-    transform: rotateY(20deg);
+    box-shadow: 0px 4px 4px #00000030;
+    height: fit-content;
+    transform: rotateY(10deg);
+
+    &[data-index="0"] {
+      height: 80vh;
+    }
   }
 
   @media screen and (max-width: 767px) {

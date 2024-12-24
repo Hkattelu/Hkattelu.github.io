@@ -238,7 +238,7 @@ function setupGlider() {
     setTimeout(() => {
       video.style.setProperty('transition', '0.3s all ease-out');
       video.style.setProperty('opacity', '1');
-      video.style.setProperty('transform', mobileUi ? 'rotateX(5deg)' : 'scale(1.15) rotateY(20deg)');
+      video.style.setProperty('transform', mobileUi ? 'rotateX(5deg)' : 'rotateY(10deg)');
       setTimeout(() => video.play(), 300);
     }, 0);
   });
