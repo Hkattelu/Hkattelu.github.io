@@ -1,5 +1,5 @@
 
-const pageMap = {
+const PAGE_MAP = {
   "-1": "home",
   "0": "about-me",
   "1": "what-i-value",
@@ -8,7 +8,14 @@ const pageMap = {
   "4": "blog",
   "5": "credits",
 };
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const MOBILE_PAGE_TRANSITION_DELAY = '0.3s';
+const NUM_BACKGROUND_MASKS = 9;
+const MAX_SCRAMBLE_ITERATIONS = 6;
+const NUM_PROJECTS = 4;
+
+let scrambledTextInterval = null;
+let backgroundChangingInterval = null;
 
 function getOptions() {
   return document.querySelectorAll(".option");
@@ -48,7 +55,7 @@ function showPage(index) {
     page.classList.remove('visible');
   }
 
-  const page = document.getElementsByClassName(String(pageMap[index]))[0];
+  const page = document.getElementsByClassName(String(PAGE_MAP[index]))[0];
   page.style.setProperty('transition-delay', 'var(--base-transition-duration)');
   page.classList.add('visible');
 
@@ -89,10 +96,6 @@ function mod(n, m) {
   return ((n % m) + m) % m;
 }
 
-let scrambledTextInterval = null;
-let backgroundChangingInterval = null;
-const MAX_SCRAMBLE_ITERATIONS = 6;
-const NUM_BACKGROUND_MASKS = 9;
 function applyScrambleTextEffect(element, tickMs) {
   let iteration = 0;
   clearInterval(scrambledTextInterval);
@@ -101,7 +104,7 @@ function applyScrambleTextEffect(element, tickMs) {
     element.innerText = element.innerText
       .split("")
       .map((letter, index) => {
-        return letters[Math.floor(Math.random() * letters.length)]
+        return LETTERS[Math.floor(Math.random() * LETTERS.length)]
       })
       .join("");
     if(iteration >= MAX_SCRAMBLE_ITERATIONS){ 
@@ -184,13 +187,14 @@ function setupGlider() {
     video.style.setProperty('transition', '0s all ease');
     video.style.setProperty('opacity', '0');
     // This will make it so when we show the video again, it slides in from the right.
+    const translateDistance = toRight ? '100' : '-100';
     video.style.setProperty(
       'transform',
-      mobileUi ? 'translateX(200vw) rotateY(-45deg)' : 'translateY(200vh) rotateX(-45deg)');
+      mobileUi ? `translateX(${translateDistance}vw) rotateY(-45deg)` : `translateY(${translateDistance}vh) rotateX(-45deg)`);
 
     // Update the video element to the new video
     const nextIndex = toRight ? (glide.index + 1) : (glide.index - 1);
-    const newIndex = mod(nextIndex, 4);
+    const newIndex = mod(nextIndex, NUM_PROJECTS);
     source.setAttribute('src', `videos/projects_${newIndex}.mp4`);
 
     // Hide the controls. We assume the user doesn't need them anymore.
@@ -221,12 +225,12 @@ function setupGlider() {
 
     // Assume the video takes < 0.3s to load.
     // Once it loads, prepare the new animation.
-    requestAnimationFrame(() => {
+    setTimeout(() => {
       video.style.setProperty('transition', '0.3s all ease-out');
       video.style.setProperty('opacity', '1');
       video.style.setProperty('transform', mobileUi ? 'rotateX(5deg)' : `scale(1.15) rotateY(20deg)`);
       setTimeout(() => video.play(), 300);
-    });
+    }, 0);
   });
 }
 
@@ -250,7 +254,7 @@ document.addEventListener('keydown', function(event) {
         const allOptions = Array.from(document.querySelectorAll('span[tabindex="0"]'));
         const currentIndex = allOptions.findIndex((el) => el === activeEl);
         const newIndex = event.code === 'ArrowDown' ? currentIndex + 1 : currentIndex - 1;
-        allOptions[newIndex % allOptions.length].focus();
+        allOptions[mod(newIndex, allOptions.length)].focus();
         event.preventDefault();
       }
       break;
