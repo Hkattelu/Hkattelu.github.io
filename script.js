@@ -201,7 +201,9 @@ function setupGlider() {
     source.setAttribute('src', `videos/projects_${newIndex}.mp4`);
 
     // Hide the controls. We assume the user doesn't need them anymore.
-    page.querySelector('.controls').style.display = 'none';
+    if (isMobile()) {
+      page.querySelector('.controls').style.display = 'none';
+    }
 
     // Update the page to match the new video theme. 
     // As far as I know, there is no cleaner way to do this.

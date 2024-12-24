@@ -351,18 +351,28 @@ h3 {
 }
 
 .page.what-i-value {
-  background-image: url('images/wedding2.jpg');
-  background-position: 20vw 30%;
-
   .text-section {
     margin-left: 10vw;
   }
 
-  @media screen and (max-width: 767px) {
-    background-position: center;
+  video {
+    width: 100%;
+    top: -100%;
+  }
 
+  @media screen and (max-width: 767px) {
     .text-section {
-      font-size: 0.9em;
+      margin-left: 5vw;
+
+      ul {
+        padding-inline-start: 0;
+      }
+    }
+
+    video {
+      width: auto;
+      height: 100%;
+      top: 0;
     }
   }
 }
@@ -380,6 +390,9 @@ h3 {
 }
 
 .page.projects {
+  --gradient1: purple;
+  --gradient2: black;
+
   .text-section {
     margin-left: 50vw;
     width: 45vw;
