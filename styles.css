@@ -473,7 +473,7 @@ h3 {
   }
 }   
 
-.contact {
+.page.contact {
   .text-section {
     margin-left: 60vw;
 
@@ -499,15 +499,25 @@ h3 {
   }
 }
 
-.blog {
-  background-image: url('images/highline.jpg');
-  background-position: 30% 30%;
-
+.page.blog {
   .text-section {
     margin-left: 50vw;
     min-height: 20vh;
     border: 1px solid white;
     border-radius: 10px;
+  }
+
+  video {
+    width: 100%;
+    top: -90%;
+  }
+
+  @media screen and (max-width: 767px) {
+    video {
+      height: 100%;
+      width: auto;
+      top: 0;
+    }
   }
 }
 
