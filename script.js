@@ -49,7 +49,7 @@ function showPage(index) {
   }
 
   const page = document.getElementsByClassName(String(pageMap[index]))[0];
-  page.style['transition-delay'] = "var(--base-transition-duration)";
+  page.style.setProperty('transition-delay', 'var(--base-transition-duration)');
   page.classList.add('visible');
 
   const currentVideo = getCurrentPage().querySelector('video');
@@ -184,41 +184,45 @@ function setupGlider() {
     const newIndex = mod(nextIndex, 4);
     source.setAttribute('src', `videos/projects_${newIndex}.mp4`);
     const mobileUi = isMobile();
-    if (mobileUi) {
+    // if (mobileUi) {
       page.querySelector('.controls').style.display = 'none';
-    }
+    // }
     switch (newIndex) {
       case 0:
         // Youtube ai tool
-        page.style.background = 'linear-gradient(to right, purple, black)';
-        video.style.height = '100%';
-        video.style.width = mobileUi ? 'auto' : '100%';
-        video.style.left = mobileUi ? '-8vw' : '20vw';
-        video.style.transform = 'scale(1)';
+        page.style.setProperty('--gradient1', 'purple');
+        page.style.setProperty('--gradient2', 'black');
+        video.style.height = mobileUi ? 'auto': 'auto';
+        video.style.width = mobileUi ? 'auto' : '40vw';
+        video.style.left = mobileUi ? '-8vw' : '0vw';
+        video.style.transform = mobileUi ? 'scale(1) rotateX(20deg)' : `scale(1) rotateY(20deg)`;
         break;
       case 1:
         // Youtube quizzes
-        page.style.background = mobileUi ? 'black' : 'linear-gradient(to right, grey, black)';
-        video.style.height = mobileUi ? '275px' : '100%';
-        video.style.width = mobileUi ? '100%' : 'auto';
+        page.style.setProperty('--gradient1', 'grey');
+        page.style.setProperty('--gradient2', 'black');
+        video.style.height = mobileUi ? '275px' : 'auto';
+        video.style.width = mobileUi ? '100%' : '40vw';
         video.style.left = mobileUi ? '-5vw' : '5vw';
-        video.style.transform = mobileUi ? 'scale(1)' : 'scale(1.15)';
+        video.style.transform = mobileUi ? 'scale(1) rotateX(20deg)' : `scale(1.15) rotateY(20deg)`;
         break;
       case 2:
         // Logs Viewer
-        page.style.background = mobileUi ? 'black' : 'linear-gradient(to right, grey, white)';
-        video.style.height = mobileUi ? '275px' : '100%';
-        video.style.width = mobileUi ? '100%' : 'auto';
+        page.style.setProperty('--gradient1', 'darkgrey');
+        page.style.setProperty('--gradient2', 'grey');
+        video.style.height = mobileUi ? '275px' : 'auto';
+        video.style.width = mobileUi ? '100%' : '40vw';
         video.style.left = mobileUi ? '0vw' : '5vw';
-        video.style.transform = mobileUi ? 'scale(1)' : 'scale(1.15)';
+        video.style.transform = mobileUi ? 'scale(1) rotateX(20deg)' : `scale(1.15) rotateY(20deg)`;
         break;
       case 3:
         // Youtube Courses
-        page.style.background = mobileUi ? 'black' : 'linear-gradient(to right, grey, black)';
-        video.style.height = mobileUi ? '275px' : '100%';
-        video.style.width = mobileUi ? '100%' : 'auto';
+        page.style.setProperty('--gradient1', 'grey');
+        page.style.setProperty('--gradient2', 'black');
+        video.style.height = mobileUi ? '275px' : 'auto';
+        video.style.width = mobileUi ? '100%' : '40vw';
         video.style.left = mobileUi ? '0vw' : '5vw';
-        video.style.transform = mobileUi ? 'scale(1)' : 'scale(1.15)';
+        video.style.transform = mobileUi ? 'scale(1) rotateX(20deg)' : `scale(1.15) rotateY(20deg)`;
         break;
       default:
         break;

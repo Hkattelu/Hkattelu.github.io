@@ -125,25 +125,25 @@ a {
   }
 
   .option:nth-of-type(1) {
-    transform:  rotate3d(-2, 6, 4, 50deg);
+    transform: rotate3d(-2, 6, 4, 50deg) skewX(10deg);
   }
   .option:nth-of-type(2) {
-    transform:  rotate3d(-2, 6, 4, 41deg);
+    transform: rotate3d(-2, 6, 4, 41deg) skewX(10deg);
   }
   .option:nth-of-type(3) {
-    transform:  rotate3d(-2, 6, 4, 32deg);
+    transform: rotate3d(-2, 6, 4, 32deg) skewX(10deg);
   }
   .option:nth-of-type(4) {
-    transform:  rotate3d(-2, 6, 4, 23deg);
+    transform: rotate3d(-2, 6, 4, 23deg) skewX(10deg);
   }
   .option:nth-of-type(5) {
-    transform:  rotate3d(-2, 6, 4, 14deg);
+    transform: rotate3d(-2, 6, 4, 14deg) skewX(10deg);
   }
   .option:nth-of-type(6) {
-    transform:  rotate3d(-2, 6, 4, 5deg);
+    transform: rotate3d(-2, 6, 4, 5deg) skewX(10deg);
   }
   .option:nth-of-type(7) {
-    transform:  rotate3d(-2, 6, 4, -2deg);
+    transform: rotate3d(-2, 6, 4, -2deg) skewX(10deg);
   }
 
   
@@ -175,8 +175,14 @@ a {
   align-items: center;
   z-index: 1;
 
+  /* This color get overriden in JS depending on the video. */
+  background: radial-gradient(var(--gradient1), var(--gradient2));
   background-size: cover;
-  transition: transform var(--base-transition-duration) ease-in;
+
+  -webkit-transition: transform var(--base-transition-duration) ease-in, --gradient1 0.3s, --gradient2 0.3s;
+  -o-transition: transform var(--base-transition-duration) ease-in, --gradient1 0.3s, --gradient2 0.3s;
+  -moz-transition: transform var(--base-transition-duration) ease-in, --gradient1 0.3s, --gradient2 0.3s;
+  transition: transform var(--base-transition-duration) ease-in, --gradient1 0.3s, --gradient2 0.3s;
   transform-origin: 130vw 0px 0px;
 
   &.visible {
@@ -216,6 +222,7 @@ a {
     right: 32px;
     z-index: 2;
   
+    transition: 0.3s all ease;
     border-radius: 10px;
     background-color: rgba(1, 1, 1, 0.98);
     color: var(--color-accent);
@@ -311,9 +318,25 @@ a {
   }
 }
 
+@property --gradient1 {
+  syntax: '<color>';
+  initial-value: purple;
+  inherits: false;
+}
+
+@property --gradient2 {
+  syntax: '<color>';
+  initial-value: black;
+  inherits: false;
+}
+
 .page.projects {
   .text-section {
     margin-left: 50vw;
+    width: 45vw;
+    max-width: none;
+    height: 90vh;
+    justify-content: flex-start;
     background-color: rgba(0,0,0,0.65);
   }
 
@@ -324,13 +347,14 @@ a {
     text-align: center;
   }
 
-  /* These props get overriden in JS depending on the video. */
-  background: linear-gradient(to right, purple, black);
-
   video {
-    height: 100%;
+    height: 80vh;
     width: auto;
-    left: 20vw;
+    left: 10vw;
+    border-radius: 16px;
+    box-shadow: 3px 3px 2px 1px black;
+    transition: transform 0.3s ease;
+    transform: rotateY(20deg);
   }
 
   @media screen and (max-width: 767px) {
