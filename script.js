@@ -202,6 +202,7 @@ function setupGlider() {
     // Update the video element to the new video
     const nextIndex = toRight ? (glide.index + 1) : (glide.index - 1);
     const newIndex = mod(nextIndex, NUM_PROJECTS);
+    video.setAttribute('data-index', String(newIndex));
     source.setAttribute('src', `videos/projects_${newIndex}.mp4`);
 
     // Hide the controls. We assume the user doesn't need them anymore.
