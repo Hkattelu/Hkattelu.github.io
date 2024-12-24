@@ -177,62 +177,56 @@ function setupGlider() {
     const page = document.querySelector('.projects');
     const video = page.querySelector('video');
     const source = video.querySelector('source');
+    const mobileUi = isMobile();
+    const toRight = item.direction === '>';
 
-    video.style.transition = '0s all ease';
-    video.style.opacity = '0';
-    const nextIndex = item.direction === '>' ? (glide.index + 1) : (glide.index - 1);
+    // First, immediately make the current video disappear
+    video.style.setProperty('transition', '0s all ease');
+    video.style.setProperty('opacity', '0');
+    // This will make it so when we show the video again, it slides in from the right.
+    video.style.setProperty(
+      'transform',
+      mobileUi ? 'translateX(200vw) rotateY(-45deg)' : 'translateY(200vh) rotateX(-45deg)');
+
+    // Update the video element to the new video
+    const nextIndex = toRight ? (glide.index + 1) : (glide.index - 1);
     const newIndex = mod(nextIndex, 4);
     source.setAttribute('src', `videos/projects_${newIndex}.mp4`);
-    const mobileUi = isMobile();
-    // if (mobileUi) {
-      page.querySelector('.controls').style.display = 'none';
-    // }
+
+    // Hide the controls. We assume the user doesn't need them anymore.
+    page.querySelector('.controls').style.display = 'none';
+
+    // Update the page to match the new video theme. 
     switch (newIndex) {
-      case 0:
-        // Youtube ai tool
+      case 0: // Youtube ai tool
         page.style.setProperty('--gradient1', 'purple');
         page.style.setProperty('--gradient2', 'black');
-        video.style.height = mobileUi ? 'auto': 'auto';
-        video.style.width = mobileUi ? 'auto' : '40vw';
-        video.style.left = mobileUi ? '-8vw' : '0vw';
-        video.style.transform = mobileUi ? 'scale(1) rotateX(20deg)' : `scale(1) rotateY(20deg)`;
         break;
-      case 1:
-        // Youtube quizzes
+      case 1: // Youtube quizzes
         page.style.setProperty('--gradient1', 'grey');
         page.style.setProperty('--gradient2', 'black');
-        video.style.height = mobileUi ? '275px' : 'auto';
-        video.style.width = mobileUi ? '100%' : '40vw';
-        video.style.left = mobileUi ? '-5vw' : '5vw';
-        video.style.transform = mobileUi ? 'scale(1) rotateX(20deg)' : `scale(1.15) rotateY(20deg)`;
         break;
-      case 2:
-        // Logs Viewer
+      case 2: // Logs Viewer
         page.style.setProperty('--gradient1', 'darkgrey');
         page.style.setProperty('--gradient2', 'grey');
-        video.style.height = mobileUi ? '275px' : 'auto';
-        video.style.width = mobileUi ? '100%' : '40vw';
-        video.style.left = mobileUi ? '0vw' : '5vw';
-        video.style.transform = mobileUi ? 'scale(1) rotateX(20deg)' : `scale(1.15) rotateY(20deg)`;
         break;
-      case 3:
-        // Youtube Courses
+      case 3: // Youtube Courses
         page.style.setProperty('--gradient1', 'grey');
         page.style.setProperty('--gradient2', 'black');
-        video.style.height = mobileUi ? '275px' : 'auto';
-        video.style.width = mobileUi ? '100%' : '40vw';
-        video.style.left = mobileUi ? '0vw' : '5vw';
-        video.style.transform = mobileUi ? 'scale(1) rotateX(20deg)' : `scale(1.15) rotateY(20deg)`;
         break;
       default:
         break;
     }
     video.load();
-    setTimeout(() => {
-      video.style.transition = '0.3s all ease';
-      video.style.opacity = '1';
-      video.play();
-    }, 300);
+
+    // Assume the video takes < 0.3s to load.
+    // Once it loads, prepare the new animation.
+    requestAnimationFrame(() => {
+      video.style.setProperty('transition', '0.3s all ease-out');
+      video.style.setProperty('opacity', '1');
+      video.style.setProperty('transform', mobileUi ? 'rotateX(5deg)' : `scale(1.15) rotateY(20deg)`);
+      setTimeout(() => video.play(), 300);
+    });
   });
 }
 
