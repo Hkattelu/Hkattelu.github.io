@@ -454,8 +454,11 @@ h3 {
     height: fit-content;
     transform: rotateY(10deg);
 
+    /* The first page load needs to be instantiated in CSS */
+    /* The rest are handled in JS */
     &[data-index="0"] {
       height: 80vh;
+      transform: rotateX(-5deg);
     }
   }
 
