@@ -17,6 +17,10 @@ const NUM_PROJECTS = 4;
 let scrambledTextInterval = null;
 let backgroundChangingInterval = null;
 
+function getOptionsContainer() {
+  return document.querySelector('.left-options');
+}
+
 function getOptions() {
   return document.querySelectorAll(".option");
 }
@@ -35,7 +39,7 @@ function hideOptions() {
   options.forEach((box) => {
       box.style.setProperty('transition-delay', '0s');
       box.style.setProperty('transform',
-        isMobile() ? 'translateY(-2000px)': 'rotate3d(0, 0, 1, 120deg)');
+        isMobile() ? 'translateY(-2000px)': 'rotate3d(0, -1, 0, -180deg) translateZ(-1500px)');
   });
 
   const home = document.querySelector(".home");

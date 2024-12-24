@@ -95,10 +95,16 @@ h3 {
   flex: 0 0 0;
   position: relative;
   pointer-events: none;
+
   display: flex;
   flex-direction: column;
+  align-items: end;
   justify-content: center;
   z-index: 3;
+  
+  perspective: 180px;
+  margin-top: 10vh;
+  margin-left: 20vw;
 
   .option {
     height: 10vh;
@@ -108,12 +114,8 @@ h3 {
     pointer-events: auto; 
 
     /** Controls the xy position of the option */
-    position: absolute;
     top: 85vh;
-    left: 12vw;
-    
-    transform-origin: 110vw 0px 0px;
-    transition: transform var(--base-transition-duration) ease;
+    transition: transform var(--base-transition-duration) ease-in;
     cursor: pointer;
 
     span {
@@ -146,41 +148,53 @@ h3 {
   }
 
   .option:nth-of-type(1) {
-    transform: rotate3d(-2, 6, 4, 50deg) skewX(10deg);
+    transform: rotate3d(0, -1, 0, -5deg);
+    rotate: z 25deg;
   }
   .option:nth-of-type(2) {
-    transform: rotate3d(-2, 6, 4, 41deg) skewX(10deg);
+    transform: rotate3d(0, -1, 0, -5deg);
+    margin-top: 3vh;
+    rotate: z 18deg;
   }
   .option:nth-of-type(3) {
-    transform: rotate3d(-2, 6, 4, 32deg) skewX(10deg);
+    transform: rotate3d(0, -1, 0, -5deg);
+    margin-top: 3vh;
+    margin-right: 10vw;
+    rotate: z 12deg;
   }
   .option:nth-of-type(4) {
-    transform: rotate3d(-2, 6, 4, 23deg) skewX(10deg);
+    transform: rotate3d(0, -1, 0, -5deg);
+    margin-top: 3vh;
+    margin-right: 12vw;
+    rotate: z 4deg;
   }
   .option:nth-of-type(5) {
-    transform: rotate3d(-2, 6, 4, 14deg) skewX(10deg);
+    transform: rotate3d(0, -1, 0, -5deg);
+    margin-top: 3vh;
+    margin-right: 14vw;
+    rotate: z -2deg;
   }
   .option:nth-of-type(6) {
-    transform: rotate3d(-2, 6, 4, 5deg) skewX(10deg);
+    transform: rotate3d(0, -1, 0, -5deg);
+    margin-top: 2vh;
+    margin-right: 9vw;
+    rotate: z -6deg;
   }
-  .option:nth-of-type(7) {
-    transform: rotate3d(-2, 6, 4, -2deg) skewX(10deg);
-  }
-
   
   @media screen and (max-width: 767px) {
     margin-top: 32px;
+    margin-left: 10vw;
+    align-items: flex-start;
     justify-content: flex-start;
 
     .option.option {
-      position: static;
-      transform: none;
-      transform-origin: 0px 0px;
-
       height: 2em;
       font-size: 2em;
       line-height: 2em;
-      margin-left: 32px;
+      rotate: z 0deg;
+      margin-top: 0;
+      margin-right: 0;
+      transform: none;
     }
   }
 }
