@@ -495,7 +495,11 @@ h3 {
     border: 1px solid white;
     border-radius: 10px;
 
-    ul > li {
+    ul {
+      padding-inline-start: 12px;      
+    }
+
+    li {
       list-style-type: disc;
       list-style-position: inside;
     }
