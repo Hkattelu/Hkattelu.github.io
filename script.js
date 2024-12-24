@@ -9,7 +9,7 @@ const PAGE_MAP = {
   "5": "credits",
 };
 const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const MOBILE_PAGE_TRANSITION_DELAY = '0.3s';
+const MOBILE_PAGE_TRANSITION_DELAY = 120;
 const NUM_BACKGROUND_MASKS = 9;
 const MAX_SCRAMBLE_ITERATIONS = 6;
 const NUM_PROJECTS = 4;
@@ -33,8 +33,9 @@ function isMobile() {
 function hideOptions() {
   const options = getOptions();
   options.forEach((box) => {
-      box.style['transition-delay'] = "0s";
-      box.style.transform = isMobile() ? "translateY(-2000px)": "rotate3d(0, 0, 1, 120deg)";
+      box.style.setProperty('transition-delay', '0s');
+      box.style.setProperty('transform',
+        isMobile() ? 'translateY(-2000px)': 'rotate3d(0, 0, 1, 120deg)');
   });
 
   const home = document.querySelector(".home");
@@ -115,6 +116,7 @@ function applyScrambleTextEffect(element, tickMs) {
     iteration++;
   }, tickMs);
 }
+
 function applyBackgroundChangingInterval(element) {
   clearInterval(backgroundChangingInterval);
   let iteration = 0;
@@ -130,7 +132,6 @@ function applyBackgroundChangingInterval(element) {
 document.addEventListener("DOMContentLoaded", () => {
   const options = getOptions();
 
-  const MOBILE_PAGE_TRANSITION_DELAY = 120;
   // Assign click and enter handlers
   options.forEach((box, index) => {
     box.addEventListener('click', () => {
@@ -150,6 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
       event.target.style.transition = 'none';
       applyScrambleTextEffect(event.target, 30);
       applyBackgroundChangingInterval(event.target);
+      event.preventDefault();
     });
     span.addEventListener('blur', (event) => { 
       clearInterval(scrambledTextInterval);
@@ -157,6 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
       event.target.innerText = event.target.dataset.value;
       event.target.style.backgroundImage = 'none';
       event.target.style.transition = 'none';
+      event.preventDefault();
     });
   });
 
@@ -201,6 +204,7 @@ function setupGlider() {
     page.querySelector('.controls').style.display = 'none';
 
     // Update the page to match the new video theme. 
+    // As far as I know, there is no cleaner way to do this.
     switch (newIndex) {
       case 0: // Youtube ai tool
         page.style.setProperty('--gradient1', 'purple');
@@ -228,7 +232,7 @@ function setupGlider() {
     setTimeout(() => {
       video.style.setProperty('transition', '0.3s all ease-out');
       video.style.setProperty('opacity', '1');
-      video.style.setProperty('transform', mobileUi ? 'rotateX(5deg)' : `scale(1.15) rotateY(20deg)`);
+      video.style.setProperty('transform', mobileUi ? 'rotateX(5deg)' : 'scale(1.15) rotateY(20deg)');
       setTimeout(() => video.play(), 300);
     }, 0);
   });
@@ -272,6 +276,8 @@ function onInit() {
   const loader = document.querySelector('.loader');
   if (loader) {
     loader.remove();
+  } else {
+    return;
   }
 
   // Fade in the page

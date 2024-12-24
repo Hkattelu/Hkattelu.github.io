@@ -44,7 +44,7 @@ body {
 }
 
 a {
-  color: var(--color-accent);
+  color: var(--color-hover-dark);
   &:hover {
     color: var(--color-hover-dark);
   }
@@ -340,7 +340,7 @@ a {
   }
 
   .glide__slides {
-    height: 250px;
+    height: 60vh;
   }
   .glide__bullets {
     text-align: center;
@@ -435,6 +435,8 @@ a {
 }
 
 .page.credits {
+  background: radial-gradient(red, black);
+
   .text-section {
     margin-top: 30vh;
     margin-left: 60vw;
@@ -446,6 +448,11 @@ a {
       list-style-type: disc;
       list-style-position: inside;
     }
+  }
+
+  video {
+    height: 100%;
+    width: 100%;
   }
 
   @media screen and (max-width: 767px) {
@@ -465,16 +472,6 @@ a {
       align-self: flex-start;
     }
   }
-}
-
-img.box {
-  max-width: 500px;
-
-  background-color: #FF9B42;
-  border: 2px solid #0E4749;
-  border-radius: 10px;
-  opacity: 0; /* Start hidden for animation */
-  animation: fall 1s ease-out forwards;
 }
 
 /** Projects carousel */
