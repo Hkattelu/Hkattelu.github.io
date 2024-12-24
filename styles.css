@@ -474,9 +474,6 @@ h3 {
 }   
 
 .contact {
-  background-image: url('images/big ben.jpg');
-  background-position-y: 50%;
-
   .text-section {
     margin-left: 60vw;
 
@@ -490,11 +487,14 @@ h3 {
   }
 
   @media screen and (max-width: 767px) {
-    background-position: center;
-
     .text-section {
       margin-left: 50vw;
       margin-top: 40vh;
+    }
+
+    video {
+      height: 100%;
+      width: auto;
     }
   }
 }
