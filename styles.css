@@ -150,6 +150,7 @@ h3 {
         transition: all var(--base-transition-duration) ease-out;
 
         /** Hack to allow the background to overflow the mask */
+        pointer-events: none;
         padding: 30vw;
         margin: -30vw;
         border-radius: 90%;
