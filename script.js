@@ -1,4 +1,3 @@
-
 const PAGE_MAP = {
   "-1": "home",
   "0": "about-me",
@@ -286,29 +285,28 @@ function getTouches(evt) {
 }
 
 function handleTouchStart(evt) {
-  const firstTouch = getTouches(evt)[0];                                      
-  xDown = firstTouch.clientX;                                      
-  yDown = firstTouch.clientY;                                      
-};                                                
-                                                                       
+  const firstTouch = getTouches(evt)[0];
+  xDown = firstTouch.clientX;
+  yDown = firstTouch.clientY;
+};
+
 function handleTouchMove(evt) {
   if (!xDown || !yDown) {
-      return;
+    return;
   }
 
-  var xUp = evt.touches[0].clientX;                                    
+  var xUp = evt.touches[0].clientX;
   var yUp = evt.touches[0].clientY;
 
   var xDiff = xDown - xUp;
   var yDiff = yDown - yUp;
-                                                                       
-  if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
-    glide.go(xDiff > 0 ? '>' : '<');                
+
+  if (Math.abs(xDiff) > Math.abs(yDiff)) {
+    glide.go(xDiff > 0 ? '>' : '<');
   }
 
-  // reset values
   xDown = null;
-  yDown = null;                                             
+  yDown = null;
 };
 
 function onInit() {
