@@ -1,164 +1,309 @@
-const PAGE_MAP = {
-  "-1": "home",
-  "0": "about-me",
-  "1": "what-i-value",
-  "2": "projects",
-  "3": "contact",
-  "4": "blog",
-  "5": "credits",
+// Constants
+const CONSTANTS = {
+  PAGES: {
+    "-1": "home",
+    "0": "about-me",
+    "1": "what-i-value",
+    "2": "projects",
+    "3": "contact",
+    "4": "blog",
+    "5": "credits",
+  },
+  LETTERS: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  MOBILE_DELAY: 120,
+  MASKS: 9,
+  MAX_SCRAMBLE: 6,
+  PROJECTS: 4,
+  MOBILE_BREAKPOINT: 768
 };
-const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const MOBILE_PAGE_TRANSITION_DELAY = 120;
-const NUM_BACKGROUND_MASKS = 9;
-const MAX_SCRAMBLE_ITERATIONS = 6;
-const NUM_PROJECTS = 4;
 
-let scrambledTextInterval = null;
-let backgroundChangingInterval = null;
+// State
+let state = {
+  scrambleInterval: null,
+  backgroundInterval: null,
+  touchCoords: {
+    xDown: null,
+    yDown: null
+  }
+};
 
-function getOptionsContainer() {
-  return document.querySelector('.left-options');
-}
+// DOM Helpers
+const dom = {
+  getOptions: () => document.querySelectorAll(".option"),
+  getCurrentPage: () => document.querySelector('.visible'),
+  isMobile: () => window.innerWidth < CONSTANTS.MOBILE_BREAKPOINT || screen.width < CONSTANTS.MOBILE_BREAKPOINT
+};
 
-function getOptions() {
-  return document.querySelectorAll(".option");
-}
+// Animation Functions
+const animations = {
+  scrambleText: (element, tickMs) => {
+    let iteration = 0;
+    clearInterval(state.scrambleInterval);
+    
+    state.scrambleInterval = setInterval(() => {
+      element.innerText = element.innerText
+        .split("")
+        .map(() => CONSTANTS.LETTERS[Math.floor(Math.random() * CONSTANTS.LETTERS.length)])
+        .join("");
+        
+      if(iteration >= CONSTANTS.MAX_SCRAMBLE){ 
+        element.innerText = element.dataset.value;
+        clearInterval(state.scrambleInterval);
+      }
+      iteration++;
+    }, tickMs);
+  },
 
-function getCurrentPage() {
-  return document.querySelector('.visible');
-}
+  changeBackground: (element) => {
+    clearInterval(state.backgroundInterval);
+    let iteration = 0;
+    
+    const updateBackground = () => {
+      element.style.backgroundImage = `url(images/masks${mod(iteration, CONSTANTS.MASKS)}.png)`;
+      iteration = mod(iteration + 1, CONSTANTS.MASKS);
+    };
 
-function isMobile() {
-  const minWidth = 768; // Minimum width for desktop devices
-  return window.innerWidth < minWidth || screen.width < minWidth;
-}
+    element.style.transition = 'none';
+    updateBackground();
+    state.backgroundInterval = setInterval(updateBackground, 250);
+  }
+};
 
-function hideOptions() {
-  const options = getOptions();
-  options.forEach((box) => {
+// Navigation Functions
+const navigation = {
+  showPage: (index) => {
+    const pages = document.getElementsByClassName('page');
+    Array.from(pages).forEach(page => page.classList.remove('visible'));
+
+    const page = document.getElementsByClassName(CONSTANTS.PAGES[index])[0];
+    page.style.setProperty('transition-delay', 'var(--base-transition-duration)');
+    page.classList.add('visible');
+
+    const currentVideo = dom.getCurrentPage().querySelector('video');
+    if (currentVideo) currentVideo.play();
+
+    if (index < 0) {
+      navigation.showOptions();
+      if (dom.isMobile()) document.activeElement.blur();
+    } else {
+      navigation.hideOptions();
+    }
+
+    history.pushState({pageIndex: index}, '');
+  },
+
+  hideOptions: () => {
+    const options = dom.getOptions();
+    options.forEach((box) => {
       box.style.setProperty('transition-delay', '0s');
-      box.style.setProperty('transform',
-        isMobile() ? 'translateY(-2000px)': 'rotate3d(0, -1, 0, -180deg) translateZ(-1500px)');
-  });
+      box.style.setProperty(
+        'transform',
+        dom.isMobile() ? 
+          'translateY(-2000px)': 
+          'rotate3d(0, -1, 0, -180deg) translateZ(-1500px)'
+      );
+    });
 
-  const home = document.querySelector(".home");
-  home.classList.remove('visible');
-}
+    document.querySelector(".home").classList.remove('visible');
+  },
 
-function showOptions() {
-  const options = getOptions();
-  options.forEach((box) => {
+  showOptions: () => {
+    const options = dom.getOptions();
+    options.forEach((box) => {
       box.style['transition-delay'] = "var(--base-transition-duration)";
       box.style.transform = '';
-  });
-}
+    });
+  },
 
-function showPage(index) {
-  const pages = document.getElementsByClassName('page');
-  for (const page of pages) {
-    page.classList.remove('visible');
+  backToHome: () => {
+    const pages = document.getElementsByClassName('page');
+    Array.from(pages).forEach(page => page.classList.remove('visible'));
+    navigation.showPage(-1);
   }
+};
 
-  const page = document.getElementsByClassName(String(PAGE_MAP[index]))[0];
-  page.style.setProperty('transition-delay', 'var(--base-transition-duration)');
-  page.classList.add('visible');
+// Projects Carousel
+const carousel = {
+  instance: null,
+  
+  setup: () => {
+    carousel.instance = new Glide('.glide', {
+      startAt: 0,
+      dots: '#dots',
+      draggable: true,
+      arrows: {
+        prev: '.glider-prev',
+        next: '.glider-next'
+      }
+    });
 
-  const currentVideo = getCurrentPage().querySelector('video');
-  if (currentVideo) {
-    currentVideo.play();
-  }
+    carousel.instance.mount();
+    carousel.instance.on('run.before', carousel.handleSlideChange);
+  },
 
-  if (index < 0) {
-    showOptions();
-    if (isMobile()) {
-      document.activeElement.blur();
+  handleSlideChange: (item) => {
+    const page = document.querySelector('.projects');
+    const video = page.querySelector('video');
+    const source = video.querySelector('source');
+    const mobileUi = dom.isMobile();
+    const toRight = item.direction === '>';
+
+    // Update video transition
+    video.style.setProperty('transition', '0s all ease');
+    video.style.setProperty('opacity', '0');
+    const translateDistance = toRight ? '100' : '-100';
+    video.style.setProperty(
+      'transform',
+      mobileUi ? 
+        `translateX(${translateDistance}vw) rotateY(-45deg)` : 
+        `translateY(${translateDistance}vh) rotateX(-45deg)`
+    );
+
+    // Update video content
+    const nextIndex = toRight ? (carousel.instance.index + 1) : (carousel.instance.index - 1);
+    const newIndex = mod(nextIndex, CONSTANTS.PROJECTS);
+    video.setAttribute('data-index', String(newIndex));
+    source.setAttribute('src', `videos/projects_${newIndex}.mp4`);
+
+    if (dom.isMobile()) {
+      page.querySelector('.controls').style.display = 'none';
     }
-  } else {
-    hideOptions();
+
+    // Update theme
+    carousel.updateTheme(page, newIndex);
+    
+    // Handle video transition
+    video.load();
+    setTimeout(() => {
+      video.style.setProperty('transition', '0.3s all ease-out');
+      video.style.setProperty('opacity', '1');
+      video.style.setProperty('transform', mobileUi ? 'rotateX(-5deg)' : 'rotateY(10deg)');
+      setTimeout(() => video.play(), 300);
+    }, 0);
+  },
+
+  updateTheme: (page, index) => {
+    const themes = {
+      0: ['purple', 'black'],      // Youtube ai tool
+      1: ['grey', 'black'],        // Youtube quizzes
+      2: ['darkgrey', 'grey'],     // Logs Viewer
+      3: ['grey', 'black'],        // Youtube Courses
+    };
+    
+    const [gradient1, gradient2] = themes[index] || themes[0];
+    page.style.setProperty('--gradient1', gradient1);
+    page.style.setProperty('--gradient2', gradient2);
   }
+};
 
-  history.pushState({pageIndex: index}, '');
-}
-
-function backToHome() {
-  const pages = document.getElementsByClassName('page');
-  for (const page of pages) {
-    page.classList.remove('visible');
-  }
-  showPage(-1);
-}
-
-window.addEventListener('popstate', (event) => {
-  if (event.state.pageIndex < 0) {
-    backToHome();
-  } else {
-    showPage(event.state.pageIndex);
-  }
-});
-
+// Utility Functions
 function mod(n, m) {
   return ((n % m) + m) % m;
 }
 
-function applyScrambleTextEffect(element, tickMs) {
-  let iteration = 0;
-  clearInterval(scrambledTextInterval);
-  
-  scrambledTextInterval = setInterval(() => {
-    element.innerText = element.innerText
-      .split("")
-      .map((letter, index) => {
-        return LETTERS[Math.floor(Math.random() * LETTERS.length)]
-      })
-      .join("");
-    if(iteration >= MAX_SCRAMBLE_ITERATIONS){ 
-      element.innerText = element.dataset.value;
-      clearInterval(scrambledTextInterval);
+// Event Handlers
+const handlers = {
+  touch: {
+    start: (evt) => {
+      const firstTouch = getTouches(evt)[0];
+      state.touchCoords = {
+        xDown: firstTouch.clientX,
+        yDown: firstTouch.clientY
+      };
+    },
+
+    move: (evt) => {
+      if (!state.touchCoords.xDown || !state.touchCoords.yDown) return;
+
+      const xUp = evt.touches[0].clientX;
+      const yUp = evt.touches[0].clientY;
+      const xDiff = state.touchCoords.xDown - xUp;
+      const yDiff = state.touchCoords.yDown - yUp;
+
+      if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        carousel.instance.go(xDiff > 0 ? '>' : '<');
+      }
+
+      state.touchCoords = { xDown: null, yDown: null };
     }
-    
-    iteration++;
-  }, tickMs);
-}
+  },
 
-function applyBackgroundChangingInterval(element) {
-  clearInterval(backgroundChangingInterval);
-  let iteration = 0;
-  element.style.transition = 'none';
-  element.style.backgroundImage = `url(images/masks${mod(iteration, NUM_BACKGROUND_MASKS)}.png)`;
-  iteration = mod(iteration + 1, NUM_BACKGROUND_MASKS);
-  backgroundChangingInterval = setInterval(() => {
-    element.style.backgroundImage = `url(images/masks${mod(iteration, NUM_BACKGROUND_MASKS)}.png)`;
-    iteration = mod(iteration + 1, NUM_BACKGROUND_MASKS);
-  }, 250);
-}
+  keyboard: (event) => {
+    switch (event.code) {
+      case 'Backspace':
+      case 'Escape':
+        navigation.backToHome();
+        event.preventDefault();
+        break;
+      case 'ArrowUp':
+      case 'ArrowDown':
+        handlers.handleVerticalNavigation(event);
+        break;
+      case 'ArrowLeft':
+      case 'ArrowRight':
+        carousel.instance.go(event.code === 'ArrowLeft' ? '<' : '>');
+        event.preventDefault();
+        break;
+    }
+  },
 
-document.addEventListener("DOMContentLoaded", () => {
-  const options = getOptions();
+  handleVerticalNavigation: (event) => {
+    const activeEl = document.activeElement;
+    if (activeEl.tagName.toLowerCase() !== 'span') {
+      document.querySelector('span:not(:focus)').focus();
+      event.preventDefault();
+    } else if (!dom.getCurrentPage().classList.contains('home')) {
+      event.preventDefault();
+    } else {
+      const allOptions = Array.from(document.querySelectorAll('span[tabindex="0"]'));
+      const currentIndex = allOptions.findIndex((el) => el === activeEl);
+      const newIndex = event.code === 'ArrowDown' ? currentIndex + 1 : currentIndex - 1;
+      allOptions[mod(newIndex, allOptions.length)].focus();
+      event.preventDefault();
+    }
+  }
+};
 
-  // Assign click and enter handlers
+// Initialization
+function init() {
+  // Set up event listeners
+  document.addEventListener('keydown', handlers.keyboard);
+  window.addEventListener('popstate', (event) => {
+    event.state.pageIndex < 0 ? navigation.backToHome() : navigation.showPage(event.state.pageIndex);
+  });
+
+  // Set up options
+  const options = dom.getOptions();
   options.forEach((box, index) => {
     box.addEventListener('click', () => {
-      setTimeout(() => showPage(index), isMobile() ? MOBILE_PAGE_TRANSITION_DELAY : 0);
+      setTimeout(
+        () => navigation.showPage(index), 
+        dom.isMobile() ? CONSTANTS.MOBILE_DELAY : 0
+      );
     });
 
     box.addEventListener('keydown', (event) => {
       if (event.key !== 'Enter') {
         return;
       }
-      setTimeout(() => showPage(index), isMobile() ? MOBILE_PAGE_TRANSITION_DELAY : 0);
+      setTimeout(
+        () => navigation.showPage(index), 
+        dom.isMobile() ? CONSTANTS.MOBILE_DELAY : 0
+      );
       event.preventDefault();
     });
 
     const span = box.querySelector('span');
     span.addEventListener('focus', (event) => { 
       event.target.style.transition = 'none';
-      applyScrambleTextEffect(event.target, 30);
-      applyBackgroundChangingInterval(event.target);
+      animations.scrambleText(event.target, 30);
+      animations.changeBackground(event.target);
       event.preventDefault();
     });
+
     span.addEventListener('blur', (event) => { 
-      clearInterval(scrambledTextInterval);
-      clearInterval(backgroundChangingInterval);
+      clearInterval(state.scrambleInterval);
+      clearInterval(state.backgroundInterval);
       event.target.innerText = event.target.dataset.value;
       event.target.style.backgroundImage = 'none';
       event.target.style.transition = 'none';
@@ -166,193 +311,42 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Initialize projects carousel
-  setupGlider();
-});
-
-let glide;
-function setupGlider() {
-  glide = new Glide('.glide', {
-      startAt: 0,
-      dots: '#dots',
-      draggable: true,
-      arrows: {
-          prev: '.glider-prev',
-          next: '.glider-next'
-      }
-  });
-  glide.mount();
-  glide.on('run.before', (item) => {
-    const page = document.querySelector('.projects');
-    const video = page.querySelector('video');
-    const source = video.querySelector('source');
-    const mobileUi = isMobile();
-    const toRight = item.direction === '>';
-
-    // First, immediately make the current video disappear
-    video.style.setProperty('transition', '0s all ease');
-    video.style.setProperty('opacity', '0');
-    // This will make it so when we show the video again, it slides in from the right.
-    const translateDistance = toRight ? '100' : '-100';
-    video.style.setProperty(
-      'transform',
-      mobileUi ? `translateX(${translateDistance}vw) rotateY(-45deg)` : `translateY(${translateDistance}vh) rotateX(-45deg)`);
-
-    // Update the video element to the new video
-    const nextIndex = toRight ? (glide.index + 1) : (glide.index - 1);
-    const newIndex = mod(nextIndex, NUM_PROJECTS);
-    video.setAttribute('data-index', String(newIndex));
-    source.setAttribute('src', `videos/projects_${newIndex}.mp4`);
-
-    // Hide the controls. We assume the user doesn't need them anymore.
-    if (isMobile()) {
-      page.querySelector('.controls').style.display = 'none';
-    }
-
-    // Update the page to match the new video theme. 
-    // As far as I know, there is no cleaner way to do this.
-    switch (newIndex) {
-      case 0: // Youtube ai tool
-        page.style.setProperty('--gradient1', 'purple');
-        page.style.setProperty('--gradient2', 'black');
-        break;
-      case 1: // Youtube quizzes
-        page.style.setProperty('--gradient1', 'grey');
-        page.style.setProperty('--gradient2', 'black');
-        break;
-      case 2: // Logs Viewer
-        page.style.setProperty('--gradient1', 'darkgrey');
-        page.style.setProperty('--gradient2', 'grey');
-        break;
-      case 3: // Youtube Courses
-        page.style.setProperty('--gradient1', 'grey');
-        page.style.setProperty('--gradient2', 'black');
-        break;
-      default:
-        break;
-    }
-    video.load();
-
-    // Assume the video takes < 0.3s to load.
-    // Once it loads, prepare the new animation.
-    setTimeout(() => {
-      video.style.setProperty('transition', '0.3s all ease-out');
-      video.style.setProperty('opacity', '1');
-      video.style.setProperty('transform', mobileUi ? 'rotateX(-5deg)' : 'rotateY(10deg)');
-      setTimeout(() => video.play(), 300);
-    }, 0);
-  });
+  carousel.setup();
 }
 
-
-document.addEventListener('keydown', function(event) {
-  switch (event.code) {
-    case 'Backspace':
-    case 'Escape':
-      backToHome();
-      event.preventDefault();
-      break;
-    case 'ArrowUp':
-    case 'ArrowDown':
-      const activeEl = document.activeElement;
-      if (activeEl.tagName.toLowerCase() !== 'span') {
-        document.querySelector('span:not(:focus)').focus();
-        event.preventDefault();
-      } else if (!getCurrentPage().classList.contains('home')) {
-        event.preventDefault();
-      } else {
-        const allOptions = Array.from(document.querySelectorAll('span[tabindex="0"]'));
-        const currentIndex = allOptions.findIndex((el) => el === activeEl);
-        const newIndex = event.code === 'ArrowDown' ? currentIndex + 1 : currentIndex - 1;
-        allOptions[mod(newIndex, allOptions.length)].focus();
-        event.preventDefault();
-      }
-      break;
-    case 'ArrowLeft':
-    case 'ArrowRight':
-      glide.go(event.code === 'ArrowLeft' ? '<' : '>');
-      event.preventDefault();
-    default:
-      break;
-  }
-});
-
-let xDown = null;
-let yDown = null;
-
-function getTouches(evt) {
-  return evt.touches || evt.originalEvent.touches;
-}
-
-function handleTouchStart(evt) {
-  const firstTouch = getTouches(evt)[0];
-  xDown = firstTouch.clientX;
-  yDown = firstTouch.clientY;
-};
-
-function handleTouchMove(evt) {
-  if (!xDown || !yDown) {
-    return;
-  }
-
-  var xUp = evt.touches[0].clientX;
-  var yUp = evt.touches[0].clientY;
-
-  var xDiff = xDown - xUp;
-  var yDiff = yDown - yUp;
-
-  if (Math.abs(xDiff) > Math.abs(yDiff)) {
-    glide.go(xDiff > 0 ? '>' : '<');
-  }
-
-  xDown = null;
-  yDown = null;
-};
-
-function onInit() {
-  // Destroy the loader
+// Start app once videos are loaded
+function startApp() {
   const loader = document.querySelector('.loader');
-  if (loader) {
-    loader.remove();
-  } else {
-    return;
-  }
-
-  // Fade in the page
-  const container = document.querySelector('.container');
-  container.style.opacity = '1';  
+  if (!loader) return;
   
-  // Initiate the changing background on the "About me" button.
-  if (!isMobile()) {
-    applyBackgroundChangingInterval(document.activeElement);
+  loader.remove();
+  document.querySelector('.container').style.opacity = '1';  
+
+  if (!dom.isMobile()) {
+    animations.changeBackground(document.activeElement);
   } else {
-    // Add swipe event listeners to projects carousel on mobile.
     const video = document.querySelector('.projects video');
-    video.addEventListener('touchstart', (evt) => handleTouchStart(evt));
-    video.addEventListener('touchmove', (evt) => handleTouchMove(evt));
+    video.addEventListener('touchstart', handlers.touch.start);
+    video.addEventListener('touchmove', handlers.touch.move);
   }
 
-  // Add a history entry. Needed for back button support.
   history.pushState({pageIndex: -1}, '');
 }
 
-// Validate that all videos have fully loaded. Only then, drop the loader
+// Video loading check
 const videos = document.querySelectorAll('video');
-function checkAllVideosLoaded() {
-  const allLoaded =  Array.from(videos).reduce((tempLoaded, video) => tempLoaded && video.readyState >=4, true);
-  if (!allLoaded) {
-    return;
-  }
+const checkVideosLoaded = () => {
+  const allLoaded = Array.from(videos)
+    .every(video => video.readyState >= 4);
+    
+  if (allLoaded) startApp();
+};
 
-  // All videos have loaded
-  onInit();
-}
-
-const allLoaded = Array.from(videos).reduce((tempLoaded, video) => tempLoaded && video.readyState >=4, true);
-if (allLoaded) {
-  onInit();
+if (Array.from(videos).every(video => video.readyState >= 4)) {
+  startApp();
 } else {
-  videos.forEach(video => {
-    video.addEventListener('canplaythrough', () => checkAllVideosLoaded());
-  });
+  videos.forEach(video => video.addEventListener('canplaythrough', checkVideosLoaded));
 }
+
+// Initialize once DOM is loaded
+document.addEventListener("DOMContentLoaded", init);
