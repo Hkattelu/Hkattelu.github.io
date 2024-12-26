@@ -103,10 +103,10 @@ h3 {
   flex-direction: column;
   align-items: end;
   justify-content: center;
+  overflow-y: clip;
   z-index: 3;
   
   perspective: 180px;
-  margin-top: 10vh;
   margin-left: 20vw;
 
   .option {
@@ -152,7 +152,9 @@ h3 {
   }
 
   .option:nth-of-type(1) {
+  margin-top: 10vh;
     transform: rotate3d(0, -1, 0, -5deg);
+    margin-top: 10vh;
     rotate: z 23deg;
   }
   .option:nth-of-type(2) {
