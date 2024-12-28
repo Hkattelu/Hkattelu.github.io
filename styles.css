@@ -5,7 +5,7 @@
 
 :root {
   --base-transition-duration: 0.3s;
-  --hue: 182;
+  --hue: 192;
 
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
@@ -313,7 +313,7 @@ h3 {
       }
 
       font-size: 12px;
-      background-color: rgba(48, 48, 48);
+      background-color: var(--secondary-color);
       padding: 2px 4px;
       margin: 0px 4px;
       border-radius: 4px;
@@ -321,7 +321,7 @@ h3 {
 
     transition: var(--base-transition-duration) all ease;
     border-radius: 10px;
-    background-color: rgba(1, 1, 1, 0.98);
+    background-color: var(--text-background);
     color: var(--primary-color);
 
     @media screen and (max-width: 767px) {
