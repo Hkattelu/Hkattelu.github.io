@@ -773,16 +773,19 @@ footer {
 }
 
 .loader-ring {
+  position: relative;
   width: 260px;
   aspect-ratio: 1;
   border-radius: 50%;
   padding: 30px;
-  background: 
+  background:
+    radial-gradient(ellipse at 50% 00%, white 10%, white)  10px/50px no-repeat,
     radial-gradient(farthest-side,#000 95%,#000) 50% 0px/2px 70px no-repeat,
     radial-gradient(farthest-side, #0000 calc(100% - 3px),#000000a0 calc(100% - 12px)) content-box;
-  transform: rotate(30deg);
+  transform: rotate(0deg);
   animation: ring-loop 2.5s infinite;
-  animation-delay: 0.4s;
+  animation-delay: 1.5s;
+  z-index: -1;
 }
 
-@keyframes ring-loop {to{transform: rotate(390deg)}}
+@keyframes ring-loop {to{transform: rotate(360deg)}}
