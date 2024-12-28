@@ -376,9 +376,9 @@ function init() {
   
 // Start app once videos are loaded
   if (Array.from(videos).every(video => video.readyState >= 4)) {
-    startApp();
+    // startApp();
   } else {
-    videos.forEach(video => video.addEventListener('canplaythrough', checkVideosLoaded));
+    // videos.forEach(video => video.addEventListener('canplaythrough', checkVideosLoaded));
   }
 }
 

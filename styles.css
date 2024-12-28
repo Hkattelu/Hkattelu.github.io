@@ -753,6 +753,7 @@ footer {
   span {
     width: 20ch;
     margin-left: 6ch;
+    margin-bottom: 8px;
 
     display: inline-block;
     transform: translateX(0vw);
