@@ -128,13 +128,13 @@ h3 {
     width: max-content;
     font-size: clamp(3rem, 10vh, 10rem);
     line-height: clamp(3rem, 10vh, 10rem);
+
     pointer-events: auto;
     outline: none;
-
+    cursor: pointer;
 
     /** Controls the xy position of the option */
     transition: transform var(--base-transition-duration) ease-in;
-    cursor: pointer;
 
     &:focus .focus-only-background {
       /** Hack to allow the background to overflow the mask */
@@ -195,8 +195,6 @@ h3 {
     font-family: 'Space Mono', monospace;
     font-weight: 500;
     cursor: pointer;
-
-    transition: none;
   }
   
   @media screen and (max-width: 767px) {
@@ -371,6 +369,9 @@ h3 {
 
   @media screen and (max-width: 767px) {
     background-position-x: 75%;
+
+    /** Take just a tiny bit longer on mobile. */
+    transition: transform 0.4s ease-in;
   }
 }
 

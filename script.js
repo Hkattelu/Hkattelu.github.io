@@ -294,8 +294,6 @@ function init() {
     });
 
     box.addEventListener('focus', (event) => { 
-      event.target.style.transition = 'none';
-
       const span = event.target.querySelector('span');
       animations.scrambleText(span, 30);
 
@@ -313,7 +311,6 @@ function init() {
 
       const background = event.target.querySelector('.focus-only-background');
       background.style.backgroundImage = 'none';
-      background.style.transition = 'none';
       event.preventDefault();
     });
   });
