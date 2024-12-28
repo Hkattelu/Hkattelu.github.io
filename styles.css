@@ -226,11 +226,10 @@ h3 {
       margin-right: 0;
       transform: none;
 
-      .focus-only-background {
+      .focus-only-background.focus-only-background {
         padding: 15vh;
         margin: -15vh;
         background-size: 80vw 15vh;
-        background-size: cover;
         background-position-y: 12vh;
       }
     }
@@ -373,7 +372,7 @@ h3 {
 .page.home {
   background-image: url('images/pittsburgh.png');
   background-position-y: center;
-  animation: wobble-background 5s infinite;
+  animation: wobble-background 8s infinite linear;
   z-index: 1;
 
   &:not(.visible) {
@@ -672,11 +671,21 @@ h3 {
 
 
 @keyframes wobble-background {
-  0% { background-position-y: 50%; }
-  25% { background-position-y: 52%; }
-  50% { background-position-y: 48%; }
-  75% { background-position-y: 52%; }
-  100% { background-position-y: 50%; }
+  0% {
+    background-position: 75% 50%;
+  }
+  25% {
+    background-position: 74% 52%;
+  }
+  50% {
+    background-position: 75% 48%;
+  }
+  75% {
+    background-position: 76% 52%;
+  }
+  100% {
+    background-position: 75% 50%;
+  }
 }
   
 /* Keyframe Animation for Falling Images */

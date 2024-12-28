@@ -30,9 +30,9 @@ let state = {
 
 // DOM Helpers
 const dom = {
-  getOptions: () => document.querySelectorAll('.option'),
+  getOptions: () => document.querySelectorAll('.left-options .option'),
   focusFirstOption: () => document.querySelector('.option:not(:focus)').focus(),
-  getOptionTexts: () => document.querySelectorAll('.option span'),
+  getOptionTexts: () => document.querySelectorAll('.left-options .option span'),
   getCurrentPage: () => document.querySelector('.visible'),
   isMobile: () => window.innerWidth < CONSTANTS.MOBILE_BREAKPOINT || screen.width < CONSTANTS.MOBILE_BREAKPOINT
 };
@@ -65,7 +65,7 @@ const animations = {
       const wrapped = document.createElement('span');
       wrapped.textContent = letter.trim() || '\u00A0';
       wrapped.style.display = 'inline-block';
-      wrapped.style.transition = `${durationMs}ms all ease-out`;
+      wrapped.style.transition = `${durationMs}ms all linear`;
 
       // Contstruct a random start point for the letter.
       const randomX = Math.random() * 200 - 100;
@@ -296,6 +296,32 @@ const handlers = {
   }
 };
 
+// Tear down the loader and kick off the welcome animations.
+function startApp() {
+  const loader = document.querySelector('.loader');
+  if (!loader) return;
+  
+  loader.remove();
+  document.querySelector('.container').style.opacity = '1';
+
+  history.pushState({pageIndex: -1}, '');
+
+  const optionTexts = Array.from(dom.getOptionTexts());
+  const promises = optionTexts.map(textEl => animations.flyInLetters(textEl, CONSTANTS.INITIAL_ANIMATION_MS));
+  Promise.all(promises).then(() => {
+    if (!dom.isMobile()) {
+      const firstOption = document.activeElement;
+      const background = firstOption.querySelector('.focus-only-background');
+      animations.changeBackground(background);
+    } else {
+      const video = document.querySelector('.projects video');
+      video.addEventListener('touchstart', handlers.touch.start);
+      video.addEventListener('touchmove', handlers.touch.move);
+    }
+    dom.focusFirstOption();
+  });
+}
+
 // Initialization
 function init() {
   // Set up event listeners
@@ -348,47 +374,22 @@ function init() {
   });
 
   carousel.setup();
-}
 
-// Start app once videos are loaded
-function startApp() {
-  const loader = document.querySelector('.loader');
-  if (!loader) return;
+  // Video loading check
+  const videos = document.querySelectorAll('video');
+  const checkVideosLoaded = () => {
+    const allLoaded = Array.from(videos)
+      .every(video => video.readyState >= 4);
+      
+    if (allLoaded) startApp();
+  };
   
-  loader.remove();
-  document.querySelector('.container').style.opacity = '1';
-
-  const optionTexts = Array.from(dom.getOptionTexts());
-  const promises = optionTexts.map(textEl => animations.flyInLetters(textEl, CONSTANTS.INITIAL_ANIMATION_MS));
-  Promise.all(promises).then(() => {
-    if (!dom.isMobile()) {
-      const firstOption = document.activeElement;
-      const background = firstOption.querySelector('.focus-only-background');
-      animations.changeBackground(background);
-    } else {
-      const video = document.querySelector('.projects video');
-      video.addEventListener('touchstart', handlers.touch.start);
-      video.addEventListener('touchmove', handlers.touch.move);
-    }
-    dom.focusFirstOption();
-  });
-
-  history.pushState({pageIndex: -1}, '');
-}
-
-// Video loading check
-const videos = document.querySelectorAll('video');
-const checkVideosLoaded = () => {
-  const allLoaded = Array.from(videos)
-    .every(video => video.readyState >= 4);
-    
-  if (allLoaded) startApp();
-};
-
-if (Array.from(videos).every(video => video.readyState >= 4)) {
-  startApp();
-} else {
-  videos.forEach(video => video.addEventListener('canplaythrough', checkVideosLoaded));
+// Start app once videos are loaded
+  if (Array.from(videos).every(video => video.readyState >= 4)) {
+    startApp();
+  } else {
+    videos.forEach(video => video.addEventListener('canplaythrough', checkVideosLoaded));
+  }
 }
 
 // Initialize once DOM is loaded
