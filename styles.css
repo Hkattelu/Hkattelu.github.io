@@ -86,6 +86,20 @@ h3 {
   flex-direction: row;
   width: 60vw;
   background-color: var(--secondary-color);
+
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+
+  @media (prefers-color-scheme: light) {
+    background-image: url('images/light-background.jpg');
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background-image: url('images/dark-background.jpg');
+  }
 }
 
 .hidden-on-mobile {
@@ -339,8 +353,10 @@ h3 {
 }
 
 .page.home {
-  background-image: url('images/pittsburgh.jpg');
+  background-image: url('images/pittsburgh.png');
   background-position-y: center;
+  animation: wobble-background 5s infinite;
+  z-index: 2;
 
   &:not(.visible) {
     transition-timing-function: ease;
@@ -631,6 +647,15 @@ h3 {
   width: 500px;
   max-width: 80%;
   margin: 0 auto;
+}
+
+
+@keyframes wobble-background {
+  0% { background-position-y: 50%; }
+  25% { background-position-y: 52%; }
+  50% { background-position-y: 48%; }
+  75% { background-position-y: 52%; }
+  100% { background-position-y: 50%; }
 }
   
 /* Keyframe Animation for Falling Images */
