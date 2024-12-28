@@ -9,7 +9,7 @@ const CONSTANTS = {
     "4": "blog",
     "5": "credits",
   },
-  INITIAL_ANIMATION_MS: 1000,
+  INITIAL_ANIMATION_MS: 500,
   LETTERS: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   MOBILE_DELAY: 120,
   MASKS: 9,
@@ -59,17 +59,20 @@ const animations = {
 
   flyInLetters: (element, durationMs) => {
     let resolvedPromise = () => {};
+    const isDesktopUi = !dom.isMobile();
     const resolved = new Promise(resolve => resolvedPromise = resolve);
     const text = element.innerText;
     const newEls = text.split('').map(letter => {
       const wrapped = document.createElement('span');
       wrapped.textContent = letter.trim() || '\u00A0';
       wrapped.style.display = 'inline-block';
-      wrapped.style.transition = `${durationMs}ms all linear`;
+      wrapped.style.transition = `${durationMs}ms all ease-out`;
 
       // Contstruct a random start point for the letter.
-      const randomX = Math.random() * 200 - 100;
-      const randomY = Math.random() * 200 - 100;
+      // For desktop, the letters all come from generally the left.
+      // For mobile, the letters all come from generally the top.
+      const randomX = isDesktopUi ? Math.random() * 100 - 200 : Math.random() * 200 - 100;
+      const randomY = isDesktopUi ? Math.random() * 200 - 100 : Math.random() * 100 - 200  ;
       const randomRotation = Math.random() * 360 - 180;
       wrapped.style.transform = `translate(${randomX}vw, ${randomY}vh) rotate(${randomRotation}deg)`;
       return wrapped;
