@@ -18,9 +18,9 @@ the beginner code couldn't have been too hard either, so what went wrong? I ask 
 something along the lines of "I didn't have enough motivation" or "I just stopped after a day". I stop and think about
 it for a while.
 
-![Motivate](http://nec1908.com/wp-content/uploads/2015/07/11051772_10153177278493893_8339865091411561609_n.jpg){:height="300px" width="300px" text-align="center"}
+<h4>Motivate</h4>
 
-Sure, it makes sense. My friends wanted to learn, but after a shoft while lost motivation even after they started. But
+Sure, it makes sense. My friends wanted to learn, but after a short while lost motivation even after they started. But
 this brings up an interesting question. How is it possible for you to learn how to code on your own if you keep losing 
 motivation? The reality is that there is no way to magically keep a steady supply of motivation for you to learn, so
 what can we do? You hear stories about 16-year old geniuses starting companies with code they wrote from when they were
@@ -28,10 +28,6 @@ accepted to MIT at 13 because they learned at age 9. But where do those people s
 
 To answer this question, we first need to look at some of the other underlying reasons why it's hard to code without
 motivation. 
-
-<h3> It isn't fun </h3>
-
-![Basketball](http://www.richstoner.com/wp-content/uploads/2014/07/shutterstock_52649824-e1418935346529.jpg){:height="300px" width="300px" text-align="center"}
 
 Compare coding to a hobby such as basketball. How come there are people so excited to go out to the courts to play and learn to
 play ball or watch it on TV? The obvious difference is that basketball is (for many people) actually a lot of fun even if you
@@ -70,8 +66,6 @@ you hit a milestone. When you learn the basics of a language go out for dinner, 
 skating, when you make your first website go get a massage. It's a simple idea that can go a long way in keeping you focused.
 
 <h3> Start a project </h3>
-
-![Website](http://betamore.com/wp-content/uploads/2016/01/Learn-to-Code.png){:height="300px" width="300px" text-align="center"}
 
 A beginner might be tempted to do another tutorial after they finished the first one if they do not feel like they learned 
 enough. To this I say, no. As soon as you finish your tutorials on a subject, I say you should jump right into a project. The 
