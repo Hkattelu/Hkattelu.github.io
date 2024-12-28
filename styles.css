@@ -227,6 +227,7 @@ h3 {
       transform: none;
 
       .focus-only-background.focus-only-background {
+        pointer-events: none;
         padding: 15vh;
         margin: -15vh;
         background-size: 80vw 15vh;
