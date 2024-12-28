@@ -126,7 +126,7 @@ h3 {
   align-items: end;
   justify-content: center;
   overflow-y: clip;
-  z-index: 2;
+  z-index: 1;
 
   perspective: 180px;
   margin-left: 20vw;
@@ -171,6 +171,8 @@ h3 {
     > span {
       /** This not a no-op, as its needed for stacking context. */
       filter: brightness(1);
+      z-index: 2;
+      cursor: pointer;
   
       @media (prefers-color-scheme: dark) {
         text-shadow: 4px 4px 1px black;
@@ -233,9 +235,11 @@ h3 {
       margin-top: 0;
       margin-right: 0;
       transform: none;
+      z-index: 2;
 
       .focus-only-background.focus-only-background {
         pointer-events: none;
+        z-index: 1;
         padding: 15vh;
         margin: -15vh;
         background-size: 80vw 15vh;
@@ -380,7 +384,7 @@ h3 {
 .page.home {
   background-image: url('images/pittsburgh.png');
   animation: wobble-background 8s infinite ease;
-  z-index: 1;
+  z-index: 0;
 
   &:not(.visible) {
     transition-timing-function: ease;
@@ -442,7 +446,6 @@ h3 {
 
 
 .page.projects {
-  pointer-events: none;
   perspective: 500px;
 
   .text-section {
@@ -471,16 +474,21 @@ h3 {
     text-align: center;
 
     .glide__bullet {
+      display: inline-block;
       height: 16px;
       width: 16px;
 
       border: 1px solid white;
       border-radius: 50%;
-      background-color: black;
+      background-color: var(--text-background);
 
       &.glide__bullet--active {
-        background-color: white;
-        border-color: black;
+        background-color: var(--primary-color);
+        border-color: var(--text-background);
+      }
+
+      &:not(.glide__bullet--active) {
+        cursor: pointer;
       }
     }
   }

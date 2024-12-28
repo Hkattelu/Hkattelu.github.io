@@ -163,7 +163,6 @@ const carousel = {
   setup: () => {
     carousel.instance = new Glide('.glide', {
       startAt: 0,
-      dots: '#dots',
       draggable: true,
     });
 
@@ -309,6 +308,7 @@ function startApp() {
         const background = firstOption.querySelector('.focus-only-background');
         animations.changeBackground(background);
       }
+      carousel.setup();
       dom.focusFirstOption();
     });
   });
@@ -364,8 +364,6 @@ function init() {
       event.preventDefault();
     });
   });
-
-  carousel.setup();
 
   // Video loading check
   const videos = document.querySelectorAll('video');
