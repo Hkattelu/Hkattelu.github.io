@@ -309,19 +309,23 @@ function startApp() {
 
   history.pushState({pageIndex: -1}, '');
 
-  const optionTexts = Array.from(dom.getOptionTexts());
-  const promises = optionTexts.map(textEl => animations.flyInLetters(textEl, CONSTANTS.INITIAL_ANIMATION_MS));
-  Promise.all(promises).then(() => {
-    if (!dom.isMobile()) {
-      const firstOption = document.activeElement;
-      const background = firstOption.querySelector('.focus-only-background');
-      animations.changeBackground(background);
-    } else {
-      const video = document.querySelector('.projects video');
-      video.addEventListener('touchstart', handlers.touch.start);
-      video.addEventListener('touchmove', handlers.touch.move);
-    }
-    dom.focusFirstOption();
+  // This requestAnimationFrame double ensures that the DOM content is fully loaded.
+  requestAnimationFrame(() => {
+    const optionTexts = Array.from(dom.getOptionTexts());
+    const promises = optionTexts.map(textEl => animations.flyInLetters(textEl, CONSTANTS.INITIAL_ANIMATION_MS));
+
+    Promise.all(promises).then(() => {
+      if (!dom.isMobile()) {
+        const firstOption = document.activeElement;
+        const background = firstOption.querySelector('.focus-only-background');
+        animations.changeBackground(background);
+      } else {
+        const video = document.querySelector('.projects video');
+        video.addEventListener('touchstart', handlers.touch.start);
+        video.addEventListener('touchmove', handlers.touch.move);
+      }
+      dom.focusFirstOption();
+    });
   });
 }
 
