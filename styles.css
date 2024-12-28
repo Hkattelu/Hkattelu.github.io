@@ -129,39 +129,25 @@ h3 {
     font-size: clamp(3rem, 10vh, 10rem);
     line-height: clamp(3rem, 10vh, 10rem);
     pointer-events: auto;
+    outline: none;
+
 
     /** Controls the xy position of the option */
-    top: 85vh;
     transition: transform var(--base-transition-duration) ease-in;
     cursor: pointer;
 
-    span {
-      text-transform: uppercase;
-      text-shadow: 4px 4px 1px black;
-      color: var(--primary-color);
-    
-      font-family: 'Space Mono', monospace;
-      font-weight: 500;
-      outline: none;
-      cursor: pointer;
+    &:focus .focus-only-background {
+      /** Hack to allow the background to overflow the mask */
+      pointer-events: none;
+      padding: 10vw;
+      margin: -10vw;
 
-      transition: none;
-
-      &:focus {
-        background-color: transparent;
-        background-image: url(images/masks0.png);
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: calc(100% - 40vw) 30%;
-
-        transition: all var(--base-transition-duration) ease-out;
-
-        /** Hack to allow the background to overflow the mask */
-        pointer-events: none;
-        padding: 30vw;
-        margin: -30vw;
-        border-radius: 90%;
-      }
+      background-image: url(images/masks0.png);
+      background-color: transparent;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position-x: center;
+      background-position-y: calc(50% + 6vh);
     }
   }
 
@@ -200,6 +186,18 @@ h3 {
     margin-right: 9vw;
     rotate: z -6deg;
   }
+
+  span {
+    text-transform: uppercase;
+    text-shadow: 4px 4px 1px black;
+    color: var(--primary-color);
+  
+    font-family: 'Space Mono', monospace;
+    font-weight: 500;
+    cursor: pointer;
+
+    transition: none;
+  }
   
   @media screen and (max-width: 767px) {
     margin-top: 32px;
@@ -215,6 +213,13 @@ h3 {
       margin-top: 0;
       margin-right: 0;
       transform: none;
+
+      .focus-only-background {
+        padding: 15vh;
+        margin: -15vh;
+        background-size: 80vw 15vh;
+        background-position-y: 12vh;
+      }
     }
   }
 }
@@ -361,7 +366,7 @@ h3 {
   &:not(.visible) {
     transition-timing-function: ease;
     transition-delay: var(--base-transition-duration);
-    transform: rotate3d(0, 0, 1, 90deg);
+    transform: rotate3d(0, 0, 1, -90deg);
   }
 
   @media screen and (max-width: 767px) {

@@ -249,13 +249,13 @@ const handlers = {
 
   handleVerticalNavigation: (event) => {
     const activeEl = document.activeElement;
-    if (activeEl.tagName.toLowerCase() !== 'span') {
-      document.querySelector('span:not(:focus)').focus();
+    if (!activeEl.classList.contains('option')) {
+      document.querySelector('.option:not(:focus)').focus();
       event.preventDefault();
     } else if (!dom.getCurrentPage().classList.contains('home')) {
       event.preventDefault();
     } else {
-      const allOptions = Array.from(document.querySelectorAll('span[tabindex="0"]'));
+      const allOptions = Array.from(document.querySelectorAll('.option[tabindex="0"]'));
       const currentIndex = allOptions.findIndex((el) => el === activeEl);
       const newIndex = event.code === 'ArrowDown' ? currentIndex + 1 : currentIndex - 1;
       allOptions[mod(newIndex, allOptions.length)].focus();
@@ -293,20 +293,27 @@ function init() {
       event.preventDefault();
     });
 
-    const span = box.querySelector('span');
-    span.addEventListener('focus', (event) => { 
+    box.addEventListener('focus', (event) => { 
       event.target.style.transition = 'none';
-      animations.scrambleText(event.target, 30);
-      animations.changeBackground(event.target);
+
+      const span = event.target.querySelector('span');
+      animations.scrambleText(span, 30);
+
+      const background = event.target.querySelector('.focus-only-background');
+      animations.changeBackground(background);
       event.preventDefault();
     });
 
-    span.addEventListener('blur', (event) => { 
+    box.addEventListener('blur', (event) => { 
       clearInterval(state.scrambleInterval);
       clearInterval(state.backgroundInterval);
-      event.target.innerText = event.target.dataset.value;
-      event.target.style.backgroundImage = 'none';
-      event.target.style.transition = 'none';
+
+      const span = event.target.querySelector('span');
+      span.innerText = span.dataset.value;
+
+      const background = event.target.querySelector('.focus-only-background');
+      background.style.backgroundImage = 'none';
+      background.style.transition = 'none';
       event.preventDefault();
     });
   });
@@ -323,7 +330,9 @@ function startApp() {
   document.querySelector('.container').style.opacity = '1';  
 
   if (!dom.isMobile()) {
-    animations.changeBackground(document.activeElement);
+    const firstOption = document.activeElement;
+    const background = firstOption.querySelector('.focus-only-background');
+    animations.changeBackground(background);
   } else {
     const video = document.querySelector('.projects video');
     video.addEventListener('touchstart', handlers.touch.start);
