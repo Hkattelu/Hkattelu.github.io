@@ -301,7 +301,7 @@ const handlers = {
 
 // Tear down the loader and kick off the welcome animations.
 function startApp() {
-  const loader = document.querySelector('.loader');
+  const loader = document.querySelector('.loader-container');
   if (!loader) return;
   
   loader.remove();
@@ -389,9 +389,9 @@ function init() {
   
 // Start app once videos are loaded
   if (Array.from(videos).every(video => video.readyState >= 4)) {
-    startApp();
+    // startApp();
   } else {
-    videos.forEach(video => video.addEventListener('canplaythrough', checkVideosLoaded));
+    // videos.forEach(video => video.addEventListener('canplaythrough', checkVideosLoaded));
   }
 }
 
