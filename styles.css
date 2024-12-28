@@ -12,6 +12,15 @@
   --secondary-color: hsl(var(--hue), 50%, 90%);
   --tertiary-color: hsl(var(--tertiary-hue), 80%, 80%);
   --accent-color: hsl(var(--accent-hue), 80%, 20%);
+
+  
+  @media (prefers-color-scheme: dark) {
+    --primary-color: hsl(var(--hue), 100%, 100%);
+    --pre-primary-color: hsl(var(--hue), 50%, 55%);
+    --secondary-color: hsl(var(--hue), 50%, 90%);
+    --tertiary-color: hsl(var(--tertiary-hue), 80%, 80%);
+    --accent-color: hsl(var(--accent-hue), 80%, 20%);
+  }
 }
 
 html {
@@ -76,27 +85,22 @@ h3 {
 
 .container {
   display: flex;
+  flex: 1 1 0;
+  flex-direction: row;
+
   /** This gets overriden once the videos have loaded. */
   opacity: 0;
 
   transition: all 0.5s ease;
   overflow: hidden;
   height: 100%;
-  flex: 1 1 0;
-  flex-direction: row;
-  width: 60vw;
-  background-color: var(--secondary-color);
-
-  content: '';
   width: 100%;
-  height: 100%;
+
+  width: 100%;
   background-size: cover;
-  background-position: center;
+  background-position: bottom center;
 
-  @media (prefers-color-scheme: light) {
-    background-image: url('images/light-background.jpg');
-  }
-
+  background-image: url('images/light-background.jpg');
   @media (prefers-color-scheme: dark) {
     background-image: url('images/dark-background.jpg');
   }
@@ -109,16 +113,14 @@ h3 {
 }
 
 .left-options {
-  flex: 0 0 0;
   position: relative;
-  pointer-events: none;
 
   display: flex;
   flex-direction: column;
   align-items: end;
   justify-content: center;
   overflow-y: clip;
-  z-index: 3;
+  z-index: 2;
 
   perspective: 180px;
   margin-left: 20vw;
@@ -139,15 +141,23 @@ h3 {
     &:focus .focus-only-background {
       /** Hack to allow the background to overflow the mask */
       pointer-events: none;
-      padding: 10vw;
-      margin: -10vw;
+
+      padding: 20vw;
+      margin: -20vw;
 
       background-image: url(images/masks0.png);
       background-color: transparent;
       background-repeat: no-repeat;
-      background-size: cover;
+      background-size: 40vw 30vh;
       background-position-x: center;
       background-position-y: calc(50% + 6vh);
+      
+      
+      /* Enable this for dark mode things. */
+      /* @media (prefers-color-scheme: dark) {
+        filter: invert(1) brightness(0.9) sepia(1);
+        z-index: -1;
+      }  */
     }
   }
 
@@ -186,15 +196,19 @@ h3 {
     margin-right: 9vw;
     rotate: z -6deg;
   }
-
+  
   span {
     text-transform: uppercase;
     text-shadow: 4px 4px 1px black;
     color: var(--primary-color);
+
   
     font-family: 'Space Mono', monospace;
     font-weight: 500;
     cursor: pointer;
+
+    /** This not a no-op, as its needed for stacking context. */
+    filter: brightness(1);
   }
   
   @media screen and (max-width: 767px) {
@@ -216,6 +230,7 @@ h3 {
         padding: 15vh;
         margin: -15vh;
         background-size: 80vw 15vh;
+        background-size: cover;
         background-position-y: 12vh;
       }
     }
@@ -247,7 +262,7 @@ h3 {
     transform: rotate3d(0, 0, 0, 0deg);
 
     .controls {
-      transition-delay: 0s;
+      transform: translateY(-100vh);
       animation: fall 1s ease-out forwards;
       display: block;
     }
@@ -359,7 +374,7 @@ h3 {
   background-image: url('images/pittsburgh.png');
   background-position-y: center;
   animation: wobble-background 5s infinite;
-  z-index: 2;
+  z-index: 1;
 
   &:not(.visible) {
     transition-timing-function: ease;

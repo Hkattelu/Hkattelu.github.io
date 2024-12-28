@@ -9,6 +9,7 @@ const CONSTANTS = {
     "4": "blog",
     "5": "credits",
   },
+  INITIAL_ANIMATION_MS: 1000,
   LETTERS: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   MOBILE_DELAY: 120,
   MASKS: 9,
@@ -29,7 +30,9 @@ let state = {
 
 // DOM Helpers
 const dom = {
-  getOptions: () => document.querySelectorAll(".option"),
+  getOptions: () => document.querySelectorAll('.option'),
+  focusFirstOption: () => document.querySelector('.option:not(:focus)').focus(),
+  getOptionTexts: () => document.querySelectorAll('.option span'),
   getCurrentPage: () => document.querySelector('.visible'),
   isMobile: () => window.innerWidth < CONSTANTS.MOBILE_BREAKPOINT || screen.width < CONSTANTS.MOBILE_BREAKPOINT
 };
@@ -52,6 +55,35 @@ const animations = {
       }
       iteration++;
     }, tickMs);
+  },
+
+  flyInLetters: (element, durationMs) => {
+    let resolvedPromise = () => {};
+    const resolved = new Promise(resolve => resolvedPromise = resolve);
+    const text = element.innerText;
+    const newEls = text.split('').map(letter => {
+      const wrapped = document.createElement('span');
+      wrapped.textContent = letter.trim() || '\u00A0';
+      wrapped.style.display = 'inline-block';
+      wrapped.style.transition = `${durationMs}ms all ease-out`;
+
+      // Contstruct a random start point for the letter.
+      const randomX = Math.random() * 200 - 100;
+      const randomY = Math.random() * 200 - 100;
+      const randomRotation = Math.random() * 360 - 180;
+      wrapped.style.transform = `translate(${randomX}vw, ${randomY}vh) rotate(${randomRotation}deg)`;
+      return wrapped;
+    });
+    element.replaceChildren(...newEls);
+    requestAnimationFrame(() => {
+      newEls.forEach(el => el.style.transform = '');
+
+      setTimeout(() => {
+        element.innerText = text;
+        resolvedPromise();
+      }, durationMs + 100);
+    });
+    return resolved;
   },
 
   changeBackground: (element) => {
@@ -250,7 +282,7 @@ const handlers = {
   handleVerticalNavigation: (event) => {
     const activeEl = document.activeElement;
     if (!activeEl.classList.contains('option')) {
-      document.querySelector('.option:not(:focus)').focus();
+      dom.focusFirstOption();
       event.preventDefault();
     } else if (!dom.getCurrentPage().classList.contains('home')) {
       event.preventDefault();
@@ -324,17 +356,22 @@ function startApp() {
   if (!loader) return;
   
   loader.remove();
-  document.querySelector('.container').style.opacity = '1';  
+  document.querySelector('.container').style.opacity = '1';
 
-  if (!dom.isMobile()) {
-    const firstOption = document.activeElement;
-    const background = firstOption.querySelector('.focus-only-background');
-    animations.changeBackground(background);
-  } else {
-    const video = document.querySelector('.projects video');
-    video.addEventListener('touchstart', handlers.touch.start);
-    video.addEventListener('touchmove', handlers.touch.move);
-  }
+  const optionTexts = Array.from(dom.getOptionTexts());
+  const promises = optionTexts.map(textEl => animations.flyInLetters(textEl, CONSTANTS.INITIAL_ANIMATION_MS));
+  Promise.all(promises).then(() => {
+    if (!dom.isMobile()) {
+      const firstOption = document.activeElement;
+      const background = firstOption.querySelector('.focus-only-background');
+      animations.changeBackground(background);
+    } else {
+      const video = document.querySelector('.projects video');
+      video.addEventListener('touchstart', handlers.touch.start);
+      video.addEventListener('touchmove', handlers.touch.move);
+    }
+    dom.focusFirstOption();
+  });
 
   history.pushState({pageIndex: -1}, '');
 }
