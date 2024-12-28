@@ -349,4 +349,8 @@ if (Array.from(videos).every(video => video.readyState >= 4)) {
 }
 
 // Initialize once DOM is loaded
-document.addEventListener("DOMContentLoaded", init);
+if (document.readyState === 'complete' || document.readyState === 'loaded') {
+  init();
+} else {
+  document.addEventListener("DOMContentLoaded", init);
+}
