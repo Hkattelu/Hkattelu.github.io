@@ -3,7 +3,7 @@ const CONSTANTS = {
   PAGES: {
     "-1": "home",
     "0": "about-me",
-    "1": "what-i-value",
+    "1": "skills",
     "2": "projects",
     "3": "contact",
     "4": "blog",
@@ -25,7 +25,8 @@ let state = {
   touchCoords: {
     xDown: null,
     yDown: null
-  }
+  },
+  audioEnabled: false,
 };
 
 // DOM Helpers
@@ -34,6 +35,16 @@ const dom = {
   focusFirstOption: () => document.querySelector('.option:not(:focus)').focus(),
   getOptionTexts: () => document.querySelectorAll('.left-options .option span'),
   getCurrentPage: () => document.querySelector('.visible'),
+  getAudioToggle: () => document.querySelector('.audio-toggle'),
+  playSound: (soundName, reverse = false) => {
+    if (!state.audioEnabled) {
+      return;
+    }
+    const path = `audio/${soundName}${reverse ? '-reverse' : ''}.mp3`
+    const audio = new Audio(path);
+    audio.volume = 0.5;
+    audio.play();
+  },
   isMobile: () => window.innerWidth < CONSTANTS.MOBILE_BREAKPOINT || screen.width < CONSTANTS.MOBILE_BREAKPOINT
 };
 
@@ -123,6 +134,8 @@ const navigation = {
       navigation.hideOptions();
     }
 
+    dom.playSound('select', index < 0);
+
     history.pushState({pageIndex: index}, '');
   },
 
@@ -203,6 +216,9 @@ const carousel = {
     if (dom.isMobile()) {
       page.querySelector('.controls').style.display = 'none';
     }
+
+    // Play the swipe sound
+    dom.playSound('menu');
     
     // Handle video transition
     video.load();
@@ -295,6 +311,16 @@ function startApp() {
   loader.remove();
   document.querySelector('.container').style.opacity = '1';
 
+  // Add audio toggle handler
+  const audioToggle = dom.getAudioToggle();
+  audioToggle.addEventListener('click', () => {
+    state.audioEnabled = !state.audioEnabled;
+    const speakerOn = audioToggle.querySelector('.speaker-on');
+    const speakerOff = audioToggle.querySelector('.speaker-off');
+    speakerOn.style.display = state.audioEnabled ? 'block' : 'none';
+    speakerOff.style.display = state.audioEnabled ? 'none' : 'block';
+  });
+
   history.pushState({pageIndex: -1}, '');
 
   // This requestAnimationFrame double ensures that the DOM content is fully loaded.
@@ -349,6 +375,7 @@ function init() {
 
       const background = event.target.querySelector('.focus-only-background');
       animations.changeBackground(background);
+      dom.playSound('button');
       event.preventDefault();
     });
 
