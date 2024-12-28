@@ -219,31 +219,31 @@ h3 {
   }
   .option:nth-of-type(2) {
     transform: rotate3d(0, -1, 0, -5deg);
-    margin-top: 10vh;
+    margin-right: 3ch;
     rotate: z 13deg;
   }
   .option:nth-of-type(3) {
     transform: rotate3d(0, -1, 0, -5deg);
     margin-top: 3vh;
-    margin-right: 10vw;
-    rotate: z 12deg;
+    margin-right: 3ch;
+    rotate: z 10deg;
   }
   .option:nth-of-type(4) {
     transform: rotate3d(0, -1, 0, -5deg);
     margin-top: 3vh;
-    margin-right: 12vw;
+    margin-right: 3ch;
     rotate: z 4deg;
   }
   .option:nth-of-type(5) {
     transform: rotate3d(0, -1, 0, -5deg);
     margin-top: 3vh;
-    margin-right: 14vw;
+    margin-right: 3ch;
     rotate: z -2deg;
   }
   .option:nth-of-type(6) {
     transform: rotate3d(0, -1, 0, -5deg);
     margin-top: 2vh;
-    margin-right: 9vw;
+    margin-right: 2ch;
     rotate: z -6deg;
   }
   
