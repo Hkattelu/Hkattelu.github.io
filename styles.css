@@ -748,24 +748,23 @@ footer {
 
   span {
     width: 20ch;
-    margin-left: 4ch;
+    margin-left: 6ch;
 
     display: inline-block;
-    transform: translateX(100vw);
+    transform: translateX(0vw);
     overflow: hidden;
     color: white;
     animation: sliding-text 2.5s infinite;
-    animation-delay: 1s;
     z-index: 1;
     filter: brightness(1);
   }
 }
 
 @keyframes sliding-text {
-    10%  {transform: translateX(100vw);}
-    20%  {transform: translateX(0vw);}
-    80%  {transform: translateX(0vw);}
-    100% {transform: translateX(-100vw);}
+  20%  {transform: translateX(0vw);}
+  60%  {transform: translateX(0vw);}
+  80% {transform: translateX(-100vw);}
+  81% {transform: translateX(100vw);}
 }
 
 .loader-ring {
@@ -778,6 +777,7 @@ footer {
     radial-gradient(farthest-side, #0000 calc(100% - 3px),#000000a0 calc(100% - 12px)) content-box;
   transform: rotate(30deg);
   animation: ring-loop 2.5s infinite;
+  animation-delay: 0.4s;
 }
 
 @keyframes ring-loop {to{transform: rotate(390deg)}}
