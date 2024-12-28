@@ -165,14 +165,16 @@ const carousel = {
       startAt: 0,
       dots: '#dots',
       draggable: true,
-      arrows: {
-        prev: '.glider-prev',
-        next: '.glider-next'
-      }
     });
 
     carousel.instance.mount();
     carousel.instance.on('run.before', carousel.handleSlideChange);
+
+    if (dom.isMobile()) {
+      const video = document.querySelector('.projects video');
+      video.addEventListener('touchstart', (evt) => handlers.touch.start(evt));
+      video.addEventListener('touchmove', (evt) => handlers.touch.move(evt));
+    }
   },
 
   handleSlideChange: (item) => {
@@ -202,9 +204,6 @@ const carousel = {
     if (dom.isMobile()) {
       page.querySelector('.controls').style.display = 'none';
     }
-
-    // Update theme
-    carousel.updateTheme(page, newIndex);
     
     // Handle video transition
     video.load();
@@ -215,24 +214,15 @@ const carousel = {
       setTimeout(() => video.play(), 300);
     }, 0);
   },
-
-  updateTheme: (page, index) => {
-    const themes = {
-      0: ['purple', 'black'],      // Youtube ai tool
-      1: ['grey', 'black'],        // Youtube quizzes
-      2: ['darkgrey', 'grey'],     // Logs Viewer
-      3: ['grey', 'black'],        // Youtube Courses
-    };
-    
-    const [gradient1, gradient2] = themes[index] || themes[0];
-    page.style.setProperty('--gradient1', gradient1);
-    page.style.setProperty('--gradient2', gradient2);
-  }
 };
 
 // Utility Functions
 function mod(n, m) {
   return ((n % m) + m) % m;
+}
+
+function getTouches(evt) {
+  return evt.touches || evt.originalEvent.touches;
 }
 
 // Event Handlers
@@ -249,8 +239,8 @@ const handlers = {
     move: (evt) => {
       if (!state.touchCoords.xDown || !state.touchCoords.yDown) return;
 
-      const xUp = evt.touches[0].clientX;
-      const yUp = evt.touches[0].clientY;
+      const xUp = getTouches(evt)[0].clientX;
+      const yUp = getTouches(evt)[0].clientY;
       const xDiff = state.touchCoords.xDown - xUp;
       const yDiff = state.touchCoords.yDown - yUp;
 
@@ -318,10 +308,6 @@ function startApp() {
         const firstOption = document.activeElement;
         const background = firstOption.querySelector('.focus-only-background');
         animations.changeBackground(background);
-      } else {
-        const video = document.querySelector('.projects video');
-        video.addEventListener('touchstart', handlers.touch.start);
-        video.addEventListener('touchmove', handlers.touch.move);
       }
       dom.focusFirstOption();
     });
@@ -359,7 +345,7 @@ function init() {
 
     box.addEventListener('focus', (event) => { 
       const span = event.target.querySelector('span');
-      // animations.scrambleText(span, 30);
+      animations.scrambleText(span, 30);
 
       const background = event.target.querySelector('.focus-only-background');
       animations.changeBackground(background);

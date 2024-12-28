@@ -12,9 +12,10 @@
 
   --tertiary-hue: calc(var(--hue) + 300);
   --accent-hue: calc(var(--hue) + 60);
-  --primary-color: hsl(var(--hue), 100%, 100%);
+  --primary-color: hsl(var(--hue), 100%, 0%);
   --pre-primary-color: hsl(var(--hue), 50%, 55%);
   --secondary-color: hsl(var(--hue), 50%, 90%);
+  --text-background: hsl(var(--hue), 100%, 100%);
   --tertiary-color: hsl(var(--tertiary-hue), 80%, 80%);
   --accent-color: hsl(var(--accent-hue), 80%, 20%);
   
@@ -22,6 +23,7 @@
     --primary-color: hsl(var(--hue), 100%, 100%);
     --pre-primary-color: hsl(var(--hue), 50%, 55%);
     --secondary-color: hsl(var(--hue), 50%, 90%);
+    --text-background: hsl(var(--hue), 100%, 0%);
     --tertiary-color: hsl(var(--tertiary-hue), 80%, 80%);
     --accent-color: hsl(var(--accent-hue), 80%, 20%);
   }
@@ -159,18 +161,24 @@ h3 {
       background-size: 40vw 30vh;
       background-position-x: center;
       background-position-y: calc(50% + 6vh);
-      filter: brightness(0);
+      filter: invert(88%) sepia(15%) saturate(775%) hue-rotate(137deg) brightness(108%) contrast(105%);
+
+      @media (prefers-color-scheme: dark) {
+        filter: brightness(0);
+      }
     }
   
     > span {
       /** This not a no-op, as its needed for stacking context. */
-      text-shadow: 4px 4px 1px black;
       filter: brightness(1);
   
+      @media (prefers-color-scheme: dark) {
+        text-shadow: 4px 4px 1px black;
+      }
+
       > span {
         display: inline-block;
         filter: brightness(1);
-    
       }
     }
   }
@@ -249,13 +257,12 @@ h3 {
   z-index: 1;
 
   /* This color get overriden in JS depending on the video. */
-  background: radial-gradient(var(--gradient1), var(--gradient2));
   background-size: cover;
 
-  -webkit-transition: transform var(--base-transition-duration) ease-in, --gradient1 var(--base-transition-duration), --gradient2 var(--base-transition-duration);
-  -o-transition: transform var(--base-transition-duration) ease-in, --gradient1 var(--base-transition-duration), --gradient2 var(--base-transition-duration);
-  -moz-transition: transform var(--base-transition-duration) ease-in, --gradient1 var(--base-transition-duration), --gradient2 var(--base-transition-duration);
-  transition: transform var(--base-transition-duration) ease-in, --gradient1 var(--base-transition-duration), --gradient2 var(--base-transition-duration);
+  -webkit-transition: transform var(--base-transition-duration) ease-in;
+  -o-transition: transform var(--base-transition-duration) ease-in;
+  -moz-transition: transform var(--base-transition-duration) ease-in;
+  transition: transform var(--base-transition-duration) ease-in;
   transform-origin: 130vw 0px 0px;
 
   &.visible {
@@ -325,7 +332,7 @@ h3 {
     flex-direction: column;
     justify-content: center;
 
-    background-color: black;
+    background-color: var(--text-background);
     color: var(--primary-color);
 
     min-width: 30vw;
@@ -433,21 +440,9 @@ h3 {
   }
 }
 
-@property --gradient1 {
-  syntax: '<color>';
-  initial-value: purple;
-  inherits: false;
-}
-
-@property --gradient2 {
-  syntax: '<color>';
-  initial-value: black;
-  inherits: false;
-}
 
 .page.projects {
-  --gradient1: purple;
-  --gradient2: black;
+  pointer-events: none;
   perspective: 500px;
 
   .text-section {
@@ -456,7 +451,8 @@ h3 {
     max-width: none;
     height: 90vh;
     justify-content: flex-start;
-    background-color: rgba(0, 0, 0, 0.65);
+    background-color: var(--text-background);
+    transform: translateX(-20px) rotate3d(0, -1, 0, 5deg);
 
     /** This is needed to prevent bleeding out of the page */
     overflow: hidden;
@@ -508,6 +504,9 @@ h3 {
       transform: rotateX(-5deg);
       &[data-index="0"] {
         left: 25vw;
+        margin: 1vh 0 0 5vw;
+        transform: rotateX(-5deg);
+        scale: 0.9;
       }
     }
   }
@@ -547,6 +546,7 @@ h3 {
       width: 100vw;
       box-sizing: border-box;
       height: calc(100% - 40vh);
+      transform: none;
     }
 
     .glider-contain {
