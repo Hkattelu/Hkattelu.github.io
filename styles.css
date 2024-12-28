@@ -22,10 +22,10 @@
   @media (prefers-color-scheme: dark) {
     --primary-color: hsl(var(--hue), 100%, 100%);
     --pre-primary-color: hsl(var(--hue), 50%, 55%);
-    --secondary-color: hsl(var(--hue), 50%, 90%);
+    --secondary-color: hsl(var(--hue), 50%, 20%);
     --text-background: hsl(var(--hue), 100%, 0%);
     --tertiary-color: hsl(var(--tertiary-hue), 80%, 80%);
-    --accent-color: hsl(var(--accent-hue), 80%, 20%);
+    --accent-color: hsl(var(--accent-hue), 80%, 80%);
   }
 }
 
@@ -401,8 +401,20 @@ h3 {
 }
 
 .page.about-me {
+  perspective: 500px;
+
   .text-section {
     margin-left: 50vw;
+    transform: translateX(-20px) rotate3d(0, -1, 0, 5deg);
+  }
+
+  video {
+    height: 80vh;
+    width: 50vw;
+
+    transition: transform var(--base-transition-duration) ease;
+    transition-delay: var(--base-transition-duration);
+    transform: rotateY(10deg);
   }
 
   @media screen and (max-width: 767px) {
@@ -412,6 +424,7 @@ h3 {
 
     video {
       width: auto;
+      top: 0;
       left: -450px;
     }
   }
