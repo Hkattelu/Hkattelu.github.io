@@ -372,8 +372,7 @@ h3 {
 
 .page.home {
   background-image: url('images/pittsburgh.png');
-  background-position-y: center;
-  animation: wobble-background 8s infinite linear;
+  animation: wobble-background 8s infinite ease;
   z-index: 1;
 
   &:not(.visible) {
@@ -672,21 +671,11 @@ h3 {
 
 
 @keyframes wobble-background {
-  0% {
-    background-position: 75% 50%;
-  }
-  25% {
-    background-position: 74% 52%;
-  }
-  50% {
-    background-position: 75% 48%;
-  }
-  75% {
-    background-position: 76% 52%;
-  }
-  100% {
-    background-position: 75% 50%;
-  }
+  0% { background-position: 75% 50%; }
+  25% { background-position: 74.5% 52%; }
+  50% { background-position: 75% 48%; }
+  75% { background-position: 75.5% 52%; }
+  100% { background-position: 75% 50%; }
 }
   
 /* Keyframe Animation for Falling Images */
@@ -744,12 +733,14 @@ footer {
   content:"Loading...";
   grid-area: 1/1;
   -webkit-mask: linear-gradient(90deg,#000 50%,#0000 0) 0 50%/2ch 100%;
+  mask: linear-gradient(90deg,#000 50%,#0000 0) 0 50%/2ch 100%;
   color: #0000;
   text-shadow: 0 0 0 #000,0 calc(var(--s,1)*1.2em) 0 #000;
   animation: l15 1s infinite;
 }
 .loader:after {
   -webkit-mask-position: 1ch 50%;
+  mask-position: 1ch 50%;
   --s:-1;
 }
 @keyframes l15 {80%,100%{text-shadow:0 calc(var(--s,1)*-1.2em)  0 #000,0 0 0 #000}}
