@@ -65,7 +65,6 @@ const animations = {
     const newEls = text.split('').map(letter => {
       const wrapped = document.createElement('span');
       wrapped.textContent = letter.trim() || '\u00A0';
-      wrapped.style.display = 'inline-block';
       wrapped.style.transition = `${durationMs}ms all ease-out`;
 
       // Contstruct a random start point for the letter.
@@ -360,7 +359,7 @@ function init() {
 
     box.addEventListener('focus', (event) => { 
       const span = event.target.querySelector('span');
-      animations.scrambleText(span, 30);
+      // animations.scrambleText(span, 30);
 
       const background = event.target.querySelector('.focus-only-background');
       animations.changeBackground(background);
