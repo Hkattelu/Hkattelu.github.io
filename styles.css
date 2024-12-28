@@ -603,6 +603,11 @@ h3 {
     border-radius: 10px;
   }
 
+  ul > li {
+    list-style-type: disc;
+    list-style-position: inside;
+  }
+
   video {
     width: 100%;
     top: -90%;

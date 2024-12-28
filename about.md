@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 <div style="width: 60%; margin-left: 20%;">
-	<img src="../img/me.jpg"/>
+	<img src="../images/me.jpg"/>
 </div>
 <div style="margin-top: 20px;text-align:center;">
 	<h1>Hi, I'm Himanshu</h1>
