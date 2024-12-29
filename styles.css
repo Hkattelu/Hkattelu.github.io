@@ -25,8 +25,9 @@
   touch-action: none;
 
   /* Because of how CSS filters work, we need to do this custom */
+  /* It must be refreshed if the hue changes with https://codepen.io/sosuke/pen/Pjoqqp with a loss <= 0.3 */
   .option:focus .focus-only-background {
-    filter: invert(7%) sepia(9%) saturate(6378%) hue-rotate(189deg) brightness(89%) contrast(96%);
+    filter: invert(7%) sepia(26%) saturate(1480%) hue-rotate(182deg) brightness(64%) contrast(97%);
   }
 
   .option > span {
@@ -45,7 +46,7 @@
     --accent-color: hsl(var(--accent-hue), 80%, 20%);
   
     .option:focus .focus-only-background {
-      filter: brightness(0) saturate(100%) invert(93%) sepia(4%) saturate(2693%) hue-rotate(191deg) brightness(98%) contrast(93%);;
+      filter: invert(93%) sepia(2%) saturate(1833%) hue-rotate(189deg) brightness(96%) contrast(98%);
     }
 
     .option > span {
