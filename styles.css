@@ -11,7 +11,7 @@
   --accent-hue: calc(var(--hue) + 80);
 
   --primary-color: hsl(var(--hue), 50%, 90%);
-  --pre-primary-color: hsla(var(--hue), 50%, 95%, 50%);
+  --pre-primary-color: hsla(var(--hue), 50%, 95%, 20%);
   --secondary-color: hsl(var(--hue), 50%, 10%);
   --tertiary-color: hsl(var(--tertiary-hue), 80%, 20%);
   --accent-color: hsl(var(--accent-hue), 80%, 80%);
@@ -26,7 +26,11 @@
 
   /* Because of how CSS filters work, we need to do this custom */
   .option:focus .focus-only-background {
-    filter: invert(8%) sepia(6%) saturate(7498%) hue-rotate(206deg) brightness(90%) contrast(104%);
+    filter: invert(7%) sepia(9%) saturate(6378%) hue-rotate(189deg) brightness(89%) contrast(96%);
+  }
+
+  .option > span {
+    text-shadow: 4px 4px 1px black;
   }
 
   .container {
@@ -35,13 +39,17 @@
 
   &.dark {
     --primary-color: hsl(var(--hue), 50%, 10%);
-    --pre-primary-color: hsla(var(--hue), 50%, 15%, 50%);
+    --pre-primary-color: hsla(var(--hue), 50%, 15%, 30%);
     --secondary-color: hsl(var(--hue), 50%, 90%);
     --tertiary-color: hsl(var(--tertiary-hue), 80%, 80%);
     --accent-color: hsl(var(--accent-hue), 80%, 20%);
   
     .option:focus .focus-only-background {
       filter: brightness(0) saturate(100%) invert(93%) sepia(4%) saturate(2693%) hue-rotate(191deg) brightness(98%) contrast(93%);;
+    }
+
+    .option > span {
+      text-shadow: none;
     }
   
     .container {      
@@ -189,6 +197,10 @@ h3 {
     /** Controls the xy position of the option */
     transition: transform var(--base-transition-duration) ease-in;
 
+    &:focus {
+      background-color: transparent !important;
+    }
+
     &:focus .focus-only-background {
       /** Hack to allow the background to overflow the mask */
       pointer-events: none;
@@ -209,7 +221,6 @@ h3 {
       filter: brightness(1);
       z-index: 2;
       cursor: pointer;
-      text-shadow: 4px 4px 1px black;
 
       > span {
         display: inline-block;
