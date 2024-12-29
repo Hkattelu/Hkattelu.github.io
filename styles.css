@@ -5,36 +5,49 @@
 
 :root {
   --base-transition-duration: 0.3s;
-  --hue: 192;
+
+  --hue: 220;
+  --tertiary-hue: calc(var(--hue) + 300);
+  --accent-hue: calc(var(--hue) + 80);
+
+  --primary-color: hsl(var(--hue), 50%, 90%);
+  --pre-primary-color: hsla(var(--hue), 50%, 95%, 50%);
+  --secondary-color: hsl(var(--hue), 50%, 10%);
+  --tertiary-color: hsl(var(--tertiary-hue), 80%, 20%);
+  --accent-color: hsl(var(--accent-hue), 80%, 80%);
 
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
-
-  --tertiary-hue: calc(var(--hue) + 300);
-  --accent-hue: calc(var(--hue) + 60);
-  --primary-color: hsl(var(--hue), 100%, 0%);
-  --pre-primary-color: hsl(var(--hue), 50%, 55%);
-  --secondary-color: hsl(var(--hue), 50%, 90%);
-  --text-background: hsl(var(--hue), 100%, 100%);
-  --tertiary-color: hsl(var(--tertiary-hue), 80%, 80%);
-  --accent-color: hsl(var(--accent-hue), 80%, 20%);
-  
-  @media (prefers-color-scheme: dark) {
-    --primary-color: hsl(var(--hue), 100%, 100%);
-    --pre-primary-color: hsl(var(--hue), 50%, 55%);
-    --secondary-color: hsl(var(--hue), 50%, 20%);
-    --text-background: hsl(var(--hue), 100%, 0%);
-    --tertiary-color: hsl(var(--tertiary-hue), 80%, 80%);
-    --accent-color: hsl(var(--accent-hue), 80%, 80%);
-  }
-}
-
-html {
   height: 100%;
   overflow: hidden;
   caret-color: transparent;
   overscroll-behavior: none;
   touch-action: none;
+
+  /* Because of how CSS filters work, we need to do this custom */
+  .option:focus .focus-only-background {
+    filter: invert(8%) sepia(6%) saturate(7498%) hue-rotate(206deg) brightness(90%) contrast(104%);
+  }
+
+  .container {
+    background-image: url('images/light-background.jpg');
+  }
+
+  &.dark {
+    --primary-color: hsl(var(--hue), 50%, 10%);
+    --pre-primary-color: hsla(var(--hue), 50%, 15%, 50%);
+    --secondary-color: hsl(var(--hue), 50%, 90%);
+    --tertiary-color: hsl(var(--tertiary-hue), 80%, 80%);
+    --accent-color: hsl(var(--accent-hue), 80%, 20%);
+  
+    .option:focus .focus-only-background {
+      filter: brightness(0) saturate(100%) invert(93%) sepia(4%) saturate(2693%) hue-rotate(191deg) brightness(98%) contrast(93%);;
+    }
+  
+    .container {      
+      background-image: url('images/dark-background.jpg');
+    }
+  }
 }
 
 body {
@@ -58,18 +71,18 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-	background: rgba(255,255,255,1);
+	background: var(--primary-color);
 }
 
 a:not(.fa) {
-  color: var(--pre-primary-color);
+  color: var(--accent-color);
 
   h3 & {
     color: var(--primary-color);
   }
 
   &:hover {
-    color: var(--pre-primary-color);
+    color: var(--accent-color);
   }
 }
 
@@ -104,19 +117,13 @@ h3 {
 
   background-size: cover;
   background-position: bottom center;
-
-  background-image: url('images/light-background.jpg');
-  @media (prefers-color-scheme: dark) {
-    background-image: url('images/dark-background.jpg');
-  }
 }
 
-.audio-toggle {
+.audio-toggle, .dark-toggle {
   position: absolute;
   bottom: 20px;
-  right: 20px;
   z-index: 3;
-  background: white;
+  background-color: var(--secondary-color);
   border-radius: 50%;
   border: none;
 
@@ -133,9 +140,16 @@ h3 {
   svg {
     width: 24px;
     height: 24px;
-    fill: currentColor;
-    
+    fill: var(--primary-color);
   } 
+}
+
+.audio-toggle {
+  right: 20px;
+}
+
+.dark-toggle {
+  right: 64px;
 }
 
 .hidden-on-mobile {
@@ -166,10 +180,11 @@ h3 {
 
     text-transform: uppercase;
     color: var(--primary-color);
+    border-radius: 8px;
     font-family: 'Space Mono', monospace;
     font-weight: 500;
-    font-size: clamp(3rem, 10vh, 10rem);
-    line-height: clamp(3rem, 10vh, 10rem);
+    font-size: clamp(3rem, 10vh, 5em);
+    line-height: clamp(3rem, 10vh, 5em);
 
     /** Controls the xy position of the option */
     transition: transform var(--base-transition-duration) ease-in;
@@ -187,11 +202,6 @@ h3 {
       background-size: 40vw 30vh;
       background-position-x: center;
       background-position-y: calc(50% + 6vh);
-      filter: invert(88%) sepia(15%) saturate(775%) hue-rotate(137deg) brightness(108%) contrast(105%);
-
-      @media (prefers-color-scheme: dark) {
-        filter: brightness(0);
-      }
     }
   
     > span {
@@ -199,10 +209,7 @@ h3 {
       filter: brightness(1);
       z-index: 2;
       cursor: pointer;
-  
-      @media (prefers-color-scheme: dark) {
-        text-shadow: 4px 4px 1px black;
-      }
+      text-shadow: 4px 4px 1px black;
 
       > span {
         display: inline-block;
@@ -214,7 +221,6 @@ h3 {
   .option:nth-of-type(1) {
     margin-top: 10vh;
     transform: rotate3d(0, -1, 0, -5deg);
-    margin-top: 10vh;
     rotate: z 23deg;
   }
   .option:nth-of-type(2) {
@@ -339,7 +345,7 @@ h3 {
       }
 
       font-size: 12px;
-      background-color: var(--secondary-color);
+      background-color: var(--pre-primary-color);
       padding: 2px 4px;
       margin: 0px 4px;
       border-radius: 4px;
@@ -347,7 +353,8 @@ h3 {
 
     transition: var(--base-transition-duration) all ease;
     border-radius: 10px;
-    background-color: var(--text-background);
+    background-color: var(--secondary-color);
+
     color: var(--primary-color);
 
     @media screen and (max-width: 767px) {
@@ -362,7 +369,7 @@ h3 {
     flex-direction: column;
     justify-content: center;
 
-    background-color: var(--text-background);
+    background-color: var(--secondary-color);
     color: var(--primary-color);
 
     min-width: 30vw;
@@ -447,7 +454,7 @@ h3 {
     transition-delay: var(--base-transition-duration);
     transform: rotateY(5deg);
     
-    border: 5px solid var(--text-background);
+    border: 5px solid var(--secondary-color);
     box-sizing: border-box;
   }
 
@@ -503,7 +510,6 @@ h3 {
     max-width: none;
     height: 90vh;
     justify-content: flex-start;
-    background-color: var(--text-background);
     transform: translateX(-20px) rotate3d(0, -1, 0, 5deg);
 
     /** This is needed to prevent bleeding out of the page */
@@ -533,11 +539,11 @@ h3 {
 
       border: 1px solid white;
       border-radius: 50%;
-      background-color: var(--text-background);
+      background-color: var(--secondary-color);
 
       &.glide__bullet--active {
         background-color: var(--primary-color);
-        border-color: var(--text-background);
+        border-color: var(--primary-color);
       }
 
       &:not(.glide__bullet--active) {
@@ -558,7 +564,7 @@ h3 {
   }
 
   .skills-list {
-    border: 1px solid white;
+    border: 1px solid var(--accent-color);
     border-radius: 8px;
     flex: 1 1 0;
     padding: 16px;

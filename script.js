@@ -36,6 +36,7 @@ const dom = {
   getOptionTexts: () => document.querySelectorAll('.left-options .option span'),
   getCurrentPage: () => document.querySelector('.visible'),
   getAudioToggle: () => document.querySelector('.audio-toggle'),
+  getDarkModeToggle: () => document.querySelector('.dark-toggle'),
   playSound: (soundName, reverse = false) => {
     if (!state.audioEnabled) {
       return;
@@ -311,16 +312,6 @@ function startApp() {
   loader.remove();
   document.querySelector('.container').style.opacity = '1';
 
-  // Add audio toggle handler
-  const audioToggle = dom.getAudioToggle();
-  audioToggle.addEventListener('click', () => {
-    state.audioEnabled = !state.audioEnabled;
-    const speakerOn = audioToggle.querySelector('.speaker-on');
-    const speakerOff = audioToggle.querySelector('.speaker-off');
-    speakerOn.style.display = state.audioEnabled ? 'block' : 'none';
-    speakerOff.style.display = state.audioEnabled ? 'none' : 'block';
-  });
-
   history.pushState({pageIndex: -1}, '');
 
   // This requestAnimationFrame double ensures that the DOM content is fully loaded.
@@ -335,6 +326,7 @@ function startApp() {
         animations.changeBackground(background);
       }
       carousel.setup();
+      Array.from(dom.getOptions()).forEach(el => el.style.setProperty('background-color', 'var(--secondary-color)'));
       dom.focusFirstOption();
     });
   });
@@ -390,6 +382,35 @@ function init() {
       background.style.backgroundImage = 'none';
       event.preventDefault();
     });
+  });
+
+  // Add audio toggle handler
+  const audioToggle = dom.getAudioToggle();
+  audioToggle.addEventListener('click', () => {
+    state.audioEnabled = !state.audioEnabled;
+    const speakerOn = audioToggle.querySelector('.speaker-on');
+    const speakerOff = audioToggle.querySelector('.speaker-off');
+    speakerOn.style.display = state.audioEnabled ? 'block' : 'none';
+    speakerOff.style.display = state.audioEnabled ? 'none' : 'block';
+  });
+
+  // Add dark mode toggle handler
+  const darkToggle = dom.getDarkModeToggle();
+  const root = document.documentElement;
+  const toggleDark = () => {
+    root.classList.toggle('dark');
+    const darkOn = root.querySelector('.dark-on');
+    const darkOff = root.querySelector('.dark-off');
+    const newMode = root.classList.contains('dark');
+    darkOn.style.display = newMode ? 'block' : 'none';
+    darkOff.style.display = newMode ? 'none' : 'block';
+  }
+  const darkModeEnabled = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (darkModeEnabled) {
+    toggleDark();
+  }
+  darkToggle.addEventListener('click', () => {
+    toggleDark();
   });
 
   // Video loading check
