@@ -452,9 +452,11 @@ h3 {
 
 .page.about-me, .page.contact {
   perspective: 500px;
+  align-items: flex-end;
+  justify-content: flex-end;
 
   .text-section {
-    margin-left: 50vw;
+    margin-bottom: 10vh;
     transform: translateX(-20px) rotate3d(0, -1, 0, 5deg);
   }
 
@@ -476,13 +478,8 @@ h3 {
   }
 
   @media screen and (max-width: 767px) {
-    .text-section {
-      font-size: 0.9em;
-    }
-
     video {
       height: 100vh;
-      top: 0;
       left: 0;
       transform: none;
       border: none;
