@@ -113,6 +113,7 @@ h3 {
 
 .container {
   display: flex;
+  position: relative;
   flex: 1 1 0;
   flex-direction: row;
 
@@ -543,6 +544,7 @@ h3 {
   }
 
   .glide__slide {
+    padding-right: 8px;
     overflow-y: scroll;
   }
 
@@ -737,12 +739,11 @@ h3 {
       max-width: 100vw;
       width: 100vw;
       box-sizing: border-box;
-      height: calc(100% - 40vh);
+      height: calc(100% - 196px);
     }
 
     video {
-      height: 40vh;
-      width: auto;
+      height: auto;
       align-self: flex-start;
     }
   }
