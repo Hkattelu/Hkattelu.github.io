@@ -15,7 +15,53 @@ const CONSTANTS = {
   MASKS: 9,
   MAX_SCRAMBLE: 6,
   PROJECTS: 4,
-  MOBILE_BREAKPOINT: 768
+  MOBILE_BREAKPOINT: 768,
+  SKILL_TREE: {
+    "Frontend Development": {
+      icon: "images/icons/frontend.svg",
+      // description: "Building intuitive and performant user interfaces",
+      branches: {
+        "Web UI": {
+          icon: "images/icons/web.svg",
+          // description: "Modern web development",
+          skills: [
+            {
+              title: "Angular",
+              icon: "images/icons/angular.svg",
+              // description: "GCP Logging UI development"
+            },
+            {
+              title: "Web Components",
+              icon: "images/icons/webcomponents.svg",
+              // description: "YouTube custom elements"
+            },
+            {
+              title: "Responsive Design",
+              icon: "images/icons/responsive.svg",
+              // description: "Mobile-first approaches"
+            }
+          ]
+        },
+        "Mobile Development": {
+          icon: "images/icons/mobile.svg",
+          // description: "Cross-platform mobile solutions",
+          skills: [
+            {
+              title: "Android",
+              icon: "images/icons/android.svg",
+              // description: "Native Android development"
+            },
+            {
+              title: "iOS",
+              icon: "images/icons/ios.svg",
+              // description: "Cross-platform integration"
+            }
+          ]
+        }
+      }
+    },
+    // ... similar structure for other categories
+  }
 };
 
 // State
@@ -135,6 +181,11 @@ const navigation = {
       navigation.hideOptions();
     }
 
+    if (index === 1 && !document.querySelector('.skill-tree')) {
+      console.log("instantiated tree");
+      setTimeout(() => createSkillTree(), 700);
+    }
+
     dom.playSound('select', index < 0);
 
     history.pushState({pageIndex: index}, '');
@@ -240,6 +291,226 @@ function mod(n, m) {
 function getTouches(evt) {
   return evt.touches || evt.originalEvent.touches;
 }
+
+function createNode(title, data) {
+  const node = document.createElement('div');
+  node.className = 'skill-node';
+
+  // Create icon if provided
+  // if (data.icon) {
+  //   const icon = document.createElement('img');
+  //   icon.src = data.icon;
+  //   icon.className = 'skill-node-icon';
+  //   icon.alt = `${title} icon`;
+  //   node.appendChild(icon);
+  // }
+
+  const content = document.createElement('div');
+  content.className = 'skill-node-content';
+
+  const titleEl = document.createElement('div');
+  titleEl.className = 'skill-node-title';
+  titleEl.textContent = title;
+  content.appendChild(titleEl);
+
+  if (data.description) {
+    const descEl = document.createElement('div');
+    descEl.className = 'skill-node-description';
+    descEl.textContent = data.description;
+    content.appendChild(descEl);
+  }
+
+  node.appendChild(content);
+  return node;
+}
+
+function createSkillTree() {
+  const container = document.getElementById('tree');
+  container.innerHTML = '';
+  const treeElement = document.createElement('div');
+  treeElement.className = 'skill-tree';
+
+  // Create nodes for each category
+  for (const [category, categoryData] of Object.entries(CONSTANTS.SKILL_TREE)) {
+    const categoryElement = createNode(category, categoryData);
+    categoryElement.className += ' skill-category';
+
+    // Create branch container
+    const branchesContainer = document.createElement('div');
+    branchesContainer.className = 'skill-branches';
+
+    // Create nodes for each branch
+    for (const [branchName, branchData] of Object.entries(categoryData.branches)) {
+      // Create a container for each branch and its skills
+      const branchContainer = document.createElement('div');
+      branchContainer.className = 'branch-container';
+
+      const branchElement = createNode(branchName, branchData);
+      branchContainer.appendChild(branchElement);
+      
+      // Create skills container
+      const skillsContainer = document.createElement('div');
+      skillsContainer.className = 'skill-items';
+
+      // Create nodes for each skill
+      branchData.skills.forEach(skillData => {
+        const skillElement = createNode(skillData.title, {
+          icon: skillData.icon,
+          description: skillData.description
+        });
+        skillsContainer.appendChild(skillElement);
+      });
+
+      branchContainer.appendChild(skillsContainer);
+      branchesContainer.appendChild(branchContainer);
+    }
+
+    categoryElement.appendChild(branchesContainer);
+    treeElement.appendChild(categoryElement);
+  }
+
+  container.appendChild(treeElement);
+  
+  // Wait for next frame to ensure DOM is updated
+  requestAnimationFrame(() => drawConnections());
+}
+
+function drawConnections() {
+  // Remove existing lines
+  document.querySelectorAll('.tree-line').forEach(line => line.remove());
+
+  // Draw lines for each category
+  document.querySelectorAll('.skill-category').forEach(category => {
+    const categoryNode = category.querySelector('.skill-node-content');
+    // const categoryNode = category;
+    const branchContainers = category.querySelectorAll('.branch-container');
+    
+    // If there are multiple branches, draw T-shaped connection from category
+    if (branchContainers.length > 1) {
+      // Get first and last branch to determine width of horizontal line
+      const firstBranch = branchContainers[0].querySelector('.skill-node');
+      const lastBranch = branchContainers[branchContainers.length - 1].querySelector('.skill-node');
+      drawTConnection(categoryNode, firstBranch, lastBranch);
+    }
+    
+    // Draw individual lines from category to each branch
+    branchContainers.forEach(branchContainer => {
+      const branchNode = branchContainer.querySelector('.skill-node');
+      
+      // Draw lines from branch to each skill (leaf nodes)
+      const skills = branchContainer.querySelectorAll('.skill-items > .skill-node');
+      skills.forEach(skill => {
+        drawLine(branchNode, skill);
+      });
+    });
+  });
+}
+
+function drawTConnection(startNode, firstEndNode, lastEndNode) {
+  const startRect = startNode.getBoundingClientRect();
+  const firstEndRect = firstEndNode.getBoundingClientRect();
+  const lastEndRect = lastEndNode.getBoundingClientRect();
+  const container = document.querySelector('.skill-tree');
+  const containerRect = container.getBoundingClientRect();
+
+  // Calculate positions relative to the container
+  const startX = startRect.left + (startRect.width / 2) - containerRect.left;
+  const startY = startRect.bottom - containerRect.top;
+  const firstEndX = firstEndRect.left + (firstEndRect.width / 2) - containerRect.left;
+  const lastEndX = lastEndRect.left + (lastEndRect.width / 2) - containerRect.left;
+  const endY = firstEndRect.top - containerRect.top;
+
+  // 1. Vertical line from start to horizontal
+  const verticalLine = document.createElement('div');
+  verticalLine.className = 'tree-line tree-line-vertical';
+  verticalLine.style.left = `${startX}px`;
+  verticalLine.style.top = `${startY}px`;
+  verticalLine.style.height = `${(endY - startY) / 2}px`;
+  container.appendChild(verticalLine);
+
+  // 2. Horizontal line connecting all branches
+  const horizontalLine = document.createElement('div');
+  horizontalLine.className = 'tree-line tree-line-horizontal';
+  horizontalLine.style.top = `${startY + (endY - startY) / 2}px`;
+  horizontalLine.style.left = `${firstEndX}px`;
+  horizontalLine.style.width = `${lastEndX - firstEndX}px`;
+  container.appendChild(horizontalLine);
+
+  // 3. Vertical lines from horizontal to each branch
+  document.querySelectorAll('.branch-container').forEach(branch => {
+    const branchNode = branch.querySelector('.skill-node');
+    const branchRect = branchNode.getBoundingClientRect();
+    const branchX = branchRect.left + (branchRect.width / 2) - containerRect.left;
+
+    const verticalLine2 = document.createElement('div');
+    verticalLine2.className = 'tree-line tree-line-vertical';
+    verticalLine2.style.left = `${branchX}px`;
+    verticalLine2.style.top = `${startY + (endY - startY) / 2}px`;
+    verticalLine2.style.height = `${(endY - startY) / 2}px`;
+    container.appendChild(verticalLine2);
+  });
+}
+
+function drawLine(startNode, endNode) {
+  const startRect = startNode.getBoundingClientRect();
+  const endRect = endNode.getBoundingClientRect();
+  const container = document.querySelector('.skill-tree');
+  const containerRect = container.getBoundingClientRect();
+
+  // Calculate positions relative to the container
+  const startX = startRect.left + (startRect.width / 2) - containerRect.left;
+  const startY = startRect.bottom - containerRect.top;
+  const endX = endRect.left + (endRect.width / 2) - containerRect.left;
+  const endY = endRect.top - containerRect.top;
+
+  // Create main vertical line from start node
+  const verticalLine = document.createElement('div');
+  verticalLine.className = 'tree-line tree-line-vertical';
+  verticalLine.style.left = `${startX}px`;
+  verticalLine.style.top = `${startY}px`;
+  
+  // If nodes are vertically aligned
+  if (Math.abs(startX - endX) < 1) {
+    verticalLine.style.height = `${endY - startY}px`;
+    container.appendChild(verticalLine);
+  } else {
+    // For T-shaped connections:
+    // 1. Vertical line from start to horizontal
+    verticalLine.style.height = `${(endY - startY) / 2}px`;
+    container.appendChild(verticalLine);
+
+    // 2. Horizontal line
+    const horizontalLine = document.createElement('div');
+    horizontalLine.className = 'tree-line tree-line-horizontal';
+    horizontalLine.style.top = `${startY + (endY - startY) / 2}px`;
+    horizontalLine.style.left = `${Math.min(startX, endX)}px`;
+    horizontalLine.style.width = `${Math.abs(endX - startX)}px`;
+    container.appendChild(horizontalLine);
+
+    // 3. Vertical line from horizontal to end
+    const verticalLine2 = document.createElement('div');
+    verticalLine2.className = 'tree-line tree-line-vertical';
+    verticalLine2.style.left = `${endX}px`;
+    verticalLine2.style.top = `${startY + (endY - startY) / 2}px`;
+    verticalLine2.style.height = `${(endY - startY) / 2}px`;
+    container.appendChild(verticalLine2);
+  }
+}
+
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+// Add resize handler
+window.addEventListener('resize', debounce(() => drawConnections()));
 
 // Event Handlers
 const handlers = {

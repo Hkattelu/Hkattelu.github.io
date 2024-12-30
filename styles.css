@@ -494,9 +494,104 @@ h3 {
   .text-section {
     transform: translateX(-5vw) rotate3d(0, 1, 0, 8deg);
 
+    max-width: 80vw;
+    width: 80vw;
+    height: 60vh;
+
     justify-content: flex-start;
   }
 
+  .skills-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .skill-tree {
+    padding: 40px;
+    color: var(--primary-color);
+    position: relative;
+    overflow: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .skill-category {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 60px;
+
+    &.skill-node {
+      z-index: 1;
+    }
+  }
+  
+  .skill-branches {
+    display: flex;
+    flex-direction: row;  /* Changed to row to spread branches horizontally */
+    justify-content: space-around;  /* Spread items evenly */
+    align-items: flex-start;  /* Align items to top */
+    gap: 40px;
+    margin-top: 60px;
+    position: relative;
+    width: 100%;
+    padding: 0 40px;  /* Add horizontal padding */
+  }
+  
+  .branch-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    min-width: 200px;  /* Ensure minimum width for each branch */
+  }
+  
+  .skill-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 60px;
+    margin-top: 60px;
+    width: 100%;
+  }
+  
+  .skill-node {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;  /* Increased padding */
+    border-radius: 8px;
+    width: fit-content;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-width: 150px;  /* Ensure minimum width for nodes */
+    justify-content: center;  /* Center content */
+  }
+
+  .skill-node-content {
+    padding-top: 8px;
+    background: var(--secondary-color);
+  }
+  
+  .tree-line {
+    position: absolute;
+    background-color: var(--accent-color);
+    transition: all 0.3s ease;
+    opacity: 0.5;
+  }
+  
+  .tree-line-vertical {
+    width: 2px;
+  }
+  
+  .tree-line-horizontal {
+    height: 2px;
+  }
   video {
     height: 100%;
     width: auto;
@@ -508,7 +603,23 @@ h3 {
 
   @media screen and (max-width: 767px) {
     .text-section {
-      /* temp */
+      width: 90vw;
+      height: 90vh;
+    }
+
+    .skill-branches {
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+    }
+    
+    .branch-container {
+      min-width: unset;
+      width: 100%;
+    }
+    
+    .skill-node {
+      width: calc(100% - 32px);  /* Account for padding */
     }
 
     video {
@@ -517,7 +628,6 @@ h3 {
     }
   }
 }
-
 
 .page.projects {
   perspective: 500px;
