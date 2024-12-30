@@ -488,29 +488,32 @@ h3 {
 }
 
 .page.skills {
+  align-items: center;
+  justify-content: flex-end;
+
   .text-section {
-    margin-left: 10vw;
-    transform: translateX(-20px) rotate3d(0, -1, 0, 5deg);
+    transform: translateX(-5vw) rotate3d(0, 1, 0, 8deg);
+
+    justify-content: flex-start;
   }
 
   video {
-    width: 100%;
-    top: -100%;
+    height: 100%;
+    width: auto;
+    left: 0%;
+
+    transition: transform var(--base-transition-duration) ease;
+    transition-delay: var(--base-transition-duration);
   }
 
   @media screen and (max-width: 767px) {
     .text-section {
-      transform: translateX(-20px) rotate3d(0, -1, 0, -5deg);
-
-      ul {
-        padding-inline-start: 0;
-      }
+      /* temp */
     }
 
     video {
-      width: auto;
-      height: 100%;
-      top: 0;
+      height: 100vh;
+      left: 0;
     }
   }
 }
