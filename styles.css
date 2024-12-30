@@ -126,7 +126,7 @@ h3 {
   width: 100%;
 
   background-size: cover;
-  background-position: bottom center;
+  background-position: 60% center;
 }
 
 .audio-toggle, .dark-toggle {
@@ -452,10 +452,13 @@ h3 {
 
 .page.about-me, .page.contact {
   perspective: 500px;
-  align-items: flex-end;
   justify-content: flex-end;
 
   .text-section {
+    justify-content: flex-start;
+    height: 60vh;
+    width: 45vw;
+    margin-right: 10vw;
     margin-bottom: 10vh;
     transform: translateX(-20px) rotate3d(0, -1, 0, 5deg);
   }
@@ -478,6 +481,13 @@ h3 {
   }
 
   @media screen and (max-width: 767px) {
+    align-items: flex-end;
+
+    .text-section {
+      height: auto;
+      margin-right: 0vw;
+    }
+
     video {
       height: 100vh;
       left: 0;
