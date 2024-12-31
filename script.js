@@ -688,7 +688,7 @@ function init() {
   const videos = document.querySelectorAll('video');
   const checkVideosLoaded = () => {
     const allLoaded = Array.from(videos)
-      .every(video => video.readyState >= 4);
+      .every(video => video.readyState >= 3);
       
     if (allLoaded) startApp();
   };
