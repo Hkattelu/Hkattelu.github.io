@@ -456,7 +456,7 @@ h3 {
 
   .text-section {
     justify-content: flex-start;
-    height: 60vh;
+    height: fit-content;
     width: 45vw;
     margin-right: 10vw;
     margin-bottom: 10vh;

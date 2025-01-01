@@ -688,13 +688,13 @@ function init() {
   const videos = document.querySelectorAll('video');
   const checkVideosLoaded = () => {
     const allLoaded = Array.from(videos)
-      .every(video => video.readyState >= 3);
+      .every(video => video.readyState >= 2);
       
     if (allLoaded) startApp();
   };
   
   // Start app once videos are loaded
-  if (Array.from(videos).every(video => video.readyState >= 3)) {
+  if (Array.from(videos).every(video => video.readyState >= 2)) {
     startApp();
   } else {
     videos.forEach(video => video.addEventListener('canplaythrough', checkVideosLoaded));
