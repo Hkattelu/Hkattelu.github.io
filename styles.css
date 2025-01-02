@@ -227,6 +227,7 @@ h3 {
 
       > span {
         display: inline-block;
+        color: var(--secondary-color);
         filter: brightness(1);
       }
     }

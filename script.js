@@ -141,7 +141,7 @@ const animations = {
       setTimeout(() => {
         element.innerText = text;
         resolvedPromise();
-      }, durationMs + 100);
+      }, durationMs + 200);
     });
     return resolved;
   },
