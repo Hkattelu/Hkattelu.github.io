@@ -20,7 +20,8 @@ const CONSTANTS = {
   SKILL_TREE_DATA: {
     "Core Engineering Mastery": {
       icon: "images/icons/engineering.svg",
-      color: "#4e54c8",
+      color: "var(--tree-core)",
+      colorRgb: "var(--tree-core-rgb)",
       skills: [
         {
           title: "System Architecture & Scalability",
@@ -51,7 +52,8 @@ const CONSTANTS = {
     },
     "Frontend & Mobile Development": {
       icon: "images/icons/frontend.svg",
-      color: "#ff6b6b",
+      color: "var(--tree-frontend)",
+      colorRgb: "var(--tree-frontend-rgb)",
       skills: [
         {
           title: "React & Next.js",
@@ -84,10 +86,11 @@ const CONSTANTS = {
     },
     "AI Integration & Applied ML": {
       icon: "images/icons/ai.svg",
-      color: "#5f27cd",
+      color: "var(--tree-ai)",
+      colorRgb: "var(--tree-ai-rgb)",
       skills: [
         {
-          title: "Large Language Model (LLM) APIs",
+          title: "LLMs",
           icon: "🧠",
           points: "8/10",
           bonus: "+2 for fine-tuning prompts",
@@ -111,7 +114,8 @@ const CONSTANTS = {
     },
     "Service Reliability & DevOps": {
       icon: "images/icons/devops.svg",
-      color: "#20bf6b",
+      color: "var(--tree-devops)",
+      colorRgb: "var(--tree-devops-rgb)",
       skills: [
         {
           title: "Site Reliability Engineering",
@@ -145,7 +149,8 @@ const CONSTANTS = {
     },
     "Startup & Leadership": {
       icon: "images/icons/leadership.svg",
-      color: "#f7b731",
+      color: "var(--tree-leadership)",
+      colorRgb: "var(--tree-leadership-rgb)",
       skills: [
         {
           title: "Fast Iteration & Execution",
@@ -183,7 +188,8 @@ const CONSTANTS = {
     },
     "Bonus Talents": {
       icon: "images/icons/bonus.svg", 
-      color: "#eb3b5a",
+      color: "var(--tree-bonus)",
+      colorRgb: "var(--tree-bonus-rgb)",
       skills: [
         {
           title: "CrossFit Endurance",
@@ -549,7 +555,7 @@ function createSkillTree() {
     tab.dataset.category = category;
     
     const categoryData = CONSTANTS.SKILL_TREE_DATA[category];
-    
+
     // Use an emoji or an icon
     const iconElem = document.createElement('span');
     iconElem.className = 'tab-icon';
@@ -559,13 +565,7 @@ function createSkillTree() {
       iconElem.textContent = categoryData.icon;
     }
     
-    const labelElem = document.createElement('span');
-    labelElem.className = 'tab-label';
-    labelElem.textContent = category;
-    
     tab.appendChild(iconElem);
-    tab.appendChild(labelElem);
-    
     tab.addEventListener('click', () => {
       // Remove active class from all tabs
       document.querySelectorAll('.skill-tab').forEach(t => t.classList.remove('active'));
@@ -586,16 +586,6 @@ function createSkillTree() {
   const treeVisualization = document.createElement('div');
   treeVisualization.className = 'skill-tree-visualization';
   skillTree.appendChild(treeVisualization);
-  
-  // Create the skill detail panel
-  const skillDetail = document.createElement('div');
-  skillDetail.className = 'skill-detail';
-  skillDetail.innerHTML = '<div class="skill-detail-content">' + 
-    '<h3>Select a skill to view details</h3>' +
-    '<p>Click on any skill node to see more information about that skill.</p>' +
-    '</div>';
-  skillTree.appendChild(skillDetail);
-  
   // Add the skill tree to the page
   skillsContainer.appendChild(skillTree);
   
@@ -606,7 +596,7 @@ function createSkillTree() {
   function renderSkillTree(category, categoryData) {
     const treeContainer = document.querySelector('.skill-tree-visualization');
     treeContainer.innerHTML = '';
-    treeContainer.style.setProperty('--tree-color', categoryData.color);
+    treeContainer.className = 'skill-tree-visualization visible';
     
     const treeTitle = document.createElement('h2');
     treeTitle.className = 'tree-title';
@@ -622,12 +612,25 @@ function createSkillTree() {
       node.className = 'skill-node';
       node.style.setProperty('--delay', `${index * 0.1}s`);
       
+      // Create the node circle
+      const nodeCircle = document.createElement('div');
+      nodeCircle.className = 'node-circle';
+      
       // Add the skill icon
       const iconElem = document.createElement('div');
       iconElem.className = 'skill-icon';
       iconElem.textContent = skill.icon;
       
-      // Add skill level indicator (like a progress bar or stars)
+      // Add skill title
+      const titleElem = document.createElement('div');
+      titleElem.className = 'skill-title';
+      titleElem.textContent = skill.title;
+      
+      // Assemble the node circle
+      nodeCircle.appendChild(iconElem);
+      nodeCircle.appendChild(titleElem);
+      
+      // Add skill level indicator (outside the circle)
       const levelElem = document.createElement('div');
       levelElem.className = 'skill-level';
       const points = parseInt(skill.points.split('/')[0]);
@@ -637,24 +640,19 @@ function createSkillTree() {
         levelElem.appendChild(levelPoint);
       }
       
-      // Add skill title
-      const titleElem = document.createElement('div');
-      titleElem.className = 'skill-title';
-      titleElem.textContent = skill.title;
-      
-      node.appendChild(iconElem);
-      node.appendChild(titleElem);
+      // Assemble the complete node
+      node.appendChild(nodeCircle);
       node.appendChild(levelElem);
       
       // Handle node click to show skill details
-      node.addEventListener('click', () => {
+      nodeCircle.addEventListener('click', () => {
         // Remove active class from all nodes
         document.querySelectorAll('.skill-node').forEach(n => n.classList.remove('active'));
         // Add active class to clicked node
         node.classList.add('active');
         
         // Update the skill detail panel
-        const detailContent = document.querySelector('.skill-detail-content');
+        const detailContent = document.querySelector('.skills .text-section');
         detailContent.innerHTML = `
           <h3>${skill.title} <span class="skill-icon">${skill.icon}</span></h3>
           <div class="skill-rating">
@@ -680,11 +678,89 @@ function createSkillTree() {
     const lineContainer = document.createElement('div');
     lineContainer.className = 'skill-lines';
     treeContainer.appendChild(lineContainer);
-    
-    // Animate the skill tree entrance
+
+    // Wait for nodes to be added to the DOM and positioned
     setTimeout(() => {
-      treeContainer.classList.add('visible');
-    }, 100);
+      const nodeElements = skillNodes.querySelectorAll('.skill-node');
+      if (nodeElements.length > 1) {
+        // Get container dimensions for reference
+        const containerRect = skillNodes.getBoundingClientRect();
+        
+        // Create connections in a better pattern
+        // First establish what row each node is in (for a grid layout)
+        const nodePositions = Array.from(nodeElements).map(node => {
+          const rect = node.getBoundingClientRect();
+          return {
+            node: node,
+            center: {
+              x: rect.left + rect.width / 2,
+              y: rect.top + rect.height / 2
+            },
+            top: rect.top,
+            row: Math.floor((rect.top - containerRect.top) / 150) // Approximate row based on position
+          };
+        });
+        
+        // Group nodes by row
+        const rowGroups = {};
+        nodePositions.forEach(pos => {
+          if (!rowGroups[pos.row]) rowGroups[pos.row] = [];
+          rowGroups[pos.row].push(pos);
+        });
+        
+        // Connect nodes within same row
+        Object.values(rowGroups).forEach(rowNodes => {
+          if (rowNodes.length > 1) {
+            rowNodes.sort((a, b) => a.center.x - b.center.x);
+            
+            for (let i = 0; i < rowNodes.length - 1; i++) {
+              createConnection(rowNodes[i], rowNodes[i + 1], i, lineContainer, containerRect);
+            }
+          }
+        });
+        
+        // Connect rows to each other (first node of each row to the next)
+        const rowKeys = Object.keys(rowGroups).map(Number).sort((a, b) => a - b);
+        for (let i = 0; i < rowKeys.length - 1; i++) {
+          const currentRow = rowGroups[rowKeys[i]];
+          const nextRow = rowGroups[rowKeys[i + 1]];
+          
+          if (currentRow && nextRow) {
+            createConnection(
+              currentRow[Math.floor(currentRow.length / 2)], // Middle node of current row
+              nextRow[Math.floor(nextRow.length / 2)],       // Middle node of next row
+              i + 100, // Different index to avoid animation clash
+              lineContainer,
+              containerRect
+            );
+          }
+        }
+      }
+    }, 100); // Wait for node animations to complete
+  }
+
+  // Helper function to create a connection between nodes
+  function createConnection(pos1, pos2, index, container, containerRect) {
+    // Calculate relative positions
+    const x1 = pos1.center.x - containerRect.left;
+    const y1 = pos1.center.y - containerRect.top;
+    const x2 = pos2.center.x - containerRect.left;
+    const y2 = pos2.center.y - containerRect.top;
+    
+    // Calculate distance and angle
+    const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+    
+    // Create connection line
+    const connection = document.createElement('div');
+    connection.className = 'skill-connection';
+    connection.style.width = `${length}px`;
+    connection.style.left = `${x1}px`;
+    connection.style.top = `${y1}px`;
+    connection.style.transform = `rotate(${angle}deg)`;
+    connection.style.setProperty('--index', index);
+    
+    container.appendChild(connection);
   }
 }
 

@@ -6,7 +6,6 @@
   height: 100%;
   color: var(--text-color);
   overflow: hidden;
-  font-family: 'Orbitron', sans-serif;
   background: var(--primary-bg-color);
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
@@ -15,7 +14,9 @@
 /* Tabs navigation */
 .skill-tree-tabs {
   display: flex;
-  background: rgba(0, 0, 0, 0.2);
+  justify-content: space-around;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
   border-bottom: 2px solid var(--accent-color);
   padding: 0;
   overflow-x: auto;
@@ -81,7 +82,6 @@
   overflow-y: auto;
   opacity: 0;
   transition: opacity 0.5s ease;
-  --tree-color: #4e54c8;
 }
 
 .skill-tree-visualization.visible {
@@ -93,8 +93,8 @@
   margin-bottom: 2rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid var(--tree-color);
-  color: var(--tree-color);
-  text-shadow: 0 0 10px rgba(var(--tree-color-rgb), 0.3);
+  color: var(--secondary-color);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .skill-nodes {
@@ -107,24 +107,19 @@
 
 /* Individual skill nodes */
 .skill-node {
-  --node-size: 120px;
+  --node-size: 110px;
+  transform: scale(0);
   width: var(--node-size);
-  height: var(--node-size);
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.3);
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
   position: relative;
   transition: all 0.3s ease;
-  transform: scale(0);
   animation: nodeAppear 0.5s forwards;
   animation-delay: var(--delay);
-  border: 2px solid var(--tree-color);
-  box-shadow: 0 0 15px rgba(var(--tree-color-rgb), 0.3);
   text-align: center;
+  z-index: 1;
 }
 
 @keyframes nodeAppear {
@@ -136,13 +131,32 @@
   }
 }
 
-.skill-node::before {
+/* Node circle */
+.node-circle {
+  width: var(--node-size);
+  height: var(--node-size);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid var(--tree-color);
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.node-circle::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  width: var(--node-size);
+  height: var(--node-size);
   border-radius: 50%;
   background: radial-gradient(circle at center, var(--tree-color) 0%, transparent 70%);
   opacity: 0.1;
@@ -150,13 +164,14 @@
   transition: opacity 0.3s ease;
 }
 
-.skill-node:hover::before {
+.skill-node:hover .node-circle::before {
   opacity: 0.3;
 }
 
-.skill-node.active {
+.skill-node.active .node-circle {
   transform: scale(1.1);
-  box-shadow: 0 0 20px var(--tree-color);
+  box-shadow: 0 0 15px var(--tree-color);
+  animation: pulse 1.5s infinite;
 }
 
 .skill-icon {
@@ -171,13 +186,15 @@
   padding: 0 0.5rem;
 }
 
+/* Level indicator */
 .skill-level {
   display: flex;
   height: 6px;
-  width: 80%;
+  width: 100%;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 3px;
   overflow: hidden;
+  margin-top: 8px;
 }
 
 .level-point {
@@ -187,11 +204,11 @@
   background: rgba(255, 255, 255, 0.2);
   border-radius: 1px;
   transition: background 0.3s ease;
-}
 
-.level-point.filled {
-  background: var(--tree-color);
-  box-shadow: 0 0 5px var(--tree-color);
+  &.filled {
+    background: var(--tree-color);
+    box-shadow: 0 0 5px var(--tree-color);
+  }
 }
 
 /* Skill detail panel */
@@ -233,7 +250,7 @@
 }
 
 .bonus {
-  color: #f7b731;
+  color: var(--accent-color);
   font-weight: 500;
   padding-left: 0.5rem;
   border-left: 2px solid rgba(255, 255, 255, 0.1);
@@ -270,15 +287,59 @@
   }
 }
 
-/* CSS Variables */
-:root {
-  --accent-color: #00aaff;
-  --accent-color-rgb: 0, 170, 255;
-  --tree-color-rgb: 78, 84, 200;
-}
-
 /* Dark mode support */
 .dark {
   --primary-bg-color: #121212;
   --text-color: #f5f5f5;
+}
+
+/* Skill lines and connections */
+.skill-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.skill-connection {
+  position: absolute;
+  background: linear-gradient(to right, transparent, var(--accent-color) 30%, var(--accent-color) 70%, transparent);
+  height: 4px;
+  transform-origin: left center;
+  opacity: 0;
+  animation: connectionAppear 1s forwards;
+  animation-delay: calc(var(--index) * 0.1s + 0.5s);
+  border-radius: 3px;
+  box-shadow: 0 0 8px var(--accent-color);
+  z-index: 0;
+}
+
+@keyframes connectionAppear {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 0.8;
+    transform: scaleX(1);
+  }
+}
+
+/* When a node is selected, pulse animation */
+@keyframes pulse {
+  0% { box-shadow: 0 0 15px var(--tree-color); }
+  50% { box-shadow: 0 0 25px var(--tree-color); }
+  100% { box-shadow: 0 0 15px var(--tree-color); }
+}
+
+/* Level indicator */
+.level-label {
+  font-size: 0.65rem;
+  margin-top: 2px;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+  font-weight: 500;
 } 
