@@ -1,0 +1,284 @@
+/* Skill Tree Styling */
+.skill-tree {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  color: var(--text-color);
+  overflow: hidden;
+  font-family: 'Orbitron', sans-serif;
+  background: var(--primary-bg-color);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Tabs navigation */
+.skill-tree-tabs {
+  display: flex;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 2px solid var(--accent-color);
+  padding: 0;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.skill-tab {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-tab::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent-color);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.skill-tab:hover::before {
+  opacity: 0.1;
+}
+
+.skill-tab.active {
+  border-bottom: 3px solid var(--accent-color);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tab-icon {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.tab-icon img {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+
+.tab-label {
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Skill tree visualization */
+.skill-tree-visualization {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  --tree-color: #4e54c8;
+}
+
+.skill-tree-visualization.visible {
+  opacity: 1;
+}
+
+.tree-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--tree-color);
+  color: var(--tree-color);
+  text-shadow: 0 0 10px rgba(var(--tree-color-rgb), 0.3);
+}
+
+.skill-nodes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  position: relative;
+}
+
+/* Individual skill nodes */
+.skill-node {
+  --node-size: 120px;
+  width: var(--node-size);
+  height: var(--node-size);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  transform: scale(0);
+  animation: nodeAppear 0.5s forwards;
+  animation-delay: var(--delay);
+  border: 2px solid var(--tree-color);
+  box-shadow: 0 0 15px rgba(var(--tree-color-rgb), 0.3);
+  text-align: center;
+}
+
+@keyframes nodeAppear {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.skill-node::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, var(--tree-color) 0%, transparent 70%);
+  opacity: 0.1;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.skill-node:hover::before {
+  opacity: 0.3;
+}
+
+.skill-node.active {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px var(--tree-color);
+}
+
+.skill-icon {
+  font-size: 1.8rem;
+  margin-bottom: 0.3rem;
+}
+
+.skill-title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  padding: 0 0.5rem;
+}
+
+.skill-level {
+  display: flex;
+  height: 6px;
+  width: 80%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.level-point {
+  flex: 1;
+  height: 100%;
+  margin: 0 1px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 1px;
+  transition: background 0.3s ease;
+}
+
+.level-point.filled {
+  background: var(--tree-color);
+  box-shadow: 0 0 5px var(--tree-color);
+}
+
+/* Skill detail panel */
+.skill-detail {
+  height: 150px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-top: 2px solid var(--accent-color);
+  overflow-y: auto;
+}
+
+.skill-detail-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.skill-detail h3 {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  color: var(--accent-color);
+}
+
+.skill-detail h3 .skill-icon {
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.skill-rating {
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.points {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.bonus {
+  color: #f7b731;
+  font-weight: 500;
+  padding-left: 0.5rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .skill-tree {
+    height: calc(100vh - 6rem);
+  }
+  
+  .skill-tab {
+    padding: 0.6rem 0.8rem;
+  }
+  
+  .tab-label {
+    font-size: 0.8rem;
+  }
+  
+  .skill-node {
+    --node-size: 90px;
+  }
+  
+  .skill-icon {
+    font-size: 1.4rem;
+  }
+  
+  .skill-title {
+    font-size: 0.6rem;
+  }
+  
+  .skill-detail {
+    height: 120px;
+  }
+}
+
+/* CSS Variables */
+:root {
+  --accent-color: #00aaff;
+  --accent-color-rgb: 0, 170, 255;
+  --tree-color-rgb: 78, 84, 200;
+}
+
+/* Dark mode support */
+.dark {
+  --primary-bg-color: #121212;
+  --text-color: #f5f5f5;
+} 

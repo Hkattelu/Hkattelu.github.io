@@ -356,6 +356,7 @@ h3 {
     right: 32px;
     z-index: 2;
     text-align: center;
+    box-shadow: 0px 0px 3px var(--primary-color);
 
     .code {
       &:not(.fa) {
@@ -500,7 +501,7 @@ h3 {
 
 .page.skills {
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-around;
   background-color: #1A1A1A;
 
   .text-section {
@@ -527,6 +528,18 @@ h3 {
     } 
   }
 
+  .content {
+    height: 80vh;
+    width: 45vw;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+
+    transform: rotateY(5deg);
+    
+    border: 2px solid var(--secondary-color);
+    box-sizing: border-box;
+  }
+
   video {
     height: 100%;
     width: auto;
@@ -541,6 +554,12 @@ h3 {
       max-width: 80vw;
       width: 80vw;
       height: 90vh;
+    }
+
+    .content {
+      height: 100vh;
+      transform: none;
+      border: none;
     }
 
     video {

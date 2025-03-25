@@ -16,51 +16,198 @@ const CONSTANTS = {
   MAX_SCRAMBLE: 6,
   PROJECTS: 4,
   MOBILE_BREAKPOINT: 768,
-  SKILL_TREE: {
-    "Frontend Development": {
-      icon: "images/icons/frontend.svg",
-      // description: "Building intuitive and performant user interfaces",
-      branches: {
-        "Web UI": {
-          icon: "images/icons/web.svg",
-          // description: "Modern web development",
-          skills: [
-            {
-              title: "Angular",
-              icon: "images/icons/angular.svg",
-              // description: "GCP Logging UI development"
-            },
-            {
-              title: "Web Components",
-              icon: "images/icons/webcomponents.svg",
-              // description: "YouTube custom elements"
-            },
-            {
-              title: "Responsive Design",
-              icon: "images/icons/responsive.svg",
-              // description: "Mobile-first approaches"
-            }
-          ]
+  // Create and render the skill tree in the skills page
+  SKILL_TREE_DATA: {
+    "Core Engineering Mastery": {
+      icon: "images/icons/engineering.svg",
+      color: "#4e54c8",
+      skills: [
+        {
+          title: "System Architecture & Scalability",
+          icon: "🛠",
+          points: "9/10",
+          description: "Designing and optimizing high-performance, distributed systems that don't collapse under pressure."
         },
-        "Mobile Development": {
-          icon: "images/icons/mobile.svg",
-          // description: "Cross-platform mobile solutions",
-          skills: [
-            {
-              title: "Android",
-              icon: "images/icons/android.svg",
-              // description: "Native Android development"
-            },
-            {
-              title: "iOS",
-              icon: "images/icons/ios.svg",
-              // description: "Cross-platform integration"
-            }
-          ]
+        {
+          title: "Backend Engineering",
+          icon: "⚡",
+          points: "10/10",
+          description: "Building APIs, microservices, and scalable backend solutions that developers actually enjoy working with."
+        },
+        {
+          title: "Debugging & Optimization",
+          icon: "🔍",
+          points: "9/10",
+          bonus: "+2 Bonus under pressure",
+          description: "Hunting down elusive bugs and squeezing every last drop of performance out of systems."
+        },
+        {
+          title: "Data Engineering & Storage",
+          icon: "📊",
+          points: "8/10",
+          description: "Designing efficient data pipelines, managing databases, and making sure things don't catch fire under high load."
         }
-      }
+      ]
     },
-    // ... similar structure for other categories
+    "Frontend & Mobile Development": {
+      icon: "images/icons/frontend.svg",
+      color: "#ff6b6b",
+      skills: [
+        {
+          title: "React & Next.js",
+          icon: "💻",
+          points: "9/10",
+          description: "Crafting sleek, responsive, and maintainable frontends that don't make designers cry."
+        },
+        {
+          title: "Mobile App Development",
+          icon: "📱",
+          points: "8/10",
+          bonus: "+1 bonus for rapid prototyping",
+          description: "Bringing ideas to life on iOS & Android with smooth, performant mobile experiences using React Native and Flutter."
+        },
+        {
+          title: "UI/UX Engineering",
+          icon: "🎭",
+          points: "8/10",
+          bonus: "+2 intuition boost for pixel-perfect designs",
+          description: "Striking the perfect balance between aesthetics and usability without falling into CSS purgatory."
+        },
+        {
+          title: "Web Performance Optimization",
+          icon: "🕸",
+          points: "8/10",
+          bonus: "+2 when armed with DevTools",
+          description: "Making sites load fast, stay responsive, and avoid janky animations."
+        }
+      ]
+    },
+    "AI Integration & Applied ML": {
+      icon: "images/icons/ai.svg",
+      color: "#5f27cd",
+      skills: [
+        {
+          title: "Large Language Model (LLM) APIs",
+          icon: "🧠",
+          points: "8/10",
+          bonus: "+2 for fine-tuning prompts",
+          description: "Integrating AI into products to make them smarter, more intuitive, and just a little bit magical."
+        },
+        {
+          title: "AI-Powered Features",
+          icon: "🎯",
+          points: "7/10",
+          bonus: "Boosted when paired with strong UX intuition",
+          description: "Building chatbots, recommendation engines, and intelligent automation using AI/ML models."
+        },
+        {
+          title: "AI API Optimization & Cost Control",
+          icon: "📡",
+          points: "7/10",
+          bonus: "+1 when dealing with high-traffic apps",
+          description: "Keeping AI costs reasonable while ensuring low-latency, high-accuracy responses."
+        }
+      ]
+    },
+    "Service Reliability & DevOps": {
+      icon: "images/icons/devops.svg",
+      color: "#20bf6b",
+      skills: [
+        {
+          title: "Site Reliability Engineering",
+          icon: "🛡",
+          points: "9/10",
+          bonus: "Extra resilience against on-call fatigue",
+          description: "Ensuring systems are up, running, and not waking people up at 3 AM."
+        },
+        {
+          title: "Monitoring & Observability",
+          icon: "📊",
+          points: "8/10",
+          bonus: "+2 foresight with proper dashboards",
+          description: "Seeing into the matrix of production systems to catch issues before they explode."
+        },
+        {
+          title: "Chaos Engineering & Load Testing",
+          icon: "🌀",
+          points: "7/10",
+          bonus: "+2 bonus from past outage lessons",
+          description: "Breaking things (on purpose) to make services resilient under real-world conditions."
+        },
+        {
+          title: "CI/CD & DevOps",
+          icon: "🚀",
+          points: "8/10",
+          bonus: "+1 agility for multiple daily deploys",
+          description: "Automating deployments, managing infrastructure as code, and keeping pipelines smooth."
+        }
+      ]
+    },
+    "Startup & Leadership": {
+      icon: "images/icons/leadership.svg",
+      color: "#f7b731",
+      skills: [
+        {
+          title: "Fast Iteration & Execution",
+          icon: "🎯",
+          points: "10/10",
+          description: "Balancing speed and quality while shipping products at a startup pace without losing sanity."
+        },
+        {
+          title: "Product Thinking",
+          icon: "🧩",
+          points: "9/10",
+          bonus: "+1 buff with caffeine",
+          description: "Asking the right questions to ensure engineering decisions align with business goals and user needs."
+        },
+        {
+          title: "Cross-Team Collaboration",
+          icon: "🤝",
+          points: "8/10",
+          description: "Bridging the gap between engineers, designers, and product folks like a true diplomatic envoy."
+        },
+        {
+          title: "Tech Direction & Strategy",
+          icon: "📢",
+          points: "9/10",
+          description: "Helping teams navigate technical decisions with clarity and conviction."
+        },
+        {
+          title: "Mentorship & Team Growth",
+          icon: "🧑‍🏫",
+          points: "9/10",
+          bonus: "Bonus charisma for pair programming",
+          description: "Guiding junior engineers and fostering a culture of learning without making them fear code reviews."
+        }
+      ]
+    },
+    "Bonus Talents": {
+      icon: "images/icons/bonus.svg", 
+      color: "#eb3b5a",
+      skills: [
+        {
+          title: "CrossFit Endurance",
+          icon: "💪",
+          points: "7/10",
+          bonus: "+2 stamina when caffeinated",
+          description: "Surviving intense workouts that somehow feel harder than debugging race conditions."
+        },
+        {
+          title: "Poi Spinning Mastery",
+          icon: "🌀",
+          points: "8/10",
+          bonus: "Extra dexterity at music festivals",
+          description: "Juggling fire (literally) and LED poi like a performance artist-slash-software engineer hybrid."
+        },
+        {
+          title: "Content Creation",
+          icon: "🎥",
+          points: "7/10",
+          bonus: "+3 boost for late-night creative sprints",
+          description: "Breaking down technical topics and storytelling with the enthusiasm of a game trailer narrator."
+        }
+      ]
+    }
   }
 };
 
@@ -182,7 +329,6 @@ const navigation = {
     }
 
     if (index === 1 && !document.querySelector('.skill-tree')) {
-      console.log("instantiated tree");
       setTimeout(() => createSkillTree(), 700);
     }
 
@@ -292,226 +438,6 @@ function getTouches(evt) {
   return evt.touches || evt.originalEvent.touches;
 }
 
-function createNode(title, data) {
-  const node = document.createElement('div');
-  node.className = 'skill-node';
-
-  // Create icon if provided
-  // if (data.icon) {
-  //   const icon = document.createElement('img');
-  //   icon.src = data.icon;
-  //   icon.className = 'skill-node-icon';
-  //   icon.alt = `${title} icon`;
-  //   node.appendChild(icon);
-  // }
-
-  const content = document.createElement('div');
-  content.className = 'skill-node-content';
-
-  const titleEl = document.createElement('div');
-  titleEl.className = 'skill-node-title';
-  titleEl.textContent = title;
-  content.appendChild(titleEl);
-
-  if (data.description) {
-    const descEl = document.createElement('div');
-    descEl.className = 'skill-node-description';
-    descEl.textContent = data.description;
-    content.appendChild(descEl);
-  }
-
-  node.appendChild(content);
-  return node;
-}
-
-function createSkillTree() {
-  const container = document.getElementById('tree');
-  container.innerHTML = '';
-  const treeElement = document.createElement('div');
-  treeElement.className = 'skill-tree';
-
-  // Create nodes for each category
-  for (const [category, categoryData] of Object.entries(CONSTANTS.SKILL_TREE)) {
-    const categoryElement = createNode(category, categoryData);
-    categoryElement.className += ' skill-category';
-
-    // Create branch container
-    const branchesContainer = document.createElement('div');
-    branchesContainer.className = 'skill-branches';
-
-    // Create nodes for each branch
-    for (const [branchName, branchData] of Object.entries(categoryData.branches)) {
-      // Create a container for each branch and its skills
-      const branchContainer = document.createElement('div');
-      branchContainer.className = 'branch-container';
-
-      const branchElement = createNode(branchName, branchData);
-      branchContainer.appendChild(branchElement);
-      
-      // Create skills container
-      const skillsContainer = document.createElement('div');
-      skillsContainer.className = 'skill-items';
-
-      // Create nodes for each skill
-      branchData.skills.forEach(skillData => {
-        const skillElement = createNode(skillData.title, {
-          icon: skillData.icon,
-          description: skillData.description
-        });
-        skillsContainer.appendChild(skillElement);
-      });
-
-      branchContainer.appendChild(skillsContainer);
-      branchesContainer.appendChild(branchContainer);
-    }
-
-    categoryElement.appendChild(branchesContainer);
-    treeElement.appendChild(categoryElement);
-  }
-
-  container.appendChild(treeElement);
-  
-  // Wait for next frame to ensure DOM is updated
-  requestAnimationFrame(() => drawConnections());
-}
-
-function drawConnections() {
-  // Remove existing lines
-  document.querySelectorAll('.tree-line').forEach(line => line.remove());
-
-  // Draw lines for each category
-  document.querySelectorAll('.skill-category').forEach(category => {
-    const categoryNode = category.querySelector('.skill-node-content');
-    // const categoryNode = category;
-    const branchContainers = category.querySelectorAll('.branch-container');
-    
-    // If there are multiple branches, draw T-shaped connection from category
-    if (branchContainers.length > 1) {
-      // Get first and last branch to determine width of horizontal line
-      const firstBranch = branchContainers[0].querySelector('.skill-node');
-      const lastBranch = branchContainers[branchContainers.length - 1].querySelector('.skill-node');
-      drawTConnection(categoryNode, firstBranch, lastBranch);
-    }
-    
-    // Draw individual lines from category to each branch
-    branchContainers.forEach(branchContainer => {
-      const branchNode = branchContainer.querySelector('.skill-node');
-      
-      // Draw lines from branch to each skill (leaf nodes)
-      const skills = branchContainer.querySelectorAll('.skill-items > .skill-node');
-      skills.forEach(skill => {
-        drawLine(branchNode, skill);
-      });
-    });
-  });
-}
-
-function drawTConnection(startNode, firstEndNode, lastEndNode) {
-  const startRect = startNode.getBoundingClientRect();
-  const firstEndRect = firstEndNode.getBoundingClientRect();
-  const lastEndRect = lastEndNode.getBoundingClientRect();
-  const container = document.querySelector('.skill-tree');
-  const containerRect = container.getBoundingClientRect();
-
-  // Calculate positions relative to the container
-  const startX = startRect.left + (startRect.width / 2) - containerRect.left;
-  const startY = startRect.bottom - containerRect.top;
-  const firstEndX = firstEndRect.left + (firstEndRect.width / 2) - containerRect.left;
-  const lastEndX = lastEndRect.left + (lastEndRect.width / 2) - containerRect.left;
-  const endY = firstEndRect.top - containerRect.top;
-
-  // 1. Vertical line from start to horizontal
-  const verticalLine = document.createElement('div');
-  verticalLine.className = 'tree-line tree-line-vertical';
-  verticalLine.style.left = `${startX}px`;
-  verticalLine.style.top = `${startY}px`;
-  verticalLine.style.height = `${(endY - startY) / 2}px`;
-  container.appendChild(verticalLine);
-
-  // 2. Horizontal line connecting all branches
-  const horizontalLine = document.createElement('div');
-  horizontalLine.className = 'tree-line tree-line-horizontal';
-  horizontalLine.style.top = `${startY + (endY - startY) / 2}px`;
-  horizontalLine.style.left = `${firstEndX}px`;
-  horizontalLine.style.width = `${lastEndX - firstEndX}px`;
-  container.appendChild(horizontalLine);
-
-  // 3. Vertical lines from horizontal to each branch
-  document.querySelectorAll('.branch-container').forEach(branch => {
-    const branchNode = branch.querySelector('.skill-node');
-    const branchRect = branchNode.getBoundingClientRect();
-    const branchX = branchRect.left + (branchRect.width / 2) - containerRect.left;
-
-    const verticalLine2 = document.createElement('div');
-    verticalLine2.className = 'tree-line tree-line-vertical';
-    verticalLine2.style.left = `${branchX}px`;
-    verticalLine2.style.top = `${startY + (endY - startY) / 2}px`;
-    verticalLine2.style.height = `${(endY - startY) / 2}px`;
-    container.appendChild(verticalLine2);
-  });
-}
-
-function drawLine(startNode, endNode) {
-  const startRect = startNode.getBoundingClientRect();
-  const endRect = endNode.getBoundingClientRect();
-  const container = document.querySelector('.skill-tree');
-  const containerRect = container.getBoundingClientRect();
-
-  // Calculate positions relative to the container
-  const startX = startRect.left + (startRect.width / 2) - containerRect.left;
-  const startY = startRect.bottom - containerRect.top;
-  const endX = endRect.left + (endRect.width / 2) - containerRect.left;
-  const endY = endRect.top - containerRect.top;
-
-  // Create main vertical line from start node
-  const verticalLine = document.createElement('div');
-  verticalLine.className = 'tree-line tree-line-vertical';
-  verticalLine.style.left = `${startX}px`;
-  verticalLine.style.top = `${startY}px`;
-  
-  // If nodes are vertically aligned
-  if (Math.abs(startX - endX) < 1) {
-    verticalLine.style.height = `${endY - startY}px`;
-    container.appendChild(verticalLine);
-  } else {
-    // For T-shaped connections:
-    // 1. Vertical line from start to horizontal
-    verticalLine.style.height = `${(endY - startY) / 2}px`;
-    container.appendChild(verticalLine);
-
-    // 2. Horizontal line
-    const horizontalLine = document.createElement('div');
-    horizontalLine.className = 'tree-line tree-line-horizontal';
-    horizontalLine.style.top = `${startY + (endY - startY) / 2}px`;
-    horizontalLine.style.left = `${Math.min(startX, endX)}px`;
-    horizontalLine.style.width = `${Math.abs(endX - startX)}px`;
-    container.appendChild(horizontalLine);
-
-    // 3. Vertical line from horizontal to end
-    const verticalLine2 = document.createElement('div');
-    verticalLine2.className = 'tree-line tree-line-vertical';
-    verticalLine2.style.left = `${endX}px`;
-    verticalLine2.style.top = `${startY + (endY - startY) / 2}px`;
-    verticalLine2.style.height = `${(endY - startY) / 2}px`;
-    container.appendChild(verticalLine2);
-  }
-}
-
-function debounce(func, wait) {
-  let timeout;
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
-
-// Add resize handler
-window.addEventListener('resize', debounce(() => drawConnections()));
-
 // Event Handlers
 const handlers = {
   touch: {
@@ -601,6 +527,165 @@ function startApp() {
       dom.focusFirstOption();
     });
   });
+}
+
+// Create and render the skill tree in the skills page
+function createSkillTree() {
+  const skillsContainer = document.querySelector('.skills .content');
+  if (!skillsContainer || document.querySelector('.skill-tree')) return;
+
+  // Create the main skill tree container
+  const skillTree = document.createElement('div');
+  skillTree.className = 'skill-tree';
+  
+  // Create category tabs for navigation
+  const categoryTabs = document.createElement('div');
+  categoryTabs.className = 'skill-tree-tabs';
+  
+  // Create tabs for each skill category
+  Object.keys(CONSTANTS.SKILL_TREE_DATA).forEach((category, index) => {
+    const tab = document.createElement('div');
+    tab.className = `skill-tab ${index === 0 ? 'active' : ''}`;
+    tab.dataset.category = category;
+    
+    const categoryData = CONSTANTS.SKILL_TREE_DATA[category];
+    
+    // Use an emoji or an icon
+    const iconElem = document.createElement('span');
+    iconElem.className = 'tab-icon';
+    if (categoryData.icon.includes('images/')) {
+      iconElem.innerHTML = `<img src="${categoryData.icon}" alt="${category}">`;
+    } else {
+      iconElem.textContent = categoryData.icon;
+    }
+    
+    const labelElem = document.createElement('span');
+    labelElem.className = 'tab-label';
+    labelElem.textContent = category;
+    
+    tab.appendChild(iconElem);
+    tab.appendChild(labelElem);
+    
+    tab.addEventListener('click', () => {
+      // Remove active class from all tabs
+      document.querySelectorAll('.skill-tab').forEach(t => t.classList.remove('active'));
+      // Add active class to clicked tab
+      tab.classList.add('active');
+      // Update the displayed skill tree
+      renderSkillTree(category, CONSTANTS.SKILL_TREE_DATA[category]);
+      // Play a selection sound
+      dom.playSound('select');
+    });
+    
+    categoryTabs.appendChild(tab);
+  });
+  
+  skillTree.appendChild(categoryTabs);
+  
+  // Create the skill tree visualization container
+  const treeVisualization = document.createElement('div');
+  treeVisualization.className = 'skill-tree-visualization';
+  skillTree.appendChild(treeVisualization);
+  
+  // Create the skill detail panel
+  const skillDetail = document.createElement('div');
+  skillDetail.className = 'skill-detail';
+  skillDetail.innerHTML = '<div class="skill-detail-content">' + 
+    '<h3>Select a skill to view details</h3>' +
+    '<p>Click on any skill node to see more information about that skill.</p>' +
+    '</div>';
+  skillTree.appendChild(skillDetail);
+  
+  // Add the skill tree to the page
+  skillsContainer.appendChild(skillTree);
+  
+  // Render the first skill tree by default
+  renderSkillTree(Object.keys(CONSTANTS.SKILL_TREE_DATA)[0], CONSTANTS.SKILL_TREE_DATA[Object.keys(CONSTANTS.SKILL_TREE_DATA)[0]]);
+  
+  // Function to render a specific skill tree
+  function renderSkillTree(category, categoryData) {
+    const treeContainer = document.querySelector('.skill-tree-visualization');
+    treeContainer.innerHTML = '';
+    treeContainer.style.setProperty('--tree-color', categoryData.color);
+    
+    const treeTitle = document.createElement('h2');
+    treeTitle.className = 'tree-title';
+    treeTitle.textContent = category;
+    treeContainer.appendChild(treeTitle);
+    
+    const skillNodes = document.createElement('div');
+    skillNodes.className = 'skill-nodes';
+    
+    // Create skill nodes in the tree
+    categoryData.skills.forEach((skill, index) => {
+      const node = document.createElement('div');
+      node.className = 'skill-node';
+      node.style.setProperty('--delay', `${index * 0.1}s`);
+      
+      // Add the skill icon
+      const iconElem = document.createElement('div');
+      iconElem.className = 'skill-icon';
+      iconElem.textContent = skill.icon;
+      
+      // Add skill level indicator (like a progress bar or stars)
+      const levelElem = document.createElement('div');
+      levelElem.className = 'skill-level';
+      const points = parseInt(skill.points.split('/')[0]);
+      for (let i = 0; i < 10; i++) {
+        const levelPoint = document.createElement('div');
+        levelPoint.className = `level-point ${i < points ? 'filled' : ''}`;
+        levelElem.appendChild(levelPoint);
+      }
+      
+      // Add skill title
+      const titleElem = document.createElement('div');
+      titleElem.className = 'skill-title';
+      titleElem.textContent = skill.title;
+      
+      node.appendChild(iconElem);
+      node.appendChild(titleElem);
+      node.appendChild(levelElem);
+      
+      // Handle node click to show skill details
+      node.addEventListener('click', () => {
+        // Remove active class from all nodes
+        document.querySelectorAll('.skill-node').forEach(n => n.classList.remove('active'));
+        // Add active class to clicked node
+        node.classList.add('active');
+        
+        // Update the skill detail panel
+        const detailContent = document.querySelector('.skill-detail-content');
+        detailContent.innerHTML = `
+          <h3>${skill.title} <span class="skill-icon">${skill.icon}</span></h3>
+          <div class="skill-rating">
+            <span class="points">Skill Points: ${skill.points}</span>
+            ${skill.bonus ? `<span class="bonus">${skill.bonus}</span>` : ''}
+          </div>
+          <p>${skill.description}</p>
+        `;
+        
+        // Show connected skill lines by adding a class
+        node.classList.add('selected');
+        
+        // Play a selection sound
+        dom.playSound('button');
+      });
+      
+      skillNodes.appendChild(node);
+    });
+    
+    treeContainer.appendChild(skillNodes);
+    
+    // Add connecting lines between nodes
+    const lineContainer = document.createElement('div');
+    lineContainer.className = 'skill-lines';
+    treeContainer.appendChild(lineContainer);
+    
+    // Animate the skill tree entrance
+    setTimeout(() => {
+      treeContainer.classList.add('visible');
+    }, 100);
+  }
 }
 
 // Initialization
