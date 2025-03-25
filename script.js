@@ -147,7 +147,7 @@ const CONSTANTS = {
         }
       ]
     },
-    "Startup & Leadership": {
+    "Leadership & Soft Skills": {
       icon: "images/icons/leadership.svg",
       color: "var(--tree-leadership)",
       colorRgb: "var(--tree-leadership-rgb)",
@@ -655,10 +655,6 @@ function createSkillTree() {
         const detailContent = document.querySelector('.skills .text-section');
         detailContent.innerHTML = `
           <h3>${skill.title} <span class="skill-icon">${skill.icon}</span></h3>
-          <div class="skill-rating">
-            <span class="points">Skill Points: ${skill.points}</span>
-            ${skill.bonus ? `<span class="bonus">${skill.bonus}</span>` : ''}
-          </div>
           <p>${skill.description}</p>
         `;
         
@@ -677,90 +673,125 @@ function createSkillTree() {
     // Add connecting lines between nodes
     const lineContainer = document.createElement('div');
     lineContainer.className = 'skill-lines';
-    treeContainer.appendChild(lineContainer);
+    skillNodes.appendChild(lineContainer);
 
-    // Wait for nodes to be added to the DOM and positioned
+    // Wait longer for rendering and use a more robust approach for connections
     setTimeout(() => {
-      const nodeElements = skillNodes.querySelectorAll('.skill-node');
-      if (nodeElements.length > 1) {
-        // Get container dimensions for reference
-        const containerRect = skillNodes.getBoundingClientRect();
-        
-        // Create connections in a better pattern
-        // First establish what row each node is in (for a grid layout)
-        const nodePositions = Array.from(nodeElements).map(node => {
-          const rect = node.getBoundingClientRect();
-          return {
-            node: node,
-            center: {
-              x: rect.left + rect.width / 2,
-              y: rect.top + rect.height / 2
-            },
-            top: rect.top,
-            row: Math.floor((rect.top - containerRect.top) / 150) // Approximate row based on position
-          };
-        });
-        
-        // Group nodes by row
-        const rowGroups = {};
-        nodePositions.forEach(pos => {
-          if (!rowGroups[pos.row]) rowGroups[pos.row] = [];
-          rowGroups[pos.row].push(pos);
-        });
-        
-        // Connect nodes within same row
-        Object.values(rowGroups).forEach(rowNodes => {
-          if (rowNodes.length > 1) {
-            rowNodes.sort((a, b) => a.center.x - b.center.x);
-            
-            for (let i = 0; i < rowNodes.length - 1; i++) {
-              createConnection(rowNodes[i], rowNodes[i + 1], i, lineContainer, containerRect);
-            }
+      const nodeCircles = skillNodes.querySelectorAll('.node-circle');
+      if (nodeCircles.length <= 1) return;
+      
+      // Get positions of all nodes first
+      const nodePositions = Array.from(nodeCircles).map(node => {
+        const rect = node.getBoundingClientRect();
+        return {
+          node: node,
+          rect: rect,
+          center: {
+            x: rect.left + rect.width / 2,
+            y: rect.top + rect.height / 2
           }
-        });
+        };
+      });
+      
+      // Sort nodes by their vertical position first, then horizontal
+      // This helps identify rows in the layout
+      nodePositions.sort((a, b) => {
+        // If nodes are roughly in the same row (within 30px), sort by X
+        if (Math.abs(a.center.y - b.center.y) < 30) {
+          return a.center.x - b.center.x;
+        }
+        // Otherwise sort by Y to group rows
+        return a.center.y - b.center.y;
+      });
+      
+      // Get container rect for relative positioning
+      const containerRect = skillNodes.getBoundingClientRect();
+      
+      // Group nodes into rows based on Y position
+      const rows = [];
+      let currentRow = [nodePositions[0]];
+      
+      for (let i = 1; i < nodePositions.length; i++) {
+        const prevNode = nodePositions[i-1];
+        const currNode = nodePositions[i];
         
-        // Connect rows to each other (first node of each row to the next)
-        const rowKeys = Object.keys(rowGroups).map(Number).sort((a, b) => a - b);
-        for (let i = 0; i < rowKeys.length - 1; i++) {
-          const currentRow = rowGroups[rowKeys[i]];
-          const nextRow = rowGroups[rowKeys[i + 1]];
-          
-          if (currentRow && nextRow) {
-            createConnection(
-              currentRow[Math.floor(currentRow.length / 2)], // Middle node of current row
-              nextRow[Math.floor(nextRow.length / 2)],       // Middle node of next row
-              i + 100, // Different index to avoid animation clash
-              lineContainer,
-              containerRect
-            );
-          }
+        // If Y position is similar, add to same row
+        if (Math.abs(currNode.center.y - prevNode.center.y) < 30) {
+          currentRow.push(currNode);
+        } else {
+          // Start a new row
+          rows.push([...currentRow]);
+          currentRow = [currNode];
         }
       }
-    }, 100); // Wait for node animations to complete
-  }
-
-  // Helper function to create a connection between nodes
-  function createConnection(pos1, pos2, index, container, containerRect) {
-    // Calculate relative positions
-    const x1 = pos1.center.x - containerRect.left;
-    const y1 = pos1.center.y - containerRect.top;
-    const x2 = pos2.center.x - containerRect.left;
-    const y2 = pos2.center.y - containerRect.top;
-    
-    // Calculate distance and angle
-    const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-    const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
-    
-    // Create connection line
-    const connection = document.createElement('div');
-    connection.className = 'skill-connection';
-    connection.style.width = `${length}px`;
-    connection.style.left = `${x1}px`;
-    connection.style.top = `${y1}px`;
-    connection.style.transform = `rotate(${angle}deg)`;
-    connection.style.setProperty('--index', index);
-    
-    container.appendChild(connection);
+      
+      // Add the last row
+      if (currentRow.length > 0) {
+        rows.push(currentRow);
+      }
+      
+      let connIndex = 0;
+      
+      // Connect nodes within each row
+      rows.forEach(row => {
+        for (let i = 0; i < row.length - 1; i++) {
+          createConnection(row[i], row[i + 1], connIndex++, containerRect);
+        }
+      });
+      
+      // Improved inter-row connections - ensure every node in second row has a connection
+      if (rows.length > 1) {
+        const firstRow = rows[0];
+        
+        // For each row after the first
+        for (let r = 1; r < rows.length; r++) {
+          const currentRow = rows[r];
+          
+          // Make sure each node in this row has at least one connection to the row above
+          currentRow.forEach((node, nodeIndex) => {
+            // Find the closest node in the previous row
+            const prevRow = rows[r-1];
+            
+            // Default to connecting to the middle node of the previous row
+            let closestPrevNode = prevRow[Math.floor(prevRow.length / 2)];
+            let closestDistance = Infinity;
+            
+            // But try to find a better match based on X-position
+            prevRow.forEach(prevNode => {
+              const xDistance = Math.abs(prevNode.center.x - node.center.x);
+              if (xDistance < closestDistance) {
+                closestDistance = xDistance;
+                closestPrevNode = prevNode;
+              }
+            });
+            
+            // Create the connection
+            createConnection(closestPrevNode, node, connIndex++, containerRect);
+          });
+        }
+      }
+      
+      // Helper function to create a connection between node positions
+      function createConnection(pos1, pos2, index, containerRect) {
+        const startX = pos1.center.x - containerRect.left;
+        const startY = pos1.center.y - containerRect.top;
+        const endX = pos2.center.x - containerRect.left;
+        const endY = pos2.center.y - containerRect.top;
+        
+        const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+        const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+        
+        const line = document.createElement('div');
+        line.className = 'skill-connection';
+        line.style.left = `${startX}px`;
+        line.style.top = `${startY}px`;
+        line.style.width = `${length}px`;
+        line.style.transform = `rotate(${angle}deg)`;
+        line.style.setProperty('--index', index);
+        
+        lineContainer.appendChild(line);
+      }
+    }, 200); // Longer timeout to ensure rendering completes
   }
 }
 

@@ -101,8 +101,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2rem;
+  gap: 3rem 3.5rem;
   position: relative;
+  padding: 1.5rem;
 }
 
 /* Individual skill nodes */
@@ -136,7 +137,7 @@
   width: var(--node-size);
   height: var(--node-size);
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -304,15 +305,21 @@
   pointer-events: none;
 }
 
+.skill-connection-container {
+  position: absolute;
+  transform-origin: left center;
+  z-index: 0;
+}
+
 .skill-connection {
   position: absolute;
-  background: linear-gradient(to right, transparent, var(--accent-color) 30%, var(--accent-color) 70%, transparent);
-  height: 4px;
+  background: var(--accent-color);
+  height: 3px;
   transform-origin: left center;
   opacity: 0;
-  animation: connectionAppear 1s forwards;
-  animation-delay: calc(var(--index) * 0.1s + 0.5s);
-  border-radius: 3px;
+  animation: connectionAppear 0.8s forwards;
+  animation-delay: calc(var(--index) * 0.08s + 0.3s);
+  border-radius: 1.5px;
   box-shadow: 0 0 8px var(--accent-color);
   z-index: 0;
 }
@@ -320,11 +327,11 @@
 @keyframes connectionAppear {
   from {
     opacity: 0;
-    transform: scaleX(0);
+    /* No transform manipulation here */
   }
   to {
     opacity: 0.8;
-    transform: scaleX(1);
+    /* No transform manipulation here */
   }
 }
 
