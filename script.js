@@ -27,26 +27,26 @@ const CONSTANTS = {
           title: "System Architecture & Scalability",
           icon: "🛠",
           points: "9/10",
-          description: "Designing and optimizing high-performance, distributed systems that don't collapse under pressure."
+          description: "<b>System Architecture & Scalability</b> involves designing robust systems that can handle massive user loads without faltering. At YouTube, I played a pivotal role in architecting distributed systems that support millions of concurrent users, ensuring seamless video streaming experiences. My work focused on optimizing system performance and scalability, allowing YouTube to deliver high-quality content globally."
         },
         {
           title: "Backend Engineering",
           icon: "⚡",
           points: "10/10",
-          description: "Building APIs, microservices, and scalable backend solutions that developers actually enjoy working with."
+          description: "<b>Backend Engineering</b> is the backbone of any application, and my expertise lies in building APIs and microservices that are both scalable and developer-friendly. At YouTube, I contributed to the development of backend solutions that power features like video recommendations and user interactions, ensuring they are fast, reliable, and easy to maintain."
         },
         {
           title: "Debugging & Optimization",
           icon: "🔍",
           points: "9/10",
           bonus: "+2 Bonus under pressure",
-          description: "Hunting down elusive bugs and squeezing every last drop of performance out of systems."
+          description: "<b>Debugging & Optimization</b> is about identifying and resolving performance bottlenecks. My experience at YouTube taught me to hunt down elusive bugs and optimize code for maximum efficiency. Whether it's improving load times or reducing server response times, I excel at squeezing every last drop of performance out of complex systems."
         },
         {
           title: "Data Engineering & Storage",
           icon: "📊",
           points: "8/10",
-          description: "Designing efficient data pipelines, managing databases, and making sure things don't catch fire under high load."
+          description: "<b>Data Engineering & Storage</b> involves managing vast amounts of data efficiently. At YouTube, I designed data pipelines and storage solutions that handle terabytes of data daily, ensuring data integrity and accessibility. My work ensures that data-driven features like analytics and recommendations are both accurate and timely."
         }
       ]
     },
@@ -59,28 +59,28 @@ const CONSTANTS = {
           title: "React & Next.js",
           icon: "💻",
           points: "9/10",
-          description: "Crafting sleek, responsive, and maintainable frontends that don't make designers cry."
+          description: "<b>React & Next.js</b> are my go-to tools for building sleek, responsive frontends. At YouTube, I crafted user interfaces that are not only visually appealing but also highly functional. My work ensures that users have a seamless experience, whether they're watching videos or interacting with the platform's features."
         },
         {
           title: "Mobile App Development",
           icon: "📱",
           points: "8/10",
           bonus: "+1 bonus for rapid prototyping",
-          description: "Bringing ideas to life on iOS & Android with smooth, performant mobile experiences using React Native and Flutter."
+          description: "<b>Mobile App Development</b> is about bringing ideas to life on iOS and Android. At YouTube, I developed mobile experiences that are smooth and performant, using technologies like React Native and Flutter. My focus is on creating apps that are intuitive and engaging, enhancing the overall user experience."
         },
         {
           title: "UI/UX Engineering",
           icon: "🎭",
           points: "8/10",
           bonus: "+2 intuition boost for pixel-perfect designs",
-          description: "Striking the perfect balance between aesthetics and usability without falling into CSS purgatory."
+          description: "<b>UI/UX Engineering</b> is the art of balancing aesthetics and usability. At YouTube, I worked closely with designers to create interfaces that are both beautiful and functional. My goal is to ensure that every user interaction is intuitive and enjoyable, avoiding the pitfalls of complex or confusing designs."
         },
         {
           title: "Web Performance Optimization",
           icon: "🕸",
           points: "8/10",
           bonus: "+2 when armed with DevTools",
-          description: "Making sites load fast, stay responsive, and avoid janky animations."
+          description: "<b>Web Performance Optimization</b> is crucial for delivering fast, responsive websites. At YouTube, I optimized web performance to ensure that pages load quickly and animations are smooth. My work involves using tools like DevTools to identify and resolve performance issues, providing users with a seamless browsing experience."
         }
       ]
     },
@@ -94,21 +94,21 @@ const CONSTANTS = {
           icon: "🧠",
           points: "8/10",
           bonus: "+2 for fine-tuning prompts",
-          description: "Integrating AI into products to make them smarter, more intuitive, and just a little bit magical."
+          description: "<b>LLMs</b> (Large Language Models) are at the forefront of AI innovation. At YouTube, I integrated AI into products to make them smarter and more intuitive. My work involves fine-tuning prompts to ensure that AI features like chatbots and recommendation engines deliver accurate and helpful responses, enhancing user engagement."
         },
         {
           title: "AI-Powered Features",
           icon: "🎯",
           points: "7/10",
           bonus: "Boosted when paired with strong UX intuition",
-          description: "Building chatbots, recommendation engines, and intelligent automation using AI/ML models."
+          description: "<b>AI-Powered Features</b> are transforming the way users interact with technology. At YouTube, I built features like intelligent automation and recommendation engines that leverage AI/ML models. My focus is on creating AI solutions that are both powerful and user-friendly, providing value to users while maintaining a seamless experience."
         },
         {
           title: "AI API Optimization & Cost Control",
           icon: "📡",
           points: "7/10",
           bonus: "+1 when dealing with high-traffic apps",
-          description: "Keeping AI costs reasonable while ensuring low-latency, high-accuracy responses."
+          description: "<b>AI API Optimization & Cost Control</b> is about balancing performance and cost. At YouTube, I optimized AI APIs to ensure low-latency, high-accuracy responses while keeping costs reasonable. My work involves monitoring and adjusting API usage to meet the demands of high-traffic applications without compromising on quality."
         }
       ]
     },
@@ -122,28 +122,28 @@ const CONSTANTS = {
           icon: "🛡",
           points: "9/10",
           bonus: "Extra resilience against on-call fatigue",
-          description: "Ensuring systems are up, running, and not waking people up at 3 AM."
+          description: "<b>Site Reliability Engineering</b> ensures that systems are up and running 24/7. At YouTube, I implemented reliability frameworks that prevent downtime and minimize disruptions. My work involves proactive monitoring and incident response, ensuring that users have a consistent and reliable experience."
         },
         {
           title: "Monitoring & Observability",
           icon: "📊",
           points: "8/10",
           bonus: "+2 foresight with proper dashboards",
-          description: "Seeing into the matrix of production systems to catch issues before they explode."
+          description: "<b>Monitoring & Observability</b> provide insights into system performance. At YouTube, I developed dashboards and alerts that help identify issues before they impact users. My focus is on creating tools that provide real-time visibility into system health, enabling quick and effective responses to potential problems."
         },
         {
           title: "Chaos Engineering & Load Testing",
           icon: "🌀",
           points: "7/10",
           bonus: "+2 bonus from past outage lessons",
-          description: "Breaking things (on purpose) to make services resilient under real-world conditions."
+          description: "<b>Chaos Engineering & Load Testing</b> involve testing systems under stress to ensure resilience. At YouTube, I conducted experiments that simulate real-world conditions, identifying weaknesses and improving system robustness. My work helps ensure that services remain stable and performant, even under unexpected loads."
         },
         {
           title: "CI/CD & DevOps",
           icon: "🚀",
           points: "8/10",
           bonus: "+1 agility for multiple daily deploys",
-          description: "Automating deployments, managing infrastructure as code, and keeping pipelines smooth."
+          description: "<b>CI/CD & DevOps</b> streamline the development and deployment process. At YouTube, I automated pipelines to enable rapid, reliable releases. My work involves managing infrastructure as code and ensuring that deployments are smooth and error-free, allowing teams to focus on innovation rather than manual processes."
         }
       ]
     },
@@ -156,33 +156,33 @@ const CONSTANTS = {
           title: "Fast Iteration & Execution",
           icon: "🎯",
           points: "10/10",
-          description: "Balancing speed and quality while shipping products at a startup pace without losing sanity."
+          description: "<b>Fast Iteration & Execution</b> is about delivering results quickly without sacrificing quality. At YouTube, I led projects that required rapid prototyping and deployment, balancing speed with precision. My approach ensures that products are delivered on time and meet the highest standards of excellence."
         },
         {
           title: "Product Thinking",
           icon: "🧩",
           points: "9/10",
           bonus: "+1 buff with caffeine",
-          description: "Asking the right questions to ensure engineering decisions align with business goals and user needs."
+          description: "<b>Product Thinking</b> involves aligning engineering decisions with business goals. At YouTube, I asked the right questions to ensure that features meet user needs and drive business success. My focus is on creating products that are not only technically sound but also strategically valuable."
         },
         {
           title: "Cross-Team Collaboration",
           icon: "🤝",
           points: "8/10",
-          description: "Bridging the gap between engineers, designers, and product folks like a true diplomatic envoy."
+          description: "<b>Cross-Team Collaboration</b> is key to successful project delivery. At YouTube, I bridged the gap between engineers, designers, and product managers, fostering a collaborative environment. My work ensures that all stakeholders are aligned and working towards a common goal, resulting in cohesive and effective solutions."
         },
         {
           title: "Tech Direction & Strategy",
           icon: "📢",
           points: "9/10",
-          description: "Helping teams navigate technical decisions with clarity and conviction."
+          description: "<b>Tech Direction & Strategy</b> guide teams through complex technical decisions. At YouTube, I provided leadership and vision, helping teams navigate challenges with clarity and confidence. My focus is on setting a strategic direction that aligns with organizational goals and drives innovation."
         },
         {
           title: "Mentorship & Team Growth",
           icon: "🧑‍🏫",
           points: "9/10",
           bonus: "Bonus charisma for pair programming",
-          description: "Guiding junior engineers and fostering a culture of learning without making them fear code reviews."
+          description: "<b>Mentorship & Team Growth</b> are about nurturing talent and fostering a culture of learning. At YouTube, I guided junior engineers, providing support and encouragement. My approach is to create an environment where team members feel empowered to grow and succeed, without fear of failure."
         }
       ]
     },
@@ -196,21 +196,21 @@ const CONSTANTS = {
           icon: "💪",
           points: "7/10",
           bonus: "+2 stamina when caffeinated",
-          description: "Surviving intense workouts that somehow feel harder than debugging race conditions."
+          description: "<b>CrossFit Endurance</b> is about pushing physical limits, much like tackling challenging engineering problems. My dedication to fitness mirrors my approach to work: persistent, disciplined, and always striving for improvement. This mindset helps me maintain focus and energy, even during the most demanding projects."
         },
         {
           title: "Poi Spinning Mastery",
           icon: "🌀",
           points: "8/10",
           bonus: "Extra dexterity at music festivals",
-          description: "Juggling fire (literally) and LED poi like a performance artist-slash-software engineer hybrid."
+          description: "<b>Poi Spinning Mastery</b> combines creativity and precision, much like software engineering. My passion for poi spinning reflects my ability to balance technical skills with artistic expression, bringing a unique perspective to problem-solving and innovation in my engineering career."
         },
         {
           title: "Content Creation",
           icon: "🎥",
           points: "7/10",
           bonus: "+3 boost for late-night creative sprints",
-          description: "Breaking down technical topics and storytelling with the enthusiasm of a game trailer narrator."
+          description: "<b>Content Creation</b> is about storytelling and sharing knowledge. At YouTube, I leveraged my skills to break down complex technical topics into engaging content. My focus is on making technology accessible and inspiring others to explore and learn, much like a game trailer narrator captivates an audience."
         }
       ]
     }
