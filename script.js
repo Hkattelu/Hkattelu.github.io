@@ -27,26 +27,26 @@ const CONSTANTS = {
           title: "System Architecture & Scalability",
           icon: "🛠",
           points: "9/10",
-          description: "Designing and optimizing high-performance, distributed systems that don't collapse under pressure."
+          description: "Architecting distributed systems that scale from zero to millions. Expert in event-driven architectures, database design, and building systems that gracefully handle 10x traffic spikes. <br><br> Battle-tested experience with google scale features and deployments."
         },
         {
           title: "Backend Engineering",
           icon: "⚡",
           points: "10/10",
-          description: "Building APIs, microservices, and scalable backend solutions that developers actually enjoy working with."
+          description: "Crafting high-performance APIs that handle millions of requests while maintaining sub-100ms response times. Deep expertise in Node.js/TypeScript optimization, async patterns, and building developer-first platforms. <br><br> Known for turning spaghetti code into maintainable systems that spark joy."
         },
         {
           title: "Debugging & Optimization",
           icon: "🔍",
           points: "9/10",
           bonus: "+2 Bonus under pressure",
-          description: "Hunting down elusive bugs and squeezing every last drop of performance out of systems."
+          description: "The person you want on-call when production is burning. <br><br> Expert at profiling memory leaks, optimizing hot paths, and diving deep into core dumps. <br><br> Have owned incident response for 10+ outages at Youtube."
         },
         {
           title: "Data Engineering & Storage",
           icon: "📊",
           points: "8/10",
-          description: "Designing efficient data pipelines, managing databases, and making sure things don't catch fire under high load."
+          description: "Experience with data modeling to optimize latency for client-facing features. Worked on streaming logs from petabyte-scale storage to google cloud logging customers."
         }
       ]
     },
@@ -56,31 +56,31 @@ const CONSTANTS = {
       colorRgb: "var(--tree-frontend-rgb)",
       skills: [
         {
-          title: "React & Next.js",
+          title: "React & Angular",
           icon: "💻",
           points: "9/10",
-          description: "Crafting sleek, responsive, and maintainable frontends that don't make designers cry."
+          description: "Architecting blazing-fast React applications with sub-second page loads. Expert in Angular/React Components and data store architecture. <br><br> Made this website."
         },
         {
           title: "Mobile App Development",
           icon: "📱",
           points: "8/10",
           bonus: "+1 bonus for rapid prototyping",
-          description: "Bringing ideas to life on iOS & Android with smooth, performant mobile experiences using React Native and Flutter."
+          description: "Shipping polished mobile experiences using React Native and Flutter. Expertise in native module development, platform-specific optimizations, and smooth 60fps animations. <br><br> Built and launched features for Youtube on the android and iOS apps with 10k+ active users."
         },
         {
           title: "UI/UX Engineering",
           icon: "🎭",
           points: "8/10",
           bonus: "+2 intuition boost for pixel-perfect designs",
-          description: "Striking the perfect balance between aesthetics and usability without falling into CSS purgatory."
+          description: "Bridging the gap between design and engineering with pixel-perfect precision. Expert in advanced CSS animations, WebGL effects, and building design systems that scale. <br><br> Produced detail oriented designs that designers actually approve of on the first try."
         },
         {
           title: "Web Performance Optimization",
           icon: "🕸",
           points: "8/10",
           bonus: "+2 when armed with DevTools",
-          description: "Making sites load fast, stay responsive, and avoid janky animations."
+          description: "Performance optimization wizard who treats 'Latency' as a personal challenge. Experienced with profiling, tracing, bundle size reduction, and progressive enhancement."
         }
       ]
     },
@@ -90,25 +90,25 @@ const CONSTANTS = {
       colorRgb: "var(--tree-ai-rgb)",
       skills: [
         {
-          title: "LLMs",
-          icon: "🧠",
-          points: "8/10",
-          bonus: "+2 for fine-tuning prompts",
-          description: "Integrating AI into products to make them smarter, more intuitive, and just a little bit magical."
-        },
-        {
           title: "AI-Powered Features",
           icon: "🎯",
-          points: "7/10",
+          points: "8/10",
           bonus: "Boosted when paired with strong UX intuition",
-          description: "Building chatbots, recommendation engines, and intelligent automation using AI/ML models."
+          description: "Pioneering the integration of LLMs into production applications. Expert in prompt engineering, context window optimization, and building AI-powered features that feel magical yet reliable."
+        },
+        {
+          title: "ML Quality",
+          icon: "🧠",
+          points: "7/10",
+          bonus: "+2 for fine-tuning prompts",
+          description: "Transforming raw AI capabilities into polished product features. <br><br> Worked on ML quality for a major user facing feature on Youtube. <br><br> Can make LLMs put out natural responses that are actually helpful instead of robotic."
         },
         {
           title: "AI API Optimization & Cost Control",
           icon: "📡",
           points: "7/10",
           bonus: "+1 when dealing with high-traffic apps",
-          description: "Keeping AI costs reasonable while ensuring low-latency, high-accuracy responses."
+          description: "Expertise in AI cost optimization. Implemented clever caching strategies and request batching to make AI cost actually cost efficient, instead of a money sink."
         }
       ]
     },
@@ -122,28 +122,21 @@ const CONSTANTS = {
           icon: "🛡",
           points: "9/10",
           bonus: "Extra resilience against on-call fatigue",
-          description: "Ensuring systems are up, running, and not waking people up at 3 AM."
+          description: "I live for those 3 AM production incidents where everything's on fire and someone needs to stay cool. <br><br> I really enjoy making sure everything is monitored and has configured alerting. When systems break, I don't just fix them - I make sure they never break the same way twice."
         },
         {
-          title: "Monitoring & Observability",
-          icon: "📊",
-          points: "8/10",
-          bonus: "+2 foresight with proper dashboards",
-          description: "Seeing into the matrix of production systems to catch issues before they explode."
-        },
-        {
-          title: "Chaos Engineering & Load Testing",
+          title: "Root cause analysis",
           icon: "🌀",
           points: "7/10",
           bonus: "+2 bonus from past outage lessons",
-          description: "Breaking things (on purpose) to make services resilient under real-world conditions."
+          description: "I like breaking things! It really helps with designing things that don't break. <br><br> Expert in failure injection, resilience testing, and building systems that gracefully degrade instead of crash."
         },
         {
           title: "CI/CD & DevOps",
           icon: "🚀",
           points: "8/10",
           bonus: "+1 agility for multiple daily deploys",
-          description: "Automating deployments, managing infrastructure as code, and keeping pipelines smooth."
+          description: "If it moves, I automate it. If it doesn't move, I automate it anyway. <br><br> A good pipeline is one that is so smooth you forget its even running. 
         }
       ]
     },
@@ -156,33 +149,33 @@ const CONSTANTS = {
           title: "Fast Iteration & Execution",
           icon: "🎯",
           points: "10/10",
-          description: "Balancing speed and quality while shipping products at a startup pace without losing sanity."
+          description: "Speed isn't about rushing - it's about knowing where to focus. <br><br> I've broken down many impossible projects into roadmaps with progressive bite-sized wins. <br><br> I work with decision makers to prioritize to know exactly which corners are safe to cut, and which ones will come back to haunt you at 3 AM."
         },
         {
           title: "Product Thinking",
           icon: "🧩",
           points: "9/10",
           bonus: "+1 buff with caffeine",
-          description: "Asking the right questions to ensure engineering decisions align with business goals and user needs."
+          description: "I'm a product-minded engineer who thinks in user stories, not just in technical specs. <br><br> My superpower is finding the sweet spot between technical excellence and business value. <br><br> Build solutions, not features."
         },
         {
           title: "Cross-Team Collaboration",
           icon: "🤝",
           points: "8/10",
-          description: "Bridging the gap between engineers, designers, and product folks like a true diplomatic envoy."
+          description: "Need someone to get design, engineering, and product teams speaking the same language? That's me. <br><br> I turn cross-team projects from coordination nightmares into smooth collaborations. <br><br> It's impossible to get everyone to agree on a direction, but i can get pretty close."
         },
         {
           title: "Tech Direction & Strategy",
           icon: "📢",
           points: "9/10",
-          description: "Helping teams navigate technical decisions with clarity and conviction."
+          description: "I've got a knack for seeing around technical corners. <br><br> My architectural decisions aren't just about solving today's problems - they're about being ready for tomorrow's challenges. <br><br> I help teams dodge over-engineering while still building for scale."
         },
         {
           title: "Mentorship & Team Growth",
           icon: "🧑‍🏫",
           points: "9/10",
           bonus: "Bonus charisma for pair programming",
-          description: "Guiding junior engineers and fostering a culture of learning without making them fear code reviews."
+          description: "Teaching is my secret addiction. <br><br> I create environments where junior engineers can safely make mistakes and learn from them. <br><br> My code reviews are like mini-mentoring sessions, and somehow I manage to keep technical discussions both educational and entertaining."
         }
       ]
     },
@@ -196,21 +189,21 @@ const CONSTANTS = {
           icon: "💪",
           points: "7/10",
           bonus: "+2 stamina when caffeinated",
-          description: "Surviving intense workouts that somehow feel harder than debugging race conditions."
+          description: "Who says engineers can't do double-unders? <br><br> I bring the same obsessive optimization mindset from coding to CrossFit. <br><br> The endorphins actually help with coding and debugging."
         },
         {
           title: "Poi Spinning Mastery",
           icon: "🌀",
           points: "8/10",
           bonus: "Extra dexterity at music festivals",
-          description: "Juggling fire (literally) and LED poi like a performance artist-slash-software engineer hybrid."
+          description: "Flow arts aren't just pretty lights - they're physics in motion. <br><br> I approach poi spinning like I approach coding: break down complex patterns, practice the fundamentals, then add your own style. <br><br> Yes, I can code and spin fire. No, I haven't tried doing both at once."
         },
         {
           title: "Content Creation",
           icon: "🎥",
           points: "7/10",
           bonus: "+3 boost for late-night creative sprints",
-          description: "Breaking down technical topics and storytelling with the enthusiasm of a game trailer narrator."
+          description: "Tech storyteller who makes complex concepts accessible and entertaining. I love talking about video games, but I also dabble in math tutorials"
         }
       ]
     }
@@ -746,27 +739,36 @@ function createSkillTree() {
         // For each row after the first
         for (let r = 1; r < rows.length; r++) {
           const currentRow = rows[r];
+          const prevRow = rows[r-1];
           
           // Make sure each node in this row has at least one connection to the row above
           currentRow.forEach((node, nodeIndex) => {
             // Find the closest node in the previous row
-            const prevRow = rows[r-1];
+            let bestPrevNode = null;
+            let bestScore = Infinity;
             
-            // Default to connecting to the middle node of the previous row
-            let closestPrevNode = prevRow[Math.floor(prevRow.length / 2)];
-            let closestDistance = Infinity;
-            
-            // But try to find a better match based on X-position
             prevRow.forEach(prevNode => {
-              const xDistance = Math.abs(prevNode.center.x - node.center.x);
-              if (xDistance < closestDistance) {
-                closestDistance = xDistance;
-                closestPrevNode = prevNode;
+              // Calculate slope between nodes
+              const xDiff = node.center.x - prevNode.center.x;
+              const yDiff = node.center.y - prevNode.center.y;
+              const slope = yDiff !== 0 ? xDiff / yDiff : 0;
+              
+              // Only consider connections with negative or zero slope
+              // (going down-left, straight down, or down-right)
+              if (yDiff > 0) {  // Ensures we're going downward
+                // Score based on horizontal distance, preferring closer nodes
+                const score = Math.abs(xDiff);
+                if (score < bestScore) {
+                  bestScore = score;
+                  bestPrevNode = prevNode;
+                }
               }
             });
             
-            // Create the connection
-            createConnection(closestPrevNode, node, connIndex++, containerRect);
+            // Create the connection if we found a valid previous node
+            if (bestPrevNode) {
+              createConnection(bestPrevNode, node, connIndex++, containerRect);
+            }
           });
         }
       }
