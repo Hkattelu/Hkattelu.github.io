@@ -10,6 +10,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  
+  <!-- Preload mask images -->
+  <link rel="preload" href="images/masks0.png" as="image">
+  <link rel="preload" href="images/masks1.png" as="image">
+  <link rel="preload" href="images/masks2.png" as="image">
+  <link rel="preload" href="images/masks3.png" as="image">
+  <link rel="preload" href="images/masks4.png" as="image">
+  <link rel="preload" href="images/masks5.png" as="image">
+  <link rel="preload" href="images/masks6.png" as="image">
+  <link rel="preload" href="images/masks7.png" as="image">
+  <link rel="preload" href="images/masks8.png" as="image">
+
   <link rel="stylesheet" href="https://unpkg.com/@glidejs/glide@3.3.0/dist/css/glide.core.min.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="skill-tree.css">
@@ -273,18 +285,6 @@
   <div class="loader-container">
     <div class="loader-text"><span>Loading</span></div>
     <div class="loader-ring"></div>
-  </div>
-  <!--Hack to preload images-->
-  <div style="height:0px;width:0px;opacity:transparent">
-    <img src="images/masks0.png">
-    <img src="images/masks1.png">
-    <img src="images/masks2.png">
-    <img src="images/masks3.png">
-    <img src="images/masks4.png">
-    <img src="images/masks5.png">
-    <img src="images/masks6.png">
-    <img src="images/masks7.png">
-    <img src="images/masks8.png">
   </div>
   <script src="https://unpkg.com/@glidejs/glide@3.3.0/dist/glide.min.js"></script>
   <script src="script.js?v=<?=filemtime('script.js')?>"></script>
