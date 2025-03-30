@@ -508,6 +508,7 @@ h3 {
 
   .text-section {
     transform: translateX(-5vw) rotate3d(0, 1, 0, 8deg);
+    border: 1px solid var(--primary-color);
 
     width: 40vw;
     overflow-y: scroll;
