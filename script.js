@@ -136,7 +136,7 @@ const CONSTANTS = {
           icon: "🚀",
           points: "8/10",
           bonus: "+1 agility for multiple daily deploys",
-          description: "If it moves, I automate it. If it doesn't move, I automate it anyway. <br><br> A good pipeline is one that is so smooth you forget its even running. 
+          description: "If it moves, I automate it. If it doesn't move, I automate it anyway. <br><br> A good pipeline is one that is so smooth you forget its even running."
         }
       ]
     },
