@@ -27,42 +27,26 @@ const CONSTANTS = {
           title: "System Architecture & Scalability",
           icon: "🛠",
           points: "9/10",
-<<<<<<< HEAD
-          description: "<b>System Architecture & Scalability</b> involves designing robust systems that can handle massive user loads without faltering. At YouTube, I played a pivotal role in architecting distributed systems that support millions of concurrent users, ensuring seamless video streaming experiences. My work focused on optimizing system performance and scalability, allowing YouTube to deliver high-quality content globally."
-=======
           description: "Architecting distributed systems that scale from zero to millions. Expert in event-driven architectures, database design, and building systems that gracefully handle 10x traffic spikes. <br><br> Battle-tested experience with google scale features and deployments."
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         },
         {
           title: "Backend Engineering",
           icon: "⚡",
           points: "10/10",
-<<<<<<< HEAD
-          description: "<b>Backend Engineering</b> is the backbone of any application, and my expertise lies in building APIs and microservices that are both scalable and developer-friendly. At YouTube, I contributed to the development of backend solutions that power features like video recommendations and user interactions, ensuring they are fast, reliable, and easy to maintain."
-=======
           description: "Crafting high-performance APIs that handle millions of requests while maintaining sub-100ms response times. Deep expertise in Node.js/TypeScript optimization, async patterns, and building developer-first platforms. <br><br> Known for turning spaghetti code into maintainable systems that spark joy."
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         },
         {
           title: "Debugging & Optimization",
           icon: "🔍",
           points: "9/10",
           bonus: "+2 Bonus under pressure",
-<<<<<<< HEAD
-          description: "<b>Debugging & Optimization</b> is about identifying and resolving performance bottlenecks. My experience at YouTube taught me to hunt down elusive bugs and optimize code for maximum efficiency. Whether it's improving load times or reducing server response times, I excel at squeezing every last drop of performance out of complex systems."
-=======
           description: "The person you want on-call when production is burning. <br><br> Expert at profiling memory leaks, optimizing hot paths, and diving deep into core dumps. <br><br> Have owned incident response for 10+ outages at Youtube."
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         },
         {
           title: "Data Engineering & Storage",
           icon: "📊",
           points: "8/10",
-<<<<<<< HEAD
-          description: "<b>Data Engineering & Storage</b> involves managing vast amounts of data efficiently. At YouTube, I designed data pipelines and storage solutions that handle terabytes of data daily, ensuring data integrity and accessibility. My work ensures that data-driven features like analytics and recommendations are both accurate and timely."
-=======
           description: "Experience with data modeling to optimize latency for client-facing features. Worked on streaming logs from petabyte-scale storage to google cloud logging customers."
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         }
       ]
     },
@@ -75,44 +59,28 @@ const CONSTANTS = {
           title: "React & Angular",
           icon: "💻",
           points: "9/10",
-<<<<<<< HEAD
-          description: "<b>React & Next.js</b> are my go-to tools for building sleek, responsive frontends. At YouTube, I crafted user interfaces that are not only visually appealing but also highly functional. My work ensures that users have a seamless experience, whether they're watching videos or interacting with the platform's features."
-=======
           description: "Architecting blazing-fast React applications with sub-second page loads. Expert in Angular/React Components and data store architecture. <br><br> Made this website."
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         },
         {
           title: "Mobile App Development",
           icon: "📱",
           points: "8/10",
           bonus: "+1 bonus for rapid prototyping",
-<<<<<<< HEAD
-          description: "<b>Mobile App Development</b> is about bringing ideas to life on iOS and Android. At YouTube, I developed mobile experiences that are smooth and performant, using technologies like React Native and Flutter. My focus is on creating apps that are intuitive and engaging, enhancing the overall user experience."
-=======
           description: "Shipping polished mobile experiences using React Native and Flutter. Expertise in native module development, platform-specific optimizations, and smooth 60fps animations. <br><br> Built and launched features for Youtube on the android and iOS apps with 10k+ active users."
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         },
         {
           title: "UI/UX Engineering",
           icon: "🎭",
           points: "8/10",
           bonus: "+2 intuition boost for pixel-perfect designs",
-<<<<<<< HEAD
-          description: "<b>UI/UX Engineering</b> is the art of balancing aesthetics and usability. At YouTube, I worked closely with designers to create interfaces that are both beautiful and functional. My goal is to ensure that every user interaction is intuitive and enjoyable, avoiding the pitfalls of complex or confusing designs."
-=======
           description: "Bridging the gap between design and engineering with pixel-perfect precision. Expert in advanced CSS animations, WebGL effects, and building design systems that scale. <br><br> Produced detail oriented designs that designers actually approve of on the first try."
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         },
         {
           title: "Web Performance Optimization",
           icon: "🕸",
           points: "8/10",
           bonus: "+2 when armed with DevTools",
-<<<<<<< HEAD
-          description: "<b>Web Performance Optimization</b> is crucial for delivering fast, responsive websites. At YouTube, I optimized web performance to ensure that pages load quickly and animations are smooth. My work involves using tools like DevTools to identify and resolve performance issues, providing users with a seamless browsing experience."
-=======
           description: "Performance optimization wizard who treats 'Latency' as a personal challenge. Experienced with profiling, tracing, bundle size reduction, and progressive enhancement."
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         }
       ]
     },
@@ -122,23 +90,10 @@ const CONSTANTS = {
       colorRgb: "var(--tree-ai-rgb)",
       skills: [
         {
-<<<<<<< HEAD
-          title: "LLMs",
-          icon: "🧠",
-          points: "8/10",
-          bonus: "+2 for fine-tuning prompts",
-          description: "<b>LLMs</b> (Large Language Models) are at the forefront of AI innovation. At YouTube, I integrated AI into products to make them smarter and more intuitive. My work involves fine-tuning prompts to ensure that AI features like chatbots and recommendation engines deliver accurate and helpful responses, enhancing user engagement."
-        },
-        {
-=======
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
           title: "AI-Powered Features",
           icon: "🎯",
           points: "8/10",
           bonus: "Boosted when paired with strong UX intuition",
-<<<<<<< HEAD
-          description: "<b>AI-Powered Features</b> are transforming the way users interact with technology. At YouTube, I built features like intelligent automation and recommendation engines that leverage AI/ML models. My focus is on creating AI solutions that are both powerful and user-friendly, providing value to users while maintaining a seamless experience."
-=======
           description: "Pioneering the integration of LLMs into production applications. Expert in prompt engineering, context window optimization, and building AI-powered features that feel magical yet reliable."
         },
         {
@@ -147,18 +102,13 @@ const CONSTANTS = {
           points: "7/10",
           bonus: "+2 for fine-tuning prompts",
           description: "Transforming raw AI capabilities into polished product features. <br><br> Worked on ML quality for a major user facing feature on Youtube. <br><br> Can make LLMs put out natural responses that are actually helpful instead of robotic."
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         },
         {
           title: "AI API Optimization & Cost Control",
           icon: "📡",
           points: "7/10",
           bonus: "+1 when dealing with high-traffic apps",
-<<<<<<< HEAD
-          description: "<b>AI API Optimization & Cost Control</b> is about balancing performance and cost. At YouTube, I optimized AI APIs to ensure low-latency, high-accuracy responses while keeping costs reasonable. My work involves monitoring and adjusting API usage to meet the demands of high-traffic applications without compromising on quality."
-=======
           description: "Expertise in AI cost optimization. Implemented clever caching strategies and request batching to make AI cost actually cost efficient, instead of a money sink."
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         }
       ]
     },
@@ -172,23 +122,6 @@ const CONSTANTS = {
           icon: "🛡",
           points: "9/10",
           bonus: "Extra resilience against on-call fatigue",
-<<<<<<< HEAD
-          description: "<b>Site Reliability Engineering</b> ensures that systems are up and running 24/7. At YouTube, I implemented reliability frameworks that prevent downtime and minimize disruptions. My work involves proactive monitoring and incident response, ensuring that users have a consistent and reliable experience."
-        },
-        {
-          title: "Monitoring & Observability",
-          icon: "📊",
-          points: "8/10",
-          bonus: "+2 foresight with proper dashboards",
-          description: "<b>Monitoring & Observability</b> provide insights into system performance. At YouTube, I developed dashboards and alerts that help identify issues before they impact users. My focus is on creating tools that provide real-time visibility into system health, enabling quick and effective responses to potential problems."
-        },
-        {
-          title: "Chaos Engineering & Load Testing",
-          icon: "🌀",
-          points: "7/10",
-          bonus: "+2 bonus from past outage lessons",
-          description: "<b>Chaos Engineering & Load Testing</b> involve testing systems under stress to ensure resilience. At YouTube, I conducted experiments that simulate real-world conditions, identifying weaknesses and improving system robustness. My work helps ensure that services remain stable and performant, even under unexpected loads."
-=======
           description: "I live for those 3 AM production incidents where everything's on fire and someone needs to stay cool. <br><br> I really enjoy making sure everything is monitored and has configured alerting. When systems break, I don't just fix them - I make sure they never break the same way twice."
         },
         {
@@ -197,18 +130,13 @@ const CONSTANTS = {
           points: "7/10",
           bonus: "+2 bonus from past outage lessons",
           description: "I like breaking things! It really helps with designing things that don't break. <br><br> Expert in failure injection, resilience testing, and building systems that gracefully degrade instead of crash."
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         },
         {
           title: "CI/CD & DevOps",
           icon: "🚀",
           points: "8/10",
           bonus: "+1 agility for multiple daily deploys",
-<<<<<<< HEAD
-          description: "<b>CI/CD & DevOps</b> streamline the development and deployment process. At YouTube, I automated pipelines to enable rapid, reliable releases. My work involves managing infrastructure as code and ensuring that deployments are smooth and error-free, allowing teams to focus on innovation rather than manual processes."
-=======
           description: "If it moves, I automate it. If it doesn't move, I automate it anyway. <br><br> A good pipeline is one that is so smooth you forget its even running. 
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         }
       ]
     },
@@ -221,53 +149,33 @@ const CONSTANTS = {
           title: "Fast Iteration & Execution",
           icon: "🎯",
           points: "10/10",
-<<<<<<< HEAD
-          description: "<b>Fast Iteration & Execution</b> is about delivering results quickly without sacrificing quality. At YouTube, I led projects that required rapid prototyping and deployment, balancing speed with precision. My approach ensures that products are delivered on time and meet the highest standards of excellence."
-=======
           description: "Speed isn't about rushing - it's about knowing where to focus. <br><br> I've broken down many impossible projects into roadmaps with progressive bite-sized wins. <br><br> I work with decision makers to prioritize to know exactly which corners are safe to cut, and which ones will come back to haunt you at 3 AM."
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         },
         {
           title: "Product Thinking",
           icon: "🧩",
           points: "9/10",
           bonus: "+1 buff with caffeine",
-<<<<<<< HEAD
-          description: "<b>Product Thinking</b> involves aligning engineering decisions with business goals. At YouTube, I asked the right questions to ensure that features meet user needs and drive business success. My focus is on creating products that are not only technically sound but also strategically valuable."
-=======
           description: "I'm a product-minded engineer who thinks in user stories, not just in technical specs. <br><br> My superpower is finding the sweet spot between technical excellence and business value. <br><br> Build solutions, not features."
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         },
         {
           title: "Cross-Team Collaboration",
           icon: "🤝",
           points: "8/10",
-<<<<<<< HEAD
-          description: "<b>Cross-Team Collaboration</b> is key to successful project delivery. At YouTube, I bridged the gap between engineers, designers, and product managers, fostering a collaborative environment. My work ensures that all stakeholders are aligned and working towards a common goal, resulting in cohesive and effective solutions."
-=======
           description: "Need someone to get design, engineering, and product teams speaking the same language? That's me. <br><br> I turn cross-team projects from coordination nightmares into smooth collaborations. <br><br> It's impossible to get everyone to agree on a direction, but i can get pretty close."
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         },
         {
           title: "Tech Direction & Strategy",
           icon: "📢",
           points: "9/10",
-<<<<<<< HEAD
-          description: "<b>Tech Direction & Strategy</b> guide teams through complex technical decisions. At YouTube, I provided leadership and vision, helping teams navigate challenges with clarity and confidence. My focus is on setting a strategic direction that aligns with organizational goals and drives innovation."
-=======
           description: "I've got a knack for seeing around technical corners. <br><br> My architectural decisions aren't just about solving today's problems - they're about being ready for tomorrow's challenges. <br><br> I help teams dodge over-engineering while still building for scale."
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         },
         {
           title: "Mentorship & Team Growth",
           icon: "🧑‍🏫",
           points: "9/10",
           bonus: "Bonus charisma for pair programming",
-<<<<<<< HEAD
-          description: "<b>Mentorship & Team Growth</b> are about nurturing talent and fostering a culture of learning. At YouTube, I guided junior engineers, providing support and encouragement. My approach is to create an environment where team members feel empowered to grow and succeed, without fear of failure."
-=======
           description: "Teaching is my secret addiction. <br><br> I create environments where junior engineers can safely make mistakes and learn from them. <br><br> My code reviews are like mini-mentoring sessions, and somehow I manage to keep technical discussions both educational and entertaining."
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         }
       ]
     },
@@ -281,33 +189,21 @@ const CONSTANTS = {
           icon: "💪",
           points: "7/10",
           bonus: "+2 stamina when caffeinated",
-<<<<<<< HEAD
-          description: "<b>CrossFit Endurance</b> is about pushing physical limits, much like tackling challenging engineering problems. My dedication to fitness mirrors my approach to work: persistent, disciplined, and always striving for improvement. This mindset helps me maintain focus and energy, even during the most demanding projects."
-=======
           description: "Who says engineers can't do double-unders? <br><br> I bring the same obsessive optimization mindset from coding to CrossFit. <br><br> The endorphins actually help with coding and debugging."
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         },
         {
           title: "Poi Spinning Mastery",
           icon: "🌀",
           points: "8/10",
           bonus: "Extra dexterity at music festivals",
-<<<<<<< HEAD
-          description: "<b>Poi Spinning Mastery</b> combines creativity and precision, much like software engineering. My passion for poi spinning reflects my ability to balance technical skills with artistic expression, bringing a unique perspective to problem-solving and innovation in my engineering career."
-=======
           description: "Flow arts aren't just pretty lights - they're physics in motion. <br><br> I approach poi spinning like I approach coding: break down complex patterns, practice the fundamentals, then add your own style. <br><br> Yes, I can code and spin fire. No, I haven't tried doing both at once."
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         },
         {
           title: "Content Creation",
           icon: "🎥",
           points: "7/10",
           bonus: "+3 boost for late-night creative sprints",
-<<<<<<< HEAD
-          description: "<b>Content Creation</b> is about storytelling and sharing knowledge. At YouTube, I leveraged my skills to break down complex technical topics into engaging content. My focus is on making technology accessible and inspiring others to explore and learn, much like a game trailer narrator captivates an audience."
-=======
           description: "Tech storyteller who makes complex concepts accessible and entertaining. I love talking about video games, but I also dabble in math tutorials"
->>>>>>> 3864adc65a1d932e0e70c8ed5173d59ba656b418
         }
       ]
     }
