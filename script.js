@@ -203,7 +203,7 @@ const CONSTANTS = {
           icon: "🎥",
           points: "7/10",
           bonus: "+3 boost for late-night creative sprints",
-          description: "Tech storyteller who makes complex concepts accessible and entertaining. I love talking about video games, but I also dabble in math tutorials"
+          description: "Tech storyteller who makes complex concepts accessible and entertaining. I love talking about video games, but I also dabble in math tutorials."
         }
       ]
     }
@@ -318,7 +318,9 @@ const navigation = {
     page.classList.add('visible');
 
     const currentVideo = dom.getCurrentPage().querySelector('video');
-    if (currentVideo) currentVideo.play();
+    if (currentVideo) {
+      setTimeout(() => currentVideo.play(), 500);
+    }
 
     if (index < 0) {
       navigation.showOptions();
