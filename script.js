@@ -219,6 +219,7 @@ let state = {
     yDown: null
   },
   audioEnabled: false,
+  loaderRemoved: false, // New flag for loader status
 };
 
 // DOM Helpers
@@ -319,7 +320,13 @@ const navigation = {
 
     const currentVideo = dom.getCurrentPage().querySelector('video');
     if (currentVideo) {
-      setTimeout(() => currentVideo.play(), 500);
+      currentVideo.pause();
+      currentVideo.currentTime = 0;
+      currentVideo.load();
+      currentVideo.addEventListener('canplay', function handler() {
+        currentVideo.play();
+        currentVideo.removeEventListener('canplay', handler);
+      }, { once: true });
     }
 
     if (index < 0) {
@@ -421,12 +428,13 @@ const carousel = {
     
     // Handle video transition
     video.load();
-    setTimeout(() => {
+    video.addEventListener('canplay', function handler() {
       video.style.setProperty('transition', '0.3s all ease-out');
       video.style.setProperty('opacity', '1');
       video.style.setProperty('transform', mobileUi ? 'rotateX(-5deg)' : 'rotateY(10deg)');
-      setTimeout(() => video.play(), 300);
-    }, 0);
+      video.play();
+      video.removeEventListener('canplay', handler);
+    }, { once: true });
   },
 };
 
@@ -504,10 +512,13 @@ const handlers = {
 
 // Tear down the loader and kick off the welcome animations.
 function startApp() {
+  if (state.loaderRemoved) return; // Prevent multiple calls
+  state.loaderRemoved = true;
+
   const loader = document.querySelector('.loader-container');
-  if (!loader) return;
-  
-  loader.remove();
+  if (loader) {
+    loader.remove();
+  }
   document.querySelector('.container').style.opacity = '1';
 
   history.pushState({pageIndex: -1}, '');
@@ -882,18 +893,34 @@ function init() {
 
   // Video loading check
   const videos = document.querySelectorAll('video');
+  let videosLoadedCount = 0;
+  const totalVideos = videos.length;
+
   const checkVideosLoaded = () => {
-    const allLoaded = Array.from(videos)
-      .every(video => video.readyState >= 2);
-      
-    if (allLoaded) startApp();
+    videosLoadedCount++;
+    if (videosLoadedCount === totalVideos) {
+      startApp();
+    }
   };
   
-  // Start app once videos are loaded
-  if (Array.from(videos).every(video => video.readyState >= 2)) {
+  // Fallback for loader dismissal in case videos don't fire 'canplaythrough'
+  setTimeout(() => {
+    if (!state.loaderRemoved) {
+      console.warn('Loader dismissed by timeout. Some videos might not have fully loaded.');
+      startApp();
+    }
+  }, 5000); // 5 seconds timeout
+
+  if (totalVideos === 0) {
     startApp();
   } else {
-    videos.forEach(video => video.addEventListener('canplaythrough', checkVideosLoaded));
+    videos.forEach(video => {
+      if (video.readyState >= 2) {
+        checkVideosLoaded();
+      } else {
+        video.addEventListener('canplaythrough', checkVideosLoaded, { once: true });
+      }
+    });
   }
 }
 
