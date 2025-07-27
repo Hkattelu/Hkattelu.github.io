@@ -236,7 +236,7 @@ const dom = {
     }
     const path = `audio/${soundName}${reverse ? '-reverse' : ''}.mp3`
     const audio = new Audio(path);
-    audio.volume = 0.5;
+    audio.volume = 0.3;
     audio.play();
   },
   isMobile: () => window.innerWidth < CONSTANTS.MOBILE_BREAKPOINT || screen.width < CONSTANTS.MOBILE_BREAKPOINT
@@ -864,12 +864,22 @@ function init() {
 
   // Add audio toggle handler
   const audioToggle = dom.getAudioToggle();
+  const backgroundMusic = new Audio('audio/music.mp3');
+  backgroundMusic.loop = true;
+  backgroundMusic.volume = 0.1; // Set a low volume for ambient music
+
   audioToggle.addEventListener('click', () => {
     state.audioEnabled = !state.audioEnabled;
     const speakerOn = audioToggle.querySelector('.speaker-on');
     const speakerOff = audioToggle.querySelector('.speaker-off');
     speakerOn.style.display = state.audioEnabled ? 'block' : 'none';
     speakerOff.style.display = state.audioEnabled ? 'none' : 'block';
+
+    if (state.audioEnabled) {
+      backgroundMusic.play();
+    } else {
+      backgroundMusic.pause();
+    }
   });
 
   // Add dark mode toggle handler
