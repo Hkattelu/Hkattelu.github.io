@@ -14,7 +14,7 @@ const CONSTANTS = {
   MOBILE_DELAY: 120,
   MASKS: 9,
   MAX_SCRAMBLE: 6,
-  PROJECTS: 4,
+  PROJECTS: 7,
   MOBILE_BREAKPOINT: 768,
   // Create and render the skill tree in the skills page
   SKILL_TREE_DATA: {
@@ -47,6 +47,18 @@ const CONSTANTS = {
           icon: "📊",
           points: "8/10",
           description: "Experience with data modeling to optimize latency for client-facing features. Worked on streaming logs from petabyte-scale storage to google cloud logging customers."
+        },
+        {
+          title: "CSV Ingestion & Parsing",
+          icon: "📄",
+          points: "7/10",
+          description: "Robust CSV pipelines for uploads at scale: schema validation, type-safe parsing, and resilient error handling for user-generated data."
+        },
+        {
+          title: "Media Processing & Timeline UX",
+          icon: "🎞",
+          points: "7/10",
+          description: "Hands-on experience designing timeline interactions and efficient media handling for editing workflows. Emphasis on frame-accurate UX and smooth scrubbing."
         }
       ]
     },
@@ -81,6 +93,18 @@ const CONSTANTS = {
           points: "8/10",
           bonus: "+2 when armed with DevTools",
           description: "Performance optimization wizard who treats 'Latency' as a personal challenge. Experienced with profiling, tracing, bundle size reduction, and progressive enhancement."
+        },
+        {
+          title: "Canvas/WebGL & Game UI",
+          icon: "🎮",
+          points: "7/10",
+          description: "Building interactive web games and rich animations. Focus on input handling, state management, and smooth transitions for responsive gameplay and UI."
+        },
+        {
+          title: "Data Visualization (Recharts)",
+          icon: "📈",
+          points: "7/10",
+          description: "Turning raw CSVs and events into crisp, performant visuals with Recharts and custom components, optimized for mobile and desktop."
         }
       ]
     },
@@ -109,6 +133,12 @@ const CONSTANTS = {
           points: "7/10",
           bonus: "+1 when dealing with high-traffic apps",
           description: "Expertise in AI cost optimization. Implemented clever caching strategies and request batching to make AI cost actually cost efficient, instead of a money sink."
+        },
+        {
+          title: "Narrative Generation & Genkit Flows",
+          icon: "🧾",
+          points: "7/10",
+          description: "Designing AI-driven storytelling and analysis pipelines using Genkit + Gemini: structured prompts, guardrails, and result shaping for shareable narratives."
         }
       ]
     },
