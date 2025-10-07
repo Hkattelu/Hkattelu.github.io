@@ -26,6 +26,4 @@ hobbies:
   - Travel and city walks
 ---
 
-![Himanshu](/images/me.jpg)
-
 Hi! I’m Himanshu — a senior software engineer in NYC who enjoys building learner‑first products and thoughtful developer experiences. I love shipping features end‑to‑end, from data and serving infra to polished UI, and I’m happiest when I’m learning something new and sharing it with others.
