@@ -1,0 +1,20 @@
+/* Local overrides for Hugo site */
+
+/* Improve blog post readability */
+.post-content p {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  margin: 1.15em 0;
+}
+.post-content ul,
+.post-content ol {
+  margin: 1em 0 1.25em 1.25em;
+  line-height: 1.8;
+}
+.post-content li { margin: 0.35em 0; }
+.post-content h2 { margin-top: 2em; margin-bottom: 0.6em; }
+.post-content h3 { margin-top: 1.5em; margin-bottom: 0.5em; }
+
+/* Make whole post cards clickable without visual regressions */
+a.block { text-decoration: none; color: inherit; }
+a.block:focus h2, a.block:hover h2 { text-decoration: underline; }
