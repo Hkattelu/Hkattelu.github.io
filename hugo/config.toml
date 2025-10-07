@@ -1,0 +1,19 @@
+title = "Himanshu's Blog"
+baseURL = "https://hkattelu.com/"
+languageCode = "en-us"
+theme = "digio-theme"
+
+[pagination]
+  pagerSize = 10
+enableRobotsTXT = true
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[permalinks]
+  posts = "/blog/:slug/"
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true

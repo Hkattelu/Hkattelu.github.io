@@ -4,3 +4,13 @@ experimental/*
 .idea/*
 .idea
 WARP.md
+
+# Hugo build artifacts
+hugo/public/
+hugo/resources/
+hugo/.hugo_build.lock
+hugo/.cache/
+
+# OS/editor junk
+.DS_Store
+Thumbs.db

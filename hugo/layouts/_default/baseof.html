@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ if .Title }}{{ .Title }} · {{ end }}Himanshu's Blog</title>
+    <link href="/css/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <header style="padding:1rem; border-bottom:1px solid #ddd;">
+      <nav style="display:flex; gap:1rem;">
+        {{ $homeHref := "/" }}
+        {{ if or (in (slice "post" "posts" "blog") .Type) (in (slice "posts" "blog") .Section) }}
+          {{ $homeHref = "/blog/" }}
+        {{ end }}
+        <a href="{{ $homeHref }}">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/me/">About</a>
+      </nav>
+    </header>
+    <main style="max-width: 760px; margin: 2rem auto; padding: 0 1rem;">
+      {{ block "main" . }}{{ end }}
+    </main>
+    <footer style="padding:1rem; border-top:1px solid #ddd; text-align:center;">
+      <small>© {{ now.Format "2006" }} Himanshu Kattelu · Theme: <a href="https://github.com/danapixels/digio-theme" target="_blank" rel="noopener">digio-theme</a></small>
+    </footer>
+  </body>
+</html>

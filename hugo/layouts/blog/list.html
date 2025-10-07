@@ -1,0 +1,16 @@
+{{ define "main" }}
+<h1>Posts</h1>
+<ul style="list-style:none; padding-left:0;">
+  {{ $posts := where site.RegularPages "Section" "in" (slice "posts" "blog") }}
+  {{ range (sort $posts "Date" "desc") }}
+    <li style="margin: 1.5rem 0;">
+      <div style="color:#666; font-size:0.9rem;">
+        {{ .Date.Format "Jan 2, 2006" }}
+        {{ with .Params.tags }} [{{ delimit . ", " }}] {{ end }}
+      </div>
+      <h2 style="margin: 0.2rem 0;"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      <div>{{ with .Params.teaser }}{{ . | plainify }}{{ else }}{{ .Summary }}{{ end }}</div>
+    </li>
+  {{ end }}
+</ul>
+{{ end }}
