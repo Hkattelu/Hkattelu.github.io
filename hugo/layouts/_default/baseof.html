@@ -13,7 +13,6 @@
         {{ if or (in (slice "post" "posts" "blog") .Type) (in (slice "posts" "blog") .Section) }}
           {{ $homeHref = "/blog/" }}
         {{ end }}
-        <a href="{{ $homeHref }}">Home</a>
         <a href="/blog/">Posts</a>
         <a href="/art/">Art</a>
         <a href="/me/">About</a>

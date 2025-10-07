@@ -1,5 +1,5 @@
 {{ define "main" }}
-<h1 class="text-3xl font-bold mb-4">Blog</h1>
+<h1 class="text-3xl font-bold mb-4">Posts</h1>
 {{ $posts := where .Site.RegularPages "Section" "posts" }}
 {{ $posts = sort $posts "Date" "desc" }}
 {{ if not (gt (len $posts) 0) }}
@@ -7,17 +7,17 @@
 {{ end }}
 <div class="grid gap-6 mt-4">
   {{ range $posts }}
-    <article class="not-prose flex cursor-pointer flex-col space-y-2 rounded-lg border border-transparent p-4 transition-all duration-150 hover:border-white">
-      <h2 class="text-xl font-semibold">
-        <a href="{{ .RelPermalink }}" class="text-white underline-offset-2 hover:underline">{{ .Title }}</a>
-      </h2>
-      <time class="text-sm text-gray-300">{{ .Date.Format "January 2, 2006" }}</time>
-      {{ with .Params.teaser }}
-        <p><em>{{ . | plainify }}</em></p>
-      {{ else }}
-        {{ with .Params.description }}<p><em>{{ . | plainify }}</em></p>{{ else }}{{ with .Summary }}<p><em>{{ . | plainify }}</em></p>{{ end }}{{ end }}
-      {{ end }}
-    </article>
+    <a href="{{ .RelPermalink }}" class="block">
+      <article class="not-prose flex cursor-pointer flex-col space-y-2 rounded-lg border border-transparent p-4 transition-all duration-150 hover:border-white">
+        <h2 class="text-xl font-semibold text-white underline-offset-2 hover:underline">{{ .Title }}</h2>
+        <time class="text-sm text-gray-300">{{ .Date.Format "January 2, 2006" }}</time>
+        {{ with .Params.teaser }}
+          <p><em>{{ . | plainify }}</em></p>
+        {{ else }}
+          {{ with .Params.description }}<p><em>{{ . | plainify }}</em></p>{{ else }}{{ with .Summary }}<p><em>{{ . | plainify }}</em></p>{{ end }}{{ end }}
+        {{ end }}
+      </article>
+    </a>
   {{ end }}
 </div>
 {{ end }}
