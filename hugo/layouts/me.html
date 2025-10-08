@@ -1,7 +1,8 @@
 {{ define "main" }}
 <div class="mx-auto w-full max-w-4xl px-4 py-6 space-y-6">
-  <div class="flex justify-center">
-    <img src="{{ or .Params.portraitImage "/images/me.jpg" }}" alt="Portrait" style="max-width:240px; border-radius:8px;">
+  <div class="flex flex-col items-center">
+    <img src="/cats.png" alt="cats">
+    <img src="{{ or .Params.portraitImage "/images/me.jpg" }}" alt="Portrait" style="height:400px;max-width:560px; border-radius:8px;">
   </div>
 
   <article class="prose prose-invert max-w-none">
@@ -37,4 +38,8 @@
     </div>
   </div>
 </div>
+
+  <div class="flex justify-center">
+    <img src="/sonic.png" alt="sonic">
+  </div>
 {{ end }}

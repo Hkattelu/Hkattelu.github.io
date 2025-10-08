@@ -16,16 +16,16 @@ dislikes:
   - Slow and unresponsive user interfaces
   - Flaky tests and noisy alerts
   - Ambiguous requirements without a user story
-  - "Because that’s how we’ve always done it"
+  - \"Because that’s how we’ve always done it\"
 
 hobbies:
   - Poi spinning and flow arts
-  - Video games and game UI tinkering
+  - Video games
   - Fitness/CrossFit
   - Content creation and storytelling
   - Travel and city walks
-  - Photography and street shots
-  - Chess and strategy games
+  - Color Pencil Drawing
+  - Home Decoration
 ---
 
 Hi! I’m Himanshu — a senior software engineer in NYC who enjoys building learner‑first products and thoughtful developer experiences. I love shipping features end‑to‑end, from data and serving infra to polished UI, and I’m happiest when I’m learning something new and sharing it with others.

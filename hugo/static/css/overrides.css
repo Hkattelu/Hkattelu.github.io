@@ -1,19 +1,20 @@
 /* Local overrides for Hugo site */
 
 /* Improve blog post readability */
-.post-content p {
-  font-size: 1.15rem;
+ p {
+  font-size: 1.22em;
+  margin: 1.25em 0;
+  margin-bottom: 8px;
+}
+ul,
+ol {
+  margin: 1.1em 0 1.35em 1.35em;
   line-height: 1.9;
-  margin: 1.15em 0;
 }
-.post-content ul,
-.post-content ol {
-  margin: 1em 0 1.25em 1.25em;
-  line-height: 1.8;
-}
-.post-content li { margin: 0.35em 0; }
-.post-content h2 { margin-top: 2em; margin-bottom: 0.6em; }
-.post-content h3 { margin-top: 1.5em; margin-bottom: 0.5em; }
+li { margin: 0.5em 0; }
+h2 { font-size: 2em; margin-top: 2.2em; margin-bottom: 0.7em; }
+h3 { font-size: 1.5em; margin-top: 1.7em; margin-bottom: 0.6em; }
+code { padding: 8px; }
 
 /* Make whole post cards clickable without visual regressions */
 a.block { text-decoration: none; color: inherit; }
