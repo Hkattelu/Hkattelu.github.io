@@ -28,4 +28,31 @@ It's a virtue to want to build things that work well, just because you want to b
 In the world of move fast, find PMF, and generate virality - I feel like this simple thing got lost. Just building simple things that work and help people. It's fine to move a
 bit slower if it means devs can not burn out and things don't break. Unfortunately stability and quality only generate value long term.
 
+---
+
+## What “good engineering” looks like day‑to‑day
+
+- Clear contracts between services. If a dependency fails, the blast radius is understood and contained.
+- Operational excellence: alerts with actionability, not noise. Postmortems that teach, not blame.
+- Code you can read a year later. Fewer patterns, better docs, and tests that describe behavior.
+- Rollouts you can reason about: progressive, observable, and easy to roll back.
+
+None of this is flashy. It compounds. Every day you avoid a fire is a day you can invest back into users.
+
+## The compounding effect
+
+I’ve watched “slightly slower but safer” teams ship more value in six months than “hero mode” teams do in two. Reasons:
+
+1. They spend fewer cycles firefighting.
+2. They attract collaborators who value reliability.
+3. They earn the right to take bigger bets, because their stakeholders trust them.
+
+## What I reward on teams I work with
+
+- Owning the outcome end‑to‑end: design → implementation → quality → launch → maintenance.
+- Communicating the why: the risk, the rollback plan, the user impact.
+- Leaving the campsite cleaner: every change makes the system a bit easier to operate.
+
+Good engineering isn’t anti‑speed. It’s how you go fast on purpose.
+
 Maybe i'm just a cynic and it's normal to get less enthusiastic about programming as I get older. Or maybe the world really is a different place.
