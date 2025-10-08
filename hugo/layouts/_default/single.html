@@ -1,14 +1,26 @@
 {{ define "main" }}
 <article>
   <h1>{{ .Title }}</h1>
-  <p style="color:#666; font-size:0.9rem;">
-    <time datetime="{{ .Date }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+  <p style="color:#bbb; font-size:0.9rem; margin-top:0.2rem;">
+    <time datetime="{{ .Date }}">{{ .Date.Format "Jan 2, 2006" }}</time> · {{ .ReadingTime }} min read
   </p>
   {{ with .Params.tags }}
-    <p style="color:#666; font-size:0.9rem;">Tags: {{ delimit . ", " }}</p>
+    <p style="color:#999; font-size:0.9rem; margin-top:0.2rem;">Tags: {{ delimit . ", " }}</p>
   {{ end }}
   <div class="post-content">
     {{ .Content }}
   </div>
+  <nav style="display:flex; justify-content:space-between; gap:1rem; margin-top:2rem;">
+    <div>
+      {{ with .PrevInSection }}
+        <a href="{{ .RelPermalink }}" aria-label="Previous post">← {{ .Title }}</a>
+      {{ end }}
+    </div>
+    <div style="text-align:right;">
+      {{ with .NextInSection }}
+        <a href="{{ .RelPermalink }}" aria-label="Next post">{{ .Title }} →</a>
+      {{ end }}
+    </div>
+  </nav>
 </article>
 {{ end }}

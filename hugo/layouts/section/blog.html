@@ -10,7 +10,7 @@
     <a href="{{ .RelPermalink }}" class="block">
       <article class="not-prose flex cursor-pointer flex-col space-y-2 rounded-lg border border-transparent p-4 transition-all duration-150 hover:border-white">
         <h2 class="text-xl font-semibold text-white underline-offset-2 hover:underline">{{ .Title }}</h2>
-        <time class="text-sm text-gray-300">{{ .Date.Format "January 2, 2006" }}</time>
+        <time class="text-sm text-gray-300">{{ .Date.Format "January 2, 2006" }} · {{ .ReadingTime }} min read</time>
         {{ with .Params.teaser }}
           <p><em>{{ . | plainify }}</em></p>
         {{ else }}
