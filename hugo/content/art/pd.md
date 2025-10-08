@@ -1,8 +1,9 @@
 ---
-title: "PD"
+title: "Phantom Dust MC"
 date: 2025-10-08T09:31:19-04:00
-teaser: "Image post: PD"
+teaser: "Image post: Phantom Dust MC"
+image: "/art/pd.jpg"
 draft: false
 ---
 
-![PD](/art/pd.jpg)
+![Phantom Dust MC](/art/pd.jpg)

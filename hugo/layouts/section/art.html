@@ -1,0 +1,21 @@
+{{ define "main" }}
+<h1 class="text-3xl font-bold mb-4">Art</h1>
+{{ $items := sort .Pages "Date" "desc" }}
+{{ if not (gt (len $items) 0) }}
+  <p class="text-gray-400">No art posts yet.</p>
+{{ end }}
+<div class="art-grid">
+  {{ range $items }}
+    {{ $img := .Params.image }}
+    <a href="{{ .RelPermalink }}" class="art-card">
+      {{ if $img }}
+        <img src="{{ $img }}" alt="{{ .Title }}" loading="lazy" />
+      {{ end }}
+      <div class="art-meta">
+        <h3 class="art-title">{{ .Title }}</h3>
+        {{ with .Params.teaser }}<p class="art-teaser">{{ . }}</p>{{ end }}
+      </div>
+    </a>
+  {{ end }}
+</div>
+{{ end }}

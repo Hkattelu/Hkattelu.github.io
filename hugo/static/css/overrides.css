@@ -19,3 +19,31 @@ code { padding: 8px; }
 /* Make whole post cards clickable without visual regressions */
 a.block { text-decoration: none; color: inherit; }
 a.block:focus h2, a.block:hover h2 { text-decoration: underline; }
+
+/* Art grid */
+.art-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.art-card {
+  display: block;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.art-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.art-card:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  border-color: rgba(255,255,255,0.35);
+}
+.art-meta { padding: 0.6rem 0.75rem 0.8rem; }
+.art-title { margin: 0.2rem 0 0.2rem; font-size: 1.05rem; }
+.art-teaser { margin: 0; opacity: 0.85; font-size: 0.9rem; }
