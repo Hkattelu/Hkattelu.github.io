@@ -929,3 +929,18 @@ footer {
 }
 
 @keyframes ring-loop {to{transform: rotate(360deg)}}
+
+/* Desktop typography adjustments for section content */
+@media screen and (min-width: 1024px) {
+  .page .text-section h3 {
+    font-size: 28px;
+  }
+  .page .text-section h4 {
+    font-size: 20px;
+  }
+  .page .text-section p,
+  .page .text-section li {
+    font-size: 1.15em;
+    line-height: 1.8;
+  }
+}

@@ -28,4 +28,10 @@ hobbies:
   - Home Decoration
 ---
 
-Hi! I’m Himanshu — a senior software engineer in NYC who enjoys building learner‑first products and thoughtful developer experiences. I love shipping features end‑to‑end, from data and serving infra to polished UI, and I’m happiest when I’m learning something new and sharing it with others.
+Hi! I’m Himanshu — a staff‑level front‑end prototyper in NYC focused on AI‑first product experiences. I ship end‑to‑end: fast, delightful UI; serving hooks; telemetry; and the quality loops that make features safe and reliable.
+
+I move quickly without breaking trust: feature flags, staged rollouts, shadow traffic, automatic rollback, and observability from day one. I’ve led incidents/postmortems and turned mitigations into guardrails (rate limits, circuit breakers, sandboxing, PII‑aware logging/redaction) with clear SLOs.
+
+For LLM features, I build evaluation harnesses and UX guardrails: prompt templates with traceability, helpfulness/harmlessness metrics, red‑teaming, and user‑facing affordances that set expectations and steer out‑of‑scope asks (Constitutional‑AI‑style thinking).
+
+I love rapid prototyping with PM/design and iterating with real signals until the experience feels obvious.
