@@ -49,10 +49,10 @@ const CONSTANTS = {
           description: "Experience with data modeling to optimize latency for client-facing features. Worked on streaming logs from petabyte-scale storage to google cloud logging customers."
         },
         {
-          title: "CSV Ingestion & Parsing",
-          icon: "📄",
-          points: "7/10",
-          description: "Robust CSV pipelines for uploads at scale: schema validation, type-safe parsing, and resilient error handling for user-generated data."
+          title: "Secure Data & Privacy by Design",
+          icon: "🔐",
+          points: "8/10",
+          description: "PII-aware logging and redaction, least-privilege access, encryption in transit/at rest, and data minimization built into system design."
         },
         {
           title: "Media Processing & Timeline UX",
@@ -133,6 +133,18 @@ const CONSTANTS = {
           points: "7/10",
           bonus: "+1 when dealing with high-traffic apps",
           description: "Expertise in AI cost optimization. Implemented clever caching strategies and request batching to make AI cost actually cost efficient, instead of a money sink."
+        },
+        {
+          title: "Evaluation Harnesses & Red Teaming",
+          icon: "🧪",
+          points: "8/10",
+          description: "Offline/online evals, adversarial test sets, refusal modes, and regression gating for helpfulness, harmlessness, and hallucinations."
+        },
+        {
+          title: "Safety Policies & UX Guardrails",
+          icon: "🛡️",
+          points: "8/10",
+          description: "Constitutional-style prompts, scope‑setting UI, user‑visible boundaries, and safe fallbacks that build trust."
         },
         {
           title: "Narrative Generation & Genkit Flows",
@@ -250,6 +262,7 @@ let state = {
   },
   audioEnabled: false,
   loaderRemoved: false, // New flag for loader status
+  lastScrambleEl: null,
 };
 
 // DOM Helpers
@@ -338,11 +351,13 @@ const animations = {
   }
 };
 
+
 // Navigation Functions
 const navigation = {
   showPage: (index) => {
     const pages = document.getElementsByClassName('page');
     Array.from(pages).forEach(page => page.classList.remove('visible'));
+
 
     const page = document.getElementsByClassName(CONSTANTS.PAGES[index])[0];
     page.style.setProperty('transition-delay', 'var(--base-transition-duration)');
@@ -350,13 +365,49 @@ const navigation = {
 
     const currentVideo = dom.getCurrentPage().querySelector('video');
     if (currentVideo) {
-      currentVideo.pause();
-      currentVideo.currentTime = 0;
+      // Defensive resets
+      try { currentVideo.pause(); } catch {}
+      try { currentVideo.currentTime = 0; } catch {}
+
+      // Set attributes to maximize autoplay reliability across browsers
+      currentVideo.muted = true;
+      currentVideo.setAttribute('muted', '');
+      currentVideo.playsInline = true;
+      currentVideo.setAttribute('playsinline', '');
+      currentVideo.setAttribute('autoplay', '');
+
+      const playSafe = () => {
+        try {
+          const p = currentVideo.play();
+          if (p && typeof p.catch === 'function') p.catch(() => {});
+        } catch {}
+      };
+
+      const cleanup = () => {
+        currentVideo.removeEventListener('canplay', onCanPlay);
+        currentVideo.removeEventListener('loadeddata', onLoadedData);
+        page.removeEventListener('transitionend', onTransitionEnd);
+        document.removeEventListener('visibilitychange', onVisibility);
+      };
+      const onCanPlay = () => { playSafe(); cleanup(); };
+      const onLoadedData = () => { playSafe(); };
+      const onTransitionEnd = (e) => { if (e.target === page) playSafe(); };
+      const onVisibility = () => { if (!document.hidden) playSafe(); };
+
+      currentVideo.addEventListener('canplay', onCanPlay, { once: true });
+      currentVideo.addEventListener('loadeddata', onLoadedData, { once: true });
+      page.addEventListener('transitionend', onTransitionEnd, { once: true });
+      document.addEventListener('visibilitychange', onVisibility, { once: true });
       currentVideo.load();
-      currentVideo.addEventListener('canplay', function handler() {
-        currentVideo.play();
-        currentVideo.removeEventListener('canplay', handler);
-      }, { once: true });
+
+      if (currentVideo.readyState >= 2) {
+        playSafe();
+        cleanup();
+      } else {
+        // Fallbacks in case events fire before listeners or decode is slow / offscreen rules delay playback
+        setTimeout(playSafe, 400);
+        setTimeout(() => { if (currentVideo.paused) playSafe(); }, 2400);
+      }
     }
 
     if (index < 0) {
@@ -473,6 +524,7 @@ function mod(n, m) {
   return ((n % m) + m) % m;
 }
 
+
 function getTouches(evt) {
   return evt.touches || evt.originalEvent.touches;
 }
@@ -549,6 +601,8 @@ function startApp() {
   if (loader) {
     loader.remove();
   }
+  // Mark app ready so grain overlay becomes visible
+  document.documentElement.classList.add('app-ready');
   document.querySelector('.container').style.opacity = '1';
 
   history.pushState({pageIndex: -1}, '');
@@ -642,11 +696,20 @@ function createSkillTree() {
     const skillNodes = document.createElement('div');
     skillNodes.className = 'skill-nodes';
     
+    // Prepare column distribution for desktop (3 columns), single column on mobile
+    const totalSkills = categoryData.skills.length;
+    const perCol = Math.max(1, Math.ceil(totalSkills / 3));
+
     // Create skill nodes in the tree
     categoryData.skills.forEach((skill, index) => {
       const node = document.createElement('div');
       node.className = 'skill-node';
       node.style.setProperty('--delay', `${index * 0.1}s`);
+
+      // Decide column for desktop grid (1..3); on mobile CSS collapses to single column
+      const col = Math.floor(index / perCol) + 1; // roughly equal groups
+      node.dataset.col = String(Math.min(col, 3));
+      node.style.gridColumn = String(Math.min(col, 3));
       
       // Create the node circle
       const nodeCircle = document.createElement('div');
@@ -690,7 +753,7 @@ function createSkillTree() {
         // Update the skill detail panel
         const detailContent = document.querySelector('.skills .text-section');
         detailContent.innerHTML = `
-          <h3>${skill.title} <span class="skill-icon">${skill.icon}</span></h3>
+          <h4>${skill.title} <span class="skill-icon">${skill.icon}</span></h4>
           <p>${skill.description}</p>
         `;
         
@@ -706,137 +769,66 @@ function createSkillTree() {
     
     treeContainer.appendChild(skillNodes);
     
-    // Add connecting lines between nodes
-    const lineContainer = document.createElement('div');
-    lineContainer.className = 'skill-lines';
-    skillNodes.appendChild(lineContainer);
+      // Add connecting lines between nodes
+      const lineContainer = document.createElement('div');
+      lineContainer.className = 'skill-lines';
+      skillNodes.appendChild(lineContainer);
 
-    // Wait longer for rendering and use a more robust approach for connections
-    setTimeout(() => {
-      const nodeCircles = skillNodes.querySelectorAll('.node-circle');
-      if (nodeCircles.length <= 1) return;
-      
-      // Get positions of all nodes first
-      const nodePositions = Array.from(nodeCircles).map(node => {
-        const rect = node.getBoundingClientRect();
-        return {
-          node: node,
-          rect: rect,
-          center: {
-            x: rect.left + rect.width / 2,
-            y: rect.top + rect.height / 2
-          }
+      // After render, draw connections (mobile: vertical chain; desktop: branch to nearest node on the right)
+      setTimeout(() => {
+        const nodeCircles = Array.from(skillNodes.querySelectorAll('.node-circle'));
+        if (nodeCircles.length <= 1) return;
+        const containerRect = skillNodes.getBoundingClientRect();
+
+        const drawLine = (aRect, bRect, idx) => {
+          const start = { x: aRect.left + aRect.width / 2 - containerRect.left, y: aRect.top + aRect.height - containerRect.top };
+          const end   = { x: bRect.left + bRect.width / 2 - containerRect.left, y: bRect.top - containerRect.top };
+          const dx = end.x - start.x;
+          const dy = end.y - start.y;
+          const length = Math.sqrt(dx*dx + dy*dy);
+          const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+          const line = document.createElement('div');
+          line.className = 'skill-connection';
+          line.style.left = `${start.x}px`;
+          line.style.top = `${start.y}px`;
+          line.style.width = `${length}px`;
+          line.style.transform = `rotate(${angle}deg)`;
+          line.style.setProperty('--index', idx);
+          lineContainer.appendChild(line);
         };
-      });
-      
-      // Sort nodes by their vertical position first, then horizontal
-      // This helps identify rows in the layout
-      nodePositions.sort((a, b) => {
-        // If nodes are roughly in the same row (within 30px), sort by X
-        if (Math.abs(a.center.y - b.center.y) < 30) {
-          return a.center.x - b.center.x;
-        }
-        // Otherwise sort by Y to group rows
-        return a.center.y - b.center.y;
-      });
-      
-      // Get container rect for relative positioning
-      const containerRect = skillNodes.getBoundingClientRect();
-      
-      // Group nodes into rows based on Y position
-      const rows = [];
-      let currentRow = [nodePositions[0]];
-      
-      for (let i = 1; i < nodePositions.length; i++) {
-        const prevNode = nodePositions[i-1];
-        const currNode = nodePositions[i];
-        
-        // If Y position is similar, add to same row
-        if (Math.abs(currNode.center.y - prevNode.center.y) < 30) {
-          currentRow.push(currNode);
+
+        if (dom.isMobile()) {
+          // Simple vertical chain on mobile for clarity
+          for (let i = 0; i < nodeCircles.length - 1; i++) {
+            drawLine(nodeCircles[i].getBoundingClientRect(), nodeCircles[i + 1].getBoundingClientRect(), i);
+          }
         } else {
-          // Start a new row
-          rows.push([...currentRow]);
-          currentRow = [currNode];
-        }
-      }
-      
-      // Add the last row
-      if (currentRow.length > 0) {
-        rows.push(currentRow);
-      }
-      
-      let connIndex = 0;
-      
-      // Connect nodes within each row
-      rows.forEach(row => {
-        for (let i = 0; i < row.length - 1; i++) {
-          createConnection(row[i], row[i + 1], connIndex++, containerRect);
-        }
-      });
-      
-      // Improved inter-row connections - ensure every node in second row has a connection
-      if (rows.length > 1) {
-        const firstRow = rows[0];
-        
-        // For each row after the first
-        for (let r = 1; r < rows.length; r++) {
-          const currentRow = rows[r];
-          const prevRow = rows[r-1];
-          
-          // Make sure each node in this row has at least one connection to the row above
-          currentRow.forEach((node, nodeIndex) => {
-            // Find the closest node in the previous row
-            let bestPrevNode = null;
-            let bestScore = Infinity;
-            
-            prevRow.forEach(prevNode => {
-              // Calculate slope between nodes
-              const xDiff = node.center.x - prevNode.center.x;
-              const yDiff = node.center.y - prevNode.center.y;
-              const slope = yDiff !== 0 ? xDiff / yDiff : 0;
-              
-              // Only consider connections with negative or zero slope
-              // (going down-left, straight down, or down-right)
-              if (yDiff > 0) {  // Ensures we're going downward
-                // Score based on horizontal distance, preferring closer nodes
-                const score = Math.abs(xDiff);
-                if (score < bestScore) {
-                  bestScore = score;
-                  bestPrevNode = prevNode;
-                }
+          // Branching by columns: connect each node in col c to mapped node(s) in col c+1
+          const nodes = Array.from(skillNodes.querySelectorAll('.skill-node'));
+          const cols = {1: [], 2: [], 3: []};
+          nodes.forEach(n => {
+            const col = parseInt(n.dataset.col || '1', 10);
+            const circle = n.querySelector('.node-circle');
+            if (cols[col]) cols[col].push(circle);
+          });
+
+          let idx = 0;
+          for (let c = 1; c <= 2; c++) {
+            const A = cols[c];
+            const B = cols[c + 1];
+            if (!A || !B || A.length === 0 || B.length === 0) continue;
+
+            A.forEach((aCircle, i) => {
+              const j = Math.round(i * (B.length - 1) / Math.max(A.length - 1, 1));
+              drawLine(aCircle.getBoundingClientRect(), B[j].getBoundingClientRect(), idx++);
+              // Optional extra branch for variety
+              if (i % 2 === 0 && j + 1 < B.length) {
+                drawLine(aCircle.getBoundingClientRect(), B[j + 1].getBoundingClientRect(), idx++);
               }
             });
-            
-            // Create the connection if we found a valid previous node
-            if (bestPrevNode) {
-              createConnection(bestPrevNode, node, connIndex++, containerRect);
-            }
-          });
+          }
         }
-      }
-      
-      // Helper function to create a connection between node positions
-      function createConnection(pos1, pos2, index, containerRect) {
-        const startX = pos1.center.x - containerRect.left;
-        const startY = pos1.center.y - containerRect.top;
-        const endX = pos2.center.x - containerRect.left;
-        const endY = pos2.center.y - containerRect.top;
-        
-        const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
-        const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
-        
-        const line = document.createElement('div');
-        line.className = 'skill-connection';
-        line.style.left = `${startX}px`;
-        line.style.top = `${startY}px`;
-        line.style.width = `${length}px`;
-        line.style.transform = `rotate(${angle}deg)`;
-        line.style.setProperty('--index', index);
-        
-        lineContainer.appendChild(line);
-      }
-    }, 200); // Longer timeout to ensure rendering completes
+      }, 200);
   }
 }
 
@@ -844,6 +836,10 @@ function createSkillTree() {
 function init() {
   // Set up event listeners
   document.addEventListener('keydown', handlers.keyboard);
+  // Cap scramble iterations on mobile for snappier feel
+  if (dom.isMobile()) {
+    CONSTANTS.MAX_SCRAMBLE = 3;
+  }
   window.addEventListener('popstate', (event) => {
     event.state.pageIndex < 0 ? navigation.backToHome() : navigation.showPage(event.state.pageIndex);
   });
@@ -871,7 +867,11 @@ function init() {
 
     box.addEventListener('focus', (event) => { 
       const span = event.target.querySelector('span');
-      animations.scrambleText(span, 30);
+      const tick = dom.isMobile() ? 12 : 20;
+      if (state.lastScrambleEl !== event.target) {
+        animations.scrambleText(span, tick);
+        state.lastScrambleEl = event.target;
+      }
 
       const background = event.target.querySelector('.focus-only-background');
       animations.changeBackground(background);

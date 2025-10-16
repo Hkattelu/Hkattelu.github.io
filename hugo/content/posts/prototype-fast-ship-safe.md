@@ -8,55 +8,25 @@ categories: ["blog", "AI"]
 teaser: "In an AI upgrade cycle, the teams that win prototype quickly — and know exactly how to make it safe before launch."
 ---
 
-We’re in an upgrade cycle. New models, new specs, new primitives every quarter. In this environment, **speed is table stakes** — but speed without safety is just churn.
+Every quarter the toolbox changes—new models, new knobs, new caveats. I’ve learned to bias for speed early, then turn that speed into something I’m not afraid to ship.
 
-Here’s the pattern that worked repeatedly.
+On day one I build the smallest possible vertical: one path, one data source, one user action. It’s ugly, but it has logs, flags, and a metric or two so people can react to a working thing instead of a slide. I keep the code disposable because the point is to test a behavior, not design a framework.
 
-## 1) Prototype in days, not weeks
+Once it’s interesting, I evaluate it like a product. Define success you can measure this week (CTR, task completion, a simple rubric), compare to a baseline, and keep a small eval set that actually looks like the real traffic. Decisions get clearer when numbers show up.
 
-- Use the smallest workable scope: a single path, a single data source, a single user action.
-- Build the “ugly vertical”: logging, toggles, metrics from day one so the prototype is demo‑able and measurable.
-- Keep the code disposable. You’re testing a behavior, not writing a framework.
+Guardrails come next and they’re not optional: refusals for sensitive inputs, rate limits and timeouts, circuit breakers for flaky dependencies, and two caches (a product cache for repeats and a tiny stale‑OK cache for outages). Also, a clean kill switch. Moving fast only works if you can stop fast.
 
-Outcome: product can react to a real thing, not a deck.
+If a prototype earns its keep, I harden just the parts that survived. Separate the prompt/policy layer from app logic and style. Turn one‑off scripts into versioned components with changelogs. Write down ownership and on‑call basics (alerts, playbooks). Iteration speeds up when you reduce surprise.
 
-## 2) Evaluate like a product
+Culturally, I try to celebrate the boring launch: the one that didn’t page anyone and quietly moved the metric. That’s speed on purpose.
 
-- Define success criteria you can measure this week: CTR, dwell time, task completion, quality rubrics.
-- Run side‑by‑side with a baseline; capture deltas on real‑ish traffic.
-- Keep a curated eval set of 100–200 examples that reflect the problem slice.
-
-Outcome: decisions are evidence‑based and legible to non‑engineers.
-
-## 3) Add guardrails as soon as it’s interesting
-
-- Refusals for sensitive content; rate limits and timeouts; circuit breakers for dependencies.
-- Caching: product cache (repeat answers) + outage cache (stale‑acceptable answers).
-- Rollout plan with a crisp kill switch.
-
-Outcome: you’re fast **and** trustworthy.
-
-## 4) Productionize the parts that survive
-
-- Separate the prompt/policy layer from the application logic and UI style.
-- Turn one‑off scripts into versioned components with changelogs.
-- Invest in clear oncall docs: alerts, playbooks, owners.
-
-Outcome: iteration gets faster over time instead of slower.
-
-## 5) Culture: celebrate boring wins
-
-Boring engineering is how you go fast on purpose. Launches that don’t wake anyone up at 3am are a competitive advantage.
-
----
-
-### A checklist I keep around
+A small checklist I actually use:
 
 - [ ] Scope is one flow, one persona
-- [ ] Metrics + logs from day one
-- [ ] Eval set + baseline comparison
+- [ ] Logs + metrics from day one
+- [ ] Eval set + baseline deltas
 - [ ] Guardrails: refusals, limits, cache, kill switch
-- [ ] Rollout plan in the PR description
-- [ ] Ownership, runbook, and post‑launch bake time
+- [ ] Rollout plan in the PR
+- [ ] Ownership + runbook + bake time
 
-The tech will change. The feedback loop is the product.
+The tech will keep changing. The feedback loop is the product.

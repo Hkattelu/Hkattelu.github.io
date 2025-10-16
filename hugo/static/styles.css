@@ -413,7 +413,7 @@ h3 {
     }
 
     p, li {
-      font-size: 1em;
+      font-size: 1.1em;
     }
 
     ul > li {
@@ -532,8 +532,8 @@ h3 {
   }
 
   .content {
-    height: 80vh;
-    width: 45vw;
+    height: 85vh;
+    width: 55vw;
     color: var(--primary-color);
     background-color: var(--secondary-color);
 
@@ -940,7 +940,118 @@ footer {
   }
   .page .text-section p,
   .page .text-section li {
-    font-size: 1.15em;
-    line-height: 1.8;
+    font-size: 1.25em;
+    line-height: 1.85;
+  }
+}
+
+/* Grain + vignette overlay (stronger) */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  display: none; /* hidden until app is ready so it doesn't affect loader */
+  background-image:
+    radial-gradient(ellipse at 50% 120%, rgba(0,0,0,.34), rgba(0,0,0,0) 62%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.06'/></svg>");
+  background-size: cover, 120px 120px;
+  mix-blend-mode: overlay;
+}
+.app-ready .grain { display: block; }
+
+/* Subtle depth breathing on visible content (tempered) */
+.page.visible .text-section {
+  position: relative;
+  z-index: 4;
+  box-shadow: 0 8px 22px -12px rgba(0,0,0,.38);
+  filter: brightness(1);
+  will-change: filter, box-shadow;
+  animation: pulse-shadow 2.6s ease-in-out infinite;
+}
+.page.visible video {
+  filter: brightness(1);
+  will-change: filter, box-shadow;
+  animation: pulse-video 3s ease-in-out infinite;
+}
+@keyframes pulse-shadow {
+  0%, 100% { box-shadow: 0 8px 22px -12px rgba(0,0,0,.38); filter: brightness(1); }
+  50% { box-shadow: 0 18px 40px -16px rgba(0,0,0,.5); filter: brightness(1.04); }
+}
+@keyframes pulse-video {
+  0%, 100% { box-shadow: 0 6px 14px rgba(0,0,0,.24); filter: brightness(1); }
+  50% { box-shadow: 0 14px 30px rgba(0,0,0,.36); filter: brightness(1.03); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page.visible .text-section,
+  .page.visible video { animation: none !important; filter: none !important; }
+}
+
+/* In case stacking contexts hide the panel pulse, enforce a raised context */
+.page.visible .text-section { position: relative; z-index: 4; }
+
+/* Selection spark microburst */
+.spark {
+  position: fixed;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  opacity: .95;
+  transform: translate(0,0) scale(.8);
+  transition: transform .42s cubic-bezier(.2,.9,.2,1), opacity .42s linear;
+  filter: drop-shadow(0 0 6px var(--accent-color));
+  z-index: 9999;
+}
+.spark.go {
+  transform: translate(calc(-20px + 40px * var(--rand, .5)), calc(-40px - 20px * var(--rand, .5))) scale(0);
+  opacity: 0;
+}
+
+/* Projects: place tagline under title */
+.page.projects .text-section h3 { display: block; width: auto; }
+
+/* Cartouche heading frames inside content panels */
+.page .text-section h3 {
+  display: inline-block;
+  font-family: lust-display, serif;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  padding: 8px 16px 6px 12px;
+  margin: 0 0 8px 0;
+  /* Draw the frame inside to avoid clip-path edge trimming under transforms */
+  box-shadow: inset 0 0 0 2px var(--primary-color);
+  border-radius: 2px;
+  width: fit-content;
+  /* Increased inset to prevent fractional-pixel trim on the top-right */
+  clip-path: polygon(3px 3px, calc(100% - 20px) 3px, 100% 20px, 100% calc(100% - 3px), 3px calc(100% - 3px));
+  text-shadow: 0 2px 0 rgba(0,0,0,.25);
+  background: transparent;
+  /* Encourage stable rasterization on GPU */\r
+  transform: translateZ(0);
+  will-change: auto;
+}
+.page .text-section h3 a { text-decoration: none; color: inherit; }
+
+.page .text-section h4 {
+  display: inline-block;
+  position: relative;
+  font-family: lust-display, serif;
+  letter-spacing: .01em;
+  font-weight: 700;
+  margin: 4px 0 10px 0;
+  padding-right: 10px;
+}
+.page .text-section h4::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -4px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-color), transparent 75%);
+  transform: skewX(-15deg);
+}
+
+    transition: none !important;
+    opacity: 0 !important;
   }
 }

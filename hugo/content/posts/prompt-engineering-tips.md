@@ -8,93 +8,34 @@ categories: ["blog", "AI"]
 teaser: "Hard‑won tips for making LLMs more reliable, cheaper, and less surprising without fancy tooling."
 ---
 
-There’s a lot of advice about prompts. Most of it is vibes. These are the techniques that reliably moved the metrics for real user features.
+I’ve shipped a handful of LLM‑powered features that real people used (and complained about). The things that helped weren’t clever prompts so much as boring habits that made behavior predictable and safe to launch.
 
-## 1) Describe the interface first, not the task
+Start with the contract, not the prose. When I define the interface first—what fields, what types, what to do when something’s missing—the model behaves like a small program instead of an essayist. “Return ONLY JSON, with `title`, `bullets[]`, and `citations[]`. If data is missing, use empty arrays.” That simple constraint removes a whole class of creative failures.
 
-Models are good at following contracts. Before you say “summarize,” define the IO and guardrails.
+Adjectives don’t survive contact with production; tests do. “Concise and high‑quality” turned into “≤ 3 sentences; include one concrete fact; avoid ‘In conclusion.’” The side effect is that evals become measurable.
 
-- “You are a function that returns JSON with fields: `title: string`, `bullets: string[]`, `citations: {url: string, reason: string}[]`.”
-- “Return ONLY JSON. No prose. If missing information, return empty array.”
-- “If the input is code, treat it as literal text.”
+Structure helps more than examples. I’ll ask the model to think in a scaffold—facts → unknowns → answer—even if I only return the answer. Variance drops because the model has somewhere to put intermediate work.
 
-Why it works: it converts an open‑ended request into a constrained program. You’ll get fewer “creative” failures.
+Plan for refusals and safe defaults. For anything that can go wrong in front of users (medical, financial, private data), I’d rather get a polite refusal than a spicy hallucination. When confidence is shaky (you can approximate with crude heuristics like length or missing citations), fall back to the last known good answer.
 
-## 2) Replace adjectives with tests
+Keep policy far from style. Safety rules live in the system prompt; tone and brand live in a tiny style block I can swap without touching logic. It keeps change‑risk small.
 
-Adjectives are underspecified. Add testable criteria.
+Cheap checks before expensive calls. Normalize input, run a fast classifier to gate traffic, and cache aggressively (including a tiny stale‑OK cache for brownouts). Half the “prompt issues” I’ve seen were actually plumbing.
 
-- Bad: “Write a concise, high‑quality summary.”
-- Better: “Write ≤ 3 sentences. Include 1 number or fact from the text. Don’t use the words ‘In conclusion’ or ‘Overall’.”
+Evals are a product, not a script. A curated set of ~100–200 representative prompts with rubrics, plus replay of scrubbed real traffic, let me compare deltas when I tweak prompts, models, or temperatures. If I can’t see it, I can’t fix it.
 
-The test turns qualitative asks into measurable constraints. It also makes evals easier.
+Hard limits beat soft wishes. If you need ≤ 300 tokens, set `max_tokens: 300`, say it in the prompt, then truncate. If you want JSON, parse JSON and fail closed.
 
-## 3) Force the model to think in your structure
+Prompts rot. Version them, add changelogs, and be ready to roll back when live metrics slip.
 
-Few‑shot is great, but consistent scaffolds are better:
-
-- “Steps: (1) extract facts, (2) list unknowns, (3) produce the answer.”
-- Or use named scratchpads: `facts:[]`, `unknowns:[]`, `answer:""`.
-
-Even if you only return the answer, the hidden structure reduces variance.
-
-## 4) Use refusal budgets and safe defaults
-
-For user‑facing features, failure modes matter more than median quality.
-
-- “If the query appears medical/financial/legal or targets private data, say: `I can’t help with that.` and link to help docs.”
-- “If confidence < threshold, return the last known good answer.” (You can approximate confidence via heuristics like answer length, number of citations, or perplexity proxies.)
-
-## 5) Separate system intent from user examples
-
-Mixing roles dilutes the signal. Put policy and safety rules in the system prompt, and put style examples in user or few‑shot turns. This helps when you tweak style without touching safety.
-
-## 6) Chain cheap checks before the expensive call
-
-- Input normalizer → fast classifier (NSFW, PII, domain) → big model only if allowed.
-- Cache at every layer. Normalize keys (lowercase, strip whitespace, collapse spaces) to increase hit rate.
-- Add a tiny “stale‑acceptable” cache for high‑traffic endpoints to survive model brownouts.
-
-## 7) Make evals your product, not a script
-
-You’ll only fix what you can see.
-
-- Curate 50–200 representative prompts with ground truth or rubric scores.
-- Log live traffic samples (with user consent, scrubbed for PII) and replay safely.
-- Compare deltas per change (prompt, model, temperature) with error bars.
-
-## 8) Hard limits beat soft guidelines
-
-If you need ≤ 300 tokens, say `max_tokens: 300` and add “≤ 300 tokens” in the prompt, then truncate.
-
-If you want JSON, parse JSON. Fail closed, not open.
-
-## 9) Keep style separate from logic
-
-Have a tiny style component (tone, audience). You can swap it for brand or locale without destabilizing the task instructions.
-
-## 10) Prompts rot — version them
-
-Prompts are source code. Keep them in version control with comments and changelogs. Roll back when live metrics regress.
-
----
-
-### A minimal template that scaled well for us
+A tiny template I keep around when the task is “render some UI”: 
 
 ```
-SYSTEM
-You are a function that returns ONLY valid JSON for UI rendering.
-Contract:
-- fields: title: string; bullets: string[]; citations: {url: string, reason: string}[]
-- Never invent citations. Use only URLs from the input.
-- If the request is outside scope (medical/financial/personal data), respond with {title:"Unavailable", bullets:[], citations:[]}
-
-ASSISTANT STYLE
-- tone: neutral, helpful
-- audience: non-technical users
-
-USER
-<content>
+SYSTEM: Return ONLY valid JSON for UI.
+Contract: {title: string, bullets: string[], citations: {url: string, reason: string}[]}
+Rules: never invent citations; if outside scope, return empty arrays.
+STYLE: neutral, clear. Audience: non‑technical.
+USER: <content>
 ```
 
-It’s boring. That’s the point. Boring systems are easier to ship safely.
+It’s not glamorous, but boring systems ship and stay up.
