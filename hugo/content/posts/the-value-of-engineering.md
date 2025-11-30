@@ -18,41 +18,25 @@ I want to focus on something work-related. The value of good engineering.
 I have been at Google for a long time - 7 years. I have done a lot of different things - and have seen the company evolve. Yet the people I admire the most at work are
 about the same - the people who care about building good software.
 
-I don't like it when people do things just for money.
+**I don't like it when people do things just for money.**
 
-Yea, I understand that people work for money and its good to not just be a corporate robot who gets happy generating profit for their execs. But there's honor in just building things because
-you want them to be good. 
+Yea, I understand that people work for money and its good to not just be a corporate robot who gets happy generating profit for their execs.
 
-It's a virtue to want to build things that work well, just because you want to build something good. Unfortunately, it's something that can get easily taken advantage of if not careful.
+But there's honor in just building things becauseyou want them to be good. It's a virtue to want to build things that work well, just because you want to build something good.
 
-In the world of move fast, find PMF, and generate virality - I feel like this simple thing got lost. Just building simple things that work and help people. It's fine to move a
-bit slower if it means devs can not burn out and things don't break. Unfortunately stability and quality only generate value long term.
+Unfortunately, it's something that can get easily taken advantage of if not careful. In the world of move fast, find PMF, and generate virality - I feel like this simple thing got lost. Build things that work and help people.
 
 ---
 
-## What “good engineering” looks like day‑to‑day
-
-- Clear contracts between services. If a dependency fails, the blast radius is understood and contained.
-- Operational excellence: alerts with actionability, not noise. Postmortems that teach, not blame.
-- Code you can read a year later. Fewer patterns, better docs, and tests that describe behavior.
-- Rollouts you can reason about: progressive, observable, and easy to roll back.
-
-None of this is flashy. It compounds. Every day you avoid a fire is a day you can invest back into users.
-
-## The compounding effect
-
-I’ve watched “slightly slower but safer” teams ship more value in six months than “hero mode” teams do in two. Reasons:
-
-1. They spend fewer cycles firefighting.
-2. They attract collaborators who value reliability.
-3. They earn the right to take bigger bets, because their stakeholders trust them.
-
-## What I reward on teams I work with
-
-- Owning the outcome end‑to‑end: design → implementation → quality → launch → maintenance.
-- Communicating the why: the risk, the rollback plan, the user impact.
-- Leaving the campsite cleaner: every change makes the system a bit easier to operate.
-
-Good engineering isn’t anti‑speed. It’s how you go fast on purpose.
+## The signs of a good engineer
+- Leaving the campsite cleaner: always make it easier for the next person
+- Laser focus: always be working on the most important thing (way harder than it sounds)
+- Strong communication: Authetnically and clearly guide, teach, and lead 
+- Operational excellence: Build things will as little nonsense as possible. Prioritize reliability and maintainability.
 
 Maybe i'm just a cynic and it's normal to get less enthusiastic about programming as I get older. Or maybe the world really is a different place.
+
+---
+
+// rant over
+

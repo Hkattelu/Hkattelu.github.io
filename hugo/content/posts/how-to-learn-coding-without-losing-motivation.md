@@ -54,7 +54,7 @@ they failed to get to where they are, and realize that you can do it too no matt
 
 <h3> Lack of (Immediate) reward </h3>
 
-![Snowmen](http://cdn.webfail.com/upl/img/f8454067544/post2.jpg){:height="300px" width="300px" text-align="center"}
+![Snowmen](http://cdn.webfail.com/upl/img/f8454067544/post2.jpg)
 
 There is a pretty big gap in what a programmer does when he is a professional, and what he does when he is a beginner. Many 
 beginners have to realize that the process of learning cannot happen over a week, a month, or even a year. You might want to 
@@ -85,7 +85,7 @@ reward for all of the work you put into learning.
 
 <h3> Spend time with other programmers </h3>
 
-![People](http://2.bp.blogspot.com/_uSnS-YBGEtY/TKRVSv7z7HI/AAAAAAAAAUs/Vkf31yzPejs/s1600/s7.jpg){:height="300px" width="300px" text-align="center"}
+![People](http://2.bp.blogspot.com/_uSnS-YBGEtY/TKRVSv7z7HI/AAAAAAAAAUs/Vkf31yzPejs/s1600/s7.jpg)
 
 If you want to learn programming, surround yourself with it. In fact, it is crucial in learning anything to surround yourself
 with people who are way better than you. When you're surrounded with programmers and you really want to learn, you will see

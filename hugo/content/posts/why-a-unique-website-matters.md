@@ -7,18 +7,28 @@ tags: ["Web", "Personal", "Design"]
 categories: ["blog", "Web"]
 ---
 
-When I first put a site on the internet, I just wanted a place to link my projects. A plain list would’ve done the job. Over time I realized the site is more than a list—it’s part scrapbook, part workshop, part front door. The way it looks and behaves changes how people use it, and how I show up.
+When I first put a site on the internet, I just wanted a place to link my projects. A plain list would’ve done the job. Just grab a template and fill it in with my projects.
 
-Ownership is the simple reason. A personal site is the one place online that doesn’t change the rules on you. No algorithm decides if your friends see your writing. If I want a weird page that only makes sense to me, it stays up. That freedom makes me more likely to actually build things.
+### History
 
-Taste is the second reason. You can’t develop taste in a vacuum. Picking colors, type, spacing, and movement forces you to decide what you like and what you don’t. Even small choices—how a link hovers, how a code block renders—add up to a point of view. A template is a fine starting point, but pushing past it taught me more about design than any tutorial did.
+Looking back on this site I realize it can be more than just a list. It can be a reflection of my personality, my life, and my workshop of thoughts. The way it looks and behaves changes how people use it, and how I show up.
 
-There’s also memory. A unique site becomes a record of what I cared about at that moment. I can scroll back and see the old JavaScript experiments, the awkward layouts, the posts where I was figuring out how to think. It’s embarrassing in a good way. It reminds me to keep learning.
+I can scroll back and see the old JavaScript experiments, the awkward layouts, the posts where I was figuring out how to think. It’s embarrassing in a good way. It reminds me to keep learning.
 
-Practically, a site with a little personality changes the kinds of messages I get. When the site looks like me, people write with more context: “I read that Pittsburgh post,” or “I tried your logging trick.” That’s a much better starting point than a cold LinkedIn DM. Hiring, collaboration, speaking—it all gets easier when your work has a visible home.
+### Taste
 
-Finally, it’s a playground. I don’t need permission to try a new build tool, swap a font, or prototype an interaction. The stakes are low and the feedback loop is fast. Half the tricks I use at work started as tiny experiments here.
+A personal site is the one place online that can't really change the rules on you. If I want a weird page that looks cool, it stays up. That freedom makes me more likely to actually build things.
 
-So why “cool and unique”? Not to be loud. Just to be specific. Specific is memorable, and memorable is useful when you’re a human on the internet. If you’ve been meaning to make your site feel more like you, start small: change one thing you see on every page (type scale, spacing, link color), ship it, and live with it for a week. Repeat.
+You can’t develop taste in a vacuum. Picking colors, type, spacing, and movement forces you to decide what you like and what you don’t. Even small choices—how a link hovers, how a code block renders—add up to a point of view. A template is a fine starting point, but pushing past it taught me more about design than any tutorial did.
 
-In a world of feeds, having a corner that’s yours—and looks like it—still matters.
+I don’ need permission to try a new build tool, swap a font, or prototype an interaction. The stakes are low and the feedback loop is fast. Half the tricks I use at work started as tiny experiments here.
+
+### Polarization
+
+Turns out 99% of recruiters i have talked to do not even bother to look at my website. But the ones that do really stick out it me. Practically,
+a site with a little personality changes the kinds of messages I get. When the site looks like me, people write with more context:
+“I read that Pittsburgh post,” or “I tried your logging trick.” That’s a much better starting point than a cold LinkedIn DM. 
+
+From someone else's standpoint, unique also means memorable, and memorable is useful when you’re a human on the internet. If you’ve been meaning to make your site feel more like you, start small: change one thing you see on every page (type scale, spacing, link color), ship it, and live with it for a week. Repeat.
+
+In a world of algorithmic feeds, having a corner that’s yours —and looks like it— sets you apart.
