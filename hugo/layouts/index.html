@@ -343,5 +343,27 @@
   </div>
   <script src="https://unpkg.com/@glidejs/glide@3.3.0/dist/glide.min.js"></script>
   <script src="/script.js"></script>
+  <script>
+    // Dynamically load Konami game on first user interaction to avoid blocking initial load
+    (function() {
+      let konami_loaded = false;
+      const loadKonami = () => {
+        if (!konami_loaded) {
+          konami_loaded = true;
+          const script = document.createElement('script');
+          script.src = '/konami-game.js';
+          script.async = true;
+          document.head.appendChild(script);
+          document.removeEventListener('keydown', loadKonami);
+          document.removeEventListener('click', loadKonami);
+          document.removeEventListener('touchstart', loadKonami);
+        }
+      };
+      // Load on first interaction
+      document.addEventListener('keydown', loadKonami, { once: false });
+      document.addEventListener('click', loadKonami, { once: false });
+      document.addEventListener('touchstart', loadKonami, { once: false });
+    })();
+  </script>
 </body>
 </html>
