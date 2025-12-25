@@ -36,7 +36,8 @@ a.block:focus h2, a.block:hover h2 { text-decoration: underline; }
 }
 .art-card img {
   width: 100%;
-  height: auto;
+  height: 280px;
+  object-fit: cover;
   display: block;
 }
 .art-card:hover {

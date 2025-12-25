@@ -6,4 +6,6 @@ image: "/art/quizbot.png"
 draft: false
 ---
 
+Here are the sprites I created of my quizbot character for https://quizbot.games
+
 ![Quizbot](/art/quizbot.png)

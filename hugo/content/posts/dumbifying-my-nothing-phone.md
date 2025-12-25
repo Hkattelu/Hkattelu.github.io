@@ -7,7 +7,7 @@ tags: ["Android", "Mobile", "Minimalism"]
 categories: ["blog"]
 ---
 
-Recently i spoke with a friend who shared me an interesting article about [digital minimalism and reducing screentime.](https://blog.superhuman.com/digital-minimalism-summary/)
+Recently I spoke with a friend who shared me an interesting article about [digital minimalism and reducing screentime.](https://blog.superhuman.com/digital-minimalism-summary/)
 
 The discussion dug me down a moderately deep rabbit hole of trying to "dumbify" my [Nothing Phone 3A](https://us.nothing.tech/products/phone-3a?Colour=White&Capacity=12%2B256GB). This blog post basically outlines what I did and what I think is a good way to dumbify your phone, fast!
 
