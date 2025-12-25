@@ -1,12 +1,21 @@
 # Hkattelu.github.io
-My personal site where I show off some projects and talk about myself.
+
+My personal corner of the internet.
 
 You can visit at [https://hkattelu.com](https://hkattelu.com).
 
 * The main page was handcrafted by me
 * The blog is built using hugo with the [digio theme](https://github.com/danapixels/digio-theme)
 
+### Local development
+
+You can serve a local instance of this app with:
+
+```bash
+cd hugo && hugo serve
+```
+
 ---
 
-### 🎮 Easter Egg
-There's a hidden game on the site. Try entering the Konami code: **↑ ↑ ↓ ↓ ← → ← → B A**
+If you enter the konami code on the site, something might happen?
+
