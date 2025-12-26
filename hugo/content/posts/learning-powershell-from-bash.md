@@ -23,20 +23,20 @@ Firstly, here is this comparison table for quickly grasping the differences in s
 | Action / Concept | Bash Command (Linux/macOS) | PowerShell Command (Windows) | Key Difference |
 | :--- | :--- | :--- | :--- |
 | **List Files** | `ls`, `dir` | `Get-ChildItem` (`gci`, `ls` is an alias) | PowerShell uses **Cmdlets** (`Verb-Noun` structure). |
-| **Change Directory** | `cd /path/to/folder` | `Set-Location /path/to/folder` (`cd` is an alias) | Both use `cd` as a quick alias, but the core command is different. |
+| **Change Directory** | `cd /path/to/folder` | `Set-Location /path/to/folder` (`cd` is an alias) | N/A |
 | **Display File Content** | `cat filename.txt` | `Get-Content filename.txt` (`cat` is an alias) | PowerShell's output is *objects*, not just text strings. |
-| **Copy File** | `cp source destination` | `Copy-Item source destination` | PowerShell cmdlets are verbose and descriptive. |
-| **Move File** | `mv source destination` | `Move-Item source destination` | Consistent `Verb-Noun` pattern for all file operations. |
+| **Copy File** | `cp source destination` | `Copy-Item source destination` | N/A |
+| **Move File** | `mv source destination` | `Move-Item source destination` | N/A |
 | **Remove File** | `rm filename.txt` | `Remove-Item filename.txt` | PowerShell often requires confirmation for deletions. |
 | **Find Command Location**| `which <command>` | `Get-Command <command>` | PowerShell finds cmdlets, functions, and external executables. |
 | **Define Variable** | `MYVAR="value"` | `$MyVar = "value"` | Variables start with `$` in PowerShell. No spaces around `=`. |
-| **Access Variable** | `$MYVAR` | `$MyVar` | Same syntax for access. |
+| **Access Variable** | `$MYVAR` | `$MyVar` | N/A |
 | **Loop (Generic)** | `for i in {1..5}; do ... done` | `1..5 \|; ForEach-Object { ... }` | PowerShell heavily uses the **pipeline** (`\|`). |
 | **Execute External Program** | `command arg1 arg2` | `& "C:\\path\\to\\app.exe"` | Use the **Call Operator** (`&`) for reliable external execution. |
-| **Pipe Output** | `command1 \|; command2` | `command1 \|; command2` | The pipeline (`\|`) concept is identical, but the objects differ. |
+| **Pipe Output** | `command1 \|; command2` | `command1 \|; command2` | Pipeline concept is identical, but PowerShell pipes *objects*. |
 | **Filter Output (Grep)** | `... \|; grep "pattern"` | `... \|; Where-Object { $_ -match "pattern" }` | PowerShell filters properties of **objects**, not just text. |
 | **Format Output (Awk)** | `... \|; awk '{print $1}'` | `... \|; Select-Object -ExpandProperty PropertyName` | PowerShell objects have structured properties. |
-| **Exit Script** | `exit 0` | `exit 0` | Same command and code conventions for status reporting. |
+| **Exit Script** | `exit 0` | `exit 0` | N/A |
 
 -----
 
