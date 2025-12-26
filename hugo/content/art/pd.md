@@ -1,9 +1,11 @@
 ---
 title: "Phantom Dust MC"
 date: 2025-10-08T09:31:19-04:00
-teaser: "Image post: Phantom Dust MC"
+teaser: "Hand drawn color pencil work of the main character from Phantom Dust"
 image: "/art/pd.jpg"
 draft: false
+medium: "Color pencil"
+created: "October 2025"
 ---
 
 This was a hand drawn color pencil work I did. It is of the main character of the game

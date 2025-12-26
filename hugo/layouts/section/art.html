@@ -14,6 +14,10 @@
       <div class="art-meta">
         <h3 class="art-title">{{ .Title }}</h3>
         {{ with .Params.teaser }}<p class="art-teaser">{{ . }}</p>{{ end }}
+        <div class="art-details">
+          {{ with .Params.medium }}<span class="art-medium">{{ . }}</span>{{ end }}
+          {{ with .Params.created }}{{ if $.Params.medium }}<span class="art-separator">•</span>{{ end }}<span class="art-date">{{ . }}</span>{{ end }}
+        </div>
       </div>
     </a>
   {{ end }}

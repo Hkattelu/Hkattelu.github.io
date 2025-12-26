@@ -48,3 +48,21 @@ a.block:focus h2, a.block:hover h2 { text-decoration: underline; }
 .art-meta { padding: 0.6rem 0.75rem 0.8rem; }
 .art-title { margin: 0.2rem 0 0.2rem; font-size: 1.05rem; }
 .art-teaser { margin: 0; opacity: 0.85; font-size: 0.9rem; }
+.art-details {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.art-medium {
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+.art-separator {
+  opacity: 0.6;
+}
+.art-date {
+  font-style: italic;
+}

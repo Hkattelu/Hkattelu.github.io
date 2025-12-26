@@ -1,0 +1,29 @@
+{{ define "main" }}
+<article>
+  <h1>{{ .Title }}</h1>
+  <div style="color:#bbb; font-size:0.9rem; margin-top:0.2rem; display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+    {{ with .Params.medium }}
+      <span style="font-weight:500; color:rgba(255,255,255,0.9);">{{ . }}</span>
+    {{ end }}
+    {{ with .Params.created }}
+      {{ if $.Params.medium }}<span style="opacity:0.6;">•</span>{{ end }}
+      <span style="font-style:italic;">{{ . }}</span>
+    {{ end }}
+  </div>
+  <div class="post-content" style="margin-top:1.5rem;">
+    {{ .Content }}
+  </div>
+  <nav style="display:flex; justify-content:space-between; gap:1rem; margin-top:2rem;">
+    <div>
+      {{ with .PrevInSection }}
+        <a href="{{ .RelPermalink }}" aria-label="Previous post">← {{ .Title }}</a>
+      {{ end }}
+    </div>
+    <div style="text-align:right;">
+      {{ with .NextInSection }}
+        <a href="{{ .RelPermalink }}" aria-label="Next post">{{ .Title }} →</a>
+      {{ end }}
+    </div>
+  </nav>
+</article>
+{{ end }}
