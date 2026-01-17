@@ -18,6 +18,58 @@
     <link href="/css/overrides.css" rel="stylesheet">
   </head>
   <body>
+    <!-- Webamp Player Container -->
+    <div id="webamp-container" style="position: fixed; left: 20px; top: 180px; z-index: 10000; width: 300px; height: 300px;"></div>
+    <style>
+      #webamp {
+        transform: scale(2.0);
+        transform-origin: top left;
+      }
+    </style>
+    <script src="/js/webamp.bundle.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const Webamp = window.Webamp;
+        if (Webamp && Webamp.browserIsSupported()) {
+          const container = document.getElementById('webamp-container');
+          
+          // Force reset of Webamp state
+          try {
+            window.localStorage.removeItem('webamp_state'); 
+            window.localStorage.removeItem('webamp_skin_data');
+          } catch (e) { }
+
+          const chillTracks = [
+            {
+              metaData: { artist: "C418", title: "Sweden" },
+              url: "/music/sweden.webm",
+              duration: 215
+            }
+          ];
+
+          const webamp = new Webamp({
+            initialTracks: chillTracks,
+            initialSkin: {
+              url: "/skins/yazoo.wsz"
+            },
+            initialWindowLayout: {
+              main: { position: { x: 0, y: 0 } },
+              playlist: { position: { x: 0, y: 116 } },
+              equalizer: { position: { x: 0, y: 232 } }
+            }
+          });
+          
+          webamp.renderWhenReady(container).then(() => {
+              webamp.store.dispatch({ type: "SET_VOLUME", volume: 20 });
+          });
+
+          webamp.onClose(() => {
+              if (container) container.style.display = 'none';
+          });
+        }
+      });
+    </script>
+
     <header style="padding:1rem; border-bottom:1px solid #ddd;">
       <nav style="display:flex; gap:1rem;">
         {{ $homeHref := "/" }}
