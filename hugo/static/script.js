@@ -931,37 +931,9 @@ function init() {
     toggleDark();
   });
 
-  // Video loading check
-  const videos = document.querySelectorAll('video');
-  let videosLoadedCount = 0;
-  const totalVideos = videos.length;
-
-  const checkVideosLoaded = () => {
-    videosLoadedCount++;
-    if (videosLoadedCount === totalVideos) {
-      startApp();
-    }
-  };
-  
-  // Fallback for loader dismissal in case videos don't fire 'canplaythrough'
-  setTimeout(() => {
-    if (!state.loaderRemoved) {
-      console.warn('Loader dismissed by timeout. Some videos might not have fully loaded.');
-      startApp();
-    }
-  }, 5000); // 5 seconds timeout
-
-  if (totalVideos === 0) {
-    startApp();
-  } else {
-    videos.forEach(video => {
-      if (video.readyState >= 2) {
-        checkVideosLoaded();
-      } else {
-        video.addEventListener('canplaythrough', checkVideosLoaded, { once: true });
-      }
-    });
-  }
+  // Optimization: Start app immediately.
+  // We do not wait for videos to load as they are on hidden pages and will be handled by navigation/lazy-loading.
+  startApp();
 }
 
 // Initialize once DOM is loaded
