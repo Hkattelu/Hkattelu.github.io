@@ -788,6 +788,12 @@ function createSkillTree() {
         if (nodeCircles.length <= 1) return;
         const containerRect = skillNodes.getBoundingClientRect();
 
+        // Batch reads to avoid layout thrashing
+        const rectMap = new Map();
+        nodeCircles.forEach(circle => {
+          rectMap.set(circle, circle.getBoundingClientRect());
+        });
+
         const drawLine = (aRect, bRect, idx) => {
           const start = { x: aRect.left + aRect.width / 2 - containerRect.left, y: aRect.top + aRect.height - containerRect.top };
           const end   = { x: bRect.left + bRect.width / 2 - containerRect.left, y: bRect.top - containerRect.top };
@@ -808,7 +814,7 @@ function createSkillTree() {
         if (dom.isMobile()) {
           // Simple vertical chain on mobile for clarity
           for (let i = 0; i < nodeCircles.length - 1; i++) {
-            drawLine(nodeCircles[i].getBoundingClientRect(), nodeCircles[i + 1].getBoundingClientRect(), i);
+            drawLine(rectMap.get(nodeCircles[i]), rectMap.get(nodeCircles[i + 1]), i);
           }
         } else {
           // Branching by columns: connect each node in col c to mapped node(s) in col c+1
@@ -828,10 +834,10 @@ function createSkillTree() {
 
             A.forEach((aCircle, i) => {
               const j = Math.round(i * (B.length - 1) / Math.max(A.length - 1, 1));
-              drawLine(aCircle.getBoundingClientRect(), B[j].getBoundingClientRect(), idx++);
+              drawLine(rectMap.get(aCircle), rectMap.get(B[j]), idx++);
               // Optional extra branch for variety
               if (i % 2 === 0 && j + 1 < B.length) {
-                drawLine(aCircle.getBoundingClientRect(), B[j + 1].getBoundingClientRect(), idx++);
+                drawLine(rectMap.get(aCircle), rectMap.get(B[j + 1]), idx++);
               }
             });
           }
