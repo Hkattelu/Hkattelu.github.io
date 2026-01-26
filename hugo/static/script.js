@@ -261,6 +261,7 @@ let state = {
     yDown: null
   },
   audioEnabled: false,
+  audioCache: {},
   loaderRemoved: false, // New flag for loader status
   lastScrambleEl: null,
 };
@@ -278,8 +279,15 @@ const dom = {
       return;
     }
     const path = `audio/${soundName}${reverse ? '-reverse' : ''}.mp3`
-    const audio = new Audio(path);
-    audio.volume = 0.3;
+
+    let audio = state.audioCache[path];
+    if (!audio) {
+      audio = new Audio(path);
+      audio.volume = 0.3;
+      state.audioCache[path] = audio;
+    } else {
+      audio.currentTime = 0;
+    }
     audio.play();
   },
   isMobile: () => window.innerWidth < CONSTANTS.MOBILE_BREAKPOINT || screen.width < CONSTANTS.MOBILE_BREAKPOINT
