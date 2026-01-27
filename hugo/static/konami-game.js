@@ -42,14 +42,19 @@ const konamiGame = {
     `;
 
     document.body.appendChild(gameContainer);
-    this.game = new PokemonRPG(gameContainer);
+    this.game = new PokemonRPG(gameContainer, () => {
+      this.gameLoaded = false;
+      this.game = null;
+    });
     this.game.start();
   }
 };
 
 class PokemonRPG {
-  constructor(container) {
+  constructor(container, onClose) {
     this.container = container;
+    this.onClose = onClose;
+    this.running = false;
     
     // Game screen
     this.screenWidth = 540;
@@ -636,7 +641,9 @@ class PokemonRPG {
   }
 
   start() {
+    this.running = true;
     const gameLoop = () => {
+      if (!this.running) return;
       this.draw();
       requestAnimationFrame(gameLoop);
     };
@@ -644,7 +651,9 @@ class PokemonRPG {
   }
 
   close() {
+    this.running = false;
     this.container.remove();
+    if (this.onClose) this.onClose();
   }
 }
 
