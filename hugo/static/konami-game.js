@@ -163,6 +163,42 @@ class PokemonRPG {
     });
 
     this.canvas.addEventListener('click', () => this.confirm());
+
+    this.initGradients();
+  }
+
+  initGradients() {
+    this.gradients = {};
+
+    // Menu / Dungeon gradient
+    const menuGrad = this.ctx.createLinearGradient(0, 0, 0, this.screenHeight);
+    menuGrad.addColorStop(0, '#1a1f3a');
+    menuGrad.addColorStop(1, '#0f1729');
+    this.gradients.menu = menuGrad;
+
+    // Victory gradient
+    const victoryGrad = this.ctx.createLinearGradient(0, 0, 0, this.screenHeight);
+    victoryGrad.addColorStop(0, '#1a3a1a');
+    victoryGrad.addColorStop(1, '#0f1729');
+    this.gradients.victory = victoryGrad;
+
+    // Complete gradient
+    const completeGrad = this.ctx.createLinearGradient(0, 0, 0, this.screenHeight);
+    completeGrad.addColorStop(0, '#1a3a2e');
+    completeGrad.addColorStop(1, '#0f1729');
+    this.gradients.complete = completeGrad;
+
+    // Defeat gradient
+    const defeatGrad = this.ctx.createLinearGradient(0, 0, 0, this.screenHeight);
+    defeatGrad.addColorStop(0, '#3a1a1a');
+    defeatGrad.addColorStop(1, '#0f1729');
+    this.gradients.defeat = defeatGrad;
+
+    // Battle fallback gradient
+    const battleGrad = this.ctx.createLinearGradient(0, 0, 0, 200);
+    battleGrad.addColorStop(0, '#2d1f4e');
+    battleGrad.addColorStop(1, '#1a1a3e');
+    this.gradients.battle = battleGrad;
   }
 
   moveSelection(dir) {
@@ -359,10 +395,7 @@ class PokemonRPG {
     if (this.bgImage.complete) {
       this.ctx.drawImage(this.bgImage, 0, 0, this.screenWidth, 200);
     } else {
-      const grad = this.ctx.createLinearGradient(0, 0, 0, 200);
-      grad.addColorStop(0, '#2d1f4e');
-      grad.addColorStop(1, '#1a1a3e');
-      this.ctx.fillStyle = grad;
+      this.ctx.fillStyle = this.gradients.battle;
       this.ctx.fillRect(0, 0, this.screenWidth, 200);
     }
 
@@ -398,10 +431,7 @@ class PokemonRPG {
   }
 
   drawMenu() {
-    const grad = this.ctx.createLinearGradient(0, 0, 0, this.screenHeight);
-    grad.addColorStop(0, '#1a1f3a');
-    grad.addColorStop(1, '#0f1729');
-    this.ctx.fillStyle = grad;
+    this.ctx.fillStyle = this.gradients.menu;
     this.ctx.fillRect(0, 0, this.screenWidth, this.screenHeight);
 
     this.ctx.fillStyle = '#00d9ff';
@@ -422,10 +452,7 @@ class PokemonRPG {
   }
 
   drawDungeon() {
-    const grad = this.ctx.createLinearGradient(0, 0, 0, this.screenHeight);
-    grad.addColorStop(0, '#1a1f3a');
-    grad.addColorStop(1, '#0f1729');
-    this.ctx.fillStyle = grad;
+    this.ctx.fillStyle = this.gradients.menu;
     this.ctx.fillRect(0, 0, this.screenWidth, this.screenHeight);
 
     this.ctx.fillStyle = '#00d9ff';
@@ -575,10 +602,7 @@ class PokemonRPG {
   }
 
   drawVictory() {
-    const grad = this.ctx.createLinearGradient(0, 0, 0, this.screenHeight);
-    grad.addColorStop(0, '#1a3a1a');
-    grad.addColorStop(1, '#0f1729');
-    this.ctx.fillStyle = grad;
+    this.ctx.fillStyle = this.gradients.victory;
     this.ctx.fillRect(0, 0, this.screenWidth, this.screenHeight);
 
     this.ctx.fillStyle = '#00ff88';
@@ -597,10 +621,7 @@ class PokemonRPG {
   }
 
   drawComplete() {
-    const grad = this.ctx.createLinearGradient(0, 0, 0, this.screenHeight);
-    grad.addColorStop(0, '#1a3a2e');
-    grad.addColorStop(1, '#0f1729');
-    this.ctx.fillStyle = grad;
+    this.ctx.fillStyle = this.gradients.complete;
     this.ctx.fillRect(0, 0, this.screenWidth, this.screenHeight);
 
     this.ctx.fillStyle = '#00ff88';
@@ -619,10 +640,7 @@ class PokemonRPG {
   }
 
   drawDefeat() {
-    const grad = this.ctx.createLinearGradient(0, 0, 0, this.screenHeight);
-    grad.addColorStop(0, '#3a1a1a');
-    grad.addColorStop(1, '#0f1729');
-    this.ctx.fillStyle = grad;
+    this.ctx.fillStyle = this.gradients.defeat;
     this.ctx.fillRect(0, 0, this.screenWidth, this.screenHeight);
 
     this.ctx.fillStyle = '#ff6b9d';
