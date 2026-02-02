@@ -261,6 +261,7 @@ let state = {
     yDown: null
   },
   audioEnabled: false,
+  audioCache: {},
   loaderRemoved: false, // New flag for loader status
   lastScrambleEl: null,
 };
@@ -278,8 +279,15 @@ const dom = {
       return;
     }
     const path = `audio/${soundName}${reverse ? '-reverse' : ''}.mp3`
-    const audio = new Audio(path);
-    audio.volume = 0.3;
+
+    let audio = state.audioCache[path];
+    if (!audio) {
+      audio = new Audio(path);
+      audio.volume = 0.3;
+      state.audioCache[path] = audio;
+    } else {
+      audio.currentTime = 0;
+    }
     audio.play();
   },
   isMobile: () => window.innerWidth < CONSTANTS.MOBILE_BREAKPOINT || screen.width < CONSTANTS.MOBILE_BREAKPOINT
@@ -780,6 +788,12 @@ function createSkillTree() {
         if (nodeCircles.length <= 1) return;
         const containerRect = skillNodes.getBoundingClientRect();
 
+        // Batch reads to avoid layout thrashing
+        const rectMap = new Map();
+        nodeCircles.forEach(circle => {
+          rectMap.set(circle, circle.getBoundingClientRect());
+        });
+
         const drawLine = (aRect, bRect, idx) => {
           const start = { x: aRect.left + aRect.width / 2 - containerRect.left, y: aRect.top + aRect.height - containerRect.top };
           const end   = { x: bRect.left + bRect.width / 2 - containerRect.left, y: bRect.top - containerRect.top };
@@ -800,7 +814,7 @@ function createSkillTree() {
         if (dom.isMobile()) {
           // Simple vertical chain on mobile for clarity
           for (let i = 0; i < nodeCircles.length - 1; i++) {
-            drawLine(nodeCircles[i].getBoundingClientRect(), nodeCircles[i + 1].getBoundingClientRect(), i);
+            drawLine(rectMap.get(nodeCircles[i]), rectMap.get(nodeCircles[i + 1]), i);
           }
         } else {
           // Branching by columns: connect each node in col c to mapped node(s) in col c+1
@@ -820,10 +834,10 @@ function createSkillTree() {
 
             A.forEach((aCircle, i) => {
               const j = Math.round(i * (B.length - 1) / Math.max(A.length - 1, 1));
-              drawLine(aCircle.getBoundingClientRect(), B[j].getBoundingClientRect(), idx++);
+              drawLine(rectMap.get(aCircle), rectMap.get(B[j]), idx++);
               // Optional extra branch for variety
               if (i % 2 === 0 && j + 1 < B.length) {
-                drawLine(aCircle.getBoundingClientRect(), B[j + 1].getBoundingClientRect(), idx++);
+                drawLine(rectMap.get(aCircle), rectMap.get(B[j + 1]), idx++);
               }
             });
           }
@@ -931,37 +945,9 @@ function init() {
     toggleDark();
   });
 
-  // Video loading check
-  const videos = document.querySelectorAll('video');
-  let videosLoadedCount = 0;
-  const totalVideos = videos.length;
-
-  const checkVideosLoaded = () => {
-    videosLoadedCount++;
-    if (videosLoadedCount === totalVideos) {
-      startApp();
-    }
-  };
-  
-  // Fallback for loader dismissal in case videos don't fire 'canplaythrough'
-  setTimeout(() => {
-    if (!state.loaderRemoved) {
-      console.warn('Loader dismissed by timeout. Some videos might not have fully loaded.');
-      startApp();
-    }
-  }, 5000); // 5 seconds timeout
-
-  if (totalVideos === 0) {
-    startApp();
-  } else {
-    videos.forEach(video => {
-      if (video.readyState >= 2) {
-        checkVideosLoaded();
-      } else {
-        video.addEventListener('canplaythrough', checkVideosLoaded, { once: true });
-      }
-    });
-  }
+  // Optimization: Start app immediately.
+  // We do not wait for videos to load as they are on hidden pages and will be handled by navigation/lazy-loading.
+  startApp();
 }
 
 // Initialize once DOM is loaded
