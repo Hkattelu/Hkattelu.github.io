@@ -46,7 +46,9 @@ OkLab and okLch add more colors and use them to smooth out this deformity:
 
 You can access this better gamut in LCH which represents Lightness, Chroma, and Hue. Hue is the same as HSL. Chroma is similar to saturation, but there is [some math](https://bottosson.github.io/posts/oklab/) that happens under the hood to be smart about the color that gets rendered. The L is lightness, which is also analogous to luminance.
 
-Another benefit to this system is that oklch colors are modified by filters and such in a more predictable manner because the color space is smoother than HSL with respect to the human eye.
+Another benefit to this system is that oklch colors are modified by filters and such in a more 
+
+### Wait.. then why do we need Oklch?
 
 ### Conclusion
 
