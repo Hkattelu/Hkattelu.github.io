@@ -32,7 +32,7 @@ HSL stands for Hue, Saturation, and Luminance. Conveniently, "Importance" of UI 
 
 This system dramatically simplifies colors for humans because its much easier to be able to comprehend a color just by knowing the hue (and having a poster of the color wheel up on your wall).
 
-[This blog post](https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl0) goes into more detail.
+[This blog post](https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl) goes into more detail.
 
 ### What problem does OkLch solve?
 
