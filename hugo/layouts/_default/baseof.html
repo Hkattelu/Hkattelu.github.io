@@ -1,92 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ if .Title }}{{ .Title }} · {{ end }}Himanshu's Blog</title>
-    <meta property="og:title" content="{{ if .Title }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}">
-    <meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else if .IsPage }}{{ .Summary | plainify | truncate 160 }}{{ else }}{{ .Site.Title }}{{ end }}">
-    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
-    <meta property="og:url" content="{{ .Permalink }}">
-    {{ if .Params.image }}
-    <meta property="og:image" content="{{ .Params.image | absURL }}">
-    {{ else }}
-    <meta property="og:image" content="{{ "images/me.jpg" | absURL }}">
-    {{ end }}
-    <meta property="og:site_name" content="{{ .Site.Title }}">
-    <link href="/css/styles.css" rel="stylesheet">
-    <link href="/css/overrides.css" rel="stylesheet">
-  </head>
-  <body>
-    <!-- Webamp Player Container -->
-    <div id="webamp-container" style="position: fixed; left: 20px; top: 180px; z-index: 10000; width: 300px; height: 300px;"></div>
-    <style>
-      #webamp {
-        transform: scale(2.0);
-        transform-origin: top left;
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .Title }}{{ .Title }} · {{ end }}Himanshu's Blog</title>
+  <meta property="og:title" content="{{ if .Title }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}">
+  <meta property="og:description"
+    content="{{ if .Description }}{{ .Description }}{{ else if .IsPage }}{{ .Summary | plainify | truncate 160 }}{{ else }}{{ .Site.Title }}{{ end }}">
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  {{ if .Params.image }}
+  <meta property="og:image" content="{{ .Params.image | absURL }}">
+  {{ else }}
+  <meta property="og:image" content="{{ " images/me.jpg" | absURL }}">
+  {{ end }}
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <link href="/css/styles.css" rel="stylesheet">
+  <link href="/css/overrides.css" rel="stylesheet">
+  <script defer type="module">
+    import Webamp from "https://unpkg.com/webamp@^2/butterchurn";
+    document.addEventListener('DOMContentLoaded', () => {
+      if (Webamp && Webamp.browserIsSupported()) {
+        const container = document.getElementById('webamp-container');
+
+        const chillTracks = [
+          {
+            metaData: { artist: "C418", title: "Sweden" },
+            url: "/music/sweden.webm",
+            duration: 215
+          },
+          {
+            metaData: { artist: "Winamp", title: "Llama Whippin' Intro" },
+            url: "https://cdn.jsdelivr.net/gh/captbaritone/webamp@43434d82cfe0e37286dbbe0666072dc3190a83bc/mp3/llama-2.91.mp3",
+            duration: 5.32
+          },
+          {
+            metaData: { artist: "Unknown", title: "Ambient Chill Mix" },
+            url: "/audio/music.mp3",
+            duration: 480
+          }
+        ];
+
+        const webamp = new Webamp({
+          initialTracks: chillTracks,
+          initialSkin: {
+            url: "/skins/yazoo.wsz"
+          },
+          windowLayout: {
+            main: { position: { left: 0, top: 0 } },
+            playlist: { position: { left: 0, top: 116 } },
+            // For some reason this causes the whole thing to center 
+            // which breaks it. It would be nice if this could be re-enabled.
+            // milkdrop: {
+            //   position: { left: 0, top: 232 },
+            //   size: { extraHeight: 60 },
+            //   // closed: false
+            // },
+          }
+        });
+
+        webamp.renderWhenReady(container).then(() => {
+          webamp.store.dispatch({ type: "SET_VOLUME", volume: 20 });
+        });
+
+        webamp.onClose(() => {
+          if (container) container.style.display = 'none';
+        });
       }
-    </style>
-    <script src="/js/webamp.bundle.min.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const Webamp = window.Webamp;
-        if (Webamp && Webamp.browserIsSupported()) {
-          const container = document.getElementById('webamp-container');
-          
-          // Force reset of Webamp state
-          try {
-            window.localStorage.removeItem('webamp_state'); 
-            window.localStorage.removeItem('webamp_skin_data');
-          } catch (e) { }
+    });
+  </script>
+</head>
 
-          const chillTracks = [
-            {
-              metaData: { artist: "C418", title: "Sweden" },
-              url: "/music/sweden.webm",
-              duration: 215
-            }
-          ];
+<body>
+  <!-- Webamp Player Container -->
+  <div id="webamp-container"
+    style="position: fixed; left: 0px; top: 180px; z-index: 10000; width: 300px; height: 600px; pointer-events: none;">
+  </div>
 
-          const webamp = new Webamp({
-            initialTracks: chillTracks,
-            initialSkin: {
-              url: "/skins/yazoo.wsz"
-            },
-            initialWindowLayout: {
-              main: { position: { x: 0, y: 0 } },
-              playlist: { position: { x: 0, y: 116 } },
-              equalizer: { position: { x: 0, y: 232 } }
-            }
-          });
-          
-          webamp.renderWhenReady(container).then(() => {
-              webamp.store.dispatch({ type: "SET_VOLUME", volume: 20 });
-          });
+  <header style="padding:1rem; border-bottom:1px solid #ddd;">
+    <nav style="display:flex; gap:1rem;">
+      {{ $homeHref := "/" }}
+      {{ if or (in (slice "post" "posts" "blog") .Type) (in (slice "posts" "blog") .Section) }}
+      {{ $homeHref = "/blog/" }}
+      {{ end }}
+      <a href="/blog/">Posts</a>
+      <a href="/art/">Art</a>
+      <a href="/me/">About</a>
+    </nav>
+  </header>
+  <main style="max-width: 760px; margin: 2rem auto; padding: 0 1rem;">
+    {{ block "main" . }}{{ end }}
+  </main>
+  <footer style="padding:1rem; border-top:1px solid #ddd; text-align:center;">
+    <small>© {{ now.Format "2006" }} Himanshu Kattelu · Theme: <a href="https://github.com/danapixels/digio-theme"
+        target="_blank" rel="noopener">digio-theme</a></small>
+    <small style="display:block; opacity:0.8; margin-top:4px;">Made in NYC</small>
+  </footer>
+</body>
 
-          webamp.onClose(() => {
-              if (container) container.style.display = 'none';
-          });
-        }
-      });
-    </script>
-
-    <header style="padding:1rem; border-bottom:1px solid #ddd;">
-      <nav style="display:flex; gap:1rem;">
-        {{ $homeHref := "/" }}
-        {{ if or (in (slice "post" "posts" "blog") .Type) (in (slice "posts" "blog") .Section) }}
-          {{ $homeHref = "/blog/" }}
-        {{ end }}
-        <a href="/blog/">Posts</a>
-        <a href="/art/">Art</a>
-        <a href="/me/">About</a>
-      </nav>
-    </header>
-    <main style="max-width: 760px; margin: 2rem auto; padding: 0 1rem;">
-      {{ block "main" . }}{{ end }}
-    </main>
-    <footer style="padding:1rem; border-top:1px solid #ddd; text-align:center;">
-      <small>© {{ now.Format "2006" }} Himanshu Kattelu · Theme: <a href="https://github.com/danapixels/digio-theme" target="_blank" rel="noopener">digio-theme</a></small>
-      <small style="display:block; opacity:0.8; margin-top:4px;">Made in NYC</small>
-    </footer>
-  </body>
 </html>
