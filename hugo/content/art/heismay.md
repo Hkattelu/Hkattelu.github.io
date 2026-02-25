@@ -8,6 +8,6 @@ medium: "Digital"
 created: "February 2026"
 ---
 
-Digital art of Heismay.
+Fineliner art of Heismay from Metaphor: Refantazio
 
 ![Heismay](/art/heismay.jpg)

@@ -8,6 +8,6 @@ medium: "Digital"
 created: "February 2026"
 ---
 
-Digital art of Jodio.
+Fineliner art of Jodio and Key west from JojoLands.
 
 ![Jodio](/art/jodio.jpg)
