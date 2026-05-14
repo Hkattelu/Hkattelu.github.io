@@ -1,20 +1,253 @@
-/* Local overrides for Hugo site */
+/* ============================================================
+   Hugo blog/art surface — implements the Himanshu Kattelu
+   design system's blog post template card.
+     project/preview/component-blog-post.html
 
-/* Improve blog post readability */
- p {
-  font-size: 1.22em;
-  margin: 1.25em 0;
-  margin-bottom: 8px;
+   Tokens (--font-display, --font-body, --font-mono,
+   --accent-color, --hue, ...) come from
+   /css/colors_and_type.css, which baseof.html loads first.
+   This stylesheet only adds the blog-surface chrome and
+   the .post component on top.
+   ============================================================ */
+
+:root {
+  --blog-bg:       #0d1117;
+  --blog-ink:      #f5f5f5;
+  --blog-ink-dim:  rgba(255, 255, 255, 0.92);
+  --blog-meta:     #bbb;
+  --blog-meta-dim: #999;
+  --blog-rule:     rgba(255, 255, 255, 0.12);
+  --blog-pill:     rgba(255, 255, 255, 0.18);
+  /* The blog surface is dark-on-dark; the design system's light-mode
+     --accent-color (soft magenta hsl(300 80% 80%)) reads best here.
+     We pin it so a future hue rotation doesn't swing the link color. */
+  --blog-accent:   hsl(300, 80%, 80%);
 }
-ul,
-ol {
-  margin: 1.1em 0 1.35em 1.35em;
-  line-height: 1.9;
+
+body {
+  background: var(--blog-bg);
+  color: var(--blog-ink);
+  font-family: var(--font-body);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
 }
-li { margin: 0.5em 0; }
-h2 { font-size: 2em; margin-top: 2.2em; margin-bottom: 0.7em; }
-h3 { font-size: 1.5em; margin-top: 1.7em; margin-bottom: 0.6em; }
-code { padding: 8px; }
+
+/* -------- Site chrome -------- */
+.site-header {
+  padding: 12px 28px;
+  border-bottom: 1px solid var(--blog-rule);
+}
+.site-nav {
+  display: flex;
+  gap: 24px;
+  font-family: var(--font-body);
+}
+.site-nav a {
+  color: var(--blog-ink);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.85;
+}
+.site-nav a:hover { opacity: 1; text-decoration: underline; }
+
+.site-main {
+  max-width: 760px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.site-footer {
+  padding: 1rem;
+  border-top: 1px solid var(--blog-rule);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+}
+
+/* ============================================================
+   Post template — mirrors component-blog-post.html 1:1.
+   ============================================================ */
+
+.post {
+  padding: 24px 32px 28px;
+  position: relative;
+}
+@media (max-width: 640px) {
+  .post { padding: 16px 4px 24px; }
+}
+
+/* Title block */
+h1.post-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 42px;
+  line-height: 1.05;
+  letter-spacing: 0.002em;
+  margin: 4px 0 6px;
+  color: var(--blog-ink);
+}
+@media (max-width: 640px) {
+  h1.post-title { font-size: 32px; }
+}
+
+.meta {
+  color: var(--blog-meta);
+  font-size: 13px;
+  margin: 0 0 4px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+.meta time { font-weight: 700; }
+
+.tags {
+  color: var(--blog-meta-dim);
+  font-size: 12px;
+  margin: 0 0 18px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+.tags .tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--blog-pill);
+  margin-right: 6px;
+}
+
+/* Article body */
+.post-content {
+  max-width: 64ch;
+}
+.post-content p {
+  font-size: 16px;
+  line-height: 1.85;
+  margin: 0 0 12px;
+  color: var(--blog-ink-dim);
+}
+
+/* Section heading inside posts — Space Mono bold cartouche stamp with
+   the accent corner tab as the brand mark. */
+.post-content h2 {
+  position: relative;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blog-ink);
+  margin: 28px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--blog-rule);
+}
+.post-content h2::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  background: var(--blog-accent);
+}
+.post-content h3 {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--blog-ink);
+  margin: 22px 0 8px;
+}
+
+.post-content ul,
+.post-content ol {
+  margin: 0 0 14px 1.2em;
+  padding: 0;
+  line-height: 1.85;
+}
+.post-content li { margin: 4px 0; }
+.post-content a {
+  color: var(--blog-accent);
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-underline-offset: 3px;
+}
+.post-content strong { color: #fff; }
+.post-content code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+}
+.post-content pre {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.55;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--blog-rule);
+  border-radius: 6px;
+  padding: 12px 14px;
+  overflow-x: auto;
+}
+.post-content pre code {
+  background: transparent;
+  padding: 0;
+}
+
+/* Pull quote — Lust Display italic decoration in body flow. */
+.post-content blockquote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.35;
+  margin: 18px 0;
+  padding: 4px 0 4px 18px;
+  border-left: 3px solid var(--blog-accent);
+  color: rgba(255, 255, 255, 0.96);
+  max-width: 50ch;
+}
+.post-content blockquote p {
+  /* Markdown wraps quote text in <p>; inherit blockquote sizing. */
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+}
+
+/* Prev / next nav */
+nav.pn {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid var(--blog-rule);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--blog-accent);
+}
+nav.pn a {
+  color: var(--blog-accent);
+  text-decoration: none;
+  opacity: 0.92;
+}
+nav.pn a:hover { text-decoration: underline; opacity: 1; }
+nav.pn .label {
+  display: block;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+/* ============================================================
+   Misc surfaces — list cards, art grid, tables. Kept compact.
+   ============================================================ */
 
 /* Make whole post cards clickable without visual regressions */
 a.block { text-decoration: none; color: inherit; }
@@ -28,10 +261,10 @@ a.block:focus h2, a.block:hover h2 { text-decoration: underline; }
 }
 .art-card {
   display: block;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   overflow: hidden;
-  background: rgba(0,0,0,0.2);
+  background: rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .art-card img {
@@ -42,8 +275,8 @@ a.block:focus h2, a.block:hover h2 { text-decoration: underline; }
 }
 .art-card:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-  border-color: rgba(255,255,255,0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.35);
 }
 .art-meta { padding: 0.6rem 0.75rem 0.8rem; }
 .art-title { margin: 0.2rem 0 0.2rem; font-size: 1.05rem; }
@@ -56,18 +289,11 @@ a.block:focus h2, a.block:hover h2 { text-decoration: underline; }
   align-items: center;
   gap: 0.4rem;
 }
-.art-medium {
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
-}
-.art-separator {
-  opacity: 0.6;
-}
-.art-date {
-  font-style: italic;
-}
+.art-medium { font-weight: 500; color: rgba(255, 255, 255, 0.9); }
+.art-separator { opacity: 0.6; }
+.art-date { font-style: italic; }
 
-/* Responsive tables */
+/* Responsive tables in posts */
 .post-content table {
   display: block;
   width: 100%;
@@ -76,43 +302,18 @@ a.block:focus h2, a.block:hover h2 { text-decoration: underline; }
   border-collapse: collapse;
   font-size: 0.9em;
 }
-
-.post-content table thead {
-  background: rgba(255, 255, 255, 0.05);
-}
-
+.post-content table thead { background: rgba(255, 255, 255, 0.05); }
 .post-content table th,
 .post-content table td {
   padding: 0.75em 1em;
   text-align: left;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
+.post-content table th { font-weight: 600; white-space: nowrap; }
+.post-content table td { vertical-align: top; }
 
-.post-content table th {
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.post-content table td {
-  vertical-align: top;
-}
-
-/* Wrapper for tables to enable horizontal scroll */
-.post-content table-wrapper {
-  overflow-x: auto;
-  margin: 1.5em 0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-}
-
-/* Mobile table adjustments */
 @media (max-width: 768px) {
-  .post-content table {
-    font-size: 0.85em;
-  }
-  
+  .post-content table { font-size: 0.85em; }
   .post-content table th,
-  .post-content table td {
-    padding: 0.5em 0.75em;
-  }
+  .post-content table td { padding: 0.5em 0.75em; }
 }

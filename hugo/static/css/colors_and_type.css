@@ -1,0 +1,240 @@
+/* ============================================================
+   Himanshu Kattelu — Colors & Type
+   Pause-menu energy inspired by Metaphor: ReFantazio.
+   Tilted serif italics, paint-splatter masks, blue/violet base.
+   ============================================================ */
+
+/* -------- Webfonts -------- */
+/* Lust Display: licensed display face used for cartouche
+   headings and the loader. The .otf ships with the codebase. */
+@font-face {
+  font-family: "Lust Display";
+  src: url("/fonts/lust-display-regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Roboto + Space Mono are loaded via Google Fonts in the live site.
+   Re-import here so the design system stands alone. */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+
+/* ===========================================================
+   TOKENS — Base palette (HSL, so it can be re-themed by hue)
+   =========================================================== */
+:root {
+  /* Hue dials — change one number, re-paint the whole site. */
+  --hue: 220;
+  --tertiary-hue: 520;            /* hue + 300 */
+  --accent-hue: 300;              /* hue + 80  */
+
+  /* Surfaces & ink — LIGHT mode (the default in the wild) */
+  --primary-color:     hsl(var(--hue), 50%, 90%);          /* paper ink — pale blue-white */
+  --pre-primary-color: hsla(var(--hue), 50%, 95%, 0.20);   /* code chip ground */
+  --secondary-color:   hsl(var(--hue), 50%, 10%);          /* ink-on-paper navy panels */
+  --tertiary-color:    hsl(var(--tertiary-hue), 80%, 20%); /* deep grape */
+  --accent-color:      hsl(var(--accent-hue), 80%, 80%);   /* soft magenta highlight */
+  --tree-color:        hsl(var(--accent-hue), 80%, 60%);   /* skill-tree node ring */
+
+  /* Per-tab tree colors — DESIGN DECISION (May 2026):
+     All skill-tree categories share the same accent color.
+     Categories are differentiated by their icon glyph, not by hue —
+     this keeps the page visually calm and lets the iconography
+     carry the meaning. Tokens kept as aliases so any consumer
+     written against the old names still works. */
+  --tree-core:       var(--tree-color);
+  --tree-frontend:   var(--tree-color);
+  --tree-ai:         var(--tree-color);
+  --tree-devops:     var(--tree-color);
+  --tree-leadership: var(--tree-color);
+  --tree-bonus:      var(--tree-color);
+
+  /* Motion — short, gamey, snappy. */
+  --base-transition-duration: 0.3s;
+  --ease-game: cubic-bezier(0.2, 0.9, 0.2, 1);
+
+  /* Spacing scale — pixel-honest, 4px base. */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Radii — favors right-angle ink, with a soft chip. */
+  --radius-chip:   2px;   /* cartouches, h3 stamps */
+  --radius-button: 4px;   /* code chips */
+  --radius-card:   8px;   /* panels, art cards */
+  --radius-pill:  10px;   /* controls strip */
+  --radius-round: 9999px; /* toggle pucks, skill nodes */
+
+  /* Shadows — pulse-friendly, sit on warm black. */
+  --shadow-card:    0 8px 22px -12px rgba(0,0,0,0.38);
+  --shadow-lift:    0 18px 40px -16px rgba(0,0,0,0.50);
+  --shadow-node:    0 6px 16px rgba(0,0,0,0.24);
+  --shadow-stamp:   inset 0 0 0 2px var(--primary-color);
+  --shadow-headline: 2px 2px 1px rgba(0,0,0,0.85);
+
+  /* Type families */
+  --font-display: "Lust Display", "DM Serif Display", "Playfair Display", serif;
+  --font-body:    "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:    "Space Mono", ui-monospace, "JetBrains Mono", monospace;
+
+  /* Type roles (semantic) */
+  --fs-menu:     clamp(3rem, 10vh, 5rem);  /* mega menu options */
+  --fs-display:  28px;                      /* h3 cartouches    */
+  --fs-h1:       2em;
+  --fs-h2:       1.5em;
+  --fs-h3:       28px;
+  --fs-h4:       20px;
+  --fs-body:     1.25em;                    /* per desktop override */
+  --fs-body-sm:  1.1em;
+  --fs-meta:     0.9rem;
+  --fs-chip:     12px;
+
+  --lh-body:     1.85;
+  --lh-tight:    1.6;
+
+  /* Z layers */
+  --z-grain: 2;
+  --z-page:  1;
+  --z-panel: 4;
+  --z-loader: 9000;
+  --z-spark:  9999;
+}
+
+/* -------- DARK mode (the moodier face) -------- */
+.dark, [data-theme="dark"] {
+  --primary-color:     hsl(var(--hue), 50%, 10%);
+  --pre-primary-color: hsla(var(--hue), 50%, 15%, 0.30);
+  --secondary-color:   hsl(var(--hue), 50%, 90%);
+  --tertiary-color:    hsl(var(--tertiary-hue), 80%, 80%);
+  --accent-color:      hsl(var(--accent-hue), 80%, 20%);
+  --tree-color:        hsl(var(--accent-hue), 80%, 40%);
+
+  /* Tree colors stay aliased to the brand accent in dark too. */
+  --tree-core:       var(--tree-color);
+  --tree-frontend:   var(--tree-color);
+  --tree-ai:         var(--tree-color);
+  --tree-devops:     var(--tree-color);
+  --tree-leadership: var(--tree-color);
+  --tree-bonus:      var(--tree-color);
+}
+
+
+/* ===========================================================
+   SEMANTIC TYPE — drop-in element styles
+   =========================================================== */
+
+body {
+  font-family: var(--font-body);
+  font-weight: 500;
+  line-height: var(--lh-tight);
+  color: var(--primary-color);
+}
+
+/* The big menu options — Space Mono, tilted, all-caps.
+   These are the iconic "ABOUT ME / SKILLS / PROJECTS" stack. */
+.h-menu, .h-menu * {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--fs-menu);
+  line-height: var(--fs-menu);
+  text-transform: uppercase;
+  color: var(--primary-color);
+  text-shadow: var(--shadow-headline);
+}
+
+/* Cartouche heading — the section / panel title stamp.
+   REV 2 (May 2026): Lust Display italic + clipped corner read as
+   pretty-but-illegible at heading sizes. Now uses Space Mono bold
+   (matches the menu-option voice) with a clean rectangular frame
+   and a small filled ACCENT TAB in the top-right corner. The tab is
+   the new brand mark — intentional, geometric, doesn't crop letters. */
+.h-cartouche, h3.h-cartouche {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 22px 9px 14px;
+  margin: 0 0 8px 0;
+  width: fit-content;
+  color: var(--primary-color);
+  border: 1.5px solid var(--primary-color);
+  border-radius: 2px;
+  background: transparent;
+  text-shadow: none;
+}
+.h-cartouche::after,
+h3.h-cartouche::after {
+  content: "";
+  position: absolute;
+  top: -1.5px;
+  right: -1.5px;
+  width: 12px;
+  height: 12px;
+  background: var(--accent-color);
+}
+
+/* h4 — a slightly playful display label with an angled accent underline.
+   NOTE: Lust Display only ships in a single 400 weight. Asking for 700
+   makes browsers faux-bold the glyphs and they look muddy at this size.
+   Use the gradient underline for emphasis instead of weight. */
+.h-section, h4.h-section {
+  display: inline-block;
+  position: relative;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--fs-h4);
+  letter-spacing: 0.005em;
+  margin: 4px 0 10px 0;
+  padding-right: 10px;
+  color: var(--primary-color);
+}
+.h-section::after,
+h4.h-section::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -4px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-color), transparent 75%);
+  transform: skewX(-15deg);
+}
+
+/* Body copy in content panels. */
+.body-copy, .text-section p, .text-section li {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body);
+}
+@media screen and (min-width: 1024px) {
+  .body-copy, .text-section p, .text-section li {
+    font-size: var(--fs-body);
+  }
+}
+
+/* Inline mono code chip — used to call out a key, like ESC or ENTER. */
+.code, code.code {
+  font-family: var(--font-mono);
+  font-size: var(--fs-chip);
+  background-color: var(--pre-primary-color);
+  padding: 2px 4px;
+  margin: 0 4px;
+  border-radius: var(--radius-button);
+}
+
+/* Loader script — italic display, sliding through a paint-splat mask. */
+.h-loader {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 24px;
+  line-height: 24px;
+  color: white;
+}

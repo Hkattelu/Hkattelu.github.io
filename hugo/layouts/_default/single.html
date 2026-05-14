@@ -1,26 +1,30 @@
 {{ define "main" }}
-<article>
-  <h1>{{ .Title }}</h1>
-  <p style="color:#bbb; font-size:0.9rem; margin-top:0.2rem;">
-    <time datetime="{{ .Date }}">{{ .Date.Format "Jan 2, 2006" }}</time> · {{ .ReadingTime }} min read
-  </p>
+<article class="post">
+  <h1 class="post-title">{{ .Title }}</h1>
+  <p class="meta"><time datetime="{{ .Date }}">{{ .Date.Format "Jan 2, 2006" }}</time> · {{ .ReadingTime }} min read</p>
   {{ with .Params.tags }}
-    <p style="color:#999; font-size:0.9rem; margin-top:0.2rem;">Tags: {{ delimit . ", " }}</p>
+    <p class="tags">
+      {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
+    </p>
   {{ end }}
+
   <div class="post-content">
     {{ .Content }}
   </div>
-  <nav style="display:flex; justify-content:space-between; gap:1rem; margin-top:2rem;">
-    <div>
-      {{ with .PrevInSection }}
-        <a href="{{ .RelPermalink }}" aria-label="Previous post">← {{ .Title }}</a>
-      {{ end }}
-    </div>
-    <div style="text-align:right;">
-      {{ with .NextInSection }}
-        <a href="{{ .RelPermalink }}" aria-label="Next post">{{ .Title }} →</a>
-      {{ end }}
-    </div>
+
+  <nav class="pn">
+    {{ with .PrevInSection }}
+      <a href="{{ .RelPermalink }}" aria-label="Previous post">
+        <span class="label">Prev</span>
+        ← {{ .Title }}
+      </a>
+    {{ else }}<span></span>{{ end }}
+    {{ with .NextInSection }}
+      <a href="{{ .RelPermalink }}" style="text-align: right;" aria-label="Next post">
+        <span class="label">Next</span>
+        {{ .Title }} →
+      </a>
+    {{ else }}<span></span>{{ end }}
   </nav>
 </article>
 {{ end }}
