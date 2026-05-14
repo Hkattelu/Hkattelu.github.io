@@ -1,0 +1,30 @@
+{{ define "main" }}
+<article class="post">
+  <h1 class="post-title">{{ .Title }}</h1>
+  <p class="meta"><time datetime="{{ .Date }}">{{ .Date.Format "Jan 2, 2006" }}</time> · {{ .ReadingTime }} min read</p>
+  {{ with .Params.tags }}
+    <p class="tags">
+      {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
+    </p>
+  {{ end }}
+
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+
+  <nav class="pn">
+    {{ with .PrevInSection }}
+      <a href="{{ .RelPermalink }}" aria-label="Previous post">
+        <span class="label">Prev</span>
+        ← {{ .Title }}
+      </a>
+    {{ else }}<span></span>{{ end }}
+    {{ with .NextInSection }}
+      <a href="{{ .RelPermalink }}" style="text-align: right;" aria-label="Next post">
+        <span class="label">Next</span>
+        {{ .Title }} →
+      </a>
+    {{ else }}<span></span>{{ end }}
+  </nav>
+</article>
+{{ end }}
