@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="_card.css">
+<style>
+  /* Rev 2 (May 2026): glow removed; all nodes share the brand --tree-color.
+     The active state now uses a 2px outline ring instead of a box-shadow glow,
+     so nothing pulses or bleeds light around it. */
+  body { background: hsl(220 50% 14%); }
+
+  :root {
+    --tree-color: hsl(300 80% 60%);
+    --ring: var(--tree-color);
+  }
+
+  .row { display: flex; gap: 30px; align-items: flex-start; justify-content: center; }
+  .node {
+    --node-size: 110px;
+    width: var(--node-size);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .node-circle {
+    width: var(--node-size);
+    height: var(--node-size);
+    border-radius: 50%;
+    background: hsl(220 50% 10%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--ring);
+    transition: transform .25s ease;
+    position: relative;
+  }
+  .node-circle::after {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    border: 2px solid var(--ring);
+    opacity: 0;
+    transition: opacity .25s ease;
+  }
+  .node.active .node-circle { transform: scale(1.04); }
+  .node.active .node-circle::after { opacity: 1; }
+
+  .icon { font-size: 1.8rem; }
+  .skill-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 0 0.4rem;
+    color: hsl(220 50% 90%);
+    margin-top: 12px;
+    line-height: 1.2;
+  }
+  .skill-level {
+    display: flex;
+    gap: 2px;
+    height: 6px;
+    width: 90%;
+    margin-top: 8px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 3px;
+    padding: 1px;
+  }
+  .lp { flex: 1; background: rgba(255,255,255,0.16); border-radius: 1px; }
+  .lp.filled { background: var(--ring); }
+
+  .meta { font-family: var(--font-mono); font-size: 10px; opacity: 0.55; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 18px; text-align: center; color: var(--primary-color); }
+</style>
+</head>
+<body>
+<div class="card-frame">
+  <div class="row">
+    <div class="node active">
+      <div class="node-circle"><div class="icon">⚡</div></div>
+      <div class="skill-title">Backend<br>Engineering</div>
+      <div class="skill-level">
+        <span class="lp filled"></span><span class="lp filled"></span><span class="lp filled"></span>
+        <span class="lp filled"></span><span class="lp filled"></span><span class="lp filled"></span>
+        <span class="lp filled"></span><span class="lp filled"></span><span class="lp filled"></span><span class="lp filled"></span>
+      </div>
+    </div>
+    <div class="node">
+      <div class="node-circle"><div class="icon">💻</div></div>
+      <div class="skill-title">React<br>&amp; Angular</div>
+      <div class="skill-level">
+        <span class="lp filled"></span><span class="lp filled"></span><span class="lp filled"></span>
+        <span class="lp filled"></span><span class="lp filled"></span><span class="lp filled"></span>
+        <span class="lp filled"></span><span class="lp filled"></span><span class="lp filled"></span><span class="lp"></span>
+      </div>
+    </div>
+    <div class="node">
+      <div class="node-circle"><div class="icon">🛡️</div></div>
+      <div class="skill-title">Safety &amp;<br>Guardrails</div>
+      <div class="skill-level">
+        <span class="lp filled"></span><span class="lp filled"></span><span class="lp filled"></span>
+        <span class="lp filled"></span><span class="lp filled"></span><span class="lp filled"></span>
+        <span class="lp filled"></span><span class="lp filled"></span><span class="lp"></span><span class="lp"></span>
+      </div>
+    </div>
+    <div class="node">
+      <div class="node-circle"><div class="icon">🌀</div></div>
+      <div class="skill-title">Poi Spin<br>Mastery</div>
+      <div class="skill-level">
+        <span class="lp filled"></span><span class="lp filled"></span><span class="lp filled"></span>
+        <span class="lp filled"></span><span class="lp filled"></span><span class="lp filled"></span>
+        <span class="lp filled"></span><span class="lp filled"></span><span class="lp"></span><span class="lp"></span>
+      </div>
+    </div>
+  </div>
+  <div class="meta">no glow · 2px outline ring on active · all nodes share --tree-color</div>
+</div>
+</body>
+</html>

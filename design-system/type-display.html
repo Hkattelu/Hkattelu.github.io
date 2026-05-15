@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="_card.css">
+<style>
+  /* This card is intentionally split into two halves:
+     the LEFT shows Lust Display doing what it does best (mood, italic, display);
+     the RIGHT calls out the usage rules so future agents don't reach for it as body. */
+  body { background: hsl(220, 50%, 10%); }
+  .card-frame { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; padding: 22px 24px; }
+
+  .left h1 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 62px;
+    line-height: 0.95;
+    letter-spacing: 0.005em;
+    margin: 0;
+    color: hsl(220, 50%, 95%);
+  }
+  .left h1 .amp {
+    color: hsl(300, 80%, 80%);
+    font-style: italic;
+  }
+  .stamp {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 6px 14px 4px 10px;
+    margin-top: 18px;
+    color: hsl(220, 50%, 95%);
+    box-shadow: inset 0 0 0 2px hsl(220, 50%, 95%);
+    clip-path: polygon(3px 3px, calc(100% - 16px) 3px, 100% 16px, 100% calc(100% - 3px), 3px calc(100% - 3px));
+    text-shadow: 0 2px 0 rgba(0,0,0,0.25);
+  }
+
+  .right {
+    border-left: 1px dashed hsla(220, 50%, 95%, 0.18);
+    padding-left: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+  }
+  .right .role {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.6;
+    color: hsl(220, 50%, 95%);
+  }
+  .right .name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1;
+    color: hsl(220, 50%, 95%);
+  }
+  .right .meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: hsl(220, 50%, 95%);
+    opacity: 0.82;
+    line-height: 1.55;
+  }
+  .right .meta b { color: hsl(160, 70%, 65%); font-weight: 700; }
+  .right .meta s {
+    color: hsl(0, 70%, 70%);
+    text-decoration: line-through;
+    text-decoration-color: hsl(0, 70%, 70%);
+  }
+
+  .swatches {
+    display: flex; gap: 6px;
+    margin-top: 4px;
+  }
+  .swatches span {
+    width: 22px; height: 22px;
+    border-radius: 4px;
+    box-shadow: 0 0 0 1px hsla(220, 50%, 95%, 0.25);
+  }
+</style>
+</head>
+<body>
+<div class="card-frame">
+  <div class="left">
+    <h1>Sharing <span class="amp">&amp;</span><br>my journey.</h1>
+    <div class="stamp">Cartouche heading</div>
+  </div>
+  <div class="right">
+    <div class="role">family</div>
+    <div class="name">Lust Display</div>
+    <div class="meta">Italic 400 · commercial face<br>Fallback: DM Serif Display → Playfair → serif</div>
+    <div class="role" style="margin-top: 8px">role · display only</div>
+    <div class="meta">
+      <b>Use for:</b> cartouche h3, h4 section labels, hero specimens, loader script.<br>
+      <s>Avoid for:</s> body copy, anything under 20&nbsp;px, dense paragraphs.
+    </div>
+    <div class="role" style="margin-top: 8px">pair with</div>
+    <div class="swatches">
+      <span style="background: hsl(300, 80%, 80%)" title="accent"></span>
+      <span style="background: hsl(220, 50%, 95%)" title="primary"></span>
+      <span style="background: hsl(520, 80%, 20%)" title="tertiary"></span>
+      <span style="background: hsl(220, 50%, 10%)" title="secondary"></span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

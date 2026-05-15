@@ -195,28 +195,30 @@
   box-shadow: 0 6px 16px rgba(0,0,0,.24);
 }
 
-/* Outline ring — appears on hover/active. No glow, no pulsing shadow.
-   Uses an ::after pseudo-element offset by 5px for a clean double-ring look. */
-.node-circle::after {
-  content: "";
+.node-circle::before {
+  content: '';
   position: absolute;
-  inset: -5px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: var(--node-size);
+  height: var(--node-size);
   border-radius: 50%;
-  border: 2px solid var(--tree-color);
-  opacity: 0;
-  transition: opacity .25s ease;
-  pointer-events: none;
+  background: radial-gradient(circle at center, color-mix(in hsl, var(--tree-color) 30%, transparent) 0%, transparent 70%);
+  opacity: 0.18;
+  z-index: 0;
+  transition: opacity 0.2s ease;
 }
 
-.skill-node:hover .node-circle::after {
-  opacity: 0.5;
+.skill-node:hover .node-circle::before {
+  opacity: 0.3;
 }
 
 .skill-node.active .node-circle {
-  transform: scale(1.04);
-}
-.skill-node.active .node-circle::after {
-  opacity: 1;
+  transform: scale(1.06);
+  box-shadow: 0 0 18px color-mix(in hsl, var(--tree-color) 80%, transparent);
+  animation: pulse 1.8s infinite;
 }
 
 .skill-icon {
@@ -253,22 +255,52 @@
 }
 .level-point.filled {
   background: var(--tree-color);
+  box-shadow: 0 0 5px color-mix(in hsl, var(--tree-color) 70%, transparent);
 }
 
-/* Bonus chip — inline code-style tag shown in the skill detail panel.
-   Uses the .code token from colors_and_type so it reads as a system label. */
-.skill-bonus {
-  margin: 0 0 8px 0;
+/* Skill detail panel */
+.skill-detail {
+  height: 150px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-top: 2px solid var(--accent-color);
+  overflow-y: auto;
 }
-.skill-bonus .code {
+
+.skill-detail-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.skill-detail h3 {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
   color: var(--accent-color);
-  border: 1px solid var(--accent-color);
-  border-radius: var(--radius-button, 4px);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  padding: 3px 8px;
-  letter-spacing: 0.06em;
-  background: transparent;
+}
+
+.skill-detail h3 .skill-icon {
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.skill-rating {
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.points {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.bonus {
+  color: var(--accent-color);
+  font-weight: 500;
+  padding-left: 0.5rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Responsive design */
@@ -352,7 +384,12 @@
   }
 }
 
-/* No glow pulse — active state uses outline ring (::after) only */
+/* When a node is selected, pulse animation */
+@keyframes pulse {
+  0% { box-shadow: 0 0 15px var(--tree-color); }
+  50% { box-shadow: 0 0 25px var(--tree-color); }
+  100% { box-shadow: 0 0 15px var(--tree-color); }
+}
 
 /* Level indicator */
 .level-label {

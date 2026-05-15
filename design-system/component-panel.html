@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="_card.css">
+<style>
+  body { background: hsl(220 50% 16%); }
+  .panel {
+    background: hsl(220 50% 10%);
+    color: hsl(220 50% 92%);
+    border-radius: 10px;
+    padding: 16px 18px;
+    width: 480px;
+    transform: rotate3d(0, -1, 0, 5deg);
+    box-shadow: 0 8px 22px -12px rgba(0,0,0,0.38);
+    margin-left: 90px;
+  }
+  .h-section {
+    display: inline-block;
+    position: relative;
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    margin: 0 0 12px 0;
+    padding-right: 12px;
+    color: hsl(220 50% 92%);
+  }
+  .h-section::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -4px;
+    height: 2px;
+    background: linear-gradient(90deg, hsl(300 80% 80%), transparent 75%);
+    transform: skewX(-15deg);
+  }
+  p { font-family: var(--font-body); font-size: 15px; line-height: 1.8; opacity: 0.92; margin: 0; }
+  .meta { font-family: var(--font-mono); font-size: 10px; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 14px; }
+</style>
+</head>
+<body>
+<div class="card-frame">
+  <div class="panel">
+    <h4 class="h-section">Hi, I’m Himanshu.</h4>
+    <p>I’m a staff-level front-end prototyper who ships AI-first product experiences end-to-end — from fast, delightful UI to the serving hooks, telemetry, and quality loops that make them safe and reliable.</p>
+    <div class="meta">.text-section · rotated 5° on y · radius 10 · padding 16</div>
+  </div>
+</div>
+</body>
+</html>

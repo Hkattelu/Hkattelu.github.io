@@ -80,7 +80,7 @@ body {
 
 /* Title block */
 h1.post-title {
-  font-family: var(--font-display);
+  font-family: var(--font-display-italic);
   font-style: italic;
   font-weight: 400;
   font-size: 42px;

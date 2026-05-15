@@ -182,15 +182,14 @@ h3.h-cartouche::after {
   background: var(--accent-color);
 }
 
-/* h4 — a slightly playful display label with an angled accent underline.
-   NOTE: Lust Display only ships in a single 400 weight. Asking for 700
-   makes browsers faux-bold the glyphs and they look muddy at this size.
-   Use the gradient underline for emphasis instead of weight. */
+/* h4 — display label with an angled accent underline. Upright (no italic)
+   for readability. Lust Display ships in one 400 weight; emphasis comes
+   from the skewed underline, not slant. */
 .h-section, h4.h-section {
   display: inline-block;
   position: relative;
   font-family: var(--font-display);
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
   font-size: var(--fs-h4);
   letter-spacing: 0.005em;

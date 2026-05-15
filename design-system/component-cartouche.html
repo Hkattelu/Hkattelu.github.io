@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="_card.css">
+<style>
+  /* Rev 2: Lust Display italic in a clipped frame was hard to read at
+     panel-heading sizes. Swap to Space Mono bold (the same family used
+     by the menu options) so cartouches feel like they belong in the
+     same gameplay UI language. The corner is now a deliberate filled
+     ACCENT TAB rather than a clipped slice — looks intentional, not
+     broken. */
+  body { background: hsl(220 50% 12%); padding: 16px 0; }
+
+  .stamp {
+    --ink: hsl(220 50% 92%);
+    --accent: hsl(300 80% 80%);
+    position: relative;
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 10px 22px 9px 14px;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    border-radius: 2px;
+    background: transparent;
+  }
+  /* Filled accent tab on the upper-right — a deliberate brand mark. */
+  .stamp::after {
+    content: "";
+    position: absolute;
+    top: -1.5px;
+    right: -1.5px;
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+  }
+  .stamp .ext { margin-left: 8px; opacity: 0.85; }
+
+  .row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; padding: 0 22px; }
+  .meta { font-family: var(--font-mono); font-size: 10px; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.06em; margin: 14px 22px 0; color: var(--primary-color); }
+</style>
+</head>
+<body>
+<div class="card-frame">
+  <div class="row">
+    <div class="stamp">YouTube Ask Button <span class="ext">↗</span></div>
+    <div class="stamp">Recent Work</div>
+    <div class="stamp">About</div>
+  </div>
+  <div class="meta">space mono 700 · 0.12em tracking · accent corner tab</div>
+</div>
+</body>
+</html>

@@ -664,6 +664,13 @@ function createSkillTree() {
     }
     
     tab.appendChild(iconElem);
+
+    // Short label — first word of the category (fits the stamp aesthetic)
+    const labelElem = document.createElement('span');
+    labelElem.className = 'tab-label';
+    labelElem.textContent = category.split(' ')[0];
+    tab.appendChild(labelElem);
+
     tab.addEventListener('click', () => {
       // Remove active class from all tabs
       document.querySelectorAll('.skill-tab').forEach(t => t.classList.remove('active'));
@@ -761,7 +768,8 @@ function createSkillTree() {
         // Update the skill detail panel
         const detailContent = document.querySelector('.skills .text-section');
         detailContent.innerHTML = `
-          <h4>${skill.title} <span class="skill-icon">${skill.icon}</span></h4>
+          <h4 class="h-section">${skill.title} <span class="skill-icon">${skill.icon}</span></h4>
+          ${skill.bonus ? `<p class="skill-bonus"><span class="code">${skill.bonus}</span></p>` : ''}
           <p>${skill.description}</p>
         `;
         

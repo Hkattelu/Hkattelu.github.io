@@ -8,6 +8,6 @@ medium: "Digital"
 created: "February 2026"
 ---
 
-Digital art of Fret.
+Fineliner art of Fret from the World ends with you.
 
 ![Fret](/art/fret.jpg)

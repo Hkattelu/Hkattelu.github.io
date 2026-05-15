@@ -1043,14 +1043,13 @@ footer {
 }
 .page .text-section h3 a { text-decoration: none; color: inherit; }
 
-/* Section h4 — Lust Display italic at 400 only. The font ships in one weight;
-   asking for 700 makes browsers faux-bold and the glyphs go muddy. Emphasis
-   comes from the skewed accent underline, not weight. */
+/* Section h4 — Lust Display upright (no italic) for readability.
+   Emphasis comes from the skewed accent underline, not slant. */
 .page .text-section h4 {
   display: inline-block;
   position: relative;
   font-family: lust-display, "DM Serif Display", "Playfair Display", serif;
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
   letter-spacing: .005em;
   margin: 4px 0 10px 0;

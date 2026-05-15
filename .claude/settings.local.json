@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "Read(//tmp/design/**)",
+      "Read(//tmp/**)",
+      "Bash(mkdir -p extracted)",
+      "Bash(tar -xf design -C extracted)",
+      "Bash(hugo --quiet --minify)",
+      "Bash(hugo --quiet)",
+      "Bash(echo \"---exit $?---\")",
+      "Bash(cp \"C:/Users/himan/Downloads/colors_and_type.css\" \"C:/Users/himan/code/Hkattelu.github.io/hugo/static/css/colors_and_type.css\")",
+      "Bash(cp \"C:/Users/himan/Downloads/colors_and_type.css\" \"C:/Users/himan/code/Hkattelu.github.io/design-system/colors_and_type.css\")",
+      "Bash(cp \"C:/Users/himan/Downloads/SKILL.md\" \"C:/Users/himan/code/Hkattelu.github.io/design-system/SKILL.md\")",
+      "Bash(cp \"C:/Users/himan/Downloads/README \\(1\\).md\" \"C:/Users/himan/code/Hkattelu.github.io/design-system/README.md\")",
+      "PowerShell(Get-Content *)",
+      "Bash(curl -sL http://localhost:1313/blog/the-value-of-engineering/)"
+    ]
+  }
+}
