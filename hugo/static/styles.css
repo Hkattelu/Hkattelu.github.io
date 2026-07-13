@@ -18,7 +18,6 @@
   --secondary-color: hsl(var(--hue), 50%, 10%);
   --tertiary-color: hsl(var(--tertiary-hue), 80%, 20%);
   --accent-color: hsl(var(--accent-hue), 80%, 80%);
-  --tree-color: hsl(var(--accent-hue), 80%, 60%);
 
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
@@ -48,7 +47,6 @@
     --secondary-color: hsl(var(--hue), 50%, 90%);
     --tertiary-color: hsl(var(--tertiary-hue), 80%, 80%);
     --accent-color: hsl(var(--accent-hue), 80%, 20%);
-    --tree-color: hsl(var(--accent-hue), 80%, 40%);
   
     .option:focus .focus-only-background {
       filter: invert(93%) sepia(2%) saturate(1833%) hue-rotate(189deg) brightness(96%) contrast(98%);
@@ -511,84 +509,7 @@ h3 {
   }
 }
 
-.page.skills {
-  align-items: center;
-  justify-content: space-around;
-  background-color: #1A1A1A;
-
-  .text-section {
-    transform: translateX(-5vw) rotate3d(0, 1, 0, 8deg);
-    border: 1px solid var(--primary-color);
-
-    width: 40vw;
-    overflow-y: scroll;
-
-    justify-content: flex-start;
-
-    ul {
-      padding-inline-start: 12px;
-
-      > li {
-        list-style-type: disc;
-        list-style-position: inside;
-      }
-
-      li > & {
-        padding-inline-start: 12px;
-        padding-bottom: 12px;
-        padding-top: 12px;
-      }
-    } 
-  }
-
-  .content {
-    height: 85vh;
-    width: 55vw;
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
-
-    transform: rotateY(5deg);
-    
-    border: 2px solid var(--secondary-color);
-    box-sizing: border-box;
-  }
-
-  video {
-    height: 100%;
-    width: auto;
-    left: 0%;
-
-    transition: transform var(--base-transition-duration) ease;
-    transition-delay: var(--base-transition-duration);
-  }
-
-  @media screen and (max-width: 767px) {
-    flex-direction: column;
-
-    .text-section {
-      transform: translateX(0px);
-      width: 100%;
-      max-width: 100%;
-      box-sizing: border-box;
-
-      /** Hide the scrollbar */
-      overflow: hidden;
-    }
-
-    .content {
-      max-height: 70vh;
-      overflow-y: scroll;
-      width: 100%;
-      transform: none;
-      border: none;
-    }
-
-    video {
-      height: 100vh;
-      left: 0;
-    }
-  }
-}
+/* .page.skills layout lives in skills.css alongside the panel styles. */
 
 .page.projects {
   perspective: 500px;
@@ -1038,7 +959,8 @@ footer {
 .page.projects .text-section h3 { display: block; width: auto; }
 
 /* Cartouche heading frames inside content panels.
-   REV 2: Space Mono bold + accent corner tab (was Lust Display italic + clip-path). */
+   REV 3: the accent mark is a thick left spine on the frame. The old
+   corner tab overlapped the border and read as a gap in the box. */
 .page .text-section h3 {
   position: relative;
   display: inline-block;
@@ -1048,25 +970,17 @@ footer {
   font-size: 14px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 10px 22px 9px 14px;
+  padding: 10px 16px 9px 14px;
   margin: 0 0 8px 0;
   width: fit-content;
   color: var(--primary-color);
   border: 1.5px solid var(--primary-color);
+  border-left: 4px solid var(--accent-color);
   border-radius: 2px;
   background: transparent;
   text-shadow: none;
   clip-path: none;
   box-shadow: none;
-}
-.page .text-section h3::after {
-  content: "";
-  position: absolute;
-  top: -1.5px;
-  right: -1.5px;
-  width: 12px;
-  height: 12px;
-  background: var(--accent-color);
 }
 .page .text-section h3 a { text-decoration: none; color: inherit; }
 
@@ -1095,5 +1009,153 @@ footer {
   .page, .page.visible, .controls {
     transition: none !important;
     animation: none !important;
+  }
+}
+
+/* ============================================================
+   Transition streaks — Persona-style speed lines that scrape
+   across the screen during navigation, leading the eye with the
+   page motion. JS toggles .run (plus .reverse when going home).
+   Horizontal on desktop, vertical on mobile to match how the
+   menu and pages travel on each form factor.
+   ============================================================ */
+.transition-streaks {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  overflow: hidden;
+  display: none;
+}
+.transition-streaks.run {
+  display: block;
+}
+
+.transition-streaks span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent-color);
+  opacity: 0;
+  transform: translateX(-120vw) skewX(-30deg);
+  will-change: transform, opacity;
+}
+.transition-streaks.run span {
+  animation: streak-x 0.55s cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+.transition-streaks.run.reverse span {
+  animation-direction: reverse;
+}
+
+.transition-streaks span:nth-child(1) { top: 14%; height: 2px; animation-delay: 0.05s; }
+.transition-streaks span:nth-child(2) { top: 28%; height: 9px; background: var(--secondary-color); animation-delay: 0s; }
+.transition-streaks span:nth-child(3) { top: 47%; height: 3px; animation-delay: 0.12s; animation-duration: 0.6s; }
+.transition-streaks span:nth-child(4) { top: 66%; height: 14px; background: var(--secondary-color); animation-delay: 0.07s; animation-duration: 0.5s; }
+.transition-streaks span:nth-child(5) { top: 82%; height: 2px; animation-delay: 0.15s; animation-duration: 0.65s; }
+
+@keyframes streak-x {
+  0% {
+    transform: translateX(-120vw) skewX(-30deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.9;
+  }
+  88% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(120vw) skewX(-30deg);
+    opacity: 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .transition-streaks span,
+  .transition-streaks span:nth-child(1),
+  .transition-streaks span:nth-child(2),
+  .transition-streaks span:nth-child(3),
+  .transition-streaks span:nth-child(4),
+  .transition-streaks span:nth-child(5) {
+    top: 0;
+    height: 100%;
+    transform: translateY(-120vh) skewY(-14deg);
+  }
+  .transition-streaks.run span {
+    animation-name: streak-y;
+  }
+  .transition-streaks span:nth-child(1) { left: 12%; width: 2px; }
+  .transition-streaks span:nth-child(2) { left: 30%; width: 8px; }
+  .transition-streaks span:nth-child(3) { left: 52%; width: 3px; }
+  .transition-streaks span:nth-child(4) { left: 71%; width: 12px; }
+  .transition-streaks span:nth-child(5) { left: 88%; width: 2px; }
+}
+
+@keyframes streak-y {
+  0% {
+    transform: translateY(-120vh) skewY(-14deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.9;
+  }
+  88% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(120vh) skewY(-14deg);
+    opacity: 0;
+  }
+}
+
+/* ============================================================
+   Diagonal ink shards — angled translucent bands that break up
+   the flat page rectangle and rake toward the content panel as
+   each page settles in. Home and credits keep their own looks.
+   ============================================================ */
+.page.about-me::before,
+.page.skills::before,
+.page.projects::before,
+.page.contact::before,
+.page.blog::before {
+  content: "";
+  position: absolute;
+  inset: -15%;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    112deg,
+    transparent 0 15%,
+    color-mix(in srgb, var(--accent-color) 14%, transparent) 15% 26%,
+    transparent 26% 27.4%,
+    color-mix(in srgb, var(--accent-color) 60%, transparent) 27.4% 27.7%,
+    transparent 27.7% 80%,
+    rgba(0, 0, 0, 0.3) 80% 87%,
+    transparent 87% 88.4%,
+    color-mix(in srgb, var(--accent-color) 45%, transparent) 88.4% 88.7%,
+    transparent 88.7%
+  );
+  opacity: 0;
+  transform: translateX(-5%);
+  transition: opacity 0.45s ease, transform 0.85s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+.page.visible::before {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.5s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .transition-streaks {
+    display: none !important;
+  }
+  .page.about-me::before,
+  .page.skills::before,
+  .page.projects::before,
+  .page.contact::before,
+  .page.blog::before {
+    transition: none !important;
+    transform: none;
   }
 }

@@ -48,10 +48,13 @@
 
   <link rel="stylesheet" href="https://unpkg.com/@glidejs/glide@3.3.0/dist/css/glide.core.min.css">
   <link rel="stylesheet" href="/styles.css">
-  <link rel="stylesheet" href="/skill-tree.css">
+  <link rel="stylesheet" href="/skills.css">
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
+  <div class="transition-streaks" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
   <div class="container">
     <button class="audio-toggle" aria-label="Toggle audio">
       <svg class="speaker-on" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -121,10 +124,73 @@
       <div class="controls">
         <p>Press <span class="code">BACKSPACE</span> or <span class="code">ESC</span> to return home.</p>
       </div>
-      <div class="content"></div>
-      <div class="text-section">
-        <h4 class="h-section">Select a skill to view details</h4>
-        <p>Click on any skill node to see more information about that skill.</p>
+      <div class="skills-panel">
+        <h3 class="skills-title">Skills</h3>
+        <p class="skills-intro">What I use, next to what I shipped with it.</p>
+        <div class="skill-groups">
+          <section class="skill-group">
+            <h4>Frontend &amp; UI</h4>
+            <ul class="skill-chips">
+              <li>TypeScript</li>
+              <li>React</li>
+              <li>Angular</li>
+              <li>CSS &amp; animation</li>
+              <li>Android / iOS</li>
+            </ul>
+            <p>Web and mobile UI for YouTube's Ask button and Ask YouTube search. This site, from scratch.</p>
+          </section>
+          <section class="skill-group">
+            <h4>AI products</h4>
+            <ul class="skill-chips">
+              <li>Gemini</li>
+              <li>Prompt design</li>
+              <li>Evals</li>
+              <li>Streaming UX</li>
+              <li>Genkit</li>
+            </ul>
+            <p>LLM features from prototype to production at YouTube — plus QuizBot and Gaming Wrapped on my own time.</p>
+          </section>
+          <section class="skill-group">
+            <h4>Backend &amp; data</h4>
+            <ul class="skill-chips">
+              <li>Node.js</li>
+              <li>Java</li>
+              <li>Serving infra</li>
+              <li>Firestore</li>
+              <li>Data pipelines</li>
+            </ul>
+            <p>Course data pipelines for YouTube Courses; log streaming for GCP's Logs Explorer at petabyte scale.</p>
+          </section>
+          <section class="skill-group">
+            <h4>Reliability</h4>
+            <ul class="skill-chips">
+              <li>Monitoring &amp; SLOs</li>
+              <li>Incident response</li>
+              <li>Feature flags</li>
+              <li>Staged rollouts</li>
+            </ul>
+            <p>On-call for AI features sitting in front of YouTube search. Ten-plus incidents handled, postmortems written.</p>
+          </section>
+          <section class="skill-group">
+            <h4>Leading</h4>
+            <ul class="skill-chips">
+              <li>Team lead</li>
+              <li>Mentoring</li>
+              <li>Roadmaps</li>
+              <li>PM &amp; design collab</li>
+            </ul>
+            <p>Led the teams behind Quiz posts and Ask YouTube, from design docs through launch.</p>
+          </section>
+          <section class="skill-group">
+            <h4>Off the clock</h4>
+            <ul class="skill-chips">
+              <li>CrossFit</li>
+              <li>Poi spinning</li>
+              <li>Video making</li>
+            </ul>
+            <p>Yes, the poi are sometimes on fire. No, I don't code while spinning them.</p>
+          </section>
+        </div>
       </div>
       <video muted>
         <source src="/videos/code1.mp4" type="video/mp4">
