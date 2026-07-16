@@ -52,7 +52,7 @@ body {
 .site-nav a:hover { opacity: 1; text-decoration: underline; }
 
 .site-main {
-  max-width: 760px;
+  max-width: 1440px;
   margin: 2rem auto;
   padding: 0 1rem;
 }

@@ -35,20 +35,6 @@
   --secondary-color:   hsl(var(--hue), 50%, 10%);          /* ink-on-paper navy panels */
   --tertiary-color:    hsl(var(--tertiary-hue), 80%, 20%); /* deep grape */
   --accent-color:      hsl(var(--accent-hue), 80%, 80%);   /* soft magenta highlight */
-  --tree-color:        hsl(var(--accent-hue), 80%, 60%);   /* skill-tree node ring */
-
-  /* Per-tab tree colors — DESIGN DECISION (May 2026):
-     All skill-tree categories share the same accent color.
-     Categories are differentiated by their icon glyph, not by hue —
-     this keeps the page visually calm and lets the iconography
-     carry the meaning. Tokens kept as aliases so any consumer
-     written against the old names still works. */
-  --tree-core:       var(--tree-color);
-  --tree-frontend:   var(--tree-color);
-  --tree-ai:         var(--tree-color);
-  --tree-devops:     var(--tree-color);
-  --tree-leadership: var(--tree-color);
-  --tree-bonus:      var(--tree-color);
 
   /* Motion — short, gamey, snappy. */
   --base-transition-duration: 0.3s;
@@ -114,15 +100,6 @@
   --secondary-color:   hsl(var(--hue), 50%, 90%);
   --tertiary-color:    hsl(var(--tertiary-hue), 80%, 80%);
   --accent-color:      hsl(var(--accent-hue), 80%, 20%);
-  --tree-color:        hsl(var(--accent-hue), 80%, 40%);
-
-  /* Tree colors stay aliased to the brand accent in dark too. */
-  --tree-core:       var(--tree-color);
-  --tree-frontend:   var(--tree-color);
-  --tree-ai:         var(--tree-color);
-  --tree-devops:     var(--tree-color);
-  --tree-leadership: var(--tree-color);
-  --tree-bonus:      var(--tree-color);
 }
 
 
@@ -150,11 +127,9 @@ body {
 }
 
 /* Cartouche heading — the section / panel title stamp.
-   REV 2 (May 2026): Lust Display italic + clipped corner read as
-   pretty-but-illegible at heading sizes. Now uses Space Mono bold
-   (matches the menu-option voice) with a clean rectangular frame
-   and a small filled ACCENT TAB in the top-right corner. The tab is
-   the new brand mark — intentional, geometric, doesn't crop letters. */
+   REV 3: the accent mark is a thick left spine on the frame. The old
+   top-right corner tab overlapped the border and read as a gap in
+   the box (especially in dark mode, where the accent goes dark). */
 .h-cartouche, h3.h-cartouche {
   position: relative;
   display: inline-block;
@@ -163,24 +138,15 @@ body {
   font-size: 14px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 10px 22px 9px 14px;
+  padding: 10px 16px 9px 14px;
   margin: 0 0 8px 0;
   width: fit-content;
   color: var(--primary-color);
   border: 1.5px solid var(--primary-color);
+  border-left: 4px solid var(--accent-color);
   border-radius: 2px;
   background: transparent;
   text-shadow: none;
-}
-.h-cartouche::after,
-h3.h-cartouche::after {
-  content: "";
-  position: absolute;
-  top: -1.5px;
-  right: -1.5px;
-  width: 12px;
-  height: 12px;
-  background: var(--accent-color);
 }
 
 /* h4 — a slightly playful display label with an angled accent underline.
