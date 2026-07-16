@@ -14,7 +14,7 @@ const CONSTANTS = {
   MOBILE_DELAY: 120,
   MASKS: 9,
   MAX_SCRAMBLE: 6,
-  PROJECTS: 7,
+  PROJECTS: 8,
   MOBILE_BREAKPOINT: 768,
   // Create and render the skill tree in the skills page
   SKILL_TREE_DATA: {

@@ -1,6 +1,9 @@
 @font-face {
-  font-family: lust-display;
+  font-family: "Lust Display";
   src: url("fonts/lust-display-regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
 }
 
 :root {
@@ -356,7 +359,7 @@ h3 {
     padding: 16px;
     top: 32px;
     right: 32px;
-    z-index: 2;
+    z-index: 10;
     text-align: center;
     box-shadow: 0px 0px 3px var(--primary-color);
 
@@ -401,15 +404,16 @@ h3 {
     padding: 16px;
 
     h3 {
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'Space Mono', monospace;
       font-size: 24px;
       font-weight: 700;
     }
 
     h4 {
-      font-family: Helvetica, sans-serif;
+      font-family: "Lust Display", "DM Serif Display", serif;
+      font-style: italic;
       font-size: 16px;
-      font-weight: 700;
+      font-weight: 400;
     }
 
     p, li {
@@ -457,6 +461,12 @@ h3 {
 .page.about-me, .page.contact {
   perspective: 500px;
   justify-content: flex-end;
+
+  .controls {
+    right: auto;
+    left: 32px;
+    text-align: left;
+  }
 
   .text-section {
     justify-content: flex-start;
@@ -583,6 +593,12 @@ h3 {
 .page.projects {
   perspective: 500px;
 
+  .controls {
+    right: auto;
+    left: 32px;
+    text-align: left;
+  }
+
   .text-section {
     margin-left: 50vw;
     width: 45vw;
@@ -651,7 +667,18 @@ h3 {
     padding-top: 0px;
 
     h4 {
-      text-decoration: underline;
+      font-family: 'Space Mono', monospace;
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-color);
+      margin: 16px 0 8px 0;
+      text-decoration: none;
+      border-bottom: 1.5px solid var(--accent-color);
+      padding-bottom: 4px;
+      display: block;
+      width: fit-content;
     }
   }
 
@@ -881,7 +908,7 @@ footer {
   margin-top: 96px;
   width: 100%;
 
-  font-family: lust-display;
+  font-family: "Lust Display", "DM Serif Display", serif;
   font-style: italic;
   font-size: 24px;
   line-height: 24px;
@@ -1043,19 +1070,19 @@ footer {
 }
 .page .text-section h3 a { text-decoration: none; color: inherit; }
 
-/* Section h4 — Lust Display upright (no italic) for readability.
-   Emphasis comes from the skewed accent underline, not slant. */
-.page .text-section h4 {
+/* Section h4 — Lust Display italic 400 for display readability.
+   Emphasis comes from the skewed accent underline, not weight. */
+.page .text-section > h4, .glide__slide > h4 {
   display: inline-block;
   position: relative;
-  font-family: lust-display, "DM Serif Display", "Playfair Display", serif;
-  font-style: normal;
+  font-family: "Lust Display", "DM Serif Display", "Playfair Display", serif;
+  font-style: italic;
   font-weight: 400;
-  letter-spacing: .005em;
+  letter-spacing: .01em;
   margin: 4px 0 10px 0;
   padding-right: 10px;
 }
-.page .text-section h4::after {
+.page .text-section > h4::after, .glide__slide > h4::after {
   content: '';
   position: absolute;
   left: 0; right: 0; bottom: -4px;

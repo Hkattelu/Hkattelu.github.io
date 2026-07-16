@@ -14,7 +14,9 @@
       "Bash(cp \"C:/Users/himan/Downloads/SKILL.md\" \"C:/Users/himan/code/Hkattelu.github.io/design-system/SKILL.md\")",
       "Bash(cp \"C:/Users/himan/Downloads/README \\(1\\).md\" \"C:/Users/himan/code/Hkattelu.github.io/design-system/README.md\")",
       "PowerShell(Get-Content *)",
-      "Bash(curl -sL http://localhost:1313/blog/the-value-of-engineering/)"
+      "Bash(curl -sL http://localhost:1313/blog/the-value-of-engineering/)",
+      "Bash(hugo version *)",
+      "Bash(git -C /c/Users/himan/code/Hkattelu.github.io remote -v)"
     ]
   }
 }

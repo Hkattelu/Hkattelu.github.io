@@ -141,7 +141,7 @@
             <div class="glide__track" data-glide-el="track">
               <ul class="glide__slides">
                 <li class="glide__slide">
-                  <h3><a tabindex="-1" href="https://support.google.com/youtube/answer/14110396?hl=en" target="_blank">YouTube Ask Button <span class="fa fa-arrow-up-right-from-square"></span></a></span></h3>
+                  <h3><a tabindex="-1" href="https://support.google.com/youtube/answer/14110396?hl=en" target="_blank">YouTube Ask Button <span class="fa fa-arrow-up-right-from-square"></span></a></h3>
                   <h4>Enhancing active learning with generative AI driven tutoring</h4>
                   <p>The YouTube AI Ask Button empowers premium users to engage deeper with video content by asking context-aware questions and receive contextual and personal AI-generated responses.</p>
                   <p>I was a core IC contributing to the project across its entire lifecycle, from conceptualization to implementation to deployment. I worked on Designs,
@@ -173,6 +173,38 @@
                   </div>
                   <p><b>Reliability & safety:</b> feature-flagged rollout, shadow traffic, privacy-preserving event logs with PII redaction, rate limits and circuit breakers, dashboards/SLOs, and automated rollback on quality or latency regressions.</p>
                   <p><b>AI quality:</b> prompt templates with versioning and traceability, offline/online evals for helpfulness/harmlessness, red‑team prompts, and user‑visible affordances that set scope and provide principled refusal modes.</p>
+                </li>
+                <li class="glide__slide">
+                  <h3><a tabindex="-1" href="https://blog.youtube/news-and-events/youtube-news-google-io-2026/" target="_blank">Ask YouTube <span class="fa fa-arrow-up-right-from-square"></span></a></h3>
+                  <h4>Reimagining YouTube search as a conversation — an AI answer engine for video</h4>
+                  <p>Ask YouTube turns search from keyword guesswork into a conversation. Powered by Gemini, it understands a full question and its intent, then composes an interactive, guided answer — stitching together long‑form videos, Shorts, and concise text summaries so viewers instantly know which video actually answers what they asked. Follow‑up questions refine the result without starting over. Announced at Google I/O 2026, it launched as an experiment for YouTube Premium members in the U.S.</p>
+                  <p>I was a <b>primary front‑end engineer</b> on the feature and <b>managed a team of engineers</b> delivering it. I owned large parts of the client experience end‑to‑end and drove the <b>reliability</b> bar for a brand‑new, AI‑powered surface sitting in front of one of the most‑used search boxes on the internet — while contributing to answer quality and the moment‑to‑moment user experience.</p>
+                  <ul>
+                    <li>Brought conversational, Gemini‑powered answers to YouTube's core search experience</li>
+                    <li>Kept a high‑traffic AI surface fast and dependable through a careful, staged rollout</li>
+                    <li>Positioned YouTube alongside Google Search's AI Mode as a leader in AI‑native discovery</li>
+                  </ul>
+                  <div class="two-column">
+                    <ul class="skills-list">
+                      <h4>Technical skills</h4>
+                      <li>Lead front‑end development for a conversational search UI</li>
+                      <li>Engineering management across multiple engineers</li>
+                      <li>Reliability ops, monitoring, and incident response</li>
+                      <li>Streaming / interactive response rendering</li>
+                      <li>Quality iteration and evals</li>
+                      <li>Cross‑functional work with PM, design, and ML</li>
+                    </ul>
+                    <ul class="skills-list">
+                      <h4>Challenges</h4>
+                      <li>Holding a strict reliability bar on a brand‑new AI surface in front of core search</li>
+                      <li>Rendering rich, multi‑format answers without slowing the search experience</li>
+                      <li>Coordinating delivery across multiple engineers and partner teams</li>
+                      <li>Improving answer quality as model capabilities and scope evolved</li>
+                      <li>Setting clear user expectations for a conversational, experimental feature</li>
+                    </ul>
+                  </div>
+                  <p><b>Reliability & safety:</b> feature‑flagged, staged rollout with shadow traffic; SLOs with dashboards and alerting; rate limits and circuit breakers; automated rollback on latency or quality regressions; and incident response with postmortems that turned mitigations into durable guardrails.</p>
+                  <p><b>AI quality & UX:</b> evals for helpful, on‑scope answers; latency budgets for streamed responses; and user‑facing affordances that set expectations and steer follow‑ups on a conversational, experimental surface.</p>
                 </li>
                 <li class="glide__slide">
                   <h3><a tabindex="-1" href="https://support.google.com/youtube/answer/7124474?hl=en&co=GENIE.Platform%3DAndroid" target="_blank">YouTube Quiz posts <span class="fa fa-arrow-up-right-from-square"></span></a></h3>
@@ -254,7 +286,7 @@
                   <p><b>Trust:</b> client‑side parsing where possible, size/type checks, transient storage with explicit user consent, and AI outputs bounded by templates and disclaimers.</p>
                 </li>
                 <li class="glide__slide">
-                  <h3>Synapse Video Editor <span style="font-size: 0.7em; font-weight: normal;">(URL coming soon)</span></h3>
+                  <h3><a tabindex="-1" href="https://synapse-1019506408315.us-east1.run.app/" target="_blank">Synapse Video Editor</a></h3>
                   <h4>Timeline editing, Remotion‑powered rendering, and a smooth creator workflow</h4>
                   <p>A web‑first video editor with desktop packaging that blends precise timeline interactions with programmatic rendering.
                     Built for creators to stitch clips, integrate animated code snippets, and export polished videos.</p>
@@ -262,8 +294,8 @@
                     <li><b>Editing:</b> Frame‑accurate scrubbing, clip ops, and animation presets</li>
                     <li><b>Render:</b> Remotion render pipeline for previews/exports; React + Vite</li>
                     <li><b>Desktop:</b> Electron packaging with a minimal, secure preload bridge</li>
+                    <li><b>Safety by design:</b> sandboxed rendering, constrained IPC surface, and a permissioned file model to keep creator content safe.</li>
                   </ul>
-                  <p><b>Safety by design:</b> sandboxed rendering, constrained IPC surface, and a permissioned file model to keep creator content safe.</p>
                 </li>
               </ul>
             </div>
@@ -275,6 +307,7 @@
               <button class="glide__bullet" tabindex="-1" data-glide-dir="=4"></button>
               <button class="glide__bullet" tabindex="-1" data-glide-dir="=5"></button>
               <button class="glide__bullet" tabindex="-1" data-glide-dir="=6"></button>
+              <button class="glide__bullet" tabindex="-1" data-glide-dir="=7"></button>
             </div>
           </div>
         </div>
