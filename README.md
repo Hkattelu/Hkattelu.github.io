@@ -16,4 +16,4 @@ cd hugo && hugo serve
 ```
 
 ---
-Secret! Try inputting a special gaming code! Maybe something will happen? ...
+The homepage opens with the game-style menu. Select About Me to read the introduction. The longer bio lives in `hugo/content/me.md`; keep it consistent with `hugo/layouts/index.html` and the studio founder page.

@@ -28,6 +28,10 @@ hobbies:
   - Home Decoration
 ---
 
-Hi! I’m Himanshu — a senior engineer in NYC focused on AI‑first product experiences. I ship end‑to‑end: fast, delightful UI; serving hooks; telemetry; and the quality loops that make features safe and reliable.
+Hi! I'm Himanshu, a native New Yorker and the founder of [Real Bizarre Software](https://www.realbizarresoftware.com/). Right now, I'm making independent games.
 
-Currently I am working on improving the core Youtube user experience with thoughtful AI integration. 
+Before this, I was a senior software engineer at Google. I spent four years in Learning & Education, mostly working on YouTube, and two years on Google Cloud Logging. I worked on things like the YouTube Ask button, quizzes, learning journeys, and tools for exploring application logs.
+
+I value rigorous engineering, creative problem solving, and helping others become the best they can be. Outside of work, I spend my time weight training, spinning poi, drawing, and playing single-player games.
+
+You can [see the games at Real Bizarre Software](https://www.realbizarresoftware.com/) or [explore my projects on the homepage](/).

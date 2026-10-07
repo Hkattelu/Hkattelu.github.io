@@ -60,9 +60,6 @@
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
-  <div class="transition-streaks" aria-hidden="true">
-    <span></span><span></span><span></span><span></span><span></span>
-  </div>
   <div class="container">
     <button class="audio-toggle" aria-label="Toggle audio">
       <svg class="speaker-on" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -113,21 +110,21 @@
         <p>Hit <span class="code">ENTER</span> to select an option.</p>
       </div>
     </div>
-    <div class="page about-me" tabindex="-1">
+    <div class="page about-me" tabindex="-1" inert>
       <div class="controls">
         <p>Press <span class="code">BACKSPACE</span> or <span class="code">ESC</span> to return home.</p>
       </div>
       <div class="text-section">
-        <h4>Hi, I'm <a tabindex=-1 target="_blank" href="https://youtu.be/HAiV2ajNljo?si=bIoWzEcXxHAs3YOS">Himanshu.</a></h4>
-        <p>I’m a native New Yorker and former Senior Software Engineer at Google. I spent 4 years in Learning & Education at Google - primarily working on different parts of YouTube. Previously I spent 2 years in Google Cloud Logging. Right now I'm working on some self-directed projects in <a tabindex="-1" target="_blank" href="https://www.realbizarresoftware.com/">the gaming space</a>.</p>
+        <h4>Hi, I'm <a target="_blank" href="https://youtu.be/HAiV2ajNljo?si=bIoWzEcXxHAs3YOS">Himanshu.</a></h4>
+        <p>I'm a native New Yorker and the founder of <a target="_blank" href="https://www.realbizarresoftware.com/" rel="noopener noreferrer">Real Bizarre Software</a>, where I'm making independent games. Before this, I was a senior software engineer at Google. I spent four years in Learning &amp; Education, mostly working on YouTube, and two years on Google Cloud Logging.</p>
         <p>I value rigorous engineering, creative problem solving, and helping others become the best they can be.</p>
-        <p>When I’m not building, I enjoy Weight training, poi spinning, and making videos. I also spend a lot of time enjoying single-player games. You can check out my <a tabindex="-1" target="_blank" href="https://docs.google.com/spreadsheets/d/1KAU0FRj2QkrAcsZR64Y-PTck8V3N4TSIJjdc0bJc-8c/edit?ouid=105138321364716476856&usp=sheets_home&ths=true">list of games here</a>.</p>
+        <p>When I’m not building, I enjoy weight training, poi spinning, and making videos. I also spend a lot of time enjoying single-player games. You can check out my <a target="_blank" href="https://docs.google.com/spreadsheets/d/1KAU0FRj2QkrAcsZR64Y-PTck8V3N4TSIJjdc0bJc-8c/edit?ouid=105138321364716476856&usp=sheets_home&ths=true">list of games here</a>.</p>
       </div>
       <video muted>
         <source src="/videos/garden.mp4" type="video/mp4">
       </video>
     </div>
-    <div class="page skills" tabindex="-1">
+    <div class="page skills" tabindex="-1" inert>
       <div class="controls">
         <p>Press <span class="code">BACKSPACE</span> or <span class="code">ESC</span> to return home.</p>
       </div>
@@ -144,7 +141,7 @@
               <li>CSS &amp; animation</li>
               <li>Android / iOS</li>
             </ul>
-            <p>Web and mobile UI for YouTube's Ask button and Ask YouTube search. Also, this site! from scratch.</p>
+            <p>Web and mobile UI for YouTube's Ask button and Ask YouTube search. Also, this site, which I built from scratch.</p>
           </section>
           <section class="skill-group">
             <h4>AI products</h4>
@@ -166,7 +163,7 @@
               <li>Firestore</li>
               <li>Data pipelines</li>
             </ul>
-            <p>Data pipelines for YouTube Courses and Quizzes; Log streaming for GCP's Logs Explorer.</p>
+            <p>Data pipelines for YouTube Courses and Quizzes; log streaming for Google Cloud's Logs Explorer.</p>
           </section>
           <section class="skill-group">
             <h4>Reliability</h4>
@@ -176,7 +173,7 @@
               <li>Feature flags</li>
               <li>Staged rollouts</li>
             </ul>
-            <p>On-call for AI features sitting in front of YouTube Ask and Search. Commanded incident response for 10+ severe incidents.</p>
+            <p>On-call for YouTube Ask and Search. Led the response to more than ten severe incidents.</p>
           </section>
           <section class="skill-group">
             <h4>Leading</h4>
@@ -186,7 +183,7 @@
               <li>Roadmaps</li>
               <li>PM &amp; design collab</li>
             </ul>
-            <p>Led the teams behind Quiz posts, Youtube's Ask button, Ask YouTube Search prototyping, from design docs through launch.</p>
+            <p>Led work on Quiz posts, YouTube's Ask button, and Ask YouTube prototypes, from design docs through launch.</p>
           </section>
           <section class="skill-group">
             <h4>Off the clock</h4>
@@ -197,7 +194,7 @@
               <li>Game design</li>
               <li>Testing out coffee shops</li>
             </ul>
-            <p>Playing through my backlog of old games on my TrimUI Brick at the moment</p>
+            <p>Currently playing through my backlog of old games on my TrimUI Brick.</p>
           </section>
         </div>
       </div>
@@ -205,7 +202,7 @@
         <source src="/videos/code1.mp4" type="video/mp4">
       </video>
     </div>
-    <div class="page projects" tabindex="-1">
+    <div class="page projects" tabindex="-1" inert>
       <div class="controls">
         <p><span class="fa fa-arrow-left code"></span> and <span class="fa fa-arrow-right code"></span> to navigate</p>
         <p class="hidden-on-mobile">Press <span class="code">BACKSPACE</span> or <span class="code">ESC</span> to return home.</p>
@@ -216,89 +213,79 @@
             <div class="glide__track" data-glide-el="track">
               <ul class="glide__slides">
                 <li class="glide__slide">
-                  <h3><a tabindex="-1" href="https://support.google.com/youtube/answer/14110396?hl=en" target="_blank">YouTube Ask Button <span class="fa fa-arrow-up-right-from-square"></span></a></h3>
-                  <p>The YouTube Ask Button lets users engage actively with video content.</p>
-                  <p>I was a tech lead and individual contributor across the project's entire lifecycle, from conceptualization to implementation to deployment. I worked on designs,
-                    implementing the web and mobile UI, implementing privacy-compliant logging, the serving infrastructure, and model quality.</p>
-                  <p>We were able to build a tool with over 30M Monthly Active Users that:</p>
-                  <ul>
-                    <li>Improved user engagement and satisfaction by providing a deeper learning experience</li>
-                    <li>Enhanced the value proposition of YouTube Premium, driving growth</li>
-                    <li>Positioned YouTube & Google as an innovative leader in AI-powered education </li>
-                  </ul> </li>
+                  <h3><a href="https://support.google.com/youtube/answer/14110396?hl=en" target="_blank">YouTube Ask Button <span class="fa fa-arrow-up-right-from-square"></span></a></h3>
+                  <p>The YouTube Ask button lets people ask questions about the video they're watching.</p>
+                  <p>I worked on this from the first designs through launch, as both a tech lead and an individual contributor. My work included the web and mobile UI, privacy-compliant logging, serving infrastructure, and model quality.</p>
+                  <p>The feature reached over 30 million monthly active users.</p> </li>
                 <li class="glide__slide">
-                  <h3><a tabindex="-1" href="https://blog.youtube/news-and-events/youtube-news-google-io-2026/" target="_blank">Ask YouTube <span class="fa fa-arrow-up-right-from-square"></span></a></h3>
+                  <h3><a href="https://blog.youtube/news-and-events/youtube-news-google-io-2026/" target="_blank">Ask YouTube <span class="fa fa-arrow-up-right-from-square"></span></a></h3>
                   <p>Ask YouTube improves YouTube search quality for queries that do not have one right video answer.</p>
-                  <p>I was a <b>lead prototyping engineer </b> on the feature and <b>supported a team of engineers</b> in delivering it. I owned large parts of the client experience end‑to‑end and drove the <b>reliability</b> bar for a brand‑new, AI‑powered surface sitting in front of one of the most‑used search boxes on the internet — while contributing to answer quality and the moment‑to‑moment user experience.</p>
-                  <p>I also built the underlying telemetry infrastructure and playbook to support launching at YouTube scale.</p>
+                  <p>I was a lead prototyping engineer on the feature and supported the team delivering it. I owned large parts of the client experience, worked on answer quality, and helped make the new search experience reliable enough to launch at YouTube's scale.</p>
+                  <p>I also built the telemetry infrastructure and launch playbook.</p>
                 </li>
                 <li class="glide__slide">
-                  <h3><a tabindex="-1" href="https://support.google.com/youtube/answer/7124474?hl=en&co=GENIE.Platform%3DAndroid" target="_blank">YouTube Quiz posts <span class="fa fa-arrow-up-right-from-square"></span></a></h3>
-                  <p>The YouTube Quiz Posts feature allows content creators to add interactive quizzes to their videos (like <a tabindex="-1" href="https://www.youtube.com/watch?v=_qysNIl41fI" target="_blank">this one!</a>),
-                    fostering audience engagement and participation.</p>
+                  <h3><a href="https://support.google.com/youtube/answer/7124474?hl=en&co=GENIE.Platform%3DAndroid" target="_blank">YouTube Quiz posts <span class="fa fa-arrow-up-right-from-square"></span></a></h3>
+                  <p>The YouTube Quiz Posts feature allows content creators to add interactive quizzes to their videos (like <a href="https://www.youtube.com/watch?v=_qysNIl41fI" target="_blank">this one!</a>),
+                    so viewers can check what they understood.</p>
                   <p>I led a team to deliver the complete creator and viewer experience across the creator studio and YouTube apps, as well as the website.</p>
-                  <ul>
-                    <li>Helped creators by giving them new tools to assess audience understanding and encourage active learning</li>
-                    <li>Increased viewer engagement with a more interactive learning experience</li>
-                    <li>Demonstrated YouTube's commitment to supporting educational content</li>
-                  </ul>
+
                 </li>
                 <li class="glide__slide">
-                  <h3><a tabindex="-1" href="https://cloud.google.com/logging/docs/view/logs-explorer-interface" target="_blank">GCP Logging UI <span class="fa fa-arrow-up-right-from-square"></span></a></h3>
-                  <h4>Simplifying enterprise-level troubleshooting with an intuitive logs viewer</h4>
-                  <p>The Google Cloud Platform Logging UI lets businesses monitor and analyze application logs within the Google Cloud ecosystem.</p>
-                  <p>I worked on designing and implementing large parts of the UI to improve performance and build high priority customer-facing features. Namely:</p>
+                  <h3><a href="https://cloud.google.com/logging/docs/view/logs-explorer-interface" target="_blank">GCP Logging UI <span class="fa fa-arrow-up-right-from-square"></span></a></h3>
+                  <h4>Making application logs easier to work with</h4>
+                  <p>Google Cloud Logs Explorer lets developers search, filter, and monitor application logs.</p>
+                  <p>I worked on designing and implementing large parts of the UI to improve performance and build features customers had been asking for:</p>
                   <ul>
                     <li>Logs histograms</li>
-                    <li>Tail -f style log streaming</li>
+                    <li>Live log streaming, like tail -f</li>
                     <li>Time-based filtering</li>
                     <li>AngularJS <span class="fa fa-arrow-right" style="font-size: 12px;"></span> Angular 9 migration </li>
                   </ul>
-                  <p>This project demanded close attention to user needs, translating ambiguous requests into actionable insights and a well-thought-out UI.</p>
-                  <p>I also provided oncall support, ensuring reliability and performance for enterprise users.</p>
-                  <p><b>Performance & reliability:</b> virtualized lists, chunked fetching, and memoized selectors to stay under latency budgets; error budgets with alerting; oncall rotations and postmortems feeding a clear reliability roadmap.</p>
+                  <p>A lot of the work was figuring out what customers were trying to debug, then making those workflows less painful.</p>
+                  <p>I also took part in the on-call rotation and worked on reliability and performance.</p>
+                  <p>That included virtualizing long lists, fetching logs in chunks, and caching repeated calculations to keep the interface responsive.</p>
                 </li>
                 <li class="glide__slide">
-                  <h3><a tabindex="-1" href="https://www.youtube.com/channel/UCtFRv9O2AHqOZjjynzrv-xg" target="_blank">YouTube Learning Journeys <span class="fa fa-arrow-up-right-from-square"></span></a></h3>
-                  <h4>Building the infrastructure for a transformative learning experience on YouTube</h4>
+                  <h3><a href="https://www.youtube.com/channel/UCtFRv9O2AHqOZjjynzrv-xg" target="_blank">YouTube Learning Journeys <span class="fa fa-arrow-up-right-from-square"></span></a></h3>
+                  <h4>Helping people follow a learning path on YouTube</h4>
                   <p>The YouTube Learning platform provides users with tools to construct a dedicated learning journey on YouTube.
                     I supported the team across the entire stack, from the data pipeline to the serving infrastructure to the front-end UI. </p>
                   <p>A significant aspect of this project was getting buy-in from leadership for a more "out there" experience on YouTube, which I helped through prototyping, and many, many meetings.</p>
-                  <p>I am particularly proud of this project for its innovative approach to integrating learning into the YouTube ecosystem.</p>
                 </li>
                 <li class="glide__slide">
-                  <h3><a tabindex="-1" href="https://quizbot.games" target="_blank">QuizBot.games <span class="fa fa-arrow-up-right-from-square"></span></a></h3>
+                  <h3><a href="https://quizbot.games" target="_blank">QuizBot.games <span class="fa fa-arrow-up-right-from-square"></span></a></h3>
                   <h4>A 20‑Questions game that guesses the video game you’re thinking of</h4>
                   <p>Think of a game; the bot asks smart yes/no questions and tries to guess it.
-                    Built as a modern web arcade combining a React UI with an API that enforces game rules and tracks state.</p>
+                    I built it with React and an API that keeps track of the questions and answers.</p>
+                </li>
                 <li class="glide__slide">
-                  <h3><a tabindex="-1" href="https://gamingwrapped.com" target="_blank">Gaming Wrapped <span class="fa fa-arrow-up-right-from-square"></span></a></h3>
+                  <h3><a href="https://gamingwrapped.com" target="_blank">Gaming Wrapped <span class="fa fa-arrow-up-right-from-square"></span></a></h3>
                   <h4>Upload your play history → get a shareable, AI‑generated year‑in‑review</h4>
                   <p>Drop in a CSV (e.g., HowLongToBeat/PlayTracker exports) and get a personalized slideshow with your highlights,
                     narrative, and stats.</p>
                   <ul>
                     <li> Next.js + Genkit (Gemini) server flows; React UI; Tailwind</li>
-                    <li> Includes Shareable public link with social‑ready sections</li>
+                    <li> Includes a public link for sharing your results</li>
                   </ul>
                 </li>
                 <li class="glide__slide">
-                  <h3><a tabindex="-1" href="https://synapse-1019506408315.us-east1.run.app/" target="_blank">Synapse Video Editor</a></h3>
+                  <h3><a href="https://synapse-1019506408315.us-east1.run.app/" target="_blank">Synapse Video Editor</a></h3>
                   <h4>Timeline editing, Remotion‑powered rendering, and a smooth creator workflow</h4>
                   <p>A web‑first video editor with desktop packaging that blends precise timeline interactions with programmatic rendering.
                     Built for creators to stitch clips, integrate animated code snippets, and export polished videos.</p>
-                  <p> I built Synapse to support myself with creative video editing needs for game devlogs</p>
+                  <p>I built Synapse because I wanted a better way to edit my game devlogs.</p>
                 </li>
               </ul>
             </div>
             <div class="glide__bullets" data-glide-el="controls[nav]">
-              <button class="glide__bullet" tabindex="-1" data-glide-dir="=0"></button>
-              <button class="glide__bullet" tabindex="-1" data-glide-dir="=1"></button>
-              <button class="glide__bullet" tabindex="-1" data-glide-dir="=2"></button>
-              <button class="glide__bullet" tabindex="-1" data-glide-dir="=3"></button>
-              <button class="glide__bullet" tabindex="-1" data-glide-dir="=4"></button>
-              <button class="glide__bullet" tabindex="-1" data-glide-dir="=5"></button>
-              <button class="glide__bullet" tabindex="-1" data-glide-dir="=6"></button>
-              <button class="glide__bullet" tabindex="-1" data-glide-dir="=7"></button>
+              <button class="glide__bullet" aria-label="Project 1" data-glide-dir="=0"></button>
+              <button class="glide__bullet" aria-label="Project 2" data-glide-dir="=1"></button>
+              <button class="glide__bullet" aria-label="Project 3" data-glide-dir="=2"></button>
+              <button class="glide__bullet" aria-label="Project 4" data-glide-dir="=3"></button>
+              <button class="glide__bullet" aria-label="Project 5" data-glide-dir="=4"></button>
+              <button class="glide__bullet" aria-label="Project 6" data-glide-dir="=5"></button>
+              <button class="glide__bullet" aria-label="Project 7" data-glide-dir="=6"></button>
+              <button class="glide__bullet" aria-label="Project 8" data-glide-dir="=7"></button>
             </div>
           </div>
         </div>
@@ -307,23 +294,23 @@
         <source src="/videos/projects_0.mp4" type="video/mp4">
       </video>
     </div>
-    <div class="page contact" tabindex="-1">
-      <div class="controls">
-        <p>Press <span class="code">BACKSPACE</span> or <span class="code">ESC</span> to return home.</p>
-      </div>
+    <div class="page contact" tabindex="-1" inert>
       <div class="text-section">
         <h4>Let's Connect!</h4>
-        <p>I'm always excited to collaborate on new projects where I can make a meaningful impact. Feel free to reach out to me via email or LinkedIn.</p>
+        <p>Want to talk about games, software, or something you're making? Send me an email or find me on LinkedIn.</p>
         <ul>
-          <li><a class="fa fa-envelope"></a><a tabindex="-1" href="mailto:himanshu.kattelu@gmail.com">Email</a></li>
-          <li><a class="fa fa-brands fa-linkedin"></a><a tabindex="-1" href="https://linkedin.com/in/himanshukattelu" target="_blank">LinkedIn</a></li>
+          <li><a class="fa fa-envelope"></a><a href="mailto:himanshu.kattelu@gmail.com">Email</a></li>
+          <li><a class="fa fa-brands fa-linkedin"></a><a href="https://linkedin.com/in/himanshukattelu" target="_blank">LinkedIn</a></li>
         </ul>
+        <div class="controls">
+          <p>Press <span class="code">BACKSPACE</span> or <span class="code">ESC</span> to return home.</p>
+        </div>
       </div>
       <video muted>
         <source src="/videos/big_ben.mp4" type="video/mp4">
       </video>
     </div>
-    <div class="page blog" tabindex="-1">
+    <div class="page blog" tabindex="-1" inert>
       <div class="controls">
         <p>Press <span class="code">BACKSPACE</span> or <span class="code">ESC</span> to return home.</p>
       </div>
@@ -332,29 +319,29 @@
           <p>I like to share my experiences and learnings from the world. While my blog is currently on hiatus, you can explore my
             previous posts covering topics such as: </p>
           <ul>
-            <li><a tabindex="-1" href="/blog/learning-math/">Why I'll never get tired of math</a></li>
-            <li><a tabindex="-1" href="/blog/the-games-that-made-me/">The games that made me</a></li>
-            <li><a tabindex="-1" href="/blog/learning-how-to-draw/">Learning how to draw</a></li>
+            <li><a href="/blog/learning-math/">Why I'll never get tired of math</a></li>
+            <li><a href="/blog/the-games-that-made-me/">The games that made me</a></li>
+            <li><a href="/blog/learning-how-to-draw/">Learning how to draw</a></li>
           </ul>
-          <p>Check out more on <a tabindex="-1" href="/blog" target="_blank">my blog here</a></p>
+          <p>Check out more on <a href="/blog" target="_blank">my blog here</a></p>
       </div>
       <video muted>
         <source src="/videos/highline.mp4" type="video/mp4">
       </video>
     </div>
-    <div class="page credits" tabindex="-1">
+    <div class="page credits" tabindex="-1" inert>
       <div class="controls">
         <p>Press <span class="code">BACKSPACE</span> or <span class="code">ESC</span> to return home.</p>
       </div>
       <div class="text-section">
         <ul>
-          <li>This site is heavily inspired by the pause menu of the game <a tabindex="-1" href="https://en.m.wikipedia.org/wiki/Metaphor:_ReFantazio" target="_blank">Metaphor: Refantazio</a></li>
-          <li>I also took inspiration from  <a tabindex="-1" href="https://bryantcodes.art/" target="_blank">Bryant Smith</a> for the project page</li>
-          <li>I learned a ton in general from <a tabindex="-1" href="https://www.youtube.com/@Hyperplexed" target="_blank">Hyperplexed</a> and <a tabindex="-1" href="https://www.youtube.com/@coding2go" target="_blank">Coding2Go</a></li>
-          <li><a tabindex="-1" href="https://www.youtube.com/@whosajid" target="_blank">Sajid's</a> <a tabindex="-1" href="https://www.youtube.com/watch?v=AmY3db_Qs94&t=1s&ab_channel=Sajid" target="_blank">23 hacks</a> were extremely helpful</li>
-          <li>The light theme background is from <a tabindex="-1" href="https://www.pexels.com/photo/photography-of-empire-state-new-york-7613/" target="_blank">Life of Pix</a> and the dark one is from <a href="https://www.pexels.com/photo/modern-high-skyscrapers-on-river-shore-5845712/" tabindex="-1" target="_blank">Charles Parker</a></li>
-          <li>The paint splatter vectors come from <a tabindex="-1" href="https://www.vecteezy.com/vector-art/23796283-paint-ink-brush-stroke-grunge-texture-collection-hand-drawings-grunge-ink-splatters-collection-of-different-graphic-elements" target="_blank">mdalamina01 on Vecteezy</a></li>
-          <li>The app loader is a custom edit I created of <a tabindex="-1" href="https://css-loaders.com/spinner/" target="_blank">CssLoaders.com Spinner #6</a></li>
+          <li>This site is heavily inspired by the pause menu of the game <a href="https://en.m.wikipedia.org/wiki/Metaphor:_ReFantazio" target="_blank">Metaphor: Refantazio</a></li>
+          <li>I also took inspiration from  <a href="https://bryantcodes.art/" target="_blank">Bryant Smith</a> for the project page</li>
+          <li>I learned a ton in general from <a href="https://www.youtube.com/@Hyperplexed" target="_blank">Hyperplexed</a> and <a href="https://www.youtube.com/@coding2go" target="_blank">Coding2Go</a></li>
+          <li><a href="https://www.youtube.com/@whosajid" target="_blank">Sajid's</a> <a href="https://www.youtube.com/watch?v=AmY3db_Qs94&t=1s&ab_channel=Sajid" target="_blank">23 hacks</a> were extremely helpful</li>
+          <li>The light theme background is from <a href="https://www.pexels.com/photo/photography-of-empire-state-new-york-7613/" target="_blank">Life of Pix</a> and the dark one is from <a href="https://www.pexels.com/photo/modern-high-skyscrapers-on-river-shore-5845712/" tabindex="-1" target="_blank">Charles Parker</a></li>
+          <li>The paint splatter vectors come from <a href="https://www.vecteezy.com/vector-art/23796283-paint-ink-brush-stroke-grunge-texture-collection-hand-drawings-grunge-ink-splatters-collection-of-different-graphic-elements" target="_blank">mdalamina01 on Vecteezy</a></li>
+          <li>The app loader is a custom edit I created of <a href="https://css-loaders.com/spinner/" target="_blank">CssLoaders.com Spinner #6</a></li>
         </ul>
       </div> 
       <video muted>

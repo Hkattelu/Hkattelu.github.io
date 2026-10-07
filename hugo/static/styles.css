@@ -124,7 +124,8 @@ h3 {
   opacity: 0;
 
   transition: all 0.5s ease;
-  overflow: hidden;
+  /* Keep menu focus from scrolling the entire page offscreen. */
+  overflow: clip;
   height: 100%;
   width: 100%;
 
@@ -1012,113 +1013,26 @@ footer {
   }
 }
 
-/* ============================================================
-   Transition streaks — Persona-style speed lines that scrape
-   across the screen during navigation, leading the eye with the
-   page motion. JS toggles .run (plus .reverse when going home).
-   Vertical on all devices to match the page motion.
-   ============================================================ */
-.transition-streaks {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  pointer-events: none;
-  overflow: hidden;
-  display: none;
+/* Keep contact instructions with the copy, clear of the portrait. */
+.page.contact .text-section > h4 {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: clamp(24px, 2vw, 32px);
+  line-height: 1.25;
+  letter-spacing: 0;
+  margin: 0 0 16px;
 }
-.transition-streaks.run {
-  display: block;
+.page.contact .text-section > h4::after { content: none; }
+.page.contact .controls {
+  position: static;
+  align-self: flex-start;
+  padding: 16px 0 0;
+  margin-top: 12px;
+  border-top: 1px solid var(--accent-color);
+  border-radius: 0;
+  box-shadow: none;
+  text-align: left;
 }
-
-.transition-streaks span {
-  position: absolute;
-  top: 0;
-  width: 5px;
-  height: 55%;
-  border-radius: 999px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.15));
-  opacity: 0;
-  transform: translateY(-140vh) skewY(-14deg);
-  will-change: transform, opacity;
-  filter: drop-shadow(0 0 24px rgba(255, 255, 255, 0.16));
-}
-.transition-streaks.run span {
-  animation: streak-y 0.6s cubic-bezier(0.2, 0.9, 0.2, 1) both;
-}
-.transition-streaks.run.reverse span {
-  animation-direction: reverse;
-}
-
-.transition-streaks span:nth-child(1) { left: 10%; width: 3px; height: 60%; animation-delay: 0.04s; }
-.transition-streaks span:nth-child(2) { left: 24%; width: 6px; height: 45%; background: linear-gradient(180deg, var(--secondary-color), rgba(255,255,255,0.08)); animation-delay: 0s; }
-.transition-streaks span:nth-child(3) { left: 45%; width: 4px; height: 65%; animation-delay: 0.1s; }
-.transition-streaks span:nth-child(4) { left: 67%; width: 9px; height: 50%; background: linear-gradient(180deg, var(--secondary-color), rgba(255,255,255,0.08)); animation-delay: 0.06s; }
-.transition-streaks span:nth-child(5) { left: 84%; width: 3px; height: 58%; animation-delay: 0.14s; }
-
-@keyframes streak-y {
-  0% {
-    transform: translateY(-140vh) skewY(-14deg);
-    opacity: 0;
-  }
-  12% {
-    opacity: 0.95;
-  }
-  88% {
-    opacity: 0.95;
-  }
-  100% {
-    transform: translateY(140vh) skewY(-14deg);
-    opacity: 0;
-  }
-}
-
-/* ============================================================
-   Diagonal ink shards — angled translucent bands that break up
-   the flat page rectangle and rake toward the content panel as
-   each page settles in. Home and credits keep their own looks.
-   ============================================================ */
-.page.about-me::before,
-.page.skills::before,
-.page.projects::before,
-.page.contact::before,
-.page.blog::before {
-  content: "";
-  position: absolute;
-  inset: -15%;
-  z-index: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    112deg,
-    transparent 0 15%,
-    color-mix(in srgb, var(--accent-color) 14%, transparent) 15% 26%,
-    transparent 26% 27.4%,
-    color-mix(in srgb, var(--accent-color) 60%, transparent) 27.4% 27.7%,
-    transparent 27.7% 80%,
-    rgba(0, 0, 0, 0.3) 80% 87%,
-    transparent 87% 88.4%,
-    color-mix(in srgb, var(--accent-color) 45%, transparent) 88.4% 88.7%,
-    transparent 88.7%
-  );
-  opacity: 0;
-  transform: translateX(-5%);
-  transition: opacity 0.45s ease, transform 0.85s cubic-bezier(0.2, 0.9, 0.2, 1);
-}
-.page.visible::before {
-  opacity: 1;
-  transform: translateX(0);
-  transition-delay: 0.5s;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .transition-streaks {
-    display: none !important;
-  }
-  .page.about-me::before,
-  .page.skills::before,
-  .page.projects::before,
-  .page.contact::before,
-  .page.blog::before {
-    transition: none !important;
-    transform: none;
-  }
-}
+.page.contact .controls p { font-size: 14px; line-height: 1.6; margin: 0; }
+.page.contact.visible .controls { animation: none; transform: none; }

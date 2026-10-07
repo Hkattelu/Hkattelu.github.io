@@ -1,9 +1,11 @@
 # Himanshu Kattelu — Design System
 
+**Current site notes (October 2026):** Himanshu is the founder of Real Bizarre Software and a former senior engineer at Google. The homepage opens with the game-style menu; the introduction lives behind About Me. Skills are grouped text panels in `hugo/static/skills.css`; the old skill tree and hidden game have been removed. Keep personal copy plain and first-person. Contact uses a readable Roboto heading, with return instructions inside the text panel. Page turns have no streak lines or diagonal overlays. The historical examples below describe older versions; current source and these notes take precedence.
+
 > *“This site is heavily inspired by the pause menu of the game Metaphor: ReFantazio.”*
 > — Credits page, hkattelu.com
 
-The personal portfolio and blog of **Himanshu Kattelu**, a staff‑level front‑end prototyper based in NYC who ships AI‑first product experiences end‑to‑end (UI → serving → telemetry → quality loops). Past work spans **YouTube AI** (Ask Button, Quiz Posts, Courses), **GCP Logging**, and an arcade of creator side‑projects (QuizBot.games, Gaming Wrapped, Synapse Video Editor).
+The personal portfolio and blog of **Himanshu Kattelu**, an independent game developer and software engineer based in NYC, and the founder of Real Bizarre Software. Past work spans **YouTube AI** (Ask Button, Quiz Posts, Courses), **GCP Logging**, and an arcade of creator side‑projects (QuizBot.games, Gaming Wrapped, Synapse Video Editor).
 
 The site is *not* a typical portfolio — it’s a **stylized pause menu**. Tilted serif italics. Paint‑splatter masks behind every menu option. Looping background videos of NYC, gardens, and code. A skill tree instead of a “Skills” bullet list. Hidden Konami easter‑egg. Sound effects on every selection.
 

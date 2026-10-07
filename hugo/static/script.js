@@ -125,37 +125,22 @@ const animations = {
   }
 };
 
-// One-shot visual effects
-const fx = {
-  streakTimer: null,
-
-  // Sweep the transition streaks across the screen; reversed when heading home.
-  streak: (reverse = false) => {
-    const el = document.querySelector('.transition-streaks');
-    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    // Reset so back-to-back navigations restart the animation
-    el.classList.remove('run', 'reverse');
-    void el.offsetWidth;
-
-    el.classList.toggle('reverse', reverse);
-    el.classList.add('run');
-    clearTimeout(fx.streakTimer);
-    fx.streakTimer = setTimeout(() => el.classList.remove('run', 'reverse'), 900);
-  }
-};
-
-
 // Navigation Functions
 const navigation = {
   showPage: (index) => {
     const pages = document.getElementsByClassName('page');
-    Array.from(pages).forEach(page => page.classList.remove('visible'));
+    Array.from(pages).forEach(page => {
+      page.classList.remove('visible');
+      page.inert = true;
+    });
 
 
     const page = document.getElementsByClassName(CONSTANTS.PAGES[index])[0];
     page.style.setProperty('transition-delay', 'var(--base-transition-duration)');
+    page.inert = false;
     page.classList.add('visible');
+    document.querySelector('.left-options').inert = index >= 0;
+    if (index >= 0) page.focus({ preventScroll: true });
 
     const currentVideo = dom.getCurrentPage().querySelector('video');
     if (currentVideo) {
@@ -211,7 +196,6 @@ const navigation = {
       navigation.hideOptions();
     }
 
-    fx.streak(index < 0);
     dom.playSound('select', index < 0);
 
     history.pushState({pageIndex: index}, '');
@@ -257,14 +241,21 @@ const carousel = {
       draggable: true,
     });
 
+    carousel.instance.on(['mount.after', 'run'], carousel.syncSlideFocus);
+    carousel.instance.on('run', carousel.handleSlideChange);
     carousel.instance.mount();
-    carousel.instance.on('run.before', carousel.handleSlideChange);
 
     if (dom.isMobile()) {
       const video = document.querySelector('.projects video');
       video.addEventListener('touchstart', (evt) => handlers.touch.start(evt));
       video.addEventListener('touchmove', (evt) => handlers.touch.move(evt));
     }
+  },
+
+  syncSlideFocus: () => {
+    document.querySelectorAll('.glide__slides > .glide__slide').forEach((slide, index) => {
+      slide.inert = index !== carousel.instance.index;
+    });
   },
 
   handleSlideChange: (item) => {
@@ -286,8 +277,7 @@ const carousel = {
     );
 
     // Update video content
-    const nextIndex = toRight ? (carousel.instance.index + 1) : (carousel.instance.index - 1);
-    const newIndex = mod(nextIndex, CONSTANTS.PROJECTS);
+    const newIndex = carousel.instance.index;
     video.setAttribute('data-index', String(newIndex));
     source.setAttribute('src', `/videos/projects_${newIndex}.mp4`);
 
@@ -398,6 +388,8 @@ function startApp() {
 
   history.pushState({pageIndex: -1}, '');
 
+  carousel.setup();
+
   // This requestAnimationFrame double ensures that the DOM content is fully loaded.
   requestAnimationFrame(() => {
     const optionTexts = Array.from(dom.getOptionTexts());
@@ -407,11 +399,10 @@ function startApp() {
       if (!dom.isMobile()) {
         const firstOption = document.activeElement;
         const background = firstOption.querySelector('.focus-only-background');
-        animations.changeBackground(background);
+        if (background) animations.changeBackground(background);
       }
-      carousel.setup();
       Array.from(dom.getOptions()).forEach(el => el.style.setProperty('background-color', 'var(--secondary-color)'));
-      dom.focusFirstOption();
+      if (document.activeElement === document.body && dom.getCurrentPage().classList.contains('home')) dom.focusFirstOption();
     });
   });
 }
