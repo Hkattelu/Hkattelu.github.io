@@ -2,7 +2,7 @@ name: GitHub Pages (Hugo)
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   workflow_dispatch:
 
 permissions:
